@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
+import { Actions } from "react-native-router-flux";
 
 import styles from './styles'
 
@@ -11,7 +12,7 @@ export default class SplashScreenContainer extends React.Component {
 
   componentDidMount () {
     setTimeout(()=>{
-      this.props.navigation.navigate( 'login' )
+      Actions.login()
     }, 3000)
   }
 
