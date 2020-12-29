@@ -6,7 +6,7 @@ Mobile app to run Fantacalcio auction per League. Outcome will be an .xls file s
 * node version: 14.15.3
 
 ## Environment setup
-* Install expo [documentation](https://reactnative.dev/docs/environment-setup)
+* Install expo ([documentation](https://reactnative.dev/docs/environment-setup))
 
   ```npm install -g expo-cli```
 
