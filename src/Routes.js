@@ -6,12 +6,7 @@ import SplashScreenContainer from "./containers/splashscreen/SplashScreenContain
 const Routes = () => (
   <Router>
     <Scene key="root">
-      <Scene
-        key="SplashScreen"
-        component={SplashScreenContainer}
-        title="FantAsta"
-        initial={true}
-      />
+      <Scene key="SplashScreen" component={SplashScreenContainer} title="FantAsta" initial={true} />
       <Scene key="login" component={LoginContainer} title="Login" />
     </Scene>
   </Router>

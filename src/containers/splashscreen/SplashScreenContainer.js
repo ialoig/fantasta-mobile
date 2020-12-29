@@ -1,19 +1,29 @@
 import React from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
-import SplashScreen from "./SplashScreen";
-import NavigationBarContainer from "../navigationbar/NavigationBarContainer";
+import styles from './styles'
 
 export default class SplashScreenContainer extends React.Component {
-  state = {
-    text: "SPLASHSCREEN\n\n\nFANTASTA",
-  };
+
+  static navigationOptions = {
+      header: null
+  }
+
+  componentDidMount () {
+    setTimeout(()=>{
+      this.props.navigation.navigate( 'login' )
+    }, 3000)
+  }
 
   render() {
+
     return (
-      <View>
-        <SplashScreen text={this.state.text} />
-        <NavigationBarContainer />
+      <View style={styles.container}>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>{"SPLASHSCREEN\n\n\nFANTASTA"}</Text>
+
+          {/* <SplashScreen text={"SPLASHSCREEN\n\n\nFANTASTA"} /> */}
+        </View>
       </View>
     );
   }

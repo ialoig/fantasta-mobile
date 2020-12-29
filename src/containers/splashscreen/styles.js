@@ -4,7 +4,8 @@ export default StyleSheet.create({
   container: {
     backgroundColor: "lightgreen",
     alignItems: "center",
-    height: "70%",
+    height: "100%",
+    width: "100%"
   },
 
   textContainer: {

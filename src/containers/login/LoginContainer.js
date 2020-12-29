@@ -3,10 +3,19 @@ import { View } from "react-native";
 import Login from "./Login";
 
 export default class LoginContainer extends React.Component {
-    state = {
-        username: "Username",
-        password: "Password"
-    };
+
+    static navigationOptions = {
+        header: null
+    }
+
+    constructor (props) {
+        super(props)
+
+        this.state = {
+            username: "Username",
+            password: "Password"
+        };
+    }
 
     render() {
         return (
