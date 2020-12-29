@@ -10,9 +10,13 @@ Mobile app to run Fantacalcio auction per League. Outcome will be an .xls file s
 
   ```npm install -g expo-cli```
 
+* Install dependencies
+
+  ```npm install```
+
 # Build and Run
 Go to the root folder of the project and run
 
 ```npm start```
 
-It builds and lunches the mobile app on a real or simulated device
+It builds and lunches the mobile app. Follow instruction on the screen to lunch application on a real device / simulated device / web browser
