@@ -7,24 +7,10 @@ const NavigationBar = (props) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        style={styles.inkuboButton}
-        onPress={() => props.goToInkubo(1)}
+        style={styles.loginButton}
+        onPress={() => props.goToLogin()}
       >
-        <Image
-          style={styles.imageButton}
-          source={require("../../assets/img/inkubo.png")}
-        />
-        <Text>{props.inkubo}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.beloxButton}
-        onPress={() => props.goToBelox(1)}
-      >
-        <Image
-          style={styles.imageButton}
-          source={require("../../assets/img/belox.png")}
-        />
-        <Text>{props.belox}</Text>
+        <Text>{props.text}</Text>
       </TouchableOpacity>
     </View>
   );

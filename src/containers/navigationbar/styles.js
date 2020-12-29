@@ -11,25 +11,10 @@ export default StyleSheet.create({
     //backgroundColor: "purple",
     alignItems: "center",
   },
-  inkuboButton: {
+  loginButton: {
     alignItems: "center",
     borderRadius: 10,
     backgroundColor: "lightgray",
     padding: 10,
-  },
-  beloxButton: {
-    alignItems: "center",
-    borderRadius: 10,
-    backgroundColor: "lightgray",
-    padding: 10,
-  },
-  imageButton: {
-    //margin: 5,
-    height: 50,
-    width: 50,
-    //padding: 10,
-    //resizeMode: "stretch",
-    //resizeMode: "contain",
-    resizeMode: "cover",
   },
 });

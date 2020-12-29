@@ -1,7 +1,6 @@
 import React from "react";
 import { Router, Scene } from "react-native-router-flux";
-import InkuboContainer from "./containers/inkubo/InkuboContainer";
-import BeloxContainer from "./containers/belox/BeloxContainer";
+import LoginContainer from "./containers/login/LoginContainer";
 import SplashScreenContainer from "./containers/splashscreen/SplashScreenContainer";
 
 const Routes = () => (
@@ -13,8 +12,7 @@ const Routes = () => (
         title="FantAsta"
         initial={true}
       />
-      <Scene key="inkubo" component={InkuboContainer} title="Inkubo" />
-      <Scene key="belox" component={BeloxContainer} title="Belox" />
+      <Scene key="login" component={LoginContainer} title="Login" />
     </Scene>
   </Router>
 );
