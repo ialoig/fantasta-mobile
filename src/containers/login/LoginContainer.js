@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import Login from "./Login";
 
-export default class LoginContainer extends React.Component {
+export class LoginContainer extends React.Component {
 
     static navigationOptions = {
         header: null
@@ -11,16 +11,20 @@ export default class LoginContainer extends React.Component {
     constructor (props) {
         super(props)
 
-        this.state = {
-            username: "Username",
-            password: "Password"
-        };
+        this.state = {}
     }
+
+    onChange ( id, value, valid ) {
+        console.log(id)
+        console.log(value)
+        console.log(valid)
+    }
+
 
     render() {
         return (
             <View>
-                <Login username={this.state.username} password={this.state.password}/>
+                <Login onChange={this.onChange.bind(this)} />
             </View>
         )
     }

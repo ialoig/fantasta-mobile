@@ -3,11 +3,28 @@ import { Text, View } from "react-native";
 
 import styles from "./styles"
 
+import { InputPassword, InputEmail } from '../../components'
+
 const Login = (props) => {
     return (
         <View>
-            <Text style={styles.textUsername}> {props.username}</Text>
-            <Text style={styles.textPassword}> {props.password}</Text>
+            <InputEmail
+                id="email"
+                label="Username"
+                placeholder={"Email address"}
+                required={true}
+                clearButtonMode='while-editing'
+                onChange={props.onChange}
+            />
+            
+            <InputPassword
+                id="password"
+                label="Password"
+                placeholder={'Password'}
+                required={true}
+                clearButtonMode='never'
+                onChange={props.onChange}
+            />
         </View>
     )
 }

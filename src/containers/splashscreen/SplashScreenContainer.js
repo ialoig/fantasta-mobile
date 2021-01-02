@@ -4,7 +4,7 @@ import { Actions } from "react-native-router-flux";
 
 import styles from './styles'
 
-export default class SplashScreenContainer extends React.Component {
+export class SplashScreenContainer extends React.Component {
 
   static navigationOptions = {
       header: null
