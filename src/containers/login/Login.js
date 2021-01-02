@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, View } from "react-native";
-import I18n from 'i18n-js'
+import { View } from "react-native";
+import I18n from 'react-native-i18n'
 
 import styles from "./styles"
 

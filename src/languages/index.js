@@ -1,17 +1,28 @@
 
-import LocalizedStrings  from 'react-native-localization'
-import I18n from 'i18n-js'
+import { Platform, NativeModules } from 'react-native'
+import I18n from 'react-native-i18n'
 
 import { langs } from './translations'
 
-// const strings = new LocalizedStrings(langs)
+const OS = Platform.OS || ''
+const defaultLang = 'it'
+let deviceLang = ''
 
-// console.log(strings)
+if ( OS=='web' ) {
+    let NV = navigator || {}
+    deviceLang = NV.language || NV.userLanguage || NV.languages && NV.languages[0] || ''
+}
+else if ( OS=='ios' ) {
 
-console.log(langs)
+    let SM = NativeModules.SettingsManager && NativeModules.SettingsManager.settings || {}
+    deviceLang = SM.AppleLocale || SM.AppleLanguages && SM.AppleLanguages[0] || ''
+}
+else if ( OS=='android' ) {
+    deviceLang = NativeModules.I18nManager && NativeModules.I18nManager.localeIdentifier || ''
+}
 
-I18n.defaultLocale = "it";
-I18n.locale = "it";
+I18n.defaultLocale = deviceLang || defaultLang;
+I18n.locale = deviceLang || defaultLang;
 
 I18n.translations = langs
 
