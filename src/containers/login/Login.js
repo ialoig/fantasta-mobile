@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
+import I18n from 'i18n-js'
 
 import styles from "./styles"
 
@@ -11,7 +12,7 @@ const Login = (props) => {
             <InputEmail
                 id="email"
                 label="Username"
-                placeholder={"Email address"}
+                placeholder={I18n.translate('email')}
                 required={true}
                 clearButtonMode='while-editing'
                 onChange={props.onChange}
@@ -20,7 +21,7 @@ const Login = (props) => {
             <InputPassword
                 id="password"
                 label="Password"
-                placeholder={'Password'}
+                placeholder={I18n.translate('password')}
                 required={true}
                 clearButtonMode='never'
                 onChange={props.onChange}

@@ -26,7 +26,8 @@ export default StyleSheet.create({
     inputError: {
         marginLeft: '15px',
         marginTop: '-10px',
-        color: '#FF6464'
+        color: '#FF6464',
+        fontSize: 'x-small'
     }
 
 });
