@@ -1,4 +1,7 @@
 {
+    "notValidField": "Campo non valido",
+    "requiredField": "Campo obbligatorio",
+    "tooShortField": "Campo troppo breve",
     "email": "Email",
     "password": "Password"
 }

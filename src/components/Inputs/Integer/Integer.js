@@ -6,7 +6,7 @@ import inputStyles from '../../../styles/inputs'
 
 const Integer = (props) => {
 
-    let viewStyle = StyleSheet.compose( inputStyles.inputForm, props.isValid ? inputStyles.isValid : props.hasError ? inputStyles.hasError : {} )
+    let viewStyle = StyleSheet.compose( inputStyles.inputForm, props.hasError ? inputStyles.hasError : {} )
 
     return (
         <View>

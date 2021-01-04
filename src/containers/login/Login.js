@@ -11,7 +11,7 @@ const Login = (props) => {
         <View>
             <InputEmail
                 id="email"
-                label="Username"
+                label={I18n.translate('email')}
                 placeholder={I18n.translate('email')}
                 required={true}
                 clearButtonMode='while-editing'
@@ -20,9 +20,10 @@ const Login = (props) => {
             
             <InputPassword
                 id="password"
-                label="Password"
+                label={I18n.translate('password')}
                 placeholder={I18n.translate('password')}
                 required={true}
+                minLength={6}
                 clearButtonMode='never'
                 onChange={props.onChange}
             />

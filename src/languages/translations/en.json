@@ -1,4 +1,7 @@
 {
+    "notValidField": "Field not valid",
+    "requiredField": "Required field",
+    "tooShortField": "Too short field",
     "email": "Email",
     "password": "Password"
 }

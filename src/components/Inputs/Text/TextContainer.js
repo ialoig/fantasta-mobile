@@ -3,6 +3,7 @@ import { View } from "react-native";
 import _ from 'lodash'
 
 import Text from './Text'
+import { checkValidity } from '../utils'
 
 export default class TextContainer extends React.Component {
 
@@ -13,6 +14,7 @@ export default class TextContainer extends React.Component {
             value: props.value!==undefined && props.value!==null ? props.value : '',
             error: '',
             valid: true,
+            changed: false,
             touched: false,
             focused: false,
         };
@@ -32,7 +34,10 @@ export default class TextContainer extends React.Component {
     }
 
     onChangeText ( text ) {
-        this.setState({ value: text }, () => { this.checkValidity() })
+        this.setState({
+            changed: true,
+            value: text
+        }, ()=>{ this.checkValidity() })
 
         this.props.onChange && this.props.onChange( this.props.id, text, this.state.valid )
     }
@@ -55,45 +60,15 @@ export default class TextContainer extends React.Component {
     }
 
     checkValidity () {
-        
-        let error = ''
-        let valid = true
 
         let errors = this.props.errors || {}
         let validity = this.ref && this.ref.validity || {}
 
-        if ( this.props.required && !this.state.value )
-        {
-            valid = false
-            error = errors['required'] || 'Campo obbligatorio'
-        }
-        else if ( this.state.value && this.props.pattern )
-        {
-            let regEx = new RegExp(this.props.pattern)
-            
-            valid = regEx.test(this.state.value)
-            error = errors['pattern'] || 'Campo non valido'
-        }
-        else if ( !validity.valid )
-        {
-            valid = false
-
-            let err = ''
-            for ( let i in validity )
-            {
-                if ( validity[i] )
-                {
-                    err = validity[i]
-                    break
-                }
-            }
-
-            error = errors[err] || errors['custom'] || 'Campo non valido'
-        }
-
+        let ret = checkValidity( this.state.value, errors, validity, this.props )
+        
         this.setState({
-            valid,
-            error
+            valid: ret.valid,
+            error: ret.error
         })
     }
 
@@ -111,12 +86,12 @@ export default class TextContainer extends React.Component {
             required=false,
             editable=true,
             selectTextOnFocus=false,
+            minLength=0,
             maxLength=100
         } = this.props
 
         let valid = this.state.valid && ( _.isBoolean(this.props.valid) ? this.props.valid : true )
-        let hasError = !valid && ( this.state.touched && !this.state.focused || showError ) && !hideError
-        let isValid = valid && this.state.touched && !this.state.focused
+        let hasError = !valid && ( this.state.changed || this.state.touched && !this.state.focused || showError ) && !hideError
 
         return (
             <View>
@@ -133,11 +108,11 @@ export default class TextContainer extends React.Component {
                     textContentType={textContentType}
 
                     error={this.state.error}
-                    isValid={isValid}
                     hasError={hasError}
                     required={required}
                     editable={editable}
                     selectTextOnFocus={selectTextOnFocus}
+                    minLength={minLength}
                     maxLength={maxLength}
 
                     onChangeText={this.onChangeText.bind(this)}
