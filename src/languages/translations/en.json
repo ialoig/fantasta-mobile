@@ -3,5 +3,6 @@
     "requiredField": "Required field",
     "tooShortField": "Too short field",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "login": "Login"
 }

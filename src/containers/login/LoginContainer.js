@@ -1,6 +1,9 @@
 import React from "react";
-import { View } from "react-native";
+import { Alert } from "react-native";
 import Login from "./Login";
+
+const emailId = 'email'
+const passwordId = 'password'
 
 export class LoginContainer extends React.Component {
 
@@ -11,21 +14,39 @@ export class LoginContainer extends React.Component {
     constructor (props) {
         super(props)
 
-        this.state = {}
+        this.state = {
+            [emailId]: '',
+            [passwordId]: '',
+            showError: false
+        }
     }
 
     onChange ( id, value, valid ) {
-        console.log(id)
-        console.log(value)
-        console.log(valid)
+        this.setState({
+            [id]: value
+        })
     }
 
-
+    login () {
+        if ( this.state[emailId] && this.state[passwordId] )
+        {
+            Alert.alert('Tutto ok!!!')
+        }
+        else
+        {
+            this.setState({showError: true})
+        }
+    }
+    
     render() {
         return (
-            <View>
-                <Login onChange={this.onChange.bind(this)} />
-            </View>
+            <Login
+                emailId={emailId}
+                passwordId={passwordId}
+                showError={this.state.showError}
+                onChange={this.onChange.bind(this)}
+                Login={this.login.bind(this)}
+            />
         )
     }
 }

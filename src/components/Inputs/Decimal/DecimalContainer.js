@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import _ from 'lodash'
+import Validator from 'validator'
 
 import Decimal from './Decimal'
 import { checkValidity } from '../utils'
@@ -62,9 +63,8 @@ export default class TextContainer extends React.Component {
     checkValidity () {
         
         let errors = this.props.errors || {}
-        let validity = this.ref && this.ref.validity || {}
 
-        let ret = checkValidity( this.state.value, errors, validity, this.props )
+        let ret = checkValidity( 'decimal', this.state.value, errors, this.props )
         
         this.setState({
             valid: ret.valid,
@@ -91,35 +91,33 @@ export default class TextContainer extends React.Component {
         } = this.props
 
         let valid = this.state.valid && ( _.isBoolean(this.props.valid) ? this.props.valid : true )
-        let hasError = !valid && ( this.state.changed || this.state.touched && !this.state.focused || showError ) && !hideError
+        let hasError = !valid && ( this.state.touched && !this.state.focused || showError ) && !hideError
 
         return (
-            <View>
-                <Decimal
-                    id={id}
-                    name={id}
-                    label={label}
-                    value={this.state.value}
-                    placeholder={placeholder}
-                    onRef={ ref => this.ref = ref }
+            <Decimal
+                id={id}
+                name={id}
+                label={label}
+                value={this.state.value}
+                placeholder={placeholder}
+                onRef={ ref => this.ref = ref }
 
-                    autoCapitalize={autoCapitalize}
-                    clearButtonMode={clearButtonMode}
-                    textContentType={textContentType}
+                autoCapitalize={autoCapitalize}
+                clearButtonMode={clearButtonMode}
+                textContentType={textContentType}
 
-                    error={this.state.error}
-                    hasError={hasError}
-                    required={required}
-                    editable={editable}
-                    selectTextOnFocus={selectTextOnFocus}
-                    minLength={minLength}
-                    maxLength={maxLength}
+                error={this.state.error}
+                hasError={hasError}
+                required={required}
+                editable={editable}
+                selectTextOnFocus={selectTextOnFocus}
+                minLength={minLength}
+                maxLength={maxLength}
 
-                    onChangeText={this.onChangeText.bind(this)}
-                    onBlur={this.onBlur.bind(this)}
-                    onFocus={this.onFocus.bind(this)}
-                />
-            </View>
+                onChangeText={this.onChangeText.bind(this)}
+                onBlur={this.onBlur.bind(this)}
+                onFocus={this.onFocus.bind(this)}
+            />
         )
     }
 }

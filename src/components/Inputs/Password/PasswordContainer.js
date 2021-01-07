@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import _ from 'lodash'
 
 import Password from './Password'
@@ -62,9 +61,8 @@ export default class TextContainer extends React.Component {
     checkValidity () {
         
         let errors = this.props.errors || {}
-        let validity = this.ref && this.ref.validity || {}
 
-        let ret = checkValidity( this.state.value, errors, validity, this.props )
+        let ret = checkValidity( 'password', this.state.value, errors, this.props )
         
         this.setState({
             valid: ret.valid,
@@ -90,35 +88,33 @@ export default class TextContainer extends React.Component {
         } = this.props
 
         let valid = this.state.valid && ( _.isBoolean(this.props.valid) ? this.props.valid : true )
-        let hasError = !valid && ( this.state.changed || this.state.touched && !this.state.focused || showError ) && !hideError
+        let hasError = !valid && ( this.state.touched && !this.state.focused || showError ) && !hideError
 
         return (
-            <View>
-                <Password
-                    id={id}
-                    name={id}
-                    label={label}
-                    value={this.state.value}
-                    placeholder={placeholder}
-                    onRef={ ref => { this.ref = ref }}
+            <Password
+                id={id}
+                name={id}
+                label={label}
+                value={this.state.value}
+                placeholder={placeholder}
+                onRef={ ref => { this.ref = ref }}
 
-                    autoCapitalize={autoCapitalize}
-                    clearButtonMode={clearButtonMode}
-                    textContentType={'password'}
+                autoCapitalize={autoCapitalize}
+                clearButtonMode={clearButtonMode}
+                textContentType={'password'}
 
-                    error={this.state.error}
-                    hasError={hasError}
-                    required={required}
-                    editable={editable}
-                    selectTextOnFocus={selectTextOnFocus}
-                    minLength={minLength}
-                    maxLength={maxLength}
+                error={this.state.error}
+                hasError={hasError}
+                required={required}
+                editable={editable}
+                selectTextOnFocus={selectTextOnFocus}
+                minLength={minLength}
+                maxLength={maxLength}
 
-                    onChangeText={this.onChangeText.bind(this)}
-                    onBlur={this.onBlur.bind(this)}
-                    onFocus={this.onFocus.bind(this)}
-                />
-            </View>
+                onChangeText={this.onChangeText.bind(this)}
+                onBlur={this.onBlur.bind(this)}
+                onFocus={this.onFocus.bind(this)}
+            />
         )
     }
 }
