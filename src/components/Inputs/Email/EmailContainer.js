@@ -4,7 +4,7 @@ import _ from 'lodash'
 import Email from './Email'
 import { checkValidity } from '../utils'
 
-export default class TextContainer extends React.Component {
+export default class EmailContainer extends React.Component {
 
     constructor (props) {
         super(props)
