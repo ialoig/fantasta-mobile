@@ -1,18 +1,18 @@
 import React from "react";
-import { SafeAreaView, Text, View } from "react-native";
+import { Image, SafeAreaView, Text, View } from "react-native";
 import I18n from 'react-native-i18n'
 
 import styles from "./styles"
 import commonStyles from '../../styles/styles'
 
-import { Button, InputPassword, InputEmail } from '../../components'
+import { Button, InputPassword, InputEmail, Logo } from '../../components'
 
 const Login = (props) => {
     return (
         <SafeAreaView style={commonStyles.container}>
 
             <View style={styles.logo}>
-                Fantasta
+                <Logo />
             </View>
 
             <View style={styles.form}>

@@ -5,7 +5,8 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    margin: 30
   },
   form: {
     flex: 4,
