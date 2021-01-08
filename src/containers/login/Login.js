@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, SafeAreaView } from "react-native";
+import { Button, KeyboardAvoidingView, SafeAreaView } from "react-native";
 import I18n from 'react-native-i18n'
+import { View } from "react-native";
 
 import styles from "./styles"
 
@@ -8,7 +9,7 @@ import { InputPassword, InputEmail } from '../../components'
 
 const Login = (props) => {
     return (
-        <SafeAreaView style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
             <InputEmail
                 id={props.emailId}
                 label={I18n.translate('email')}
@@ -30,12 +31,16 @@ const Login = (props) => {
                 onChange={props.onChange}
             />
 
-            <Button
-                title={I18n.translate('login')}
-                onPress={() => props.Login()}
-            />
-        </SafeAreaView>
+            <View style={styles.button}>
+                <Button
+                    title={I18n.translate('login')}
+                    onPress={() => props.Login()}
+                />
+            </View>
+        </KeyboardAvoidingView>
     )
 }
 
 export default Login
+
+

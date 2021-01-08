@@ -22,7 +22,8 @@
     "react-native-router-flux": "^4.2.0",
     "react-native-screens": "~2.15.0",
     "react-native-web": "^0.14.10",
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "expo-font": "~8.4.0"
   },
   "devDependencies": {
     "@babel/core": "~7.12.10"
