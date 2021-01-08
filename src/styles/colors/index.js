@@ -1,0 +1,21 @@
+export default {
+    white: "#ffffff",
+    primary: "#1fcc79",
+    text: "#3e5481",
+    primaryDark: "#428537",
+    background: "#ffffff",
+    grey: "#d0dbea",
+    black: "#000000",
+    errorRed: "#ff6464",
+    greyLight: "#f4f5f7",
+    textPlaceholder: "#9fa5c0",
+    greyDark: "#d0dbea",
+    successGreen: "#f2fffb",
+    errorRedBg: "#fff3f8",
+    greenDisabled: "#8ee5bb",
+    por: "#f0b646",
+    dif: "#4dc189",
+    cen: "#87d4f4",
+    att: "#8b62bf",
+    blueDark: "#1f4b64"
+};
