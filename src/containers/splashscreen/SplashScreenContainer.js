@@ -13,7 +13,7 @@ export class SplashScreenContainer extends React.Component {
   componentDidMount () {
     setTimeout(()=>{
       Actions.login()
-    }, 3000)
+    }, 500)
   }
 
   render() {

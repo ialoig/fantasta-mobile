@@ -1,19 +1,19 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    
+    inptView: {
+        width: '100%'
+    },
     inputForm: {
-        margin: '15px',
-        padding: 0,
-        borderWidth: 1,
+        marginTop: 10,
+        marginBottom: 15,
+        height: 40,
+        width: '100%',
+        borderRadius: 40,
         paddingHorizontal: 10,
-        backgroundColor: '#fff',
-        borderColor: 'grey',
-        height: 30,
-        borderRadius: 8,
-        border: '2px solid',
+        border: '2px solid grey',
         boxSizing: 'border-box',
-        borderRadius: '16px'
+        backgroundColor: '#FFFFFF',
     },
     isValid: {
         backgroundColor: '#F2FFFB',
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     },
     inputError: {
         marginLeft: '15px',
-        marginTop: '-10px',
+        marginTop: '-15px',
         color: '#FF6464',
         fontSize: 'x-small'
     }

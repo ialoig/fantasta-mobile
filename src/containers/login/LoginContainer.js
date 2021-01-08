@@ -37,6 +37,14 @@ export class LoginContainer extends React.Component {
             this.setState({showError: true})
         }
     }
+
+    register () {
+        console.log('register')
+    }
+
+    forgotPassword () {
+        console.log('forgot password')
+    }
     
     render() {
         return (
@@ -46,6 +54,8 @@ export class LoginContainer extends React.Component {
                 showError={this.state.showError}
                 onChange={this.onChange.bind(this)}
                 Login={this.login.bind(this)}
+                Register={this.register.bind(this)}
+                ForgotPassword={this.forgotPassword.bind(this)}
             />
         )
     }
