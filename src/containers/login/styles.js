@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   forgot: {
     alignSelf: 'flex-end',
-    marginTop: 20,
+    marginTop: 5,
     textDecorationLine: 'underline'
   },
   buttonsContainer: {
@@ -24,18 +24,5 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center'
-  },
-  loginButton: {
-    backgroundColor: "#1FCC79",
-  },
-  loginText: {
-    color: "#FFFFFF"
-  },
-  registerButton: {
-    backgroundColor: "#FFFFFF",
-    border: '1px solid #1FCC79'
-  },
-  registerText: {
-    color: "#1FCC79"
-  },
+  }
 });

@@ -5,9 +5,9 @@ export default StyleSheet.create({
         width: '100%'
     },
     inputForm: {
-        marginTop: 10,
-        marginBottom: 15,
-        height: 40,
+        marginTop: '2vh',
+        marginBottom: '2.5vh',
+        height: '8vh',
         width: '100%',
         borderRadius: 40,
         paddingHorizontal: 10,

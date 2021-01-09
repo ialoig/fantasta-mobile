@@ -46,14 +46,14 @@ const Login = (props) => {
                 <Button
                     title={I18n.translate('login')}
                     onPress={props.Login}
-                    buttonStyle={styles.loginButton}
-                    textStyle={styles.loginText}
+                    type='primary'
+                    size='large'
                 />
                 <Button
                     title={I18n.translate('register')}
                     onPress={props.Register}
-                    buttonStyle={styles.registerButton}
-                    textStyle={styles.registerText}
+                    type='secondary'
+                    size='large'
                 />
             </View>
             

@@ -11,7 +11,9 @@ export default class ButtonContainer extends React.Component {
             onPress,
             buttonStyle,
             textStyle,
-            title=''
+            title='',
+            type='primary',
+            size='large'
         } = this.props
 
         return (
@@ -20,6 +22,8 @@ export default class ButtonContainer extends React.Component {
                 buttonStyle={buttonStyle}
                 textStyle={textStyle}
                 title={title}
+                type={type}
+                size={size}
             />
         )
     }

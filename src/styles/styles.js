@@ -5,6 +5,6 @@ export default StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'stretch',
-        margin: '5%'
+        margin: '10%'
     }
 });
