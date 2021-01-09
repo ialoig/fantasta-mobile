@@ -14,15 +14,20 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center'
   },
-  forgot: {
-    alignSelf: 'flex-end',
-    marginTop: 5,
-    textDecorationLine: 'underline'
-  },
   buttonsContainer: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center'
+  },
+  login: {
+    height: '8vh',
+    margin: '2vh',
+    color: "#1FCC79",
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    alignSelf: "center"
   }
 });

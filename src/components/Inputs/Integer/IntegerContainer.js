@@ -4,7 +4,7 @@ import _ from 'lodash'
 import Integer from './Integer'
 import { checkValidity } from '../utils'
 
-export default class TextContainer extends React.Component {
+export default class IntegerContainer extends React.Component {
 
     constructor (props) {
         super(props)

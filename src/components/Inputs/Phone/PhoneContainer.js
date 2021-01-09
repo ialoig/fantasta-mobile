@@ -4,7 +4,7 @@ import _ from 'lodash'
 import Phone from './Phone'
 import { checkValidity } from '../utils'
 
-export default class TextContainer extends React.Component {
+export default class PhoneContainer extends React.Component {
 
     constructor (props) {
         super(props)

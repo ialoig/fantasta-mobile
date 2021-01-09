@@ -9,7 +9,7 @@ const Phone = (props) => {
     let viewStyle = StyleSheet.compose( inputStyles.inputForm, props.hasError ? inputStyles.hasError : {} )
 
     return (
-        <View>
+        <View style={inputStyles.inptView}>
             {/* <Text>{props.label}</Text> */}
             <TextInput
                 {...props}

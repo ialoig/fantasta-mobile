@@ -6,7 +6,7 @@ import Validator from 'validator'
 import Decimal from './Decimal'
 import { checkValidity } from '../utils'
 
-export default class TextContainer extends React.Component {
+export default class DecimalContainer extends React.Component {
 
     constructor (props) {
         super(props)

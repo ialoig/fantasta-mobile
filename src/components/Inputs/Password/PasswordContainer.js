@@ -4,7 +4,7 @@ import _ from 'lodash'
 import Password from './Password'
 import { checkValidity } from '../utils'
 
-export default class TextContainer extends React.Component {
+export default class PasswordContainer extends React.Component {
 
     constructor (props) {
         super(props)

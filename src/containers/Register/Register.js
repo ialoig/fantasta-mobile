@@ -1,14 +1,13 @@
 import React from "react";
 import { SafeAreaView, Text, View } from "react-native";
 import I18n from 'react-native-i18n'
-import { View } from "react-native";
 
 import styles from "./styles"
 import commonStyles from '../../styles/styles'
 
 import { Button, InputPassword, InputEmail, Logo } from '../../components'
 
-const Login = (props) => {
+const Register = (props) => {
     return (
         <SafeAreaView style={commonStyles.container}>
 
@@ -38,30 +37,32 @@ const Login = (props) => {
                     onChange={props.onChange}
                 />
 
-                <Text style={styles.forgot} onPress={() => props.ForgotPassword()}>
-                    {I18n.translate('forgotPassword')}?
-                </Text>
+                <InputPassword
+                    id={props.repeatPasswordId}
+                    label={I18n.translate('repeatPassword')}
+                    placeholder={I18n.translate('repeatPassword')}
+                    showError={props.showError}
+                    required={true}
+                    minLength={6}
+                    clearButtonMode='never'
+                    onChange={props.onChange}
+                />
             </View>
 
             <View style={styles.buttonsContainer}>
                 <Button
-                    title={I18n.translate('login')}
-                    onPress={props.Login}
+                    title={I18n.translate('register')}
+                    onPress={props.Register}
                     type='primary'
                     size='large'
                 />
-                <Button
-                    title={I18n.translate('register')}
-                    onPress={props.Register}
-                    type='secondary'
-                    size='large'
-                />
+                <Text style={styles.login} onPress={props.Login}>
+                    {I18n.translate('login')}
+                </Text>
             </View>
             
         </SafeAreaView>
     )
 }
 
-export default Login
-
-
+export default Register
