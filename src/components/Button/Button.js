@@ -1,25 +1,16 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-import buttonStyles from '../../styles/buttons'
+import React from "react";
+import { Text, TouchableOpacity } from "react-native";
+
+import { button, text } from '../../styles/buttons'
 
 const Button = (props) => {
 
-    let buttonStyle = buttonStyles.button
-    let textStyle = buttonStyles.text
-
-    if ( props.type ) {
-        buttonStyle = StyleSheet.compose( buttonStyle, buttonStyles[props.type+'_button'] || buttonStyles['primary_button'] )
-        textStyle = StyleSheet.compose( textStyle, buttonStyles[props.type+'_text'] || buttonStyles['primary_text'] )
-    }
-
-    if ( props.size ) {
-        buttonStyle = StyleSheet.compose( buttonStyle, buttonStyles[props.size+'_button'] || buttonStyles['large_button'] )
-    }
+    const { type, size } = props
 
     return (
-        <TouchableOpacity onPress={props.onPress} style={buttonStyle}>
-            <Text style={textStyle}>{props.title}</Text>
+        <TouchableOpacity onPress={props.onPress} style={[ button.button, button[type], button[size] ]}>
+            <Text style={[ text.text, text[type] ]}>{props.title}</Text>
         </TouchableOpacity>
     )
 }
