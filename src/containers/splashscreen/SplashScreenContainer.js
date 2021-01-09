@@ -16,8 +16,8 @@ export class SplashScreenContainer extends React.Component {
     return Font.loadAsync({
        PoppinsRegular: require("../../../assets/fonts/Poppins-Regular.ttf"),
        PoppinsBold: require("../../../assets/fonts/Poppins-Bold.ttf"),
-       PoppinsMedium: require("../../../assets/fonts/Poppins-Medium.ttf"),
-       PoppinsBlack: require("../../../assets/fonts/Poppins-Black.ttf")
+       PoppinsSemiBold: require("../../../assets/fonts/Poppins-SemiBold.ttf"),
+       PoppinsMedium: require("../../../assets/fonts/Poppins-Medium.ttf")
     })
   }
 
@@ -26,7 +26,7 @@ export class SplashScreenContainer extends React.Component {
       this.loadFonts(),
     ])
     .then( () => {
-      Actions.login();
+      Actions.Login();
     })
   }
 
