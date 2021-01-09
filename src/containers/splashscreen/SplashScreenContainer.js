@@ -1,31 +1,39 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { Actions } from "react-native-router-flux";
+import * as Font from "expo-font";
 
 import styles from './styles'
+import SplashScreen from "./SplashScreen";
 
 export class SplashScreenContainer extends React.Component {
 
   static navigationOptions = {
-      header: null
+    header: null
   }
 
-  componentDidMount () {
-    setTimeout(()=>{
-      Actions.login()
-    }, 3000)
+  loadFonts = async () => {
+    return Font.loadAsync({
+       PoppinsRegular: require("../../../assets/fonts/Poppins-Regular.ttf"),
+       PoppinsBold: require("../../../assets/fonts/Poppins-Bold.ttf"),
+       PoppinsMedium: require("../../../assets/fonts/Poppins-Medium.ttf"),
+       PoppinsBlack: require("../../../assets/fonts/Poppins-Black.ttf")
+    })
+  }
+
+  async componentDidMount () {
+    Promise.all([
+      this.loadFonts(),
+    ])
+    .then( () => {
+      Actions.login();
+    })
   }
 
   render() {
 
     return (
-      <View style={styles.container}>
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>{"SPLASHSCREEN\n\n\nFANTASTA"}</Text>
-
-          {/* <SplashScreen text={"SPLASHSCREEN\n\n\nFANTASTA"} /> */}
-        </View>
-      </View>
+      <SplashScreen/>
     );
   }
 }
