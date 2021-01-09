@@ -1,13 +1,14 @@
+
 import React from "react";
-import { Alert } from "react-native";
 import { Actions } from "react-native-router-flux";
 
-import Login from "./Login";
+import Register from "./Register";
 
 const emailId = 'email'
 const passwordId = 'password'
+const repeatPasswordId = 'repeatPassword'
 
-export class LoginContainer extends React.Component {
+export class RegisterContainer extends React.Component {
 
     static navigationOptions = {
         header: null
@@ -19,6 +20,7 @@ export class LoginContainer extends React.Component {
         this.state = {
             [emailId]: '',
             [passwordId]: '',
+            [repeatPasswordId]: '',
             showError: false
         }
     }
@@ -30,34 +32,23 @@ export class LoginContainer extends React.Component {
     }
 
     login () {
-        if ( this.state[emailId] && this.state[passwordId] )
-        {
-            Alert.alert('Tutto ok!!!')
-        }
-        else
-        {
-            this.setState({showError: true})
-        }
+        Actions.Login()
     }
 
     register () {
-        Actions.Register()
-    }
-
-    forgotPassword () {
-        console.log('forgot password')
+        console.log('register')
     }
     
     render() {
         return (
-            <Login
+            <Register
                 emailId={emailId}
                 passwordId={passwordId}
+                repeatPasswordId={repeatPasswordId}
                 showError={this.state.showError}
                 onChange={this.onChange.bind(this)}
                 Login={this.login.bind(this)}
                 Register={this.register.bind(this)}
-                ForgotPassword={this.forgotPassword.bind(this)}
             />
         )
     }

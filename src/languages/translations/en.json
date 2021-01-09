@@ -4,5 +4,8 @@
     "tooShortField": "Too short field",
     "email": "Email",
     "password": "Password",
-    "login": "Login"
+    "repeatPassword": "Repeat password",
+    "login": "Login",
+    "register": "Register",
+    "forgotPassword": "Forgot password"
 }
