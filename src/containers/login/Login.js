@@ -1,7 +1,6 @@
 import React from "react";
 import { SafeAreaView, Text, View } from "react-native";
 import I18n from 'react-native-i18n'
-import { View } from "react-native";
 
 import styles from "./styles"
 import commonStyles from '../../styles/styles'

@@ -6,15 +6,20 @@ export default StyleSheet.create({
         width: '100%'
     },
     inputForm: {
-        marginTop: '2vh',
-        marginBottom: '2.5vh',
-        height: '8vh',
+        fontFamily: "PoppinsRegular", 
+        fontSize: 16,
+        fontWeight: "500",
+        lineHeight: 28,
+        letterSpacing: 0.75,
+        color: colors.text,
+        //dimensions&style
         width: '100%',
+        height: 64,
+        marginTop: '6%',
+        marginBottom: '4%',
         borderRadius: 40,
-        paddingHorizontal: 10,
-        border: '2px solid grey',
-        boxSizing: 'border-box',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.greyLight,
+        paddingHorizontal: "10%"
     },
     isValid: {
         backgroundColor: colors.successGreen,
@@ -26,14 +31,15 @@ export default StyleSheet.create({
         backgroundColor: colors.errorRedBg,
         borderStyle: "solid",
         borderWidth: 2,
-        borderRadius: 32,
         borderColor: colors.errorRed
     },
     inputError: {
-        marginLeft: '15px',
-        marginTop: '-15px',
-        color: '#FF6464',
-        fontSize: 'x-small'
+        fontFamily: "PoppinsMedium",
+        fontSize: 14,
+        fontWeight: "500",
+        lineHeight: 22,
+        letterSpacing: 0.25,
+        color: colors.errorRed
     }
 
 });
