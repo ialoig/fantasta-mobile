@@ -4,6 +4,7 @@
     "tooShortField": "Campo troppo breve",
     "email": "Email",
     "password": "Password",
+    "repeatPassword": "Repeti password",
     "login": "Login",
     "register": "Register",
     "forgotPassword": "Password dimenticata"

@@ -12,7 +12,7 @@ export class SplashScreenContainer extends React.Component {
 
   componentDidMount () {
     setTimeout(()=>{
-      Actions.login()
+      Actions.Login()
     }, 500)
   }
 
@@ -22,8 +22,6 @@ export class SplashScreenContainer extends React.Component {
       <View style={styles.container}>
         <View style={styles.textContainer}>
           <Text style={styles.text}>{"SPLASHSCREEN\n\n\nFANTASTA"}</Text>
-
-          {/* <SplashScreen text={"SPLASHSCREEN\n\n\nFANTASTA"} /> */}
         </View>
       </View>
     );
