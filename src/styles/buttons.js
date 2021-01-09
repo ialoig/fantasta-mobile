@@ -2,25 +2,25 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     button: {
-        height: '8vh',
         margin: '1vh',
         borderRadius: 40,
-        paddingVertical: 10,
-        paddingHorizontal: 12
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     text: {
-        fontSize: 14,
+        fontSize: '100%',
         fontFamily: 'Poppins',
         fontStyle: 'normal',
-        fontWeight: '600',
-        alignSelf: "center",
-        textTransform: "uppercase"
+        fontWeight: '600'
     },
     large_button: {
         width: '100%',
+        height: '8vh'
     },
     small_button: {
         width: '50%',
+        height: '4vh'
     },
     primary_button: {
         backgroundColor: '#1FCC79',

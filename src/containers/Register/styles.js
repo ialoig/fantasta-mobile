@@ -23,8 +23,11 @@ export default StyleSheet.create({
   login: {
     height: '8vh',
     margin: '2vh',
-    textDecorationLine: 'underline',
     color: "#1FCC79",
-    textTransform: "uppercase"
+    fontSize: 14,
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    alignSelf: "center"
   }
 });
