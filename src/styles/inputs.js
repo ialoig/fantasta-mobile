@@ -1,33 +1,45 @@
 import { StyleSheet } from "react-native";
+import colors from "./colors";
 
 export default StyleSheet.create({
     inptView: {
         width: '100%'
     },
     inputForm: {
-        marginTop: '2vh',
-        marginBottom: '2.5vh',
-        height: '8vh',
+        fontFamily: "PoppinsRegular", 
+        fontSize: 16,
+        fontWeight: "500",
+        lineHeight: 28,
+        letterSpacing: 0.75,
+        color: colors.text,
+        //dimensions&style
         width: '100%',
+        height: 64,
+        marginTop: '6%',
+        marginBottom: '4%',
         borderRadius: 40,
-        paddingHorizontal: 10,
-        border: '2px solid grey',
-        boxSizing: 'border-box',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.greyLight,
+        paddingHorizontal: "10%"
     },
     isValid: {
-        backgroundColor: '#F2FFFB',
-        border: '2px solid #1FCC79',
+        backgroundColor: colors.successGreen,
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderColor: colors.primary
     },
-    hasError: {
-        backgroundColor: '#FFF3F8',
-        border: '2px solid #FF6464'
+    hasError: {  
+        backgroundColor: colors.errorRedBg,
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderColor: colors.errorRed
     },
     inputError: {
-        marginLeft: '15px',
-        marginTop: '-15px',
-        color: '#FF6464',
-        fontSize: 'x-small'
+        fontFamily: "PoppinsMedium",
+        fontSize: 14,
+        fontWeight: "500",
+        lineHeight: 22,
+        letterSpacing: 0.25,
+        color: colors.errorRed
     }
 
 });
