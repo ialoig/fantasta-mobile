@@ -19,18 +19,20 @@ const Set = async ( key, value) =>
 
 const Get = async ( key ) =>
 {
+    let value = ''
+
     try
     {
-        const value = await AsyncStorage.getItem( key )
-        
-        return Promise.resolve()
+        value = await AsyncStorage.getItem( key )
     }
     catch (e)
     {
         console.log(e)
+
+        value = null
     }
     
-    return Promise.reject()
+    return Promise.resolve(value)
 }
 
 const MultiSet = async ( pairs ) =>
@@ -47,7 +49,7 @@ const MultiSet = async ( pairs ) =>
     }
   
     return Promise.reject()
-  }
+}
 
 const MultiGet = async ( keys ) =>
 {
