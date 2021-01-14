@@ -4,6 +4,8 @@ import { Actions } from "react-native-router-flux";
 
 import styles from './styles'
 
+import SplashScreen from './SplashScreen'
+
 export class SplashScreenContainer extends React.Component {
 
   static navigationOptions = {
@@ -19,11 +21,7 @@ export class SplashScreenContainer extends React.Component {
   render() {
 
     return (
-      <View style={styles.container}>
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>{"SPLASHSCREEN\n\n\nFANTASTA"}</Text>
-        </View>
-      </View>
-    );
+      <SplashScreen />
+    )
   }
 }
