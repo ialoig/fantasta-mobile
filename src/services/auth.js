@@ -14,9 +14,9 @@ const Authenticate = async () =>
     try
     {
         res = await axios.post('/auth/token', {}, {})
-        saveUser( res )
+        saveUser( res.data )
 
-        return Promise.resolve(res)
+        return Promise.resolve()
     }
     catch (error)
     {
@@ -29,16 +29,12 @@ const Login = async ( email, password ) =>
 {
     let res = {}
 
-    let formData = new FormData()
-    formData.append('email', email)
-    formData.append('password', password)
-
     try
     {
-        res = await axios.put('/auth/login', formData, {})
-        saveUser( res )
+        res = await axios.put('/auth/login', { email, password }, {})
+        saveUser( res.data )
 
-        return Promise.resolve(res)
+        return Promise.resolve()
     }
     catch (error)
     {
@@ -51,16 +47,12 @@ const Register = async ( email, password ) =>
 {
     let res = {}
 
-    let formData = new FormData()
-    formData.append('email', email)
-    formData.append('password', password)
-
     try
     {
-        res = await axios.post('/auth/register', formData, {})
-        saveUser( res )
+        res = await axios.post('/auth/register', { email, password }, {})
+        saveUser( res.data )
 
-        return Promise.resolve(res)
+        return Promise.resolve()
     }
     catch (error)
     {

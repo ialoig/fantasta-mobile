@@ -22,7 +22,9 @@
 //     },
 //     secondary: {
 //         backgroundColor: colors.white,
-//         border: '1px solid ' + colors.primary
+//         borderWidth: '1px',
+//         borderStyle: 'solid',       
+//         borderColor: colors.primary
 //     }
 // });
 

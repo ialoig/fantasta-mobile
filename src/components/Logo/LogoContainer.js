@@ -7,10 +7,10 @@ export default class LogoContainer extends React.Component {
 
     render() {
 
-        const { size='' } = this.props
+        const { size='', type='png' } = this.props
 
         return (
-            <Logo size={size} />
+            <Logo size={size} type={type} />
         )
     }
 }
