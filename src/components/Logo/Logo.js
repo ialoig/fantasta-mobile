@@ -6,8 +6,12 @@ import styles from './styles'
 
 const Logo = (props) => {
 
-    let size = props.size==2 || props.size==3 ? `@${props.size}x` : ''
-    let logo = require(`../../../assets/img/logo${size}.png`)
+    let logo = require('../../../assets/img/logo.png')
+    
+    if ( props.type=='svg' )
+    {
+        logo = require('../../../assets/img/logo.svg')
+    }
     
     return <Image style={styles.logo} source={logo} />
 }
