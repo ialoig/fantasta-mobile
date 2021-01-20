@@ -3,7 +3,8 @@ import colors from "../../styles/colors";
 
 export const button = StyleSheet.create({
     button: {
-        margin: '1vh',
+        margin: 8,
+        padding: 8,
         borderRadius: 40,
         display: 'flex',
         alignItems: 'center',
@@ -11,18 +12,20 @@ export const button = StyleSheet.create({
     },
     large: {
         width: '100%',
-        height: '8vh'
+        height: 48
     },
     small: {
         width: '50%',
-        height: '4vh'
+        height: 24
     },
     primary: {
         backgroundColor: colors.primary,
     },
     secondary: {
         backgroundColor: colors.white,
-        borderWidth: '1px',
+    },
+    border: {
+        borderWidth: 1,
         borderStyle: 'solid',
         borderColor: colors.primary
     }
@@ -30,7 +33,7 @@ export const button = StyleSheet.create({
 
 export const text = StyleSheet.create({
     text: {
-        fontSize: '100%',
+        fontSize: 20,
         fontFamily: 'PoppinsRegular',
         fontStyle: 'normal',
         lineHeight: 28,

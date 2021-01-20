@@ -3,20 +3,22 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
     backgroundColor: "lightgreen",
-    alignItems: "center",
-    height: "100%",
-    width: "100%"
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '60%',
+    width: '60%'
   },
-
-  textContainer: {
-    backgroundColor: "yellow",
-    margin: 50,
-  },
-
-  text: {
-    textAlign: "center",
-    color: "black",
-    fontWeight: "bold",
-    fontSize: 20,
-  },
+  logo: {
+    width: '60%',
+    height: '60%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    alignSelf: 'center',
+    backgroundColor: "lightgreen",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
