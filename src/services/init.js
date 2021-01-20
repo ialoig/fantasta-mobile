@@ -1,33 +1,24 @@
 
-import { loadAsync } from "expo-font";
+import { Fonts } from './fonts'
+import { Server } from './server'
 
-const LoadFonts = async () =>
-{
-    return loadAsync({
-        PoppinsRegular: require("../../../assets/fonts/Poppins-Regular.ttf"),
-        PoppinsBold: require("../../../assets/fonts/Poppins-Bold.ttf"),
-        PoppinsSemiBold: require("../../../assets/fonts/Poppins-SemiBold.ttf"),
-        PoppinsMedium: require("../../../assets/fonts/Poppins-Medium.ttf")
-    })
-}
 
-const Init = async () =>
+const Init = () =>
 {
-    Promise.all([
-        LoadFonts(),
+    return Promise.all([
+        Fonts.Init(),
+        Server.Init()
     ])
     .then(
-        () => {
+        () =>
+        {
             return Promise.resolve()
         },
-        (err) => {
+        (err) =>
+        {
             return Promise.reject(err)
         }
     )
-    
-    return Promise.resolve()
-
-
 }
 
 export default Init

@@ -1,6 +1,6 @@
 
 import { Platform, NativeModules } from 'react-native'
-import I18n from 'react-native-i18n'
+import I18n from 'i18n-js'
 
 import { langs } from './translations'
 
@@ -11,6 +11,7 @@ let deviceLang = ''
 if ( OS=='web' ) {
     let NV = navigator || {}
     deviceLang = NV.language || NV.userLanguage || NV.languages && NV.languages[0] || ''
+    deviceLang = deviceLang && deviceLang.split('-')[0]
 }
 else if ( OS=='ios' ) {
 
@@ -21,8 +22,9 @@ else if ( OS=='android' ) {
     deviceLang = NativeModules.I18nManager && NativeModules.I18nManager.localeIdentifier || ''
 }
 
-I18n.defaultLocale = deviceLang || defaultLang;
-I18n.locale = deviceLang || defaultLang;
+I18n.fallbacks = true
+I18n.defaultLocale = deviceLang || defaultLang
+I18n.locale = deviceLang || defaultLang
 
 I18n.translations = langs
 

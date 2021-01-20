@@ -7,5 +7,6 @@
     "repeatPassword": "Repeat password",
     "login": "Login",
     "register": "Register",
-    "forgotPassword": "Forgot password"
+    "forgotPassword": "Forgot password",
+    "differentPassword": "You entered two different passwords"
 }
