@@ -1,7 +1,7 @@
 import React from "react";
 import { Actions } from "react-native-router-flux";
 
-import { Init, Storage } from '../../services'
+import { Auth, Init, Token } from '../../services'
 
 import SplashScreen from './SplashScreen'
 
@@ -13,17 +13,34 @@ export class SplashScreenContainer extends React.Component {
 
   async componentDidMount ()
   {
-      await Init()
+      try
+      {
+        await Init() 
+      }
+      catch (error)
+      {
+        console.log(error)
 
-      let token = await Storage.Get( 'token' )
+        //TODO: come vogliamo gestire l'errore???
+      }
 
+      let token = Token.Get()
       if ( token )
       {
+        try
+        {
+          let res = await Auth.Authenticate( token )
 
+          Actions.Home()
+        }
+        catch (error)
+        {
+          Actions.Login()
+        }
       }
       else
       {
-          Actions.Login();
+        Actions.Login()
       }
   }
 

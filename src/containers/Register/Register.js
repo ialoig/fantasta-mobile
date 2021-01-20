@@ -1,11 +1,11 @@
 import React from "react";
 import { SafeAreaView, Text, View } from "react-native";
-import I18n from 'react-native-i18n'
+import I18n from 'i18n-js'
 
 import styles from "./styles"
 import commonStyles from '../../styles/styles'
 
-import { Button, InputPassword, InputEmail, Logo } from '../../components'
+import { Button, Email, Logo, Password, RepeatPassword } from '../../components'
 
 const Register = (props) => {
     return (
@@ -16,7 +16,7 @@ const Register = (props) => {
             </View>
 
             <View style={styles.form}>
-                <InputEmail
+                <Email
                     id={props.emailId}
                     label={I18n.translate('email')}
                     placeholder={I18n.translate('email')}
@@ -26,7 +26,7 @@ const Register = (props) => {
                     onChange={props.onChange}
                 />
                 
-                <InputPassword
+                <Password
                     id={props.passwordId}
                     label={I18n.translate('password')}
                     placeholder={I18n.translate('password')}
@@ -37,10 +37,11 @@ const Register = (props) => {
                     onChange={props.onChange}
                 />
 
-                <InputPassword
+                <RepeatPassword
                     id={props.repeatPasswordId}
                     label={I18n.translate('repeatPassword')}
                     placeholder={I18n.translate('repeatPassword')}
+                    password={props.password}
                     showError={props.showError}
                     required={true}
                     minLength={6}

@@ -1,11 +1,11 @@
 import React from "react";
 import { SafeAreaView, Text, View } from "react-native";
-import I18n from 'react-native-i18n'
+import I18n from 'i18n-js'
 
 import styles from "./styles"
 import commonStyles from '../../styles/styles'
 
-import { Button, InputPassword, InputEmail, Logo } from '../../components'
+import { Button, Password, Email, Logo } from '../../components'
 
 const Login = (props) => {
     return (
@@ -16,7 +16,7 @@ const Login = (props) => {
             </View>
 
             <View style={styles.form}>
-                <InputEmail
+                <Email
                     id={props.emailId}
                     label={I18n.translate('email')}
                     placeholder={I18n.translate('email')}
@@ -26,7 +26,7 @@ const Login = (props) => {
                     onChange={props.onChange}
                 />
                 
-                <InputPassword
+                <Password
                     id={props.passwordId}
                     label={I18n.translate('password')}
                     placeholder={I18n.translate('password')}

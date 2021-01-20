@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.13.2",
+    "axios": "^0.21.1",
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
     "i18n-js": "^3.8.0",
@@ -16,7 +17,6 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "^0.63.4",
-    "react-native-i18n": "^2.0.15",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-localization": "^2.1.6",
     "react-native-reanimated": "^1.13.2",

@@ -14,7 +14,7 @@ export default StyleSheet.create({
         color: colors.text,
         //dimensions&style
         width: '100%',
-        height: 64,
+        height: '8vh',
         marginTop: '6%',
         marginBottom: '4%',
         borderRadius: 40,
