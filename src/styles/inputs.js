@@ -14,9 +14,9 @@ export default StyleSheet.create({
         color: colors.text,
         //dimensions&style
         width: '100%',
-        height: '8vh',
-        marginTop: '6%',
-        marginBottom: '4%',
+        height: 48,
+        marginTop: 18,
+        marginBottom: 12,
         borderRadius: 40,
         backgroundColor: colors.greyLight,
         paddingHorizontal: "10%"
@@ -35,7 +35,8 @@ export default StyleSheet.create({
     },
     inputError: {
         fontFamily: "PoppinsMedium",
-        fontSize: 14,
+        fontSize: 12,
+        marginTop: -6,
         fontWeight: "500",
         lineHeight: 22,
         letterSpacing: 0.25,

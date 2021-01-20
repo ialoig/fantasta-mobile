@@ -57,9 +57,13 @@ const Register = (props) => {
                     type='primary'
                     size='large'
                 />
-                <Text style={styles.login} onPress={props.Login}>
-                    {I18n.translate('login')}
-                </Text>
+                <Button
+                    title={I18n.translate('login')}
+                    onPress={props.Login}
+                    type='secondary'
+                    size='large'
+                    border={false}
+                />
             </View>
             
         </SafeAreaView>

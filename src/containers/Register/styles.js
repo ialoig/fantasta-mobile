@@ -19,15 +19,5 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center'
-  },
-  login: {
-    height: '8vh',
-    margin: '2vh',
-    color: "#1FCC79",
-    fontSize: 14,
-    fontFamily: 'Poppins',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    alignSelf: "center"
   }
 });

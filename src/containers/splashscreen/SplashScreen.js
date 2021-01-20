@@ -1,13 +1,15 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+
+import { Logo } from '../../components'
 
 import styles from "./styles";
 
 const SplashScreen = (props) => {
   return (
     <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={styles.text}>{props.text}</Text>
+      <View style={styles.logo}>
+        <Logo />
       </View>
     </View>
   );
