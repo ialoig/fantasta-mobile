@@ -4,7 +4,13 @@ import axios from 'axios'
 
 const temp_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJwYXNzd29yZCI6InBhc3N3b3JkIiwiaWF0IjoxNjEwNzk0OTExLCJleHAiOjE2NDIzMzA5MTF9.OkwSR_v-7Awi0BRCUdL0cv8Ry4iQcU4P7kdl4nAacJU"
 
-const SERVER_URL = 'http://localhost:3000/fantasta'
+const URLS = {
+    local: 'http://localhost:3000/fantasta',
+    lan: 'http://192.168.1.196:3000/fantasta'
+}
+
+const SERVER_URL = URLS.lan
+
 let AUTH_TOKEN = ''
 
 const Set = ( tok ) =>
