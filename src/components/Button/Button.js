@@ -7,10 +7,10 @@ import { button, text } from "./styles"
 
 const Button = (props) => {
 
-    const { type, size } = props
+    const { type, size, border } = props
 
     return (
-        <TouchableOpacity onPress={props.onPress} style={[ button.button, button[type], button[size] ]}>
+        <TouchableOpacity onPress={props.onPress} style={[ button.button, button[type], button[size], border ? button.border : null ]}>
             <Text style={[ text.text, text[type] ]}>{props.title}</Text>
         </TouchableOpacity>
     )
