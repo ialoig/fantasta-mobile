@@ -62,7 +62,7 @@ export class RegisterContainer extends React.Component {
             {
                 let res = await Auth.Register( email, pw1 )
 
-                Actions.Home()
+                Actions.StartPage()
             }
             catch (error)
             {

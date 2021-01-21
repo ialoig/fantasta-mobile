@@ -2,17 +2,17 @@
 import React from "react"
 import { Text, View } from "react-native"
 
-import styles from "./styles";
+import styles from "./styles"
 import { Styles } from '../../styles'
 
-const Home = (props) => {
+const StartPage = (props) => {
     return (
         <View style={Styles.Commons.container}>
             <View style={Styles.Commons.content}>
-                <Text>Home</Text>
+                <Text>Start</Text>
             </View>
         </View>
     )
 }
 
-export default Home
+export default StartPage
