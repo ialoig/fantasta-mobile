@@ -1,17 +1,19 @@
-import React from "react";
+
+import React from "react"
 
 import Home from './Home'
 
 export class HomeContainer extends React.Component {
 
-  static navigationOptions = {
-    header: null
-  }
+    static navigationOptions = {
+        header: null
+    }
 
-  render() {
+    render() {
 
-    return (
-      <Home />
-    )
-  }
+        return (
+            <Home />
+        )
+    }
+    
 }

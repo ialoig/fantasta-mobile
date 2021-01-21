@@ -3,25 +3,24 @@ import { View } from "react-native"
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import I18n from 'i18n-js'
 
-
-import commonStyles from '../../styles/styles'
-import registerStyles from '../../styles/loginRegister'
+import styles from "./styles"
+import { Styles } from '../../styles'
 
 import { Button, Email, Logo, Password, RepeatPassword } from '../../components'
 
 const Register = (props) => {
     return (
         <KeyboardAwareScrollView
-            contentContainerStyle={commonStyles.container}
+            contentContainerStyle={Styles.Commons.container}
             scrollEnabled={false}
             resetScrollToCoords={{ x: 0, y: 0 }}
         >
-            <View style={commonStyles.content}>
-                <View style={registerStyles.logo}>
+            <View style={Styles.Commons.content}>
+                <View style={Styles.Login.logo}>
                     <Logo />
                 </View>
 
-                <View style={registerStyles.form}>
+                <View style={Styles.Login.form}>
                     <Email
                         id={props.emailId}
                         label={I18n.translate('email')}
@@ -56,7 +55,7 @@ const Register = (props) => {
                     />
                 </View>
 
-                <View style={registerStyles.buttonsContainer}>
+                <View style={Styles.Login.buttonsContainer}>
                 <Button
                     title={I18n.translate('register')}
                     onPress={props.Register}
