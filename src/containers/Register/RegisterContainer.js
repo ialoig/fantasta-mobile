@@ -81,7 +81,7 @@ export class RegisterContainer extends React.Component {
                 showError={this.state.showError}
                 onChange={this.onChange.bind(this)}
                 Register={this.register.bind(this)}
-                Login={()=> Actions.Login()}
+                Login={()=> Actions.pop()}
             />
         )
     }
