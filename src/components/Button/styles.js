@@ -11,7 +11,7 @@ export const button = StyleSheet.create({
     },
     large: {
         width: '100%',
-        height: '8vh'
+        height: '56px'
     },
     small: {
         width: '50%',
