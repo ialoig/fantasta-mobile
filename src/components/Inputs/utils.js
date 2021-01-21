@@ -1,7 +1,9 @@
 
+import I18n from 'i18n-js'
 import Validator from 'validator'
-import I18n from 'react-native-i18n'
 import _ from 'lodash'
+
+import { PASSWORD_OPT } from '../../constants/constants'
 
 export const checkValidity = ( type, value, errors, props ) => {
         
@@ -36,7 +38,7 @@ export const checkValidity = ( type, value, errors, props ) => {
         }
         else if ( !CorrectType( type, value ) )
         {
-            error = errors['notCorrect'] || I18n.translate('notValidField')
+            error = errors[type] || errors['notCorrect'] || I18n.translate('notValidField')
         }
         else
         {
@@ -75,6 +77,11 @@ const CorrectType = ( type, value ) =>
     else if ( type=='text' )
     {
         return !Validator.isEmpty(value)
+    }
+    else if ( type=='password' )
+    {
+        let strong = Validator.isStrongPassword(value, PASSWORD_OPT)
+        return strong
     }
     return true
 }

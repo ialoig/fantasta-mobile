@@ -1,6 +1,9 @@
 import React from "react";
-import { Alert } from "react-native";
 import { Actions } from "react-native-router-flux";
+import Validator from 'validator'
+
+import { Auth } from "../../services"
+import { PASSWORD_OPT } from '../../constants/constants'
 
 import Login from "./Login";
 
@@ -29,10 +32,23 @@ export class LoginContainer extends React.Component {
         })
     }
 
-    login () {
-        if ( this.state[emailId] && this.state[passwordId] )
+    async login () {
+
+        const email = this.state[emailId] || ''
+        const pw = this.state[passwordId] || ''
+
+        if ( email && pw && Validator.isEmail(email) && Validator.isStrongPassword(pw, PASSWORD_OPT) )
         {
-            Alert.alert('Tutto ok!!!')
+            try
+            {
+                let res = await Auth.Login( email, pw )
+
+                Actions.Home()
+            }
+            catch (error)
+            {
+                
+            }
         }
         else
         {

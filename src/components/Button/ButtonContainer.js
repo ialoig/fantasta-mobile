@@ -13,7 +13,8 @@ export default class ButtonContainer extends React.Component {
             textStyle,
             title='',
             type='primary',
-            size='large'
+            size='large',
+            border=true
         } = this.props
 
         return (
@@ -24,6 +25,7 @@ export default class ButtonContainer extends React.Component {
                 title={title}
                 type={type}
                 size={size}
+                border={border}
             />
         )
     }
