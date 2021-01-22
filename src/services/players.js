@@ -25,7 +25,11 @@ const Init = async () =>
 
         let version = players && players.version || 0
 
-        let res = await axios.get(`/footballPlayers?version=${version}`)
+        let res = await axios.get(`/footballPlayers`, {
+            params: {
+                version
+            }
+        })
 
         let data = res && res.data && res.data.data || {}
         if ( data.updated )
