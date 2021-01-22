@@ -15,7 +15,7 @@ export class SplashScreenContainer extends React.Component {
   {
       try
       {
-        await Init() 
+        await Init()
       }
       catch (error)
       {

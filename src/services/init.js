@@ -1,13 +1,14 @@
 
 import { Fonts } from './fonts'
 import { Server } from './server'
+import { Players } from './players'
 
-
-const Init = () =>
+export const Init = () =>
 {
     return Promise.all([
         Fonts.Init(),
-        Server.Init()
+        Server.Init(),
+        Players.Init()
     ])
     .then(
         () =>
@@ -20,5 +21,3 @@ const Init = () =>
         }
     )
 }
-
-export default Init

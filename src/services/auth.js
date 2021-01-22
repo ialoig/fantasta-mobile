@@ -9,11 +9,9 @@ import { Leagues } from './leagues'
 
 const Authenticate = async () =>
 {
-    let res = {}
-
     try
     {
-        res = await axios.post('/auth/token', {}, {})
+        let res = await axios.post('/auth/token', {}, {})
         saveUser( res.data )
 
         return Promise.resolve()
@@ -27,11 +25,9 @@ const Authenticate = async () =>
 
 const Login = async ( email, password ) =>
 {
-    let res = {}
-
     try
     {
-        res = await axios.put('/auth/login', { email, password }, {})
+        let res = await axios.put('/auth/login', { email, password }, {})
         saveUser( res.data )
 
         return Promise.resolve()
@@ -45,11 +41,9 @@ const Login = async ( email, password ) =>
 
 const Register = async ( email, password ) =>
 {
-    let res = {}
-
     try
     {
-        res = await axios.post('/auth/register', { email, password }, {})
+        let res = await axios.post('/auth/register', { email, password }, {})
         saveUser( res.data )
 
         return Promise.resolve()
