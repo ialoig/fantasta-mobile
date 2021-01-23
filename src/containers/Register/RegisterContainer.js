@@ -62,7 +62,7 @@ export class RegisterContainer extends React.Component {
             {
                 let res = await Auth.Register( email, pw1 )
 
-                Actions.StartPage()
+                Actions.reset('StartPage')
             }
             catch (error)
             {
@@ -81,7 +81,7 @@ export class RegisterContainer extends React.Component {
                 showError={this.state.showError}
                 onChange={this.onChange.bind(this)}
                 Register={this.register.bind(this)}
-                Login={()=> Actions.pop()}
+                login={Actions.pop}
             />
         )
     }

@@ -31,16 +31,16 @@ export class SplashScreenContainer extends React.Component {
         {
           let res = await Auth.Authenticate( token )
 
-          Actions.Home()
+          Actions.reset('Home')
         }
         catch (error)
         {
-          Actions.Login()
+          Actions.replace('Login')
         }
       }
       else
       {
-        Actions.Login()
+        Actions.replace('Login')
       }
   }
 

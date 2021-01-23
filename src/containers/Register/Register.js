@@ -64,7 +64,7 @@ const Register = (props) => {
                 />
                 <Button
                     title={I18n.translate('login')}
-                    onPress={props.Login}
+                    onPress={props.login}
                     type='secondary'
                     size='large'
                     border={false}
