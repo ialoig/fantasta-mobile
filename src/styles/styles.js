@@ -11,8 +11,8 @@ export default StyleSheet.create({
     },
     content: {
         flex: 1,
-        flexDirection: 'column',
-        alignItems: 'stretch',
-        color: colors.text
+        //flexDirection: 'column',
+        //alignItems: 'stretch',
+        //color: colors.text
     }
 });
