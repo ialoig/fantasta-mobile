@@ -33,7 +33,6 @@ export const button = StyleSheet.create({
 
 export const text = StyleSheet.create({
     text: {
-        fontSize: 20,
         fontFamily: 'PoppinsRegular',
         fontStyle: 'normal',
         lineHeight: 28,
@@ -45,5 +44,11 @@ export const text = StyleSheet.create({
     },
     secondary: {
         color: colors.primary
+    },
+    large: {
+        fontSize: 20,
+    },
+    small: {
+        fontSize: 12,
     }
 });
