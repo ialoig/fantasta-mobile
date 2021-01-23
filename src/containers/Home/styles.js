@@ -71,34 +71,6 @@ export default StyleSheet.create({
         marginLeft: 30
     },
     openLeague: {
-        
-    },
-    centeredView: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: -100
-      },
-    modalView: {
-        width:'70%',
-        height: 350,
-        margin: 0,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 20,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        justifyContent: "space-around",
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5
-    },
-    modalButtons: {
-        flexDirection: 'row'
+
     }
 });
