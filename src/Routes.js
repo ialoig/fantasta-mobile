@@ -1,8 +1,8 @@
 import React from "react";
 import { Router, Scene } from "react-native-router-flux";
 
-import { LoginContainer } from "./containers/Login/LoginContainer";
-import { SplashScreenContainer } from "./containers/Splashscreen/SplashScreenContainer";
+import { LoginContainer } from "./containers/login/LoginContainer";
+import { SplashScreenContainer } from "./containers/splashscreen/SplashScreenContainer";
 import { RegisterContainer } from './containers/Register/RegisterContainer'
 import { StartPageContainer } from './containers/StartPage/StartPageContainer'
 import { HomeContainer } from './containers/Home/HomeContainer'

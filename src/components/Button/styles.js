@@ -3,20 +3,19 @@ import colors from "../../styles/colors";
 
 export const button = StyleSheet.create({
     button: {
-        margin: 8,
-        padding: 8,
+        flex: 1,
         borderRadius: 40,
-        display: 'flex',
+        marginHorizontal: 16,
         alignItems: 'center',
-        justifyContent: 'center'
+        marginVertical: 12
     },
     large: {
-        width: '100%',
-        height: '56px'
+        minWidth: 327,
+        minHeight: 56
     },
     small: {
-        width: '50%',
-        height: 24
+        minWidth: 156,
+        minHeight: 54
     },
     primary: {
         backgroundColor: colors.primary,
@@ -32,13 +31,14 @@ export const button = StyleSheet.create({
 });
 
 export const text = StyleSheet.create({
-    text: {
-        fontSize: 20,
-        fontFamily: 'PoppinsRegular',
-        fontStyle: 'normal',
+    text: {  
+        fontFamily: "PoppinsRegular",
+        fontSize: 16,
+        fontWeight: "normal",
+        fontStyle: "normal",
         lineHeight: 28,
         letterSpacing: 0.75,
-        fontWeight: '400'
+        textAlign: "center"
     },
     primary: {
         color: colors.white

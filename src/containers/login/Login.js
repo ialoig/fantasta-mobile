@@ -4,50 +4,49 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import I18n from 'i18n-js'
 
 import styles from "./styles"
-import { Styles } from '../../styles'
 
 import { Button, Password, Email, Logo } from '../../components'
 
 const Login = (props) => {
     return (
         <KeyboardAwareScrollView
-            contentContainerStyle={Styles.Commons.container}
+            /* TODO: contentContainerStyle={styles.container}*/
             scrollEnabled={false}
             resetScrollToCoords={{ x: 0, y: 0 }}
         >
-            <View style={Styles.Commons.content}>
-                <View style={Styles.Login.logo}>
+            {/** form container: START */}
+            <View style={styles.container}>
+                <View style={styles.header}>
                     <Logo />
                 </View>
-
-                <View style={Styles.Login.form}>
+                
+                <View style={styles.formContainer}>
                     <Email
                         id={props.emailId}
-                        label={I18n.translate('email')}
-                        placeholder={I18n.translate('email')}
-                        showError={props.showError}
-                        required={true}
-                        clearButtonMode='while-editing'
+                            label={I18n.translate('email')}
+                            placeholder={I18n.translate('email')}
+                            showError={props.showError}
+                            required={true}
+                            clearButtonMode='while-editing'
                         onChange={props.onChange}
                     />
-                    
                     <Password
                         id={props.passwordId}
-                        label={I18n.translate('password')}
-                        placeholder={I18n.translate('password')}
-                        showError={props.showError}
-                        required={true}
-                        minLength={6}
-                        clearButtonMode='never'
+                            label={I18n.translate('password')}
+                            placeholder={I18n.translate('password')}
+                            showError={props.showError}
+                            required={true}
+                            minLength={6}
+                            clearButtonMode='never'
                         onChange={props.onChange}
                     />
-
                     <Text style={styles.forgot} onPress={() => props.ForgotPassword()}>
                         {I18n.translate('forgotPassword')}?
                     </Text>
                 </View>
+                {/** form container: END */}
 
-                <View style={Styles.Login.buttonsContainer}>
+                <View style={styles.buttonContainer}>
                     <Button
                         title={I18n.translate('login')}
                         onPress={props.Login}
@@ -62,6 +61,7 @@ const Login = (props) => {
                     />
                 </View>
             </View>
+            
         </KeyboardAwareScrollView>
     )
 }
