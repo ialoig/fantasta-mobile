@@ -19,8 +19,6 @@ export class HomeContainer extends React.Component {
         super(props)
 
         this.state = {
-            modalVisible: false,
-            showError: false,
             [leaguaeId]: '',
             [passwordId]: '',
         }
@@ -31,39 +29,13 @@ export class HomeContainer extends React.Component {
     }
 
     join () {
-        this.openModal()
-    }
-
-    onChange ( id, value, valid ) {
-        this.setState({
-            [id]: value
-        })
+        Actions.Join()
     }
 
     joinLeague ( id ) {
-        
-        let leagueName = this.state.leagueName || ''
-        let password = this.state.password || ''
-
-
-        if ( leagueName && password || id ) {
-            console.log( leagueName + '_' + password )
+        if ( id ) {
             console.log(id)
         }
-        else {
-            this.setState({showError: true})
-        }
-    }
-
-    openModal () {
-        this.setState({ modalVisible: true })
-    }
-
-    closeModal () {
-        this.setState({
-            showError: false,
-            modalVisible: false
-        })
     }
 
     render() {
@@ -81,13 +53,9 @@ export class HomeContainer extends React.Component {
                 leagues={leagues}
                 leaguaeId={leaguaeId}
                 passwordId={passwordId}
-                showError={this.state.showError}
-                modalVisible={this.state.modalVisible}
                 crea={this.crea.bind(this)}
                 join={this.join.bind(this)}
                 joinLeague={this.joinLeague.bind(this)}
-                openModal={this.openModal.bind(this)}
-                closeModal={this.closeModal.bind(this)}
             />
         )
     }

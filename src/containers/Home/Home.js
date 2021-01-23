@@ -1,9 +1,7 @@
 
 import React from "react"
-import { FlatList, Image, Modal, SafeAreaView, Text, TouchableOpacity, View } from "react-native"
+import { FlatList, Image, SafeAreaView, Text, TouchableOpacity, View } from "react-native"
 import I18n from 'i18n-js'
-
-import { Button, InputText, Password } from '../../components'
 
 import styles from "./styles";
 import { Styles } from '../../styles'
@@ -46,51 +44,6 @@ const Home = (props) => {
                     keyExtractor={item => item.id}
                 />
             </View>
-
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={props.modalVisible}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <InputText
-                            id={props.leaguaeId}
-                            label={I18n.translate('nome_lega')}
-                            placeholder={I18n.translate('nome_lega')}
-                            showError={props.showError}
-                            required={true}
-                            clearButtonMode='while-editing'
-                            onChange={props.onChange}
-                        />
-                        
-                        <Password
-                            id={props.passwordId}
-                            label={I18n.translate('password')}
-                            placeholder={I18n.translate('password')}
-                            showError={props.showError}
-                            required={true}
-                            clearButtonMode='never'
-                            onChange={props.onChange}
-                        />
-
-                        <View style={styles.modalButtons}>
-                            <Button
-                                title={I18n.translate('cancel')}
-                                onPress={props.closeModal}
-                                type='secondary'
-                                size='small'
-                            />
-                            <Button
-                                title={I18n.translate('join')}
-                                onPress={props.joinLeague}
-                                type='primary'
-                                size='small'
-                            />
-                        </View>
-                    </View>
-                </View>
-            </Modal>
         </SafeAreaView>
     )
 }
