@@ -43,7 +43,7 @@ export class LoginContainer extends React.Component {
             {
                 let res = await Auth.Login( email, pw )
 
-                Actions.Home()
+                Actions.reset('Home')
             }
             catch (error)
             {
