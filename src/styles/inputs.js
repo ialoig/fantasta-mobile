@@ -3,7 +3,8 @@ import colors from "./colors";
 
 export default StyleSheet.create({
     inptView: {
-        flex: 1
+        flex: 1,
+        paddingVertical: 38
     },
     inputForm: {
         fontFamily: "PoppinsRegular", 
@@ -14,10 +15,11 @@ export default StyleSheet.create({
         color: colors.text,
         minWidth: 327,
         minHeight: 56,
-        marginTop: 18,
+        marginTop: 12,
         borderRadius: 40,
         backgroundColor: colors.greyLight,
-        paddingHorizontal: "10%"
+        paddingHorizontal: 32,
+        textAlignVertical: "center"
     },
     isValid: {
         backgroundColor: colors.successGreen,
@@ -29,7 +31,7 @@ export default StyleSheet.create({
         backgroundColor: colors.errorRedBg,
         borderStyle: "solid",
         borderWidth: 1,
-        borderColor: colors.errorRed
+        borderColor: colors.errorRed,
     },
     inputError: {
         fontFamily: "PoppinsMedium",

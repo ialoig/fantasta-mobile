@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard} from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import I18n from 'i18n-js'
 
@@ -9,60 +9,60 @@ import { Button, Password, Email, Logo } from '../../components'
 
 const Login = (props) => {
     return (
-        <KeyboardAwareScrollView
-            /* TODO: contentContainerStyle={styles.container}*/
-            scrollEnabled={false}
-            resetScrollToCoords={{ x: 0, y: 0 }}
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : ""}
+            style={styles.container}
         >
             {/** form container: START */}
-            <View style={styles.container}>
-                <View style={styles.header}>
-                    <Logo />
-                </View>
-                
-                <View style={styles.formContainer}>
-                    <Email
-                        id={props.emailId}
-                            label={I18n.translate('email')}
-                            placeholder={I18n.translate('email')}
-                            showError={props.showError}
-                            required={true}
-                            clearButtonMode='while-editing'
-                        onChange={props.onChange}
-                    />
-                    <Password
-                        id={props.passwordId}
-                            label={I18n.translate('password')}
-                            placeholder={I18n.translate('password')}
-                            showError={props.showError}
-                            required={true}
-                            minLength={6}
-                            clearButtonMode='never'
-                        onChange={props.onChange}
-                    />
-                    <Text style={styles.forgot} onPress={() => props.ForgotPassword()}>
-                        {I18n.translate('forgotPassword')}?
-                    </Text>
-                </View>
-                {/** form container: END */}
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <View style={styles.container}>
+                    <View style={styles.header}>
+                        <Logo />
+                    </View>
+                    
+                    <View style={styles.formContainer}>
+                        <Email
+                            id={props.emailId}
+                                label={I18n.translate('email')}
+                                placeholder={I18n.translate('email')}
+                                showError={props.showError}
+                                required={true}
+                                clearButtonMode='while-editing'
+                            onChange={props.onChange}
+                        />
+                        <Password
+                            id={props.passwordId}
+                                label={I18n.translate('password')}
+                                placeholder={I18n.translate('password')}
+                                showError={props.showError}
+                                required={true}
+                                minLength={6}
+                                clearButtonMode='never'
+                            onChange={props.onChange}
+                        />
+                        <Text style={styles.forgot} onPress={() => props.ForgotPassword()}>
+                            {I18n.translate('forgotPassword')}?
+                        </Text>
+                    </View>
+                    {/** form container: END */}
 
-                <View style={styles.buttonContainer}>
-                    <Button
-                        title={I18n.translate('login')}
-                        onPress={props.Login}
-                        type='primary'
-                        size='large'
-                    />
-                    <Button
-                        title={I18n.translate('register')}
-                        onPress={props.Register}
-                        type='secondary'
-                        size='large'
-                    />
+                    <View style={styles.buttonContainer}>
+                        <Button
+                            title={I18n.translate('login')}
+                            onPress={props.Login}
+                            type='primary'
+                            size='large'
+                        />
+                        <Button
+                            title={I18n.translate('register')}
+                            onPress={props.Register}
+                            type='secondary'
+                            size='large'
+                        />
+                    </View>
                 </View>
-            </View>
-            
-        </KeyboardAwareScrollView>
+            </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
     )
 }
 

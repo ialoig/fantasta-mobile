@@ -5,37 +5,33 @@ import colors from "../../styles/colors";
 export default StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
-    alignContent: 'center',
+    marginHorizontal: 12,
+    minWidth: 350
   },
   header: {
     flex: 1,
-    minWidth: 327,
-    minHeight: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-    alignContent: 'center',
-    flexGrow: 0,
-    flexShrink: 1,
+    //minHeight: 100,
+    //justifyContent: 'flex-start',
+    marginTop: 24,
+    paddingTop: 56
   },
   formContainer: {
     flex: 1,
-    minWidth: 327,
-    minHeight: 100,
+    //minHeight: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    flexGrow: 2,
-    flexShrink: 1,
+    alignSelf: 'center',
+    paddingBottom: 36
+  },
+  keyboardContainer: {
+    flex: 1
   },
   forgot: {
-    position: "relative",
-    minWidth: 100,
-    minHeight: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+    flex: 1,
     alignSelf: 'flex-end',
-    marginTop: 36,
+    paddingVertical: 12,
     fontFamily: "PoppinsMedium",
     fontSize: 14,
     fontWeight: "500",
@@ -46,9 +42,8 @@ export default StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    minWidth: 327,
-    minHeight: 100,
+    justifyContent: 'flex-end',
     alignItems: 'center',
-    flexGrow: 0,
+    paddingBottom: 24
   }
 });
