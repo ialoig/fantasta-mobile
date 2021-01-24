@@ -7,10 +7,11 @@ const tempToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVz
 
 const URLS = {
     local: 'http://localhost:3000/fantasta',
-    lan: 'http://192.168.1.196:3000/fantasta'
+    lan_inkubo: 'http://192.168.1.196:3000/fantasta',
+    lan_pippo: 'http://192.168.0.96:3000/fantasta'
 }
 
-const SERVER_URL = URLS.lan
+const SERVER_URL = URLS.lan_pippo
 
 let AUTH_TOKEN = ''
 
