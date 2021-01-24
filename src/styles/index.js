@@ -1,12 +1,10 @@
 
 export { default as COLORS } from './colors'
 
-import { default as Inputs } from './inputs'
-import { default as Login } from './loginRegister'
-import { default as Commons } from './styles'
+import { default as inputs } from './inputs'
+import { default as commonStyle } from './styles'
 
 export const Styles = {
-    Inputs,
-    Login,
-    Commons
+    inputs,
+    commonStyle
 }

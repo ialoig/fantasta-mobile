@@ -4,10 +4,11 @@ import { View } from "react-native";
 import { Logo } from '../../components'
 
 import styles from "./styles";
+import commonStyle from "../../styles/styles"
 
 const SplashScreen = (props) => {
   return (
-    <View style={styles.container}>
+    <View style={commonStyle.container}>
       <View style={styles.logo}>
         <Logo />
       </View>
