@@ -8,5 +8,9 @@
     "login": "Login",
     "register": "Register",
     "forgotPassword": "Forgot password",
-    "differentPassword": "You entered two different passwords"
+    "differentPassword": "You entered two different passwords",
+    "nome_lega": "League name",
+    "cancel": "Cancel",
+    "join": "Join",
+    "yourLeagues": "Your leagues"
 }

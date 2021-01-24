@@ -45,5 +45,11 @@ export const text = StyleSheet.create({
     },
     secondary: {
         color: colors.primary
+    },
+    large: {
+        fontSize: 20,
+    },
+    small: {
+        fontSize: 12,
     }
 });
