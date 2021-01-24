@@ -3,8 +3,6 @@ import colors from "./colors";
 
 export default StyleSheet.create({
     inptView: {
-        flex: 1,
-        paddingVertical: 38
     },
     inputForm: {
         fontFamily: "PoppinsRegular", 
