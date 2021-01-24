@@ -4,14 +4,14 @@ import colors from "../../styles/colors";
 export const button = StyleSheet.create({
     button: {
         flex: 1,
+        justifyContent: 'center',
         borderRadius: 40,
-        marginHorizontal: 16,
-        alignItems: 'center',
-        marginVertical: 12
+        marginTop: 12
     },
     large: {
         minWidth: 327,
-        minHeight: 56
+        minHeight: 56,
+        maxHeight: 56
     },
     small: {
         minWidth: 156,
