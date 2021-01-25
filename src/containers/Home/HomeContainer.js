@@ -25,11 +25,11 @@ export class HomeContainer extends React.Component {
     }
 
     crea () {
-        Actions.replace('Crea')
+        Actions.Crea()
     }
 
     join () {
-        Actions.replace('Join')
+        Actions.Join()
     }
 
     joinLeague ( id ) {

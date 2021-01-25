@@ -1,11 +1,15 @@
-import React from "react";
-import { Router, Scene } from "react-native-router-flux";
 
-import { LoginContainer } from "./containers/Login/LoginContainer";
-import { SplashScreenContainer } from "./containers/SplashScreen/SplashScreenContainer";
+import React from "react"
+import { Router, Scene } from "react-native-router-flux"
+
+import { LoginContainer } from "./containers/Login/LoginContainer"
+import { SplashScreenContainer } from "./containers/SplashScreen/SplashScreenContainer"
 import { RegisterContainer } from './containers/Register/RegisterContainer'
 import { StartPageContainer } from './containers/StartPage/StartPageContainer'
 import { HomeContainer } from './containers/Home/HomeContainer'
+import { CreateContainer } from './containers/Create/CreateContainer'
+import { JoinContainer } from './containers/Join/JoinContainer'
+import { AuctionContainer } from './containers/Auction/AuctionContainer'
 
 const Routes = () => (
   <Router>
@@ -15,7 +19,11 @@ const Routes = () => (
       <Scene key="Register" component={RegisterContainer} title="Register" back={false} />
       <Scene key="StartPage" component={StartPageContainer} title="StartPage" back={false} />
       <Scene key="Home" component={HomeContainer} title="Home" back={false} />
+      <Scene key="Home" component={CreateContainer} title="Home" back={false} />
+      <Scene key="Home" component={JoinContainer} title="Home" back={false} />
+      <Scene key="Home" component={AuctionContainer} title="Home" back={false} />
     </Scene>
   </Router>
-);
-export default Routes;
+)
+
+export default Routes
