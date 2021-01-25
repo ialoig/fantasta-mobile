@@ -19,9 +19,9 @@ const Routes = () => (
       <Scene key="Register" component={RegisterContainer} title="Register" back={false} />
       <Scene key="StartPage" component={StartPageContainer} title="StartPage" back={false} />
       <Scene key="Home" component={HomeContainer} title="Home" back={false} />
-      <Scene key="Home" component={CreateContainer} title="Home" back={false} />
-      <Scene key="Home" component={JoinContainer} title="Home" back={false} />
-      <Scene key="Home" component={AuctionContainer} title="Home" back={false} />
+      <Scene key="Create" component={CreateContainer} title="Create" back={false} />
+      <Scene key="Join" component={JoinContainer} title="Join" back={false} />
+      <Scene key="Auction" component={AuctionContainer} title="Auction" back={false} />
     </Scene>
   </Router>
 )
