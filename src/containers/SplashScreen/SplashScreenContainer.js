@@ -35,12 +35,12 @@ export class SplashScreenContainer extends React.Component {
         }
         catch (error)
         {
-          Actions.replace('Login')
+          Actions.replace('GetStarted')
         }
       }
       else
       {
-        Actions.replace('Login')
+        Actions.reset('GetStarted')
       }
   }
 
