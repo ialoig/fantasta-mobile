@@ -25,7 +25,7 @@ export class HomeContainer extends React.Component {
     }
 
     crea () {
-        Actions.Crea()
+        Actions.Create()
     }
 
     join () {
