@@ -7,11 +7,11 @@ import commonStyle from "../../styles/styles";
 function GetStarted({ item, key }) {
 
     return (
-        <View style={styles.container} key={key}>
-            <View style={styles.image} key={key}>
+        <View style={commonStyle.container} key={key}>
+            <View style={commonStyle.content} key={key}>
                 <Image source={item.image} />
             </View>
-            <View style={styles.content} key={key}>
+            <View style={commonStyle.flex} key={key}>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.description}>{item.description}</Text>
             </View>
