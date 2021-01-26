@@ -2,15 +2,6 @@ import { StyleSheet } from 'react-native';
 import colors from "../../styles/colors";
 
 export default StyleSheet.create({
-    container: {
-    	justifyContent: 'center',
-        alignItems: 'center',
-    	marginHorizontal: 12,
-        minWidth: 350
-    },
-    image: {
-        marginVertical: 72
-    },
     title: {
         fontFamily: "PoppinsSemiBold",
         fontSize: 22,
@@ -30,11 +21,6 @@ export default StyleSheet.create({
         letterSpacing: 0.25,
         textAlign: "center",
         color: colors.textPlaceholder
-    },
-    buttonContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingBottom: 24
     },
     dotStyle: {
         width: 10,
