@@ -19,7 +19,7 @@ const Register = (props) => {
                         <Logo />
                     </View>
 
-                    <View style={commonStyle.formContainer}>
+                    <View style={commonStyle.content}>
                         <Email
                             id={props.emailId}
                             label={I18n.translate('email')}

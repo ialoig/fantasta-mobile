@@ -17,7 +17,7 @@ const Routes = () => (
       <Scene key="SplashScreen" component={SplashScreenContainer} title="FantAsta" initial={true} />
       <Scene key="Login" component={LoginContainer} title="Login" back={false} />
       <Scene key="Register" component={RegisterContainer} title="Register" back={false} />
-      <Scene key="GetStarted" component={GetStartedContainer} title="GetStarted" back={false} />
+      <Scene key="GetStarted" component={GetStartedContainer} title="GetStarted" back={false} hideNavBar="true" /> 
       <Scene key="Home" component={HomeContainer} title="Home" back={false} />
       <Scene key="Create" component={CreateContainer} title="Create" back={false} />
       <Scene key="Join" component={JoinContainer} title="Join" back={false} />
