@@ -16,7 +16,7 @@ const Routes = () => (
       <Scene key="Register" component={RegisterContainer} title="Register" back={false} />
       <Scene key="StartPage" component={StartPageContainer} title="StartPage" back={false} />
       <Scene key="Home" component={HomeContainer} title="Home" back={false} />
-      <Scene key="GetStarted" component={GetStartedContainer} title="GetStarted" back={false} /> 
+      <Scene key="GetStarted" component={GetStartedContainer} title="GetStarted" back={false} hideNavBar="true" /> 
     </Scene>
   </Router>
 );
