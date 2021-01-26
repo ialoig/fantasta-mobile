@@ -5,7 +5,7 @@ import { Router, Scene } from "react-native-router-flux"
 import { LoginContainer } from "./containers/Login/LoginContainer"
 import { SplashScreenContainer } from "./containers/SplashScreen/SplashScreenContainer"
 import { RegisterContainer } from './containers/Register/RegisterContainer'
-import { StartPageContainer } from './containers/StartPage/StartPageContainer'
+import { GetStartedContainer } from "./containers/GetStarted/GetStartedContainer"
 import { HomeContainer } from './containers/Home/HomeContainer'
 import { CreateContainer } from './containers/Create/CreateContainer'
 import { JoinContainer } from './containers/Join/JoinContainer'
@@ -17,7 +17,7 @@ const Routes = () => (
       <Scene key="SplashScreen" component={SplashScreenContainer} title="FantAsta" initial={true} />
       <Scene key="Login" component={LoginContainer} title="Login" back={false} />
       <Scene key="Register" component={RegisterContainer} title="Register" back={false} />
-      <Scene key="StartPage" component={StartPageContainer} title="StartPage" back={false} />
+      <Scene key="GetStarted" component={GetStartedContainer} title="GetStarted" back={false} />
       <Scene key="Home" component={HomeContainer} title="Home" back={false} />
       <Scene key="Create" component={CreateContainer} title="Create" back={false} />
       <Scene key="Join" component={JoinContainer} title="Join" back={false} />
