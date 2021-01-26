@@ -22,6 +22,7 @@ const Routes = () => (
       <Scene key="Create" component={CreateContainer} title="Create" back={false} />
       <Scene key="Join" component={JoinContainer} title="Join" back={false} />
       <Scene key="Auction" component={AuctionContainer} title="Auction" back={false} />
+      <Scene key="GetStarted" component={GetStartedContainer} title="GetStarted" back={false} hideNavBar="true" /> 
     </Scene>
   </Router>
 )
