@@ -11,7 +11,7 @@ const URLS = {
     lan_pippo: 'http://192.168.0.96:3000/fantasta'
 }
 
-const SERVER_URL = URLS.lan_pippo
+const SERVER_URL = URLS.lan_inkubo
 
 let AUTH_TOKEN = ''
 

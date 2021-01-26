@@ -40,7 +40,13 @@ export class HomeContainer extends React.Component {
 
     render() {
 
-        const leagues = Leagues.Get()
+        // const leagues = Leagues.Get()
+        const leagues = [
+            { name: 'Lega 1', id: 'lega1' },
+            { name: 'Lega 2', id: 'lega2', },
+            { name: 'Lega 3', id: 'lega3', },
+            { name: 'Lega 4', id: 'lega4', }
+        ]
 
         return (
             <Home
