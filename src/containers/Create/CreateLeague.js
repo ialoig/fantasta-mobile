@@ -3,7 +3,7 @@ import React from "react"
 import { View } from "react-native"
 import I18n from 'i18n-js'
 
-import { InputText, NumberInc } from '../../components'
+import { InputText, NumberInc, Radio } from '../../components'
 
 import styles from "./styles"
 import { Styles } from '../../styles'
@@ -27,8 +27,17 @@ const CreateLeague = (props) => {
                 label={I18n.translate('nPartecipants')}
                 value={props.settings[props.partecipantsId]}
                 step={1}
-                min={1}
+                min={2}
                 onChange={value => props.onChange( props.partecipantsId, value )} 
+            />
+            <Radio 
+                label={I18n.translate('tipology')}
+                value={props.settings[props.tipologyId]}
+                items={[
+                    { label: I18n.translate(props.tipology.CLASSIC), value: props.tipology.CLASSIC },
+                    { label: I18n.translate(props.tipology.MANTRA), value: props.tipology.MANTRA }
+                ]}
+                onChange={value => props.onChange( props.tipologyId, value )} 
             />
         </View>
     )

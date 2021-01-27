@@ -10,10 +10,8 @@ export default StyleSheet.create({
         minWidth: 350
     },
     content: {
-        width: '60%'
-    },
-    image: {
-        marginVertical: 72
+        width: '60%',
+        marginTop: 150
     },
     title: {
         fontFamily: "PoppinsSemiBold",

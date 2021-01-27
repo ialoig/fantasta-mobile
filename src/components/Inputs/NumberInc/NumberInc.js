@@ -8,15 +8,8 @@ import styles from "./styles"
 const NumberInc = (props) => {
 
     return (
-        <View style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: 10,
-            height: 60
-        }}>
-            <Text>{props.label}</Text>
+        <View style={styles.container}>
+            <Text style={styles.label}>{props.label}</Text>
             <View>
                 <InputSpinner 
                     value={props.value}
@@ -31,10 +24,7 @@ const NumberInc = (props) => {
                     textColor={'#3E5481'}
                     background={'#F4F5F7'}
                     width={250}
-                    inputStyle={{
-                        borderRadius: 32,
-                        minWidth: 80
-                    }}
+                    inputStyle={styles.input}
                 />
             </View>
         </View>
