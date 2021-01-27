@@ -9,6 +9,9 @@ export default StyleSheet.create({
     	marginHorizontal: 12,
         minWidth: 350
     },
+    content: {
+        width: '60%'
+    },
     image: {
         marginVertical: 72
     },

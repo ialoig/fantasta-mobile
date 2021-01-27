@@ -14,6 +14,23 @@ const pages = [
 
 const leagueNameId = 'leagueName'
 const passwordId = 'password'
+const partecipantsId = 'partecipants'
+const tipologyId = 'tipology'
+const goalskeepersId = 'goalskeepers'
+const defendersId = 'defenders'
+const midfieldersId = 'midfielders'
+const forwardersId = 'forwarders'
+const playersId = 'players'
+const budgetId = 'budget'
+const countdownId = 'countdown'
+const auctiontypeId = 'auctiontype'
+const startpriceId = 'startprice'
+const teamnameId = 'teamname'
+
+const tipology = {
+    MANTRA: 'mantra',
+    CLASSIC: 'classic'
+}
 
 export class CreateContainer extends React.Component {
 
@@ -28,7 +45,19 @@ export class CreateContainer extends React.Component {
             pages,
             settings: {
                 [leagueNameId]: '',
-                [passwordId]: ''
+                [passwordId]: '',
+                [partecipantsId]: 1,
+                [tipologyId]: tipology.CLASSIC,
+                [goalskeepersId]: 1,
+                [defendersId]: 1,
+                [midfieldersId]: 1,
+                [forwardersId]: 1,
+                [playersId]: 1,
+                [budgetId]: 500,
+                [countdownId]: 60,
+                [auctiontypeId]: 'random',
+                [startpriceId]: '0',
+                [teamnameId]: ''
             }
         }
     }
@@ -49,8 +78,22 @@ export class CreateContainer extends React.Component {
             <Create
                 leagueNameId={leagueNameId}
                 passwordId={passwordId}
+                partecipantsId={partecipantsId}
+                tipologyId={tipologyId}
+                goalskeepersId={goalskeepersId}
+                defendersId={defendersId}
+                midfieldersId={midfieldersId}
+                forwardersId={forwardersId}
+                playersId={playersId}
+                budgetId={budgetId}
+                countdownId={countdownId}
+                auctiontypeId={auctiontypeId}
+                startpriceId={startpriceId}
+                teamnameId={teamnameId}
+                tipology={tipology}
                 pages={pages}
                 settings={this.state.settings}
+                onChange={this.onChange.bind(this)}
             />
         )
     }
