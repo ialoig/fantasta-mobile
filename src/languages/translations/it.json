@@ -13,5 +13,13 @@
     "cancel": "Annulla",
     "join": "Partecipa",
     "yourLeagues": "Le tue leghe",
-    "leagueName": "Nome lega"
+    "leagueName": "Nome lega",
+    "nPartecipants": "N. partecipanti",
+    "nGoalkeepers": "N. portieri",
+    "nDefenders": "N. difensori",
+    "nMidfielders": "N. centrocampisti",
+    "nForwarders": "N. attaccanti",
+    "nPlayers": "N. giocatori",
+    "startingBudget": "Budget iniziale",
+    "countdown": "Countdown"
 }
