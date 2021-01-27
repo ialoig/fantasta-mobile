@@ -58,7 +58,7 @@ const TeamSettings = (props) => {
                 label={I18n.translate('startingBudget')}
                 value={props.settings[props.budgetId]}
                 step={10}
-                min={0}
+                min={1}
                 onChange={value => props.onChange( props.budgetId, value )} 
             />
         </View>

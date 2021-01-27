@@ -7,3 +7,4 @@ export { default as RepeatPassword } from './RepeatPassword/RepeatPasswordContai
 export { default as Phone } from './Phone/PhoneContainer'
 export { default as InputText } from './Text/TextContainer'
 export { default as NumberInc } from './NumberInc/NumberIncContainer'
+export { default as Radio } from './Radio/RadioContainer'

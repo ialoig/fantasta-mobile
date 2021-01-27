@@ -1,37 +1,27 @@
 
 import React from "react"
-import { Button, Text, View } from "react-native"
+import { Text, View } from "react-native"
 import AppIntroSlider from 'react-native-app-intro-slider'
+import I18n from 'i18n-js'
 
 import styles from "./styles";
 import { Styles } from '../../styles'
+import { button, text} from "../../components/Button/styles"
 
 const Create = (props) => {
 
-    const renderPrevButton = () => {
-        return (
-            <View style={styles.buttonCircle}>
-                <Text>PREV</Text>
-            </View>
-        )
-    }
-
     const renderNextButton = () => {
         return (
-            <View style={styles.buttonCircle}>
-                <Text>NEXT</Text>
+            <View style={[button.button, button.large, button.primary, Styles.commonStyle.content]}>
+                <Text style={[text.text, text.large, text.primary]}>{I18n.translate('next')}</Text>
             </View>
         )
     }
     
     const renderDoneButton = () => {
         return (
-            <View style={styles.buttonContainer}>
-                <Button
-                    title={'Get Started!'} //GL TODO: set translate
-                    type='primary'
-                    size='large'
-                />
+            <View style={[button.button, button.large, button.primary, Styles.commonStyle.content]}>
+                <Text style={[text.text, text.large, text.primary]}>{I18n.translate('create')}</Text>
             </View>
         )
     }
@@ -42,10 +32,8 @@ const Create = (props) => {
     
         return (
             <View style={styles.container} key={key}>
-                <View style={styles.image}>
-                </View>
                 <View style={styles.content}>
-                    <Text style={styles.title}>{item.title}</Text>
+                    <Text style={styles.title}>{I18n.translate(item.title)}</Text>
                     <Text style={styles.description}>{item.description}</Text>
 
                     <Page
@@ -59,14 +47,12 @@ const Create = (props) => {
 
     return (
         <AppIntroSlider
-            // renderItem={item => { return ( <Crea item {...props} /> ) }}
             renderItem={Crea}
             data={props.pages}
-            bottomButton="true" //show button on bottom side
+            bottomButton
+            onDone={props.onDone}
             dotStyle={styles.dotStyle}
             activeDotStyle={styles.activeDotStyle}
-            showPrevButton={true}
-            renderPrevButton={renderPrevButton}
             renderNextButton={renderNextButton}
             renderDoneButton={renderDoneButton}
         />
