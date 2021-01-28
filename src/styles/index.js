@@ -1,10 +1,6 @@
 
 export { default as COLORS } from './colors'
 
-import { default as inputs } from './inputs'
-import { default as commonStyle } from './styles'
-
-export const Styles = {
-    inputs,
-    commonStyle
-}
+export { default as inputStyle } from './inputs'
+export { default as commonStyle } from './common'
+export { default as carouselSyle } from './carousel'

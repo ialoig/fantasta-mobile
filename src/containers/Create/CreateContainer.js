@@ -9,43 +9,14 @@ import TeamSettings from './TeamSettings'
 import AuctionSettings from './AuctionSettings'
 import CreateTeam from './CreateTeam'
 
+import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from '../../constants'
+
 const pages = [
     { key: "1", component: CreateLeague, title: 'createLeague', description: "" },
     { key: "2", component: TeamSettings, title: 'teamSettings', description: "" },    
     { key: "3", component: AuctionSettings, title: 'auctionSettings', description: "" },
     { key: "4", component: CreateTeam, title: 'createTeam', description: "" }
 ]
-
-const leagueNameId = 'leagueName'
-const passwordId = 'password'
-const partecipantsId = 'partecipants'
-const tipologyId = 'tipology'
-const goalskeepersId = 'goalskeepers'
-const defendersId = 'defenders'
-const midfieldersId = 'midfielders'
-const forwardersId = 'forwarders'
-const playersId = 'players'
-const budgetId = 'budget'
-const countdownId = 'countdown'
-const auctiontypeId = 'auctiontype'
-const startpriceId = 'startprice'
-const teamnameId = 'teamname'
-
-const tipology = {
-    MANTRA: 'mantra',
-    CLASSIC: 'classic'
-}
-
-const auctionType = {
-    RANDOM: 'random',
-    CALL: 'call',
-    ALPHABETIC: 'alphabetic'
-}
-
-const startingPrice = {
-    NONE: 'none',
-    LIST: 'list'
-}
 
 export class CreateContainer extends React.Component {
 
@@ -59,20 +30,20 @@ export class CreateContainer extends React.Component {
         this.state = {
             pages,
             settings: {
-                [leagueNameId]: '',
-                [passwordId]: '',
-                [partecipantsId]: 8,
-                [tipologyId]: tipology.CLASSIC,
-                [goalskeepersId]: 3,
-                [defendersId]: 8,
-                [midfieldersId]: 8,
-                [forwardersId]: 6,
-                [playersId]: 22,
-                [budgetId]: 500,
-                [countdownId]: 60,
-                [auctiontypeId]: auctionType.RANDOM,
-                [startpriceId]: startingPrice.NONE,
-                [teamnameId]: ''
+                [FIELDS_ID.leagueNameId]: '',
+                [FIELDS_ID.passwordId]: '',
+                [FIELDS_ID.partecipantsId]: 8,
+                [FIELDS_ID.tipologyId]: TIPOLOGY.CLASSIC,
+                [FIELDS_ID.goalskeepersId]: 3,
+                [FIELDS_ID.defendersId]: 8,
+                [FIELDS_ID.midfieldersId]: 8,
+                [FIELDS_ID.forwardersId]: 6,
+                [FIELDS_ID.playersId]: 22,
+                [FIELDS_ID.budgetId]: 500,
+                [FIELDS_ID.countdownId]: 60,
+                [FIELDS_ID.auctiontypeId]: AUCTION_TYPE.RANDOM,
+                [FIELDS_ID.startpriceId]: STARTING_PRICE.NONE,
+                [FIELDS_ID.teamnameId]: ''
             }
         }
     }
@@ -89,34 +60,34 @@ export class CreateContainer extends React.Component {
     }
 
     onDone () {
-        if ( !this.state.settings[leagueNameId] ) {
+        if ( !this.state.settings[FIELDS_ID.leagueNameId] ) {
             this.showError(  )
         }
-        else if ( !this.state.settings[passwordId] ) {
+        else if ( !this.state.settings[FIELDS_ID.passwordId] ) {
             this.showError(  )
         }
-        else if ( !this.state.settings[teamnameId] ) {
+        else if ( !this.state.settings[FIELDS_ID.teamnameId] ) {
             this.showError()
         }
-        else if ( this.state.settings[partecipantsId]<2 ) {
+        else if ( this.state.settings[FIELDS_ID.partecipantsId]<2 ) {
             this.showError(  )
         }
-        else if ( this.state.settings[goalskeepersId]<1 ) {
+        else if ( this.state.settings[FIELDS_ID.goalskeepersId]<1 ) {
             this.showError(  )
         }
-        else if ( this.state.settings[defendersId]<1 ) {
+        else if ( this.state.settings[FIELDS_ID.defendersId]<1 ) {
             this.showError(  )
         }
-        else if ( this.state.settings[midfieldersId]<1 ) {
+        else if ( this.state.settings[FIELDS_ID.midfieldersId]<1 ) {
             this.showError(  )
         }
-        else if ( this.state.settings[forwardersId]<1 ) {
+        else if ( this.state.settings[FIELDS_ID.forwardersId]<1 ) {
             this.showError(  )
         }
-        else if ( this.state.settings[playersId]<1 ) {
+        else if ( this.state.settings[FIELDS_ID.playersId]<1 ) {
             this.showError(  )
         }
-        else if ( this.state.settings[countdownId]<3 ) {
+        else if ( this.state.settings[FIELDS_ID.countdownId]<3 ) {
             this.showError(  )
         }
         else {
@@ -137,23 +108,23 @@ export class CreateContainer extends React.Component {
     render() {
         return (
             <Create
-                leagueNameId={leagueNameId}
-                passwordId={passwordId}
-                partecipantsId={partecipantsId}
-                tipologyId={tipologyId}
-                goalskeepersId={goalskeepersId}
-                defendersId={defendersId}
-                midfieldersId={midfieldersId}
-                forwardersId={forwardersId}
-                playersId={playersId}
-                budgetId={budgetId}
-                countdownId={countdownId}
-                auctiontypeId={auctiontypeId}
-                startpriceId={startpriceId}
-                teamnameId={teamnameId}
-                tipology={tipology}
-                auctionType={auctionType}
-                startingPrice={startingPrice}
+                leagueNameId={FIELDS_ID.leagueNameId}
+                passwordId={FIELDS_ID.passwordId}
+                partecipantsId={FIELDS_ID.partecipantsId}
+                tipologyId={FIELDS_ID.tipologyId}
+                goalskeepersId={FIELDS_ID.goalskeepersId}
+                defendersId={FIELDS_ID.defendersId}
+                midfieldersId={FIELDS_ID.midfieldersId}
+                forwardersId={FIELDS_ID.forwardersId}
+                playersId={FIELDS_ID.playersId}
+                budgetId={FIELDS_ID.budgetId}
+                countdownId={FIELDS_ID.countdownId}
+                auctiontypeId={FIELDS_ID.auctiontypeId}
+                startpriceId={FIELDS_ID.startpriceId}
+                teamnameId={FIELDS_ID.teamnameId}
+                tipology={TIPOLOGY}
+                auctionType={AUCTION_TYPE}
+                startingPrice={STARTING_PRICE}
                 pages={pages}
                 settings={this.state.settings}
                 onChange={this.onChange.bind(this)}

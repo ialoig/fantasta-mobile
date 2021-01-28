@@ -4,13 +4,9 @@ import { Actions } from "react-native-router-flux"
 import Validator from 'validator'
 
 import { Auth } from "../../services"
-import { PASSWORD_OPT } from '../../constants/constants'
+import { FIELDS_ID, PASSWORD_OPT } from '../../constants'
 
 import Register from "./Register"
-
-const emailId = 'email'
-const passwordId = 'password'
-const repeatPasswordId = 'repeatPassword'
 
 export class RegisterContainer extends React.Component {
 
@@ -22,9 +18,9 @@ export class RegisterContainer extends React.Component {
         super(props)
 
         this.state = {
-            [emailId]: '',
-            [passwordId]: '',
-            [repeatPasswordId]: '',
+            [FIELDS_ID.emailId]: '',
+            [FIELDS_ID.passwordId]: '',
+            [FIELDS_ID.repeatPasswordId]: '',
             showError: false
         }
     }
@@ -37,9 +33,9 @@ export class RegisterContainer extends React.Component {
 
     async register () {
 
-        const email = this.state[emailId] || ''
-        const pw1 = this.state[passwordId] || ''
-        const pw2 = this.state[repeatPasswordId] || ''
+        const email = this.state[FIELDS_ID.emailId] || ''
+        const pw1 = this.state[FIELDS_ID.passwordId] || ''
+        const pw2 = this.state[FIELDS_ID.repeatPasswordId] || ''
 
         if ( !email || !Validator.isEmail(email) ) {
             this.setState({showError: true})
@@ -62,7 +58,7 @@ export class RegisterContainer extends React.Component {
             {
                 let res = await Auth.Register( email, pw1 )
 
-                Actions.reset('StartPage')
+                Actions.reset('GetStarted')
             }
             catch (error)
             {
@@ -74,10 +70,10 @@ export class RegisterContainer extends React.Component {
     render() {
         return (
             <Register
-                emailId={emailId}
-                passwordId={passwordId}
-                repeatPasswordId={repeatPasswordId}
-                password={this.state[passwordId]}
+                emailId={FIELDS_ID.emailId}
+                passwordId={FIELDS_ID.passwordId}
+                repeatPasswordId={FIELDS_ID.repeatPasswordId}
+                password={this.state[FIELDS_ID.passwordId]}
                 showError={this.state.showError}
                 onChange={this.onChange.bind(this)}
                 Register={this.register.bind(this)}

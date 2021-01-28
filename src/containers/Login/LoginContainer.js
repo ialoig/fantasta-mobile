@@ -3,12 +3,9 @@ import { Actions } from "react-native-router-flux";
 import Validator from 'validator'
 
 import { Auth } from "../../services"
-import { PASSWORD_OPT } from '../../constants/constants'
+import { FIELDS_ID, PASSWORD_OPT } from '../../constants'
 
 import Login from "./Login";
-
-const emailId = 'email'
-const passwordId = 'password'
 
 export class LoginContainer extends React.Component {
 
@@ -20,8 +17,8 @@ export class LoginContainer extends React.Component {
         super(props)
 
         this.state = {
-            [emailId]: '',
-            [passwordId]: '',
+            [FIELDS_ID.emailId]: '',
+            [FIELDS_ID.passwordId]: '',
             showError: false
         }
     }
@@ -34,8 +31,8 @@ export class LoginContainer extends React.Component {
 
     async login () {
 
-        const email = this.state[emailId] || ''
-        const pw = this.state[passwordId] || ''
+        const email = this.state[FIELDS_ID.emailId] || ''
+        const pw = this.state[FIELDS_ID.passwordId] || ''
 
         if ( email && pw && Validator.isEmail(email) && Validator.isStrongPassword(pw, PASSWORD_OPT) )
         {
@@ -67,8 +64,8 @@ export class LoginContainer extends React.Component {
     render() {
         return (
             <Login
-                emailId={emailId}
-                passwordId={passwordId}
+                emailId={FIELDS_ID.emailId}
+                passwordId={FIELDS_ID.passwordId}
                 showError={this.state.showError}
                 onChange={this.onChange.bind(this)}
                 Login={this.login.bind(this)}

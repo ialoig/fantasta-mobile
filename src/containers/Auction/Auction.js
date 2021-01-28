@@ -2,12 +2,11 @@
 import React from "react"
 import { SafeAreaView } from "react-native"
 
-import styles from "./styles";
-import { Styles } from '../../styles'
+import { commonStyle } from '../../styles'
 
 const Auction = (props) => {
     return (
-        <SafeAreaView style={styles.content}>
+        <SafeAreaView style={commonStyle.container}>
 
         </SafeAreaView>
     )

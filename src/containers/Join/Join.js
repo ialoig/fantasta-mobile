@@ -3,7 +3,6 @@ import React from "react"
 import { SafeAreaView } from "react-native"
 
 import styles from "./styles";
-import { Styles } from '../../styles'
 
 const Join = (props) => {
     return (

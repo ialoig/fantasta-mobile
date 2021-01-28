@@ -3,11 +3,12 @@ import React from 'react'
 
 import GetStarted from './GetStarted'
 import {data} from "./costants"
+import { Actions } from 'react-native-router-flux'
 
 export class GetStartedContainer extends React.Component {
 
     onDone () {
-        console.log('done')
+        Actions.reset('Home')
     }
     
     render() {
