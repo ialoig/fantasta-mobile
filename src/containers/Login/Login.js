@@ -13,7 +13,7 @@ const Login = (props) => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 {/** form container: START */}
                 <View style={commonStyle.content}>
-                    <View style={commonStyle.header}>
+                    <View style={}>
                         <Logo />
                     </View>
                     
