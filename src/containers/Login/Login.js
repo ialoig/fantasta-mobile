@@ -17,7 +17,7 @@ const Login = (props) => {
                         <Logo />
                     </View>
                     
-                    <View style={styles.formContainer}>
+                    <View style={commonStyle.content}>
                         <Email
                             id={props.emailId}
                             label={I18n.translate('email')}
