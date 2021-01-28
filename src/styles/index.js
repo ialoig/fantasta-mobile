@@ -1,10 +1,3 @@
-
-export { default as COLORS } from './colors'
-
-import { default as inputs } from './inputs'
-import { default as commonStyle } from './styles'
-
-export const Styles = {
-    inputs,
-    commonStyle
-}
+export { default as colors } from "./colors"
+export { default as commonStyle } from "./styles"
+export { default as inputs } from "./inputs"

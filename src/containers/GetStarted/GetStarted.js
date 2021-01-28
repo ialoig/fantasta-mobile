@@ -4,7 +4,7 @@ import AppIntroSlider from 'react-native-app-intro-slider'
 import I18n from 'i18n-js'
 
 import styles from "./styles"
-import { Styles } from "../../styles"
+import { commonStyle } from "../../styles"
 import { button, text} from "../../components/Button/styles"
 
 const GetStarted = (props) => {
@@ -12,7 +12,7 @@ const GetStarted = (props) => {
     /** render Next button */
     const _renderNextButton = () => {
         return (
-            <View style={[button.button, button.large, button.primary, Styles.commonStyle.content]}>
+            <View style={[button.button, button.large, button.primary, commonStyle.content]}>
                 <Text style={[text.text, text.large, text.primary]}>{I18n.translate('next')}</Text>
             </View>
         )
@@ -21,20 +21,20 @@ const GetStarted = (props) => {
     /** render done button */
     const _renderDoneButton = () => {
         return (
-            <View style={[button.button, button.large, button.primary, Styles.commonStyle.content]}>
+            <View style={[button.button, button.large, button.primary, commonStyle.content]}>
                 <Text style={[text.text, text.large, text.primary]}>{I18n.translate('getStarted')}</Text>
             </View>
         )
     };
 
-    const Start = ({ item, key }) => {
+    const start = ({ item, key }) => {
         
         return (
-            <View style={Styles.commonStyle.container} key={key}>
-                <View style={Styles.commonStyle.content} key={key}>
+            <View style={commonStyle.container} key={key}>
+                <View style={commonStyle.content} key={key}>
                     <Image source={item.image} />
                 </View>
-                <View style={Styles.commonStyle.flex} key={key}>
+                <View style={commonStyle.flex} key={key}>
                     <Text style={styles.title}>{item.title}</Text>
                     <Text style={styles.description}>{item.description}</Text>
                 </View>
@@ -44,7 +44,7 @@ const GetStarted = (props) => {
 
     return (
         <AppIntroSlider
-            renderItem={Start}
+            renderItem={start}
             data={props.data}
             bottomButton //show button on bottom side
             onDone={props.onDone}
