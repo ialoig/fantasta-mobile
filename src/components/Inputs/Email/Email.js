@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
 import styles from "./styles"
-import inputStyles from '../../../styles/inputs'
+import { inputStyle } from '../../../styles'
 
 const Email = (props) => {
 
-    let viewStyle = StyleSheet.compose( inputStyles.inputForm, props.hasError ? inputStyles.hasError : {} )
+    let viewStyle = StyleSheet.compose( inputStyle.inputForm, props.hasError ? inputStyle.hasError : {} )
 
     return (
-        <View style={inputStyles.inptView}>
+        <View style={inputStyle.inptView}>
             {/* <Text>{props.label}</Text> */}
             <TextInput
                 {...props}
@@ -17,7 +17,7 @@ const Email = (props) => {
                 ref={(ref)=> { props.onRef(ref) }}
                 keyboardType='email-address'
             />
-            { props.hasError ? <Text style={inputStyles.inputError}>{props.error}</Text> : null }
+            { props.hasError ? <Text style={inputStyle.inputError}>{props.error}</Text> : null }
         </View>
     )
 }

@@ -4,7 +4,12 @@ import { View, Text, Image } from "react-native"
 import AppIntroSlider from 'react-native-app-intro-slider'
 import I18n from 'i18n-js'
 
+<<<<<<< HEAD
 import { carouselSyle, commonStyle } from "../../styles"
+=======
+import styles from "./styles"
+import { commonStyle } from "../../styles"
+>>>>>>> dev-gl
 import { button, text} from "../../components/Button/styles"
 
 const GetStarted = (props) => {
@@ -27,7 +32,7 @@ const GetStarted = (props) => {
         )
     };
 
-    const Start = ({ item, key }) => {
+    const start = ({ item, key }) => {
         
         return (
             <View style={commonStyle.container} key={key}>
@@ -44,7 +49,7 @@ const GetStarted = (props) => {
 
     return (
         <AppIntroSlider
-            renderItem={Start}
+            renderItem={start}
             data={props.data}
             bottomButton //show button on bottom side
             onDone={props.onDone}

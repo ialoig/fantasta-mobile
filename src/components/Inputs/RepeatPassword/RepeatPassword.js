@@ -2,14 +2,14 @@ import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
 import styles from "./styles"
-import inputStyles from '../../../styles/inputs'
+import { inputStyle } from '../../../styles'
 
 const RepeatPassword = (props) => {
 
-    let viewStyle = StyleSheet.compose( inputStyles.inputForm, props.hasError ? inputStyles.hasError : {} )
+    let viewStyle = StyleSheet.compose( inputStyle.inputForm, props.hasError ? inputStyle.hasError : {} )
 
     return (
-        <View style={inputStyles.inptView}>
+        <View style={inputStyle.inptView}>
             {/* <Text>{props.label}</Text> */}
             <TextInput
                 {...props}
@@ -18,7 +18,7 @@ const RepeatPassword = (props) => {
                 keyboardType='default'
                 secureTextEntry={true}
             />
-            { props.hasError ? <Text style={inputStyles.inputError}>{props.error}</Text> : null }
+            { props.hasError ? <Text style={inputStyle.inputError}>{props.error}</Text> : null }
         </View>
     )
 }
