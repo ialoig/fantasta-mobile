@@ -1,5 +1,5 @@
 
-export { Decimal, Email, Integer, Password, RepeatPassword, Phone, InputText } from './Inputs'
+export { Decimal, Email, Integer, Password, RepeatPassword, Phone, InputText, NumberInc, Radio } from './Inputs'
 
 export { default as Button } from './Button/ButtonContainer'
 
