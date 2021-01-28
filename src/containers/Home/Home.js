@@ -3,8 +3,8 @@ import React from "react"
 import { FlatList, Image, SafeAreaView, Text, TouchableOpacity, View } from "react-native"
 import I18n from 'i18n-js'
 
-import styles from "./styles";
-import { Styles } from '../../styles'
+import styles from "./styles"
+import { commonStyle } from '../../styles'
 
 const League = ( title, onPress ) => (
     <TouchableOpacity onPress={onPress} style={styles.league}>
@@ -18,7 +18,7 @@ const League = ( title, onPress ) => (
 
 const Home = (props) => {
     return (
-        <SafeAreaView style={styles.content}>
+        <SafeAreaView style={commonStyle.content}>
 
             <View style={styles.buttonsView}>
                 <View style={styles.buttons}>

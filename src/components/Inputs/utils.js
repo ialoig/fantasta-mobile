@@ -3,7 +3,7 @@ import I18n from 'i18n-js'
 import Validator from 'validator'
 import _ from 'lodash'
 
-import { PASSWORD_OPT } from '../../constants/constants'
+import { PASSWORD_OPT } from '../../constants'
 
 export const checkValidity = ( type, value, errors, props ) => {
         

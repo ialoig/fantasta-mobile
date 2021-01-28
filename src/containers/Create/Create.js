@@ -4,15 +4,14 @@ import { Text, View } from "react-native"
 import AppIntroSlider from 'react-native-app-intro-slider'
 import I18n from 'i18n-js'
 
-import styles from "./styles";
-import { Styles } from '../../styles'
+import { carouselSyle, commonStyle } from '../../styles'
 import { button, text} from "../../components/Button/styles"
 
 const Create = (props) => {
 
     const renderNextButton = () => {
         return (
-            <View style={[button.button, button.large, button.primary, Styles.commonStyle.content]}>
+            <View style={[button.button, button.large, button.primary, commonStyle.content]}>
                 <Text style={[text.text, text.large, text.primary]}>{I18n.translate('next')}</Text>
             </View>
         )
@@ -20,7 +19,7 @@ const Create = (props) => {
     
     const renderDoneButton = () => {
         return (
-            <View style={[button.button, button.large, button.primary, Styles.commonStyle.content]}>
+            <View style={[button.button, button.large, button.primary, commonStyle.content]}>
                 <Text style={[text.text, text.large, text.primary]}>{I18n.translate('create')}</Text>
             </View>
         )
@@ -31,10 +30,10 @@ const Create = (props) => {
         const Page = item.component
     
         return (
-            <View style={styles.container} key={key}>
-                <View style={styles.content}>
-                    <Text style={styles.title}>{I18n.translate(item.title)}</Text>
-                    <Text style={styles.description}>{item.description}</Text>
+            <View style={commonStyle.container} key={key}>
+                <View style={commonStyle.content}>
+                    <Text style={carouselSyle.title}>{I18n.translate(item.title)}</Text>
+                    <Text style={carouselSyle.description}>{item.description}</Text>
 
                     <Page
                         item={item}
@@ -51,8 +50,8 @@ const Create = (props) => {
             data={props.pages}
             bottomButton
             onDone={props.onDone}
-            dotStyle={styles.dotStyle}
-            activeDotStyle={styles.activeDotStyle}
+            dotStyle={carouselSyle.dotStyle}
+            activeDotStyle={carouselSyle.activeDotStyle}
             renderNextButton={renderNextButton}
             renderDoneButton={renderDoneButton}
         />

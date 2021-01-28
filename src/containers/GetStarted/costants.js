@@ -1,4 +1,3 @@
-import React from 'react';
 
 let FIRST_PAGE_IMAGE = require('../../../assets/img/icons/league_120.png')
 let SECOND_PAGE_IMAGE = require('../../../assets/img/icons/team_120.png')
@@ -23,4 +22,4 @@ export const data = [
         title: "Start trading Players",
         description: "Bet how much as you want to buy players against your friends and start building your unbeatable Team!"
     }
-];
+]

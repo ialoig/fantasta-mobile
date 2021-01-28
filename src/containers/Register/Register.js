@@ -1,18 +1,15 @@
+
 import React from "react"
 import { Keyboard, TouchableWithoutFeedback, View, KeyboardAvoidingView } from "react-native"
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import I18n from 'i18n-js'
 
-import styles from "./styles"
-import commonStyle from "../../styles/styles"
+import { commonStyle } from "../../styles"
 
 import { Button, Email, Logo, Password, RepeatPassword } from '../../components'
 
 const Register = (props) => {
     return (
-        <KeyboardAvoidingView
-            style={commonStyle.container}
-        >
+        <KeyboardAvoidingView style={commonStyle.container}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={commonStyle.content}>
                     <View style={commonStyle.header}>

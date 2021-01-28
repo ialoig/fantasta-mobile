@@ -5,9 +5,6 @@ import I18n from 'i18n-js'
 
 import { InputText } from '../../components'
 
-import styles from "./styles"
-import { Styles } from '../../styles'
-
 const CreateTeam = (props) => {
     return (
         <View>

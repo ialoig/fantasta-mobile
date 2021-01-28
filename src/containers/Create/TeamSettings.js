@@ -5,9 +5,6 @@ import I18n from 'i18n-js'
 
 import { NumberInc } from '../../components'
 
-import styles from "./styles";
-import { Styles } from '../../styles'
-
 const TeamSettings = (props) => {
     return (
         <View>

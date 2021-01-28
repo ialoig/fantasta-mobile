@@ -1,7 +1,20 @@
-import { StyleSheet } from 'react-native';
-import colors from "../../styles/colors";
+
+import { StyleSheet } from 'react-native'
+import colors from "./colors"
 
 export default StyleSheet.create({
+    dotStyle: {
+        width: 10,
+        height: 8,
+        borderRadius: 3,
+        backgroundColor: colors.greenDisabled
+    },
+    activeDotStyle: {
+        width: 30,
+        height: 8,
+        borderRadius: 3,
+        backgroundColor: colors.primary
+    },
     title: {
         fontFamily: "PoppinsSemiBold",
         fontSize: 22,
