@@ -3,21 +3,21 @@ import { Keyboard, TouchableWithoutFeedback, View, KeyboardAvoidingView, Text } 
 import I18n from 'i18n-js'
 
 import styles from "./styles"
-import { Styles } from "../../styles"
+import { commonStyle } from "../../styles"
 
 import { Button, Password, Email, Logo } from '../../components'
 
 const Login = (props) => {
     return (
-        <KeyboardAvoidingView style={Styles.commonStyle.container} >
+        <KeyboardAvoidingView style={commonStyle.container} >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 {/** form container: START */}
-                <View style={Styles.commonStyle.content}>
-                    <View style={Styles.commonStyle.header}>
+                <View style={commonStyle.content}>
+                    <View style={commonStyle.header}>
                         <Logo />
                     </View>
                     
-                    <View style={Styles.commonStyle.formContainer}>
+                    <View style={styles.formContainer}>
                         <Email
                             id={props.emailId}
                             label={I18n.translate('email')}
@@ -43,7 +43,7 @@ const Login = (props) => {
                     </View>
                     {/** form container: END */}
 
-                    <View style={Styles.commonStyle.buttonContainer}>
+                    <View style={commonStyle.buttonContainer}>
                         <Button
                             title={I18n.translate('login')}
                             onPress={props.Login}

@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { Logo } from '../../components'
 
 import styles from "./styles";
-import commonStyle from "../../styles/styles"
+import { commonStyle } from "../../styles"
 
 const SplashScreen = (props) => {
   return (
