@@ -4,12 +4,7 @@ import { View, Text, Image } from "react-native"
 import AppIntroSlider from 'react-native-app-intro-slider'
 import I18n from 'i18n-js'
 
-<<<<<<< HEAD
 import { carouselSyle, commonStyle } from "../../styles"
-=======
-import styles from "./styles"
-import { commonStyle } from "../../styles"
->>>>>>> dev-gl
 import { button, text} from "../../components/Button/styles"
 
 const GetStarted = (props) => {
