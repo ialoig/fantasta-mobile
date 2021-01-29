@@ -1,17 +1,14 @@
-import React from "react";
-import { Actions } from "react-native-router-flux";
+
+import React from "react"
+import { Actions } from "react-native-router-flux"
 import Validator from 'validator'
 
 import { Auth } from "../../services"
 import { FIELDS_ID, PASSWORD_OPT } from '../../constants'
 
-import Login from "./Login";
+import Login from "./Login"
 
 export class LoginContainer extends React.Component {
-
-    static navigationOptions = {
-        header: null
-    }
 
     constructor (props) {
         super(props)
