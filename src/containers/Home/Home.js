@@ -18,8 +18,7 @@ const League = ( title, onPress ) => (
 
 const Home = (props) => {
     return (
-        <SafeAreaView style={commonStyle.content}>
-
+        <View style={commonStyle.content}>
             <View style={styles.buttonsView}>
                 <View style={styles.buttons}>
                     <View style={styles.buttonCrea}>
@@ -35,16 +34,18 @@ const Home = (props) => {
                 </View>
             </View>
 
-            <View style={styles.list}>
-                <Text style={styles.leaguesTitle}>{I18n.translate('yourLeagues')}</Text>
-                <FlatList
-                    data={props.leagues}
-                    ListEmptyComponent={() => { return <Text>NESSUNA LEGA</Text> }}
-                    renderItem={item => League( item.item.name, () => props.joinLeague( item.item.id ) )}
-                    keyExtractor={item => item.id}
-                />
+            <View style={styles.listView}>
+                <View style={styles.list}>
+                    <Text style={styles.leaguesTitle}>{I18n.translate('yourLeagues')}</Text>
+                    <FlatList
+                        data={props.leagues}
+                        ListEmptyComponent={() => { return <Text>NESSUNA LEGA</Text> }}
+                        renderItem={item => League( item.item.name, () => props.joinLeague( item.item.id ) )}
+                        keyExtractor={item => item.id}
+                    />
+                </View>
             </View>
-        </SafeAreaView>
+        </View>
     )
 }
 

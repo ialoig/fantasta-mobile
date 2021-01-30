@@ -11,40 +11,35 @@ import { Button, Password, Email, Logo } from '../../components'
 const Login = (props) => {
     return (
         <KeyboardAvoidingView style={commonStyle.container} >
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                {/** form container: START */}
+            <View style={commonStyle.content}>
+                <View style={commonStyle.header}>
+                    <Logo />
+                </View>
                 <View style={commonStyle.content}>
-                    <View style={commonStyle.header}>
-                        <Logo />
-                    </View>
-                    
-                    <View style={commonStyle.content}>
-                        <Email
-                            id={props.emailId}
-                            label={I18n.translate('email')}
-                            placeholder={I18n.translate('email')}
-                            showError={props.showError}
-                            required={true}
-                            clearButtonMode='while-editing'
-                            onChange={props.onChange}
-                        />
-                        <Password
-                            id={props.passwordId}
-                            label={I18n.translate('password')}
-                            placeholder={I18n.translate('password')}
-                            showError={props.showError}
-                            required={true}
-                            minLength={6}
-                            clearButtonMode='never'
-                            onChange={props.onChange}
-                        />
-                        <Text style={styles.forgot} onPress={() => props.ForgotPassword()}>
-                            {I18n.translate('forgotPassword')}?
-                        </Text>
-                    </View>
-                    {/** form container: END */}
-
-                    <View style={commonStyle.buttonContainer}>
+                    <Email
+                        id={props.emailId}
+                        label={I18n.translate('email')}
+                        placeholder={I18n.translate('email')}
+                        showError={props.showError}
+                        required={true}
+                        clearButtonMode='while-editing'
+                        onChange={props.onChange}
+                    />
+                    <Password
+                        id={props.passwordId}
+                        label={I18n.translate('password')}
+                        placeholder={I18n.translate('password')}
+                        showError={props.showError}
+                        required={true}
+                        minLength={6}
+                        clearButtonMode='never'
+                        onChange={props.onChange}
+                    />
+                    <Text style={styles.forgot} onPress={() => props.ForgotPassword()}>
+                        {I18n.translate('forgotPassword')}?
+                    </Text>
+                </View>
+                <View style={commonStyle.buttonContainer}>
                         <Button
                             title={I18n.translate('login')}
                             onPress={props.Login}
@@ -58,8 +53,7 @@ const Login = (props) => {
                             size='large'
                         />
                     </View>
-                </View>
-            </TouchableWithoutFeedback>
+            </View>
         </KeyboardAvoidingView>
     )
 }
