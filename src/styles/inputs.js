@@ -13,7 +13,8 @@ export default StyleSheet.create({
         letterSpacing: 0.75,
         color: colors.text,
         minHeight: 56,
-        marginTop: 12,
+        marginTop: 8,
+        paddingTop: 2,
         borderRadius: 40,
         backgroundColor: colors.greyLight,
         paddingHorizontal: 32,
@@ -25,7 +26,8 @@ export default StyleSheet.create({
         borderWidth: 2,
         borderColor: colors.primary
     },
-    hasError: {  
+    hasError: {
+        marginTop: 8,
         backgroundColor: colors.errorRedBg,
         borderStyle: "solid",
         borderWidth: 1,

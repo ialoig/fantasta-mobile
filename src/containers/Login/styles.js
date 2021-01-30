@@ -6,13 +6,13 @@ export default StyleSheet.create({
     flex: 2
   },
   forgot: {
+    alignSelf: "flex-end",
     paddingTop: 12,
-    fontFamily: "PoppinsRegular",
-    fontSize: 14,
-    fontWeight: "500",
-    fontStyle: "normal",
-    lineHeight: 20,
-    letterSpacing: 0.25,
+    color: colors.textPlaceholder,
+  },
+  haveAccount: {
+    alignSelf: "center",
+    paddingTop: 12,
     color: colors.textPlaceholder,
     alignSelf: 'flex-end'
   }

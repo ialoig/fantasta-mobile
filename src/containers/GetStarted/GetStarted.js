@@ -5,6 +5,7 @@ import AppIntroSlider from 'react-native-app-intro-slider'
 import I18n from 'i18n-js'
 
 import { carouselSyle, commonStyle } from "../../styles"
+import styles from "./styles"
 import { button, text} from "../../components/Button/styles"
 
 const GetStarted = (props) => {

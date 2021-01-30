@@ -7,6 +7,8 @@
     "repeatPassword": "Repeat password",
     "login": "Login",
     "register": "Register",
+    "noAccount": "Don't have an account? ",
+    "haveAccount": "Already have an account? ",
     "forgotPassword": "Forgot password",
     "differentPassword": "You entered two different passwords",
     "nome_lega": "League name",
