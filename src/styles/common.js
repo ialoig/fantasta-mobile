@@ -1,6 +1,5 @@
 
 import { StyleSheet } from "react-native";
-import colors from "../styles/colors";
 
 export default StyleSheet.create({
 	flex: {
@@ -19,9 +18,11 @@ export default StyleSheet.create({
     	alignItems: 'center'
   	},
   	header: {
-    	marginTop: 72
+		marginTop: 56,
+		marginBottom: 12
   	},
   	buttonContainer: {
-		paddingBottom: 24
+		marginTop: 12,
+		marginBottom: 24
   	}
 });

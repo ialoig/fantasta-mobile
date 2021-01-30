@@ -7,6 +7,8 @@
     "repeatPassword": "Ripeti password",
     "login": "Login",
     "register": "Register",
+    "noAccount": "Non hai un account? ",
+    "haveAccount": "Hai già un account? ",
     "forgotPassword": "Password dimenticata",
     "differentPassword": "Hai inserito due password diverse",
     "nome_lega": "Nome lega",

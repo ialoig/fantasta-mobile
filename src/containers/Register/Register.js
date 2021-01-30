@@ -1,9 +1,10 @@
 
 import React from "react"
-import { Keyboard, TouchableWithoutFeedback, View, KeyboardAvoidingView } from "react-native"
+import { Keyboard, TouchableWithoutFeedback, View, Text, KeyboardAvoidingView } from "react-native"
 import I18n from 'i18n-js'
 
-import { commonStyle } from "../../styles"
+import { commonStyle, textStyles } from "../../styles"
+import styles from "./styles"
 
 import { Button, Email, Logo, Password, RepeatPassword } from '../../components'
 
@@ -58,6 +59,14 @@ const Register = (props) => {
                             type='primary'
                             size='large'
                         />
+                        <Text style={[styles.haveAccount, textStyles.button]} onPress={() => props.login()}>
+                            {I18n.translate('haveAccount')}
+                            <Text style={textStyles.buttonMedium}>
+                                {I18n.translate('login')}
+                            </Text>
+                        </Text>
+
+                        {/*gl: rimosso e sostituito con testo: approvazione rimozione
                         <Button
                             title={I18n.translate('login')}
                             onPress={props.login}
@@ -65,6 +74,7 @@ const Register = (props) => {
                             size='large'
                             border={false}
                         />
+                        */}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
