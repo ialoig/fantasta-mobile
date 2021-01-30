@@ -4,9 +4,10 @@ import { Keyboard, TouchableWithoutFeedback, View, KeyboardAvoidingView, Text } 
 import I18n from 'i18n-js'
 
 import styles from "./styles"
-import { commonStyle } from "../../styles"
+import { commonStyle, textStyles } from "../../styles"
 
 import { Button, Password, Email, Logo } from '../../components'
+import { text } from "../../components/Button/styles"
 
 const Login = (props) => {
     return (
@@ -46,12 +47,23 @@ const Login = (props) => {
                             type='primary'
                             size='large'
                         />
-                        <Button
-                            title={I18n.translate('register')}
-                            onPress={props.Register}
-                            type='secondary'
-                            size='large'
-                        />
+                        <Text style={[styles.haveAccount, textStyles.button]} onPress={() => props.Register()}>
+                            {I18n.translate('noAccount')}
+                            <Text style={textStyles.buttonMedium}>
+                                {I18n.translate('register')}
+                            </Text>
+                        </Text>
+
+                        {/* gl: rimosso e sostituito con testo: approvazione rimozione
+                        <View style={commonStyle.buttonContainer}>
+                            <Button
+                                title={I18n.translate('register')}
+                                onPress={props.Register}
+                                type='secondary'
+                                size='large'
+                            />
+                        </View>
+                        */}
                     </View>
             </View>
         </KeyboardAvoidingView>

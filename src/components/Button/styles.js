@@ -38,12 +38,13 @@ export const text = StyleSheet.create({
         fontStyle: "normal",
         lineHeight: 28,
         letterSpacing: 0.75,
-        textAlign: "center"
     },
     primary: {
+        textAlign: "center",
         color: colors.white
     },
     secondary: {
+        textAlign: "center",
         color: colors.primary
     },
     large: {
