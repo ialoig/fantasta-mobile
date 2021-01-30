@@ -1,15 +1,12 @@
-import React from "react";
-import { Actions } from "react-native-router-flux";
+
+import React from "react"
+import { Actions } from "react-native-router-flux"
 
 import { Auth, Init, Token } from '../../services'
 
 import SplashScreen from './SplashScreen'
 
 export class SplashScreenContainer extends React.Component {
-
-  static navigationOptions = {
-    header: null
-  }
 
   async componentDidMount ()
   {

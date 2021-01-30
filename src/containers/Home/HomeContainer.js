@@ -1,6 +1,6 @@
 
 import React from "react"
-import { Actions } from "react-native-router-flux";
+import { Actions } from "react-native-router-flux"
 
 import Home from './Home'
 
@@ -10,10 +10,6 @@ const leaguaeId = 'leagueName'
 const passwordId = 'password'
 
 export class HomeContainer extends React.Component {
-
-    static navigationOptions = {
-        header: null
-    }
 
     constructor (props) {
         super(props)
