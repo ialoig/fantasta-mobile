@@ -3,6 +3,7 @@ import colors from "./colors";
 
 export default StyleSheet.create({
     inptView: {
+        width: '100%'
     },
     inputForm: {
         fontFamily: "PoppinsRegular", 
@@ -11,7 +12,6 @@ export default StyleSheet.create({
         lineHeight: 28,
         letterSpacing: 0.75,
         color: colors.text,
-        minWidth: 327,
         minHeight: 56,
         marginTop: 12,
         borderRadius: 40,

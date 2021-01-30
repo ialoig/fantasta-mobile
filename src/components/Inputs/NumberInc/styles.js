@@ -10,10 +10,11 @@ export default StyleSheet.create({
         height: 60
     },
     label: {
-        fontSize: 16
+        fontSize: 16,
+        width: '40%'
     },
     input: {
         borderRadius: 32,
-        minWidth: 80
+        width: '60%'
     }
 });

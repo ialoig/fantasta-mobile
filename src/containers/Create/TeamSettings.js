@@ -4,10 +4,11 @@ import { View } from "react-native"
 import I18n from 'i18n-js'
 
 import { NumberInc } from '../../components'
+import styles from './styles'
 
 const TeamSettings = (props) => {
     return (
-        <View>
+        <View style={styles.inputs}>
             <NumberInc
                 label={I18n.translate('nGoalkeepers')}
                 value={props.settings[props.goalskeepersId]}

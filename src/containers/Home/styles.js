@@ -2,19 +2,11 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    content: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
-        margin: 20
-    },
     buttonsView: {
         flex: 2,
-        margin: 10,
+        margin: 30,
         marginBottom: 0,
-        alignSelf: 'center',
-        width: '100%',
+        alignSelf: 'stretch'
     },
     buttons: {
         flex: 1,
@@ -38,14 +30,18 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    list: {
+    listView: {
         flex: 4,
-        margin: 10,
-        padding: 20,
+        margin: 30,
         marginTop: 0,
-        width: '100%',
         backgroundColor: '#FBCB3A',
-        alignSelf: 'center'
+        alignSelf: 'stretch'
+    },
+    list: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'stretch'
     },
     leaguesTitle: {
         marginBottom: 20

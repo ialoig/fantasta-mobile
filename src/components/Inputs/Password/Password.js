@@ -10,7 +10,7 @@ const Password = (props) => {
         <View style={inputStyle.inptView}>
             <TextInput
                 {...props}
-                style={inputStyle.inputForm, props.hasError ? inputStyle.hasError : null}
+                style={[inputStyle.inputForm, props.hasError ? inputStyle.hasError : null]}
                 ref={(ref)=> { props.onRef(ref) }}
                 keyboardType='default'
                 secureTextEntry={true}

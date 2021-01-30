@@ -10,16 +10,17 @@ export default StyleSheet.create({
     	flex: 1,
     	justifyContent: 'center',
     	alignItems: 'center',
-    	marginHorizontal: 12,
-    	minWidth: 350
+    	marginHorizontal: 12
   	},
   	content: {
-    	flex: 1,
+		flex: 1,
+		flexDirection: 'column',
     	justifyContent: 'center',
-    	alignItems: 'center'
+    	alignItems: 'stretch'
   	},
   	header: {
-    	marginTop: 72
+		marginTop: 72,
+		alignSelf: 'center'
   	},
   	buttonContainer: {
 		paddingBottom: 24
