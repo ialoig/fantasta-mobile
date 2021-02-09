@@ -41,5 +41,11 @@
     "teamName": "Nome squadra",
     "next": "Avanti",
     "create": "Crea",
-    "getStarted": "Inizia!"
+    "getStarted": "Inizia!",
+    "settings": "Impostazioni",
+    "settings_descr": "Lingua & ...",
+    "league": "Lega",
+    "league_descr": "Opzioni lega",
+    "support": "Supporto",
+    "account": "Account"
 }

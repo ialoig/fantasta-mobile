@@ -13,7 +13,6 @@ export default StyleSheet.create({
   haveAccount: {
     alignSelf: "center",
     paddingTop: 12,
-    color: colors.textPlaceholder,
-    alignSelf: 'flex-end'
+    color: colors.textPlaceholder
   }
 });
