@@ -9,6 +9,8 @@ import TeamSettings from './TeamSettings'
 import AuctionSettings from './AuctionSettings'
 import CreateTeam from './CreateTeam'
 
+import { Leagues } from '../../services'
+
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from '../../constants'
 
 const pages = [
@@ -33,7 +35,7 @@ export class CreateContainer extends React.Component {
                 [FIELDS_ID.goalskeepersId]: 3,
                 [FIELDS_ID.defendersId]: 8,
                 [FIELDS_ID.midfieldersId]: 8,
-                [FIELDS_ID.forwardersId]: 6,
+                [FIELDS_ID.strikersId]: 6,
                 [FIELDS_ID.playersId]: 22,
                 [FIELDS_ID.budgetId]: 500,
                 [FIELDS_ID.countdownId]: 60,
@@ -55,39 +57,39 @@ export class CreateContainer extends React.Component {
         })
     }
 
-    onDone () {
+    async onDone () {
         if ( !this.state.settings[FIELDS_ID.leagueNameId] ) {
-            this.showError(  )
+            this.showError( 'field_error', 'missing_league_name' )
         }
         else if ( !this.state.settings[FIELDS_ID.passwordId] ) {
-            this.showError(  )
+            this.showError( 'field_error', 'missing_password' )
         }
         else if ( !this.state.settings[FIELDS_ID.teamnameId] ) {
-            this.showError()
+            this.showError( 'field_error', 'missing_team_name' )
         }
         else if ( this.state.settings[FIELDS_ID.partecipantsId]<2 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'partecipants_error' )
         }
         else if ( this.state.settings[FIELDS_ID.goalskeepersId]<1 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'goalskeepers_error' )
         }
         else if ( this.state.settings[FIELDS_ID.defendersId]<1 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'defenders_error' )
         }
         else if ( this.state.settings[FIELDS_ID.midfieldersId]<1 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'midfielders_error' )
         }
-        else if ( this.state.settings[FIELDS_ID.forwardersId]<1 ) {
-            this.showError(  )
+        else if ( this.state.settings[FIELDS_ID.strikersId]<1 ) {
+            this.showError( 'field_error', 'forwarders_error' )
         }
         else if ( this.state.settings[FIELDS_ID.playersId]<1 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'players_error' )
         }
         else if ( this.state.settings[FIELDS_ID.countdownId]<3 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'countdown_error' )
         }
         else {
-
+            let res = await Leagues.Create( this.state.settings )
         }
     }
 
@@ -111,7 +113,7 @@ export class CreateContainer extends React.Component {
                 goalskeepersId={FIELDS_ID.goalskeepersId}
                 defendersId={FIELDS_ID.defendersId}
                 midfieldersId={FIELDS_ID.midfieldersId}
-                forwardersId={FIELDS_ID.forwardersId}
+                strikersId={FIELDS_ID.strikersId}
                 playersId={FIELDS_ID.playersId}
                 budgetId={FIELDS_ID.budgetId}
                 countdownId={FIELDS_ID.countdownId}
