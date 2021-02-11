@@ -1,5 +1,6 @@
 
 import React from "react"
+import { Alert } from "react-native"
 import { Actions } from "react-native-router-flux"
 
 import Home from './Home'
@@ -30,7 +31,7 @@ export class HomeContainer extends React.Component {
 
     render () {
 
-        let leagues = Leagues.Get()
+        let leagues = Leagues.Get().sort((a, b)=> a.name > b.name ? 1 : -1)
 
         return (
             <Home
