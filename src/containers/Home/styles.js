@@ -15,27 +15,31 @@ export default StyleSheet.create({
         alignItems: 'stretch'
     },
     buttonCrea: {
-        backgroundColor: '#1FCC79',
+        backgroundColor: '#F4F5F7',
         alignSelf: 'center',
         width: '45%',
         height: '70%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderRadius: 16
     },
     buttonJoin: {
-        backgroundColor: '#87D4F4',
+        backgroundColor: '#F4F5F7',
         alignSelf: 'center',
         width: '45%',
         height: '70%',
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderRadius: 16
+    },
+    buttonImage: {
+        alignSelf: 'center'
     },
     listView: {
         flex: 4,
         margin: 30,
-        marginTop: 0,
-        backgroundColor: '#FBCB3A',
-        alignSelf: 'stretch'
+        marginTop: -10
     },
     list: {
         flex: 1,
@@ -44,15 +48,22 @@ export default StyleSheet.create({
         alignItems: 'stretch'
     },
     leaguesTitle: {
-        marginBottom: 20
+        marginBottom: 10,
+        fontFamily: "PoppinsRegular",
+        fontSize: 20,
+        fontWeight: "normal",
+        fontStyle: "normal"
     },
     league: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignContent: 'center',
         alignItems: 'center',
-        marginBottom: 20,
+        backgroundColor: '#F4F5F7',
+        borderRadius: 16,
+        marginBottom: 10,
+        height: 65
     },
     imageTitle: {
         display: 'flex',
@@ -61,7 +72,8 @@ export default StyleSheet.create({
     },
     leagueImage: {
         width: 40,
-        height: 40
+        height: 40,
+        marginLeft: 20
     },
     title: {
         marginLeft: 30
@@ -70,6 +82,6 @@ export default StyleSheet.create({
         marginLeft: 30
     },
     openLeague: {
-
+        marginRight: 20
     }
 });
