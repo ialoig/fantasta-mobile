@@ -49,7 +49,7 @@ export default StyleSheet.create({
     league: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignContent: 'center',
         alignItems: 'center',
         marginBottom: 20,
@@ -64,6 +64,9 @@ export default StyleSheet.create({
         height: 40
     },
     title: {
+        marginLeft: 30
+    },
+    subTitle: {
         marginLeft: 30
     },
     openLeague: {

@@ -1,16 +1,17 @@
 
 import React from "react"
-import { FlatList, Image, SafeAreaView, Text, TouchableOpacity, View } from "react-native"
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
 import I18n from 'i18n-js'
 
 import styles from "./styles"
 import { commonStyle } from '../../styles'
 
-const League = ( title, onPress ) => (
-    <TouchableOpacity onPress={onPress} style={styles.league}>
+const League = ( item, onPress ) => (
+    <TouchableOpacity onPress={onPress} style={styles.league} key={item._id}>
         <View style={styles.imageTitle} >
             <Image style={styles.leagueImage} source={require('../../../assets/icon.png')} />
-            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.title}>{item.name}</Text>
+            <Text style={styles.subTitle}>({item.team.name})</Text>
         </View>
         <Text style={styles.openLeague}>{'>'}</Text>
     </TouchableOpacity>
@@ -40,7 +41,7 @@ const Home = (props) => {
                     <FlatList
                         data={props.leagues}
                         ListEmptyComponent={() => { return <Text>NESSUNA LEGA</Text> }}
-                        renderItem={item => League( item.item.name, () => props.joinLeague( item.item.id ) )}
+                        renderItem={item => League(item.item, () => props.joinLeague( item.item ) )}
                         keyExtractor={item => item.id}
                     />
                 </View>
