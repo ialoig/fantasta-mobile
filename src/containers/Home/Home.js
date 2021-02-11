@@ -9,10 +9,12 @@ import { commonStyle } from '../../styles'
 const League = ( item, onPress ) => (
     <TouchableOpacity onPress={onPress} style={styles.league} key={item._id}>
         <View style={styles.imageTitle} >
-            <Image style={styles.leagueImage} source={require('../../../assets/icon.png')} />
+            <Image style={styles.leagueImage} source={require('../../../assets/img/icons/League.png')} />
             <Text style={styles.title}>{item.name} - {item.team.name}</Text>
         </View>
-        <Text style={styles.openLeague}>{'>'}</Text>
+        <View style={styles.openLeague}>
+            <Text>&gt;</Text>
+        </View>
     </TouchableOpacity>
 )
 
@@ -22,13 +24,15 @@ const Home = (props) => {
             <View style={styles.buttonsView}>
                 <View style={styles.buttons}>
                     <View style={styles.buttonCrea}>
-                        <TouchableOpacity onPress={props.crea} style={{width: '100%', height: '100%'}}>
-                            <Text>CREA</Text>
+                        <TouchableOpacity onPress={props.crea}>
+                            <Image style={styles.buttonImage} source={require('../../../assets/img/icons/Add.png')} />
+                            <Text style={styles.buttonImage}>{I18n.translate('create')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.buttonJoin}>
-                        <TouchableOpacity onPress={props.join} style={{width: '100%', height: '100%'}}>
-                            <Text>JOIN</Text>
+                        <TouchableOpacity onPress={props.join}>
+                            <Image style={styles.buttonImage} source={require('../../../assets/img/icons/Join.png')} />
+                            <Text style={styles.buttonImage}>{I18n.translate('join')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
