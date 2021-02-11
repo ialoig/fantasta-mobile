@@ -22,7 +22,7 @@ const CreateLeague = (props) => {
                 onChange={props.onChange}
             />
             <NumberInc
-                label={I18n.translate('nPartecipants')}
+                label={I18n.translate('nParticipants')}
                 value={props.settings[props.partecipantsId]}
                 step={1}
                 min={2}
