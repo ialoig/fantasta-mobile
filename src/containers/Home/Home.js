@@ -41,7 +41,7 @@ const Home = (props) => {
                         data={props.leagues}
                         ListEmptyComponent={() => { return <Text>NESSUNA LEGA</Text> }}
                         renderItem={item => League(item.item, () => props.joinLeague( item.item ) )}
-                        keyExtractor={item => item.id}
+                        keyExtractor={item => item._id}
                     />
                 </View>
             </View>

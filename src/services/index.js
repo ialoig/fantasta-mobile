@@ -1,5 +1,5 @@
 
-
+export { Auction } from './auction'
 export { Auth } from './auth'
 export { Fonts } from './fonts'
 export { Init } from './init'

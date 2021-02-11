@@ -6,45 +6,37 @@ import Home from './Home'
 
 import { Leagues } from '../../services'
 
-const leaguaeId = 'leagueName'
-const passwordId = 'password'
-
 export class HomeContainer extends React.Component {
 
-    constructor (props) {
-        super(props)
+    async joinLeague ( item ) {
+        if ( item && item._id )
+        {
+            try
+            {
+                await Leagues.Join( item._id )
 
-        this.state = {
-            [leaguaeId]: '',
-            [passwordId]: '',
+                Actions.Dashboard()
+            }
+            catch (error) {
+                Alert.alert(
+                    I18n.translate(error.title),
+                    I18n.translate(error.subTitle),
+                    [{text: 'OK'}],
+                    { cancelable: true }
+                )
+            }
         }
     }
 
-    crea () {
-        Actions.Create()
-    }
+    render () {
 
-    join () {
-        Actions.Join()
-    }
-
-    joinLeague ( id ) {
-        if ( id ) {
-            console.log(id)
-        }
-    }
-
-    render() {
-
-        const leagues = Leagues.Get()
+        let leagues = Leagues.Get()
 
         return (
             <Home
                 leagues={leagues}
-                leaguaeId={leaguaeId}
-                passwordId={passwordId}
-                crea={this.crea.bind(this)}
-                join={this.join.bind(this)}
+                crea={Actions.Create}
+                join={Actions.Join}
                 joinLeague={this.joinLeague.bind(this)}
             />
         )
