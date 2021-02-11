@@ -92,5 +92,5 @@ const handleError = ( err ) =>
             onPress: () => console.log("OK Pressed")
         }],
         { cancelable: false }
-      )
+    )
 }

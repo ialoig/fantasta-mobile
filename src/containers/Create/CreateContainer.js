@@ -1,6 +1,7 @@
 
 import React from "react"
 import { Alert } from "react-native"
+import { Actions } from "react-native-router-flux"
 import I18n from 'i18n-js'
 
 import Create from './Create'
@@ -89,7 +90,15 @@ export class CreateContainer extends React.Component {
             this.showError( 'field_error', 'countdown_error' )
         }
         else {
-            let res = await Leagues.Create( this.state.settings )
+            try
+            {
+                await Leagues.Create( this.state.settings )
+
+                Actions.replace('Dashboard')
+            }
+            catch (error) {
+                this.showError( error.title, error.subTitle )
+            }
         }
     }
 
@@ -100,7 +109,7 @@ export class CreateContainer extends React.Component {
             I18n.translate(message),
             [{text: 'OK'}],
             { cancelable: true }
-          );
+        )
     }
 
     render() {
