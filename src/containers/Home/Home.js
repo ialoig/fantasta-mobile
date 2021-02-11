@@ -11,7 +11,7 @@ const League = ( item, onPress ) => (
         <View style={styles.imageTitle} >
             <Image style={styles.leagueImage} source={require('../../../assets/icon.png')} />
             <Text style={styles.title}>{item.name}</Text>
-            <Text style={styles.subTitle}>({item.team.name})</Text>
+            <Text style={styles.subTitle}> - {item.team.name}</Text>
         </View>
         <Text style={styles.openLeague}>{'>'}</Text>
     </TouchableOpacity>
