@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Settings from './Settings';
 import Account from './Account'
 // import { Actions } from 'react-native-router-flux';
 

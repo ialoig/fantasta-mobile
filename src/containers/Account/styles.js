@@ -4,12 +4,14 @@ export default StyleSheet.create({
     header: {
 		marginTop: 56,
 		marginBottom: 12,
+        marginHorizontal: 24,
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center'
     },
     title: {
         flex: 1,
-        flexGrow: 1
+        flexGrow: 1,
+        justifyContent: "center",
+        textAlign: 'center',
+        textAlignVertical: 'center'
     }
 })

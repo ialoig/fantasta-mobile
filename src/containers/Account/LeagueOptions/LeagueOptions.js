@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
 
 import { View, Text } from "react-native"
-import { commonStyle, textStyles } from "../../styles"
+import { commonStyle, textStyles } from "../../../styles"
 import I18n from "i18n-js"
 
-import { Card, PrevButton} from "../../components"
+import { Card, PrevButton} from "../../../components"
+import styles from "../styles"
 
-function Settings({navigation}) {
+function LeagueOptions({navigation}) {
     return (
         <View style={commonStyle.container}>
             { /** header */}
-            <View style={commonStyle.title}>
+            <View style={styles.header}>
                 <PrevButton onPress={() => navigation.goBack()} icon="true" />
-                <Text style={textStyles.h1}>{"Settings"}</Text>
+                <Text style={[textStyles.h1, styles.title]}>{I18n.translate("league")}</Text>
             </View>
 
             <View style={commonStyle.content}>
@@ -29,5 +30,5 @@ function Settings({navigation}) {
     )
 }
 
-export default Settings
+export default LeagueOptions
 
