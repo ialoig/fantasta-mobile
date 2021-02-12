@@ -48,5 +48,12 @@
     "league_descr": "Opzioni lega",
     "support": "Supporto",
     "account": "Account",
-    "language": "Lingua"
+    "language": "Lingua",
+    "feedback": "Lascia un commento",
+    "feedback_descr": "Aiutaci a migliorare Fantasta",
+    "contact": "Contattaci",
+    "contact_descr": "Entra in contatto con noi",
+    "username": "Username",
+    "account_details": "Dettagli Account",
+    "delete_account": "Cancella account"
 }

@@ -40,5 +40,12 @@
     "league_descr": "League options",
     "support": "Support",
     "account": "Account",
-    "language": "Language"
+    "language": "Language",
+    "feedback": "Leave us a feedback",
+    "feedback_descr": "Help us make Fantasta better",
+    "contact": "Contact us",
+    "contact_descr": "Get in touch with us",
+    "username": "Username",
+    "account_details": "Account details",
+    "delete_account": "Delete account"
 }

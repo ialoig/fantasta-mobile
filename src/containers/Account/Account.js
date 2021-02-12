@@ -10,18 +10,17 @@ import styles from "./styles"
 const Account = props => {
     return (
         <View style={commonStyle.container}>
- 
 
-            { /** header */}
+            { /** header 
             <View style={styles.header}>
                 <PrevButton onPress={() => props.navigation.goBack()} icon="true" />
                 <Text style={[textStyles.h1, styles.title]}>{I18n.translate("account")}</Text>
-            </View>
+            </View>*/}
 
             <View style={commonStyle.content}>
                 { /** account */}
                 <Card 
-                    onPress={props.accountDetails}
+                    onPress={() => props.navigation.navigate("AccountDetails")}
                     title={props.email}
                     description={props.email}
                     type='default'
@@ -39,7 +38,7 @@ const Account = props => {
 
                     { /** leagues */}
                     <Card 
-                        onPress={props.accountDetails}
+                        onPress={() => props.navigation.navigate("LeagueOptions")}
                         title={I18n.translate("league")}
                         description={I18n.translate("league_descr")}
                         type='small'
@@ -48,7 +47,7 @@ const Account = props => {
 
                     { /** support */}
                     <Card 
-                        onPress={props.accountDetails}
+                        onPress={() => props.navigation.navigate("Support")}
                         title={I18n.translate("support")}
                         type='small'
                         arrow='true'
