@@ -39,5 +39,6 @@
     "league": "League",
     "league_descr": "League options",
     "support": "Support",
-    "account": "Account"
+    "account": "Account",
+    "language": "Language"
 }
