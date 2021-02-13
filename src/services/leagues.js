@@ -32,20 +32,30 @@ const Create = async ( settings ) =>
     }
 }
 
-const Join = async ( id ) =>
+const Join = async ( id='', name='', password='', teamname='' ) =>
 {
-    try
+    if ( id || name && password && teamname )
     {
-        let res = await axios.post('/league/join', {id}, {})
-        let response = res.data && res.data.data || {}
-        LEAGUES = response.user.leagues || []
-        Auction.Init( response.league, response.team )
-        
-        return Promise.resolve()
-    }
-    catch (error)
-    {
-        return Promise.reject(info)
+        try
+        {
+            let data = {
+                id,
+                name,
+                password,
+                teamname
+            }
+
+            let res = await axios.put('/league/join', data, {})
+            let response = res.data && res.data.data || {}
+            LEAGUES = response.user.leagues || []
+            Auction.Init( response.league, response.team )
+            
+            return Promise.resolve()
+        }
+        catch (error)
+        {
+            return Promise.reject(error)
+        }
     }
 }
 

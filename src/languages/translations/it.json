@@ -47,7 +47,7 @@
     "missing_league_name": "Nome lega mancante",
     "missing_password": "Password mancante",
     "missing_team_name": "Nome team mancante",
-    "partecipants_error": "Il numero minimo di partecipanti è 2",
+    "participants_error": "Il numero minimo di partecipanti è 2",
     "goalskeepers_error": "Il numero minimo di portieri è 1",
     "defenders_error": "Il numero minimo di difensori è 1",
     "midfielders_error": "Il numero minimo di centrocampisti è 1",

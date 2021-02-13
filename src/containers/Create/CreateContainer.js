@@ -31,7 +31,7 @@ export class CreateContainer extends React.Component {
             settings: {
                 [FIELDS_ID.leagueNameId]: '',
                 [FIELDS_ID.passwordId]: '',
-                [FIELDS_ID.partecipantsId]: 8,
+                [FIELDS_ID.participantsId]: 8,
                 [FIELDS_ID.tipologyId]: TIPOLOGY.CLASSIC,
                 [FIELDS_ID.goalskeepersId]: 3,
                 [FIELDS_ID.defendersId]: 8,
@@ -68,8 +68,8 @@ export class CreateContainer extends React.Component {
         else if ( !this.state.settings[FIELDS_ID.teamnameId] ) {
             this.showError( 'field_error', 'missing_team_name' )
         }
-        else if ( this.state.settings[FIELDS_ID.partecipantsId]<2 ) {
-            this.showError( 'field_error', 'partecipants_error' )
+        else if ( this.state.settings[FIELDS_ID.participantsId]<2 ) {
+            this.showError( 'field_error', 'participants_error' )
         }
         else if ( this.state.settings[FIELDS_ID.goalskeepersId]<1 ) {
             this.showError( 'field_error', 'goalskeepers_error' )
@@ -117,7 +117,7 @@ export class CreateContainer extends React.Component {
             <Create
                 leagueNameId={FIELDS_ID.leagueNameId}
                 passwordId={FIELDS_ID.passwordId}
-                partecipantsId={FIELDS_ID.partecipantsId}
+                participantsId={FIELDS_ID.participantsId}
                 tipologyId={FIELDS_ID.tipologyId}
                 goalskeepersId={FIELDS_ID.goalskeepersId}
                 defendersId={FIELDS_ID.defendersId}
