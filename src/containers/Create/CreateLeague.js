@@ -23,10 +23,10 @@ const CreateLeague = (props) => {
             />
             <NumberInc
                 label={I18n.translate('nParticipants')}
-                value={props.settings[props.partecipantsId]}
+                value={props.settings[props.participantsId]}
                 step={1}
                 min={2}
-                onChange={value => props.onChange( props.partecipantsId, value )} 
+                onChange={value => props.onChange( props.participantsId, value )} 
             />
             <Radio 
                 label={I18n.translate('tipology')}

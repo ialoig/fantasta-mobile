@@ -35,7 +35,7 @@ export const FIELDS_ID = {
     passwordId: 'password',
     repeatPasswordId: 'repeatPassword',
     leagueNameId: 'name',
-    partecipantsId: 'partecipants',
+    participantsId: 'participants',
     tipologyId: 'type',
     goalskeepersId: 'goalkeepers',
     defendersId: 'defenders',
