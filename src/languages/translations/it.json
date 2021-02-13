@@ -53,5 +53,12 @@
     "midfielders_error": "Il numero minimo di centrocampisti è 1",
     "forwarders_error": "Il numero minimo di attaccanti è 1",
     "players_error": "Il numero minimo di giocatori è 2",
-    "countdown_error": "Il tempo minimo di countdown è 3 secondi"
+    "countdown_error": "Il tempo minimo di countdown è 3 secondi",
+    "settings": "Impostazioni",
+    "settings_descr": "Lingua & ...",
+    "league": "Lega",
+    "league_descr": "Opzioni lega",
+    "support": "Supporto",
+    "account": "Account",
+    "language": "Lingua"
 }
