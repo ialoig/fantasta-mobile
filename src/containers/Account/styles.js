@@ -13,5 +13,9 @@ export default StyleSheet.create({
         justifyContent: "center",
         textAlign: 'center',
         textAlignVertical: 'center'
+    },
+    cardContent: {
+		flex: 1,
+        justifyContent: "flex-start"
     }
 })

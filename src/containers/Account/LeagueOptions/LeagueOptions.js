@@ -1,20 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import { View, Text } from "react-native"
-import { commonStyle, textStyles } from "../../../styles"
+import { View } from "react-native"
+import { commonStyle } from "../../../styles"
 import I18n from "i18n-js"
 
-import { Card, PrevButton} from "../../../components"
-import styles from "../styles"
+import { Card, Header} from "../../../components"
+import { useNavigation } from '@react-navigation/native'
 
-function LeagueOptions({navigation}) {
+function LeagueOptions() {
+
+    //hook which give access to the navigation object from the component directly
+    const navigation = useNavigation();
+
     return (
         <View style={commonStyle.container}>
-            { /** header */}
-            <View style={styles.header}>
-                <PrevButton onPress={() => navigation.goBack()} icon="true" />
-                <Text style={[textStyles.h1, styles.title]}>{I18n.translate("league")}</Text>
-            </View>
+        { /** header */}
+        <Header title="account_details" backButton="true" onPress={() => navigation.goBack()}/>
 
             <View style={commonStyle.content}>
             { /** language */}

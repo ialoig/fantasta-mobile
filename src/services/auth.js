@@ -55,10 +55,38 @@ const Register = async ( email, password ) =>
     }
 }
 
+
+const modifyUser = async (email, username) => {
+    // let res = await axios({
+    //     baseURL: "/auth/modifyUser",
+    //     method: "POST",
+    //     data: {email, username},
+    // })
+    // .then( () => {
+    //     //checking if result has a data 
+    //     if (res.data) {
+    //         let user = res.data
+    //         //setting email changed to global User
+    //         if (user.email) {
+    //             User.Set(user.email, user.id)
+    //         }
+    //     }
+    //     return Promise.resolve()
+    // })
+    // .catch( (error) => {
+    //     handleError(error);
+    //     return Promise.reject();
+    // })
+    if (email) {
+        User.Set(email)
+    }
+}
+
 export const Auth = {
     Authenticate,
     Login,
-    Register
+    Register,
+    modifyUser
 }
 
 const saveUser = ( res ) =>

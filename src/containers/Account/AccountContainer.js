@@ -1,35 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Account from './Account'
-// import { Actions } from 'react-native-router-flux';
 
+import { User } from "../../services"
 
-// export class AccountContainer extends Component {
+function AccountContainer() {
 
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             email : "user@email.com",
-//             section: ["account", "settings", "leagues", "support"],
-//             actualPage: "account"
-//         }
-//     }
+    const [email, setEmail] = useState(null)
 
-
-//     render() {
-//         return <Account email={this.state.email} />
-//     }
-// }
-
-// export default AccountContainer
-
-
-
-function AccountContainer({navigation}) {
-
-    const [email, setEmail] = useState("user@email.com")
+    useEffect(() => {
+        const email = User.Get().email;
+        return setEmail(email)
+    }, [email])
 
     return (
-        <Account email={email} navigation={navigation} />
+        <Account email={email} />
     )
 }
 
