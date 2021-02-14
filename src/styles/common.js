@@ -10,7 +10,7 @@ export default StyleSheet.create({
     	flex: 1,
     	justifyContent: 'center',
     	alignItems: 'center',
-    	marginHorizontal: 12,
+		paddingHorizontal: 24,
 		backgroundColor: colors.background
   	},
   	content: {
@@ -22,16 +22,21 @@ export default StyleSheet.create({
   	header: {
 		alignSelf: 'center',
 		marginTop: 56,
-		marginBottom: 12
+		marginBottom: 12,
+        flexDirection: 'row'
   	},
   	buttonContainer: {
 		marginTop: 12,
 		marginBottom: 24
   	},
 	title: {
-		//alignSelf: 'center',
-		flexDirection: "row",
-		marginTop: 56,
-		marginBottom: 24
+        flex: 1,
+        flexGrow: 1,
+        justifyContent: "center",
+        textAlign: 'center',
+        textAlignVertical: 'center'
+	},
+	flex_start: {
+		justifyContent: "flex-start"
 	}
 });

@@ -1,22 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import { View, Text } from "react-native"
-import { commonStyle, textStyles } from "../../../styles"
+import { View } from "react-native"
+import { commonStyle } from "../../../styles"
 import I18n from "i18n-js"
 
-import { Card, PrevButton} from "../../../components"
+import { Card, Header} from "../../../components"
 import styles from "../styles"
+import { useNavigation } from '@react-navigation/native'
 
-function Settings({navigation}) {
+function Settings() {
+    
+    //hook which give access to the navigation object from the component directly
+    const navigation = useNavigation();
+
     return (
         <View style={commonStyle.container}>
             { /** header */}
-            <View style={styles.header}>
-                <PrevButton onPress={() => navigation.goBack()} icon="true" />
-                <Text style={[textStyles.h1, styles.title]}>{I18n.translate("settings")}</Text>
-            </View>
+            <Header title="settings" backButton="true" onPress={() => navigation.goBack()}/>
 
-            <View style={commonStyle.content}>
+            <View style={styles.cardContent}>
             { /** language */}
                 <Card
                     onPress={() => navigation.navigate("Language")}

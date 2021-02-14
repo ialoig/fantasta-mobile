@@ -12,28 +12,23 @@ import LeagueOptions from './LeagueOptions/LeagueOptions';
 import Support from './Support/Support';
 import Feedback from './Support/Feedback';
 //Account Details
-import AccountDetails from './AccountDetails/AccountDetails';
-import Header from '../../components/Header/Header';
+import AccountDetailsNavigator from './AccountDetails/AccountDetailsNavigator';
 
 
-const Stack = createStackNavigator();
+const AccountStack = createStackNavigator();
 
 export class AccountNavigator extends Component {
     
     render() {
         return (
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="AccountContainer" >
-                    <Stack.Screen name="AccountContainer" component={AccountContainer} 
-                        options={{
-                            headerTitle: props => <Header title="account"/>
-                        }}/>
-                    <Stack.Screen name="AccountDetails" component={AccountDetails} />
-                    <Stack.Screen name="Settings" component={Settings} />
-                    <Stack.Screen name="LeagueOptions" component={LeagueOptions} />
-                    <Stack.Screen name="Support" component={Support} />
-                    <Stack.Screen name="Feedback" component={Feedback} />
-                </Stack.Navigator>
+                <AccountStack.Navigator initialRouteName="AccountContainer" headerMode="none" mode="modal">
+                    <AccountStack.Screen name="AccountContainer" component={AccountContainer} />
+                    <AccountStack.Screen name="AccountDetailsNavigator" component={AccountDetailsNavigator} />
+                    <AccountStack.Screen name="Settings" component={Settings} />
+                    <AccountStack.Screen name="LeagueOptions" component={LeagueOptions} />
+                    <AccountStack.Screen name="Support" component={Support} />
+                </AccountStack.Navigator>
             </NavigationContainer>
         )
     }
