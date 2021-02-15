@@ -56,37 +56,45 @@ const Register = async ( email, password ) =>
 }
 
 
-const modifyUser = async (email, username) => {
-    // let res = await axios({
-    //     baseURL: "/auth/modifyUser",
-    //     method: "POST",
-    //     data: {email, username},
-    // })
-    // .then( () => {
-    //     //checking if result has a data 
-    //     if (res.data) {
-    //         let user = res.data
-    //         //setting email changed to global User
-    //         if (user.email) {
-    //             User.Set(user.email, user.id)
-    //         }
-    //     }
-    //     return Promise.resolve()
-    // })
-    // .catch( (error) => {
-    //     handleError(error);
-    //     return Promise.reject();
-    // })
-    if (email) {
-        User.Set(email)
-    }
+const update = async (id, email, username) => {
+    let res = await axios({
+        url: "/auth/update",
+        method: "POST",
+        data: {id, email, username},
+    })
+    .then( response => {
+        //checking if result has a data
+        console.log("[update] response.data=" +JSON.stringify(response.data))
+        if (response.data) {
+            let { data } = response.data || {}
+            let user = {
+                email: data.email,
+                username: data.name
+            }
+            console.log("user=" +user.email)
+            console.log("username=" +user.username)
+            //setting email changed to global User
+            if (user.email) {
+                User.setEmail(user.email)
+            }            
+            //setting name changed to global User
+            if (user.username) {
+                User.setUsername(user.username)
+            }
+        }
+        return Promise.resolve()
+    })
+    .catch( (error) => {
+        handleError(error);
+        return Promise.reject();
+    })
 }
 
 export const Auth = {
     Authenticate,
     Login,
     Register,
-    modifyUser
+    update
 }
 
 const saveUser = ( res ) =>
@@ -99,7 +107,7 @@ const saveUser = ( res ) =>
         Token.Set( token )
 
         let user = data.user || {}
-        User.Set( user.email, user.id )
+        User.Set( user.email, user._id, user.name)
 
         let leagues = user.leagues || []
         Leagues.Set( leagues )

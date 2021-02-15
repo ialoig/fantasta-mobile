@@ -13,11 +13,17 @@ export class AccountDetailsNavigator extends Component {
 
     render() {
 
-        const { email } = this.props.route.params
+        const { userID, email, username } = this.props.route.params
 
         return (
             <AccountDetailsStack.Navigator mode="modal" initialRouteName="AccountDetails" headerMode="none" >
-                <AccountDetailsStack.Screen name="AccountDetails" component={AccountDetails} initialParams={{email: email}}/>
+                <AccountDetailsStack.Screen name="AccountDetails" component={AccountDetails} 
+                    initialParams={
+                        {
+                            userID,
+                            email: email,
+                            username: username
+                        }}/>
                 <AccountDetailsStack.Screen name="EmailSettings" component={EmailSettings} initialParams={{email: email}}/>
                 <AccountDetailsStack.Screen name="UsernameSettings" component={UsernameSettings}/>
                 <AccountDetailsStack.Screen name="DeleteAccount" component={DeleteAccount}/>
