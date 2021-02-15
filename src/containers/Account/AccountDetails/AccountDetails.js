@@ -1,29 +1,57 @@
 import React from 'react'
 
-import { View } from "react-native"
-import { commonStyle } from "../../../styles"
+import { useNavigation, useRoute } from '@react-navigation/native'
 import I18n from "i18n-js"
+import { View } from "react-native"
 
+import { commonStyle } from "../../../styles"
 import { Card, Header} from "../../../components"
 import styles from "../styles"
-import { useNavigation } from '@react-navigation/native'
-import { User } from '../../../services'
 
-function AccountDetails({route}) {
+function AccountDetails() {
 
     //hook which give access to the navigation object from the component directly
     const navigation = useNavigation();
-    const email = route.params?.email 
+    const route = useRoute();
+    const { userID, email, username } = route.params
+
+    const backToAccount = () => {
+        console.log("back to Account")
+        return navigation.navigate("Account", 
+            {
+                userID: userID,
+                email: email,
+                username: username
+            })
+    }
+
+    const goToEmailSettings = () => {
+        console.log("go to EmailSettings")
+        return navigation.navigate("EmailSettings", 
+            {
+                userID: userID,
+                email: email
+            })
+    }
+
+    const goToUsernameSettings = () => {
+        console.log("go to UsernameSettings")
+        return navigation.navigate("UsernameSettings", 
+            {
+                userID: userID,
+                username: username
+            })
+    }
 
     return (
         <View style={commonStyle.container}>
             { /** header */}
-            <Header title="account_details" backButton="true" onPress={() => navigation.goBack()}/>
+            <Header title="account_details" backButton="true" onPress={backToAccount}/>
 
             <View style={styles.cardContent}>
                 { /** email */}
                 <Card
-                    onPress={() => navigation.navigate("EmailSettings", {email: email})}
+                    onPress={goToEmailSettings}
                     title={I18n.translate("email")}
                     description={email}
                     type='small'
@@ -31,9 +59,9 @@ function AccountDetails({route}) {
                 />
                 { /** username */}
                 <Card
-                    onPress={() => navigation.navigate("UsernameSettings")}
+                    onPress={goToUsernameSettings}
                     title={I18n.translate("username")}
-                    description={""}
+                    description={username}
                     type='small'
                     arrow='true'
                 />

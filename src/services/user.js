@@ -2,14 +2,28 @@
 
 let USER = {
     email: '',
-    id: ''
+    id: '',
+    name: ''
 }
 
-const Set = ( email, id ) =>
+const Set = ( email, id, name ) =>
 {
     USER = {
         email,
-        id
+        id,
+        name
+    }
+}
+
+const setEmail = (email) => {
+    USER = {
+        email: email
+    }
+}
+
+const setUsername = (username) => {
+    USER = {
+        name: username
     }
 }
 
@@ -20,5 +34,7 @@ const Get = () =>
 
 export const User = {
     Set,
+    setEmail,
+    setUsername,
     Get
 }

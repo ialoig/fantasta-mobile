@@ -1,24 +1,30 @@
 import React, {useEffect, useState} from 'react'
 
-import { Text, View, TouchableOpacity } from "react-native"
+import { View } from "react-native"
 import I18n from "i18n-js"
 import { Card, PrevButton, Header} from "../../components"
 import { commonStyle, textStyles } from "../../styles"
 
 import styles from "./styles"
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
-import { User } from "../../services"
-const Account = props => {
+function Account () {
 
     //hook which give access to the navigation object from the component directly
     const navigation = useNavigation();
-    const [email, setEmail] = useState(null)
+    const route = useRoute();
+    const { userID, email, username } = route.params
 
-    useEffect(() => {
-        const email = User.Get().email;
-        return setEmail(email)
-    }, [email])
+    const navigateToAccountDetails = () => {
+        console.log("goto AccountDetails")
+        return navigation.navigate("AccountDetailsNavigator", 
+            { 
+                userID: userID,
+                email: email,
+                username: username
+            })
+    }
+
 
     return (
         <View style={commonStyle.container}>
@@ -29,8 +35,8 @@ const Account = props => {
             <View style={styles.cardContent}>
                 { /** account */}
                 <Card 
-                    onPress={() => navigation.navigate("AccountDetailsNavigator", { email: email })}
-                    title={email}
+                    onPress={navigateToAccountDetails}
+                    title={username}
                     description={email}
                     type='default'
                     arrow='true'
@@ -65,10 +71,6 @@ const Account = props => {
             </View>
         </View>
     )
-}
-
-Account.propTypes = {
-
 }
 
 export default Account

@@ -49,5 +49,6 @@
     "account_details": "Account details",
     "delete_account": "Delete account",
     "change_email": "Change email",
+    "change_username": "Change username",
     "save": "Save"
 }

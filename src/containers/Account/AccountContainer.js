@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import Account from './Account'
+// import React, { useState, useEffect } from 'react'
+// import Account from './Account'
 
-import { User } from "../../services"
+// import { User } from "../../services"
 
-function AccountContainer() {
+// function AccountContainer() {
 
-    const [email, setEmail] = useState(null)
+//     const [email, setEmail] = useState(null)
 
-    useEffect(() => {
-        const email = User.Get().email;
-        return setEmail(email)
-    }, [email])
+//     useEffect(() => {
+//         const email = User.Get().email;
+//         setEmail(email)
+//         console.log("[useEffect] email=" +email)
+//     }, [email])
 
-    return (
-        <Account email={email} />
-    )
-}
+//     return (
+//         <Account email={email} />
+//     )
+// }
 
-export default AccountContainer
+// export default AccountContainer
