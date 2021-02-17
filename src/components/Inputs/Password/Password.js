@@ -2,7 +2,7 @@
 import React from "react"
 import { Text, TextInput, View } from "react-native"
 
-import { inputStyle } from '../../../styles'
+import { inputStyle, textStyles } from '../../../styles'
 
 const Password = (props) => {
 
@@ -10,12 +10,12 @@ const Password = (props) => {
         <View style={inputStyle.inptView}>
             <TextInput
                 {...props}
-                style={[inputStyle.inputForm, props.hasError ? inputStyle.hasError : null]}
+                style={[textStyles.body, inputStyle.inputForm, props.hasError ? inputStyle.hasError : null]}
                 ref={(ref)=> { props.onRef(ref) }}
                 keyboardType='default'
                 secureTextEntry={true}
             />
-            { props.hasError ? <Text style={inputStyle.inputError}>{props.error}</Text> : null }
+            { props.hasError ? <Text style={[textStyles.description, inputStyle.inputError]}>{props.error}</Text> : null }
         </View>
     )
 }

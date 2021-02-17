@@ -16,13 +16,11 @@ function EmailSettings() {
     const navigation = useNavigation();
     const route = useRoute();
     //getting email from route
-    const { userID, email } = route.params
+    const { email } = route.params
 
     const [newEmail, setNewEmail] = useState(email)
     const [error, setError] = useState(false)
 
-
-    console.log("id["+userID+"] email["+email+"]");
 
     return (
         <View style={[commonStyle.container, commonStyle.flex_start]}>
@@ -38,7 +36,8 @@ function EmailSettings() {
                 required={true}
                 clearButtonMode='while-editing'
                 onChange={(id, value) => {
-                    setNewEmail(value)
+                    if (value && !Validator.isEmpty(value))
+                        setNewEmail(value)
                 }}
             />
 
@@ -50,7 +49,7 @@ function EmailSettings() {
                             return setError(true)
                         }
 
-                        await Auth.update(userID, newEmail, null)
+                        await Auth.update(newEmail, null)
                         .then (() => {
                             console.log("new email=" +newEmail+ " - back to AccountDetails ...")
                             navigation.navigate("AccountDetails", {email: newEmail})

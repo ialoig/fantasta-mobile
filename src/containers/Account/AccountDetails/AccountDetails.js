@@ -13,13 +13,12 @@ function AccountDetails() {
     //hook which give access to the navigation object from the component directly
     const navigation = useNavigation();
     const route = useRoute();
-    const { userID, email, username } = route.params
+    const { email, username } = route.params
 
     const backToAccount = () => {
         console.log("back to Account")
         return navigation.navigate("Account", 
             {
-                userID: userID,
                 email: email,
                 username: username
             })
@@ -29,7 +28,6 @@ function AccountDetails() {
         console.log("go to EmailSettings")
         return navigation.navigate("EmailSettings", 
             {
-                userID: userID,
                 email: email
             })
     }
@@ -38,7 +36,6 @@ function AccountDetails() {
         console.log("go to UsernameSettings")
         return navigation.navigate("UsernameSettings", 
             {
-                userID: userID,
                 username: username
             })
     }

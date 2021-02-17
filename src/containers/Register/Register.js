@@ -60,10 +60,7 @@ const Register = (props) => {
                             size='large'
                         />
                         <Text style={[styles.haveAccount, textStyles.button]} onPress={() => props.login()}>
-                            {I18n.translate('haveAccount')}
-                            <Text style={textStyles.buttonMedium}>
-                                {I18n.translate('login')}
-                            </Text>
+                            {I18n.translate('haveAccount')}{I18n.translate('login')}
                         </Text>
 
                         {/*gl: rimosso e sostituito con testo: approvazione rimozione

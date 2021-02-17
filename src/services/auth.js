@@ -11,6 +11,7 @@ const Authenticate = async () =>
 {
     try
     {
+        console.log("calling auth/token")
         let res = await axios.post('/auth/token', {}, {})
         saveUser( res.data )
 
@@ -27,6 +28,7 @@ const Login = async ( email, password ) =>
 {
     try
     {
+        console.log("[Login] - email=" +email);
         let res = await axios.put('/auth/login', { email, password }, {})
         saveUser( res.data )
 
@@ -56,31 +58,17 @@ const Register = async ( email, password ) =>
 }
 
 
-const update = async (id, email, username) => {
-    let res = await axios({
+const update = async (email, username) => {
+    await axios({
         url: "/auth/update",
         method: "POST",
-        data: {id, email, username},
+        data: {email, username},
     })
-    .then( response => {
+    .then( res => {
         //checking if result has a data
-        console.log("[update] response.data=" +JSON.stringify(response.data))
-        if (response.data) {
-            let { data } = response.data || {}
-            let user = {
-                email: data.email,
-                username: data.name
-            }
-            console.log("user=" +user.email)
-            console.log("username=" +user.username)
-            //setting email changed to global User
-            if (user.email) {
-                User.setEmail(user.email)
-            }            
-            //setting name changed to global User
-            if (user.username) {
-                User.setUsername(user.username)
-            }
+        console.log("[update] res.data=" +JSON.stringify(res.data))
+        if (res.data) {
+            saveUser( res.data )
         }
         return Promise.resolve()
     })
@@ -101,6 +89,8 @@ const saveUser = ( res ) =>
 {
     if ( res.ok && res.data )
     {
+
+        console.log("save user ...");
         let data = res.data || {}
 
         let token = data.token || ''
@@ -117,15 +107,18 @@ const saveUser = ( res ) =>
 
 const handleError = ( err ) =>
 {
-    console.log(err)
+    console.log("[handleError] - " + err)
 
     let info = err.info || {}
     Alert.alert(
-        I18n.translate( info.title ),
-        I18n.translate( info.subTitle ),
+        //TODO: add translation for any error
+        //I18n.translate( info.title ),
+        //I18n.translate( info.subTitle ),
+        err.name,
+        err.message,
         [{
             text: "OK",
-            onPress: () => console.log("OK Pressed")
+            onPress: () => console.log("Dismiss Popup")
         }],
         { cancelable: false }
       )
