@@ -21,11 +21,10 @@ const AccountStack = createStackNavigator();
 export class AccountNavigator extends Component {
     
     render() {
-        const userID = User.Get().id
         const email = User.Get().email;
-        const username = User.Get().username ? User.Get().username : "user001";
+        const username = User.Get().username ? User.Get().username : email;
 
-        console.log("Initializing params: userID["+userID+"], email["+email+"], username["+username+"]")
+        console.log("Initializing params: email["+email+"], username["+username+"]")
 
         return (
             <NavigationContainer>
@@ -33,7 +32,6 @@ export class AccountNavigator extends Component {
                     <AccountStack.Screen name="Account" component={Account} 
                         initialParams={
                             {
-                                userID: userID,
                                 email: email,
                                 username: username
                             }} />

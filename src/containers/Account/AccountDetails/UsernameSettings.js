@@ -14,12 +14,12 @@ function UsernameSettings() {
     const navigation = useNavigation();
     const route = useRoute();
     //gettin username from route
-    const { userID, username } = route.params
+    const { username } = route.params
 
     const [newUsername, setNewUsername] = useState(username)
     const [error, setError] = useState(false)
 
-    console.log("id["+userID+"] username["+username+"]");
+    console.log("username["+username+"]");
     return (
         <View style={[commonStyle.container, commonStyle.flex_start]}>
             { /** header */}
@@ -42,7 +42,7 @@ function UsernameSettings() {
                             return setError(true)
                         }
 
-                        await Auth.update(userID, null, newUsername)
+                        await Auth.update(null, newUsername)
                         .then (() => {
                             console.log("new username=" +newUsername+ " - back to AccountDetails ...")
                             navigation.navigate("AccountDetails", {username: newUsername})

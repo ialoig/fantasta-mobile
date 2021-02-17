@@ -9,8 +9,7 @@ export const button = StyleSheet.create({
         marginTop: 12
     },
     large: {
-        //minWidth: 327,
-        width: "100%",
+        minWidth: 327,
         minHeight: 56,
         maxHeight: 56
     },
