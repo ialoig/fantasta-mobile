@@ -19,7 +19,6 @@ function UsernameSettings() {
     const [newUsername, setNewUsername] = useState(username)
     const [error, setError] = useState(false)
 
-    console.log("username["+username+"]");
     return (
         <View style={[commonStyle.container, commonStyle.flex_start]}>
             { /** header */}
@@ -44,7 +43,7 @@ function UsernameSettings() {
 
                         await Auth.update(null, newUsername)
                         .then (() => {
-                            console.log("new username=" +newUsername+ " - back to AccountDetails ...")
+                            console.log("[usernameSettings] - new username=" +newUsername+ " - back to AccountDetails ...")
                             navigation.navigate("AccountDetails", {username: newUsername})
                         })
                         .catch((err) => {

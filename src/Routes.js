@@ -11,7 +11,6 @@ import { CreateContainer } from './containers/Create/CreateContainer'
 import { JoinContainer } from './containers/Join/JoinContainer'
 import { AuctionContainer } from './containers/Auction/AuctionContainer'
 import { AccountNavigator } from './containers/Account/AccountNavigator'
-import { AccountContainer } from "./containers/Account/AccountContainer"
 
 const Routes = () => (
   <Router>

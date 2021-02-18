@@ -16,7 +16,6 @@ function AccountDetails() {
     const { email, username } = route.params
 
     const backToAccount = () => {
-        console.log("back to Account")
         return navigation.navigate("Account", 
             {
                 email: email,
@@ -25,7 +24,6 @@ function AccountDetails() {
     }
 
     const goToEmailSettings = () => {
-        console.log("go to EmailSettings")
         return navigation.navigate("EmailSettings", 
             {
                 email: email
@@ -33,7 +31,6 @@ function AccountDetails() {
     }
 
     const goToUsernameSettings = () => {
-        console.log("go to UsernameSettings")
         return navigation.navigate("UsernameSettings", 
             {
                 username: username

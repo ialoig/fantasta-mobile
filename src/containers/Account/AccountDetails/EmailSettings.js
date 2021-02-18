@@ -51,7 +51,7 @@ function EmailSettings() {
 
                         await Auth.update(newEmail, null)
                         .then (() => {
-                            console.log("new email=" +newEmail+ " - back to AccountDetails ...")
+                            console.log("[emailSettings] - new email=" +newEmail+ " - back to AccountDetails ...")
                             navigation.navigate("AccountDetails", {email: newEmail})
                         })
                         .catch((err) => {

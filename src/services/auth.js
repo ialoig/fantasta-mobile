@@ -6,12 +6,13 @@ import axios from 'axios'
 import { Token } from './server'
 import { User } from './user'
 import { Leagues } from './leagues'
+import { Storage } from './storage'
 
 const Authenticate = async () =>
 {
     try
     {
-        console.log("calling auth/token")
+        console.log("POST /auth/token");
         let res = await axios.post('/auth/token', {}, {})
         saveUser( res.data )
 
@@ -28,7 +29,7 @@ const Login = async ( email, password ) =>
 {
     try
     {
-        console.log("[Login] - email=" +email);
+        console.log("PUT /auth/login - email=" +email);
         let res = await axios.put('/auth/login', { email, password }, {})
         saveUser( res.data )
 
@@ -45,6 +46,7 @@ const Register = async ( email, password ) =>
 {
     try
     {
+        console.log("POST /auth/register - email=" +email);
         let res = await axios.post('/auth/register', { email, password }, {})
         saveUser( res.data )
 
@@ -59,16 +61,23 @@ const Register = async ( email, password ) =>
 
 
 const update = async (email, username) => {
+    console.log("POST /auth/update - email=" +email+ ", username="+username);
     await axios({
         url: "/auth/update",
         method: "POST",
         data: {email, username},
     })
-    .then( res => {
+    .then( async (res) => {
         //checking if result has a data
-        console.log("[update] res.data=" +JSON.stringify(res.data))
         if (res.data) {
-            saveUser( res.data )
+            saveUser( res.data );
+            //update header authorization cause user parameters has changed
+            if (email) {
+                let auth_token = await Storage.Get( 'token' )
+                if ( auth_token ) {
+                    axios.defaults.headers.common['Authorization'] = auth_token || ''
+                }
+            }
         }
         return Promise.resolve()
     })
@@ -90,18 +99,18 @@ const saveUser = ( res ) =>
     if ( res.ok && res.data )
     {
 
-        console.log("save user ...");
         let data = res.data || {}
 
         let token = data.token || ''
         Token.Set( token )
 
         let user = data.user || {}
+        
         User.Set( user.email, user._id, user.name)
 
         let leagues = user.leagues || []
         Leagues.Set( leagues )
-
+        console.log("[saveUser] - user saved.")
     }
 }
 

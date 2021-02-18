@@ -22,9 +22,9 @@ export class AccountNavigator extends Component {
     
     render() {
         const email = User.Get().email;
-        const username = User.Get().username ? User.Get().username : email;
+        const username = User.Get().name ? User.Get().name : email;
 
-        console.log("Initializing params: email["+email+"], username["+username+"]")
+        console.log("[AccountNavigator] - params: email["+email+"], username["+username+"]")
 
         return (
             <NavigationContainer>
