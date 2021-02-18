@@ -34,11 +34,11 @@ const TeamSettings = (props) => {
                             onChange={value => props.onChange( props.midfieldersId, value )} 
                         />
                         <NumberInc
-                            label={I18n.translate('nForwarders')}
-                            value={props.settings[props.forwardersId]}
+                            label={I18n.translate('nStrikers')}
+                            value={props.settings[props.strikersId]}
                             step={1}
                             min={1}
-                            onChange={value => props.onChange( props.forwardersId, value )} 
+                            onChange={value => props.onChange( props.strikersId, value )} 
                         />
                     </View> : null
             }

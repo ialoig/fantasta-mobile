@@ -26,7 +26,7 @@ export const AUCTION_TYPE = {
 }
 
 export const STARTING_PRICE = {
-    NONE: 'none',
+    NONE: 'zero',
     LIST: 'list'
 }
 
@@ -34,17 +34,17 @@ export const FIELDS_ID = {
     emailId: 'email',
     passwordId: 'password',
     repeatPasswordId: 'repeatPassword',
-    leagueNameId: 'leagueName',
-    partecipantsId: 'partecipants',
-    tipologyId: 'tipology',
-    goalskeepersId: 'goalskeepers',
+    leagueNameId: 'name',
+    participantsId: 'participants',
+    tipologyId: 'type',
+    goalskeepersId: 'goalkeepers',
     defendersId: 'defenders',
     midfieldersId: 'midfielders',
-    forwardersId: 'forwarders',
+    strikersId: 'strikers',
     playersId: 'players',
     budgetId: 'budget',
     countdownId: 'countdown',
-    auctiontypeId: 'auctiontype',
-    startpriceId: 'startprice',
+    auctiontypeId: 'auctionType',
+    startpriceId: 'startPrice',
     teamnameId: 'teamname'
 }
