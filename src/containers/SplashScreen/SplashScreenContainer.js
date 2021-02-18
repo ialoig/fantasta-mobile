@@ -28,7 +28,7 @@ export class SplashScreenContainer extends React.Component {
         {
           let res = await Auth.Authenticate( token )
 
-          Actions.reset('Account')
+          Actions.reset('Home')
         }
         catch (error)
         {
