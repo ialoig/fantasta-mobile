@@ -37,7 +37,7 @@ export class SplashScreenContainer extends React.Component {
       }
       else
       {
-        Actions.reset('Account')
+        Actions.reset('Login')
       }
   }
 

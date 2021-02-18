@@ -15,17 +15,6 @@ const Set = ( email, id, name ) =>
     }
 }
 
-const setEmail = (email) => {
-    USER = {
-        email: email
-    }
-}
-
-const setUsername = (username) => {
-    USER = {
-        name: username
-    }
-}
 
 const Get = () =>
 {
@@ -34,7 +23,5 @@ const Get = () =>
 
 export const User = {
     Set,
-    setEmail,
-    setUsername,
     Get
 }

@@ -16,7 +16,6 @@ function Account () {
     const { email, username } = route.params
 
     const navigateToAccountDetails = () => {
-        console.log("goto AccountDetails")
         return navigation.navigate("AccountDetailsNavigator", 
             {
                 email: email,

@@ -19,7 +19,7 @@ let AUTH_TOKEN = ''
 const Set = ( tok ) =>
 {
     AUTH_TOKEN = tok || ''
-    console.log("storing token=" +tok)
+    console.log("\tstoring token ...")
     Storage.Set( 'token', AUTH_TOKEN )
 }
 
