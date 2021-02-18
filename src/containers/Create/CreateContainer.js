@@ -1,6 +1,7 @@
 
 import React from "react"
 import { Alert } from "react-native"
+import { Actions } from "react-native-router-flux"
 import I18n from 'i18n-js'
 
 import Create from './Create'
@@ -8,6 +9,8 @@ import CreateLeague from './CreateLeague'
 import TeamSettings from './TeamSettings'
 import AuctionSettings from './AuctionSettings'
 import CreateTeam from './CreateTeam'
+
+import { Leagues } from '../../services'
 
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from '../../constants'
 
@@ -28,12 +31,12 @@ export class CreateContainer extends React.Component {
             settings: {
                 [FIELDS_ID.leagueNameId]: '',
                 [FIELDS_ID.passwordId]: '',
-                [FIELDS_ID.partecipantsId]: 8,
+                [FIELDS_ID.participantsId]: 8,
                 [FIELDS_ID.tipologyId]: TIPOLOGY.CLASSIC,
                 [FIELDS_ID.goalskeepersId]: 3,
                 [FIELDS_ID.defendersId]: 8,
                 [FIELDS_ID.midfieldersId]: 8,
-                [FIELDS_ID.forwardersId]: 6,
+                [FIELDS_ID.strikersId]: 6,
                 [FIELDS_ID.playersId]: 22,
                 [FIELDS_ID.budgetId]: 500,
                 [FIELDS_ID.countdownId]: 60,
@@ -55,39 +58,47 @@ export class CreateContainer extends React.Component {
         })
     }
 
-    onDone () {
+    async onDone () {
         if ( !this.state.settings[FIELDS_ID.leagueNameId] ) {
-            this.showError(  )
+            this.showError( 'field_error', 'missing_league_name' )
         }
         else if ( !this.state.settings[FIELDS_ID.passwordId] ) {
-            this.showError(  )
+            this.showError( 'field_error', 'missing_password' )
         }
         else if ( !this.state.settings[FIELDS_ID.teamnameId] ) {
-            this.showError()
+            this.showError( 'field_error', 'missing_team_name' )
         }
-        else if ( this.state.settings[FIELDS_ID.partecipantsId]<2 ) {
-            this.showError(  )
+        else if ( this.state.settings[FIELDS_ID.participantsId]<2 ) {
+            this.showError( 'field_error', 'participants_error' )
         }
         else if ( this.state.settings[FIELDS_ID.goalskeepersId]<1 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'goalskeepers_error' )
         }
         else if ( this.state.settings[FIELDS_ID.defendersId]<1 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'defenders_error' )
         }
         else if ( this.state.settings[FIELDS_ID.midfieldersId]<1 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'midfielders_error' )
         }
-        else if ( this.state.settings[FIELDS_ID.forwardersId]<1 ) {
-            this.showError(  )
+        else if ( this.state.settings[FIELDS_ID.strikersId]<1 ) {
+            this.showError( 'field_error', 'forwarders_error' )
         }
         else if ( this.state.settings[FIELDS_ID.playersId]<1 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'players_error' )
         }
         else if ( this.state.settings[FIELDS_ID.countdownId]<3 ) {
-            this.showError(  )
+            this.showError( 'field_error', 'countdown_error' )
         }
         else {
+            try
+            {
+                await Leagues.Create( this.state.settings )
 
+                Actions.replace('Dashboard')
+            }
+            catch (error) {
+                this.showError( error.title, error.subTitle )
+            }
         }
     }
 
@@ -98,7 +109,7 @@ export class CreateContainer extends React.Component {
             I18n.translate(message),
             [{text: 'OK'}],
             { cancelable: true }
-          );
+        )
     }
 
     render() {
@@ -106,12 +117,12 @@ export class CreateContainer extends React.Component {
             <Create
                 leagueNameId={FIELDS_ID.leagueNameId}
                 passwordId={FIELDS_ID.passwordId}
-                partecipantsId={FIELDS_ID.partecipantsId}
+                participantsId={FIELDS_ID.participantsId}
                 tipologyId={FIELDS_ID.tipologyId}
                 goalskeepersId={FIELDS_ID.goalskeepersId}
                 defendersId={FIELDS_ID.defendersId}
                 midfieldersId={FIELDS_ID.midfieldersId}
-                forwardersId={FIELDS_ID.forwardersId}
+                strikersId={FIELDS_ID.strikersId}
                 playersId={FIELDS_ID.playersId}
                 budgetId={FIELDS_ID.budgetId}
                 countdownId={FIELDS_ID.countdownId}

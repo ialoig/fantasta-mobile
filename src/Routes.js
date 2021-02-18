@@ -9,7 +9,7 @@ import { GetStartedContainer } from "./containers/GetStarted/GetStartedContainer
 import { HomeContainer } from './containers/Home/HomeContainer'
 import { CreateContainer } from './containers/Create/CreateContainer'
 import { JoinContainer } from './containers/Join/JoinContainer'
-import { AuctionContainer } from './containers/Auction/AuctionContainer'
+import { DashboardContainer } from './containers/Dashboard/DashboardContainer'
 import { AccountNavigator } from './containers/Account/AccountNavigator'
 
 const Routes = () => (
@@ -20,9 +20,9 @@ const Routes = () => (
       <Scene key="Register" component={RegisterContainer} title="Register" back={false} hideNavBar="true" />
       <Scene key="GetStarted" component={GetStartedContainer} title="GetStarted" back={false} hideNavBar="true" /> 
       <Scene key="Home" component={HomeContainer} title="Home" back={false} hideNavBar="true"/>
-      <Scene key="Create" component={CreateContainer} title="Create" back={false} hideNavBar="true" />
-      <Scene key="Join" component={JoinContainer} title="Join" back={false} hideNavBar="true" />
-      <Scene key="Auction" component={AuctionContainer} title="Auction" back={false} hideNavBar="true" />
+      <Scene key="Create" component={CreateContainer} title="Create" back={true} hideNavBar="true" />
+      <Scene key="Join" component={JoinContainer} title="Join" back={true} hideNavBar="true" />
+      <Scene key="Dashboard" component={DashboardContainer} title="Dashboard" back={true} hideNavBar="true" />
       <Scene key="Account" component={AccountNavigator} title="Account" back={false} hideNavBar="true" />
     </Scene>
   </Router>

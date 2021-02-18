@@ -130,5 +130,5 @@ const handleError = ( err ) =>
             onPress: () => console.log("Dismiss Popup")
         }],
         { cancelable: false }
-      )
+    )
 }
