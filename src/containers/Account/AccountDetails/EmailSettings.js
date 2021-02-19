@@ -49,14 +49,14 @@ function EmailSettings() {
                             return setError(true)
                         }
 
-                        await Auth.update(newEmail, null)
-                        .then (() => {
-                            console.log("[emailSettings] - new email=" +newEmail+ " - back to AccountDetails ...")
+                        try
+                        {
+                            await Auth.update(newEmail, null)    
                             navigation.navigate("AccountDetails", {email: newEmail})
-                        })
-                        .catch((err) => {
+                        }
+                        catch (error) {
                             console.log("error:" +err)
-                        })
+                        }
                 }}
                 type='primary'
                 size='large'

@@ -17,8 +17,12 @@ let AUTH_TOKEN = ''
 const Set = ( tok ) =>
 {
     AUTH_TOKEN = tok || ''
-    console.log("\tstoring token ...")
     Storage.Set( 'token', AUTH_TOKEN )
+
+    if ( AUTH_TOKEN )
+    {
+        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
+    }
 }
 
 const Get = () =>
