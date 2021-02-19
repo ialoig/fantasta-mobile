@@ -1,36 +1,48 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
-import { Text, View, TouchableOpacity } from "react-native"
+import { View } from "react-native"
 import I18n from "i18n-js"
-import { Card, PrevButton} from "../../components"
+import { Card, PrevButton, Header} from "../../components"
 import { commonStyle, textStyles } from "../../styles"
 
 import styles from "./styles"
+import { useNavigation, useRoute } from '@react-navigation/native'
 
-const Account = props => {
+function Account () {
+
+    //hook which give access to the navigation object from the component directly
+    const navigation = useNavigation();
+    const route = useRoute();
+    const { email, username } = route.params
+
+    const navigateToAccountDetails = () => {
+        return navigation.navigate("AccountDetailsNavigator", 
+            {
+                email: email,
+                username: username
+            })
+    }
+
+
     return (
         <View style={commonStyle.container}>
- 
 
             { /** header */}
-            <View style={styles.header}>
-                <PrevButton onPress={() => props.navigation.goBack()} icon="true" />
-                <Text style={[textStyles.h1, styles.title]}>{I18n.translate("account")}</Text>
-            </View>
+            <Header title="account" backButton="true" onPress={() => navigation.goBack()}/>
 
-            <View style={commonStyle.content}>
+            <View style={styles.cardContent}>
                 { /** account */}
                 <Card 
-                    onPress={props.accountDetails}
-                    title={props.email}
-                    description={props.email}
+                    onPress={navigateToAccountDetails}
+                    title={username}
+                    description={email}
                     type='default'
                     arrow='true'
                 />
-                <View style={commonStyle.content}>
+                <View style={styles.cardContent}>
                     { /** settings */}
                     <Card
-                        onPress={() => props.navigation.navigate("Settings")}
+                        onPress={() => navigation.navigate("Settings")}
                         title={I18n.translate("settings")}
                         description={I18n.translate("settings_descr")}
                         type='small'
@@ -39,7 +51,7 @@ const Account = props => {
 
                     { /** leagues */}
                     <Card 
-                        onPress={props.accountDetails}
+                        onPress={() => navigation.navigate("LeagueOptions")}
                         title={I18n.translate("league")}
                         description={I18n.translate("league_descr")}
                         type='small'
@@ -48,7 +60,7 @@ const Account = props => {
 
                     { /** support */}
                     <Card 
-                        onPress={props.accountDetails}
+                        onPress={() => navigation.navigate("Support")}
                         title={I18n.translate("support")}
                         type='small'
                         arrow='true'
@@ -57,10 +69,6 @@ const Account = props => {
             </View>
         </View>
     )
-}
-
-Account.propTypes = {
-
 }
 
 export default Account

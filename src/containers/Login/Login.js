@@ -12,35 +12,36 @@ import { text } from "../../components/Button/styles"
 const Login = (props) => {
     return (
         <KeyboardAvoidingView style={commonStyle.container} >
-            <View style={commonStyle.content}>
-                <View style={commonStyle.header}>
-                    <Logo />
-                </View>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={commonStyle.content}>
-                    <Email
-                        id={props.emailId}
-                        label={I18n.translate('email')}
-                        placeholder={I18n.translate('email')}
-                        showError={props.showError}
-                        required={true}
-                        clearButtonMode='while-editing'
-                        onChange={props.onChange}
-                    />
-                    <Password
-                        id={props.passwordId}
-                        label={I18n.translate('password')}
-                        placeholder={I18n.translate('password')}
-                        showError={props.showError}
-                        required={true}
-                        minLength={6}
-                        clearButtonMode='never'
-                        onChange={props.onChange}
-                    />
-                    <Text style={styles.forgot} onPress={() => props.ForgotPassword()}>
-                        {I18n.translate('forgotPassword')}?
-                    </Text>
-                </View>
-                <View style={commonStyle.buttonContainer}>
+                    <View style={commonStyle.header}>
+                        <Logo />
+                    </View>
+                    <View style={commonStyle.content}>
+                        <Email
+                            id={props.emailId}
+                            label={I18n.translate('email')}
+                            placeholder={I18n.translate('email')}
+                            showError={props.showError}
+                            required={true}
+                            clearButtonMode='while-editing'
+                            onChange={props.onChange}
+                        />
+                        <Password
+                            id={props.passwordId}
+                            label={I18n.translate('password')}
+                            placeholder={I18n.translate('password')}
+                            showError={props.showError}
+                            required={true}
+                            minLength={6}
+                            clearButtonMode='never'
+                            onChange={props.onChange}
+                        />
+                        <Text style={styles.forgot} onPress={() => props.ForgotPassword()}>
+                            {I18n.translate('forgotPassword')}?
+                        </Text>
+                    </View>
+                    <View style={commonStyle.buttonContainer}>
                         <Button
                             title={I18n.translate('login')}
                             onPress={props.Login}
@@ -48,12 +49,8 @@ const Login = (props) => {
                             size='large'
                         />
                         <Text style={[styles.haveAccount, textStyles.button]} onPress={() => props.Register()}>
-                            {I18n.translate('noAccount')}
-                            <Text style={textStyles.buttonMedium}>
-                                {I18n.translate('register')}
-                            </Text>
+                            {I18n.translate('noAccount')}{I18n.translate('register')}
                         </Text>
-
                         {/* gl: rimosso e sostituito con testo: approvazione rimozione
                         <View style={commonStyle.buttonContainer}>
                             <Button
@@ -65,7 +62,8 @@ const Login = (props) => {
                         </View>
                         */}
                     </View>
-            </View>
+                </View>
+            </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     )
 }

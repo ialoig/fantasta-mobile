@@ -10,28 +10,31 @@ export default StyleSheet.create({
     	flex: 1,
     	justifyContent: 'center',
     	alignItems: 'center',
-    	marginHorizontal: 12,
+		paddingTop: 56,
+		paddingBottom: 32,
+		paddingHorizontal: 24,
 		backgroundColor: colors.background
   	},
   	content: {
 		flex: 1,
-		flexDirection: 'column',
-    	justifyContent: 'center',
-    	alignItems: 'stretch'
+    	justifyContent: 'center'
   	},
   	header: {
 		alignSelf: 'center',
-		marginTop: 56,
-		marginBottom: 12
+		marginBottom: 12,
+        flexDirection: 'row'
   	},
   	buttonContainer: {
-		marginTop: 12,
-		marginBottom: 24
+		marginTop: 12
   	},
 	title: {
-		//alignSelf: 'center',
-		flexDirection: "row",
-		marginTop: 56,
-		marginBottom: 24
+        flex: 1,
+        flexGrow: 1,
+        justifyContent: "center",
+        textAlign: 'center',
+        textAlignVertical: 'center'
+	},
+	flex_start: {
+		justifyContent: "flex-start"
 	}
 });

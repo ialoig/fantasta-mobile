@@ -2,16 +2,19 @@
 
 let USER = {
     email: '',
-    id: ''
+    id: '',
+    name: ''
 }
 
-const Set = ( email, id ) =>
+const Set = ( email, id, name ) =>
 {
     USER = {
         email,
-        id
+        id,
+        name
     }
 }
+
 
 const Get = () =>
 {
