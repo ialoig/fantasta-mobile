@@ -31,14 +31,6 @@ export const button = StyleSheet.create({
 });
 
 export const text = StyleSheet.create({
-    text: {  
-        fontFamily: "PoppinsRegular",
-        fontSize: 16,
-        fontWeight: "normal",
-        fontStyle: "normal",
-        lineHeight: 28,
-        letterSpacing: 0.75,
-    },
     primary: {
         textAlign: "center",
         color: colors.white

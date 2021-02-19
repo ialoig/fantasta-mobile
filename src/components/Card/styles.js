@@ -39,6 +39,5 @@ export const card = StyleSheet.create({
 
 export const image = StyleSheet.create({
     forward: {
-        //alignSelf: "flex-end"
     }
 });

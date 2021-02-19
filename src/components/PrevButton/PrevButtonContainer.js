@@ -10,7 +10,7 @@ export default class PrevButtonContainer extends React.Component {
         const {
             onPress,
             type='default',
-            icon='',
+            icon='true',
         } = this.props
 
         return (
