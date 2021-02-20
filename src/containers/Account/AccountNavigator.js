@@ -22,7 +22,7 @@ export class AccountNavigator extends Component {
     
     render() {
         const email = User.Get().email;
-        const username = User.Get().name ? User.Get().name : email;
+        const username = User.Get().username ? User.Get().username : email;
 
         console.log("[AccountNavigator] - params: email["+email+"], username["+username+"]")
 
