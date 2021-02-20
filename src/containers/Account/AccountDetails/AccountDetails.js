@@ -23,29 +23,31 @@ function AccountDetails() {
             })
     }
 
-    const goToEmailSettings = () => {
-        return navigation.navigate("EmailSettings", 
-            {
-                email: email
-            })
-    }
-
-    const goToUsernameSettings = () => {
-        return navigation.navigate("UsernameSettings", 
-            {
-                username: username
-            })
+    const goTo = (screen) => {
+        if (!screen) {
+            return
+        }
+        switch(screen) {
+            case "UsernameSettings":
+                return navigation.navigate("UsernameSettings", { username: username });
+            case "EmailSettings":
+                return navigation.navigate("EmailSettings", { email: email })
+            case "DeleteAccount":
+                return navigation.navigate("DeleteAccount", { email: email })
+            default:
+                return
+        }
     }
 
     return (
         <View style={commonStyle.container}>
             { /** header */}
-            <Header title="account_details" backButton="true" onPress={backToAccount}/>
+            <Header title="account_details" backButton={true} onPress={backToAccount}/>
 
             <View style={styles.cardContent}>
                 { /** email */}
                 <Card
-                    onPress={goToEmailSettings}
+                    onPress={() => goTo("EmailSettings")}
                     title={I18n.translate("email")}
                     description={email}
                     type='small'
@@ -53,7 +55,7 @@ function AccountDetails() {
                 />
                 { /** username */}
                 <Card
-                    onPress={goToUsernameSettings}
+                    onPress={() => goTo("UsernameSettings")}
                     title={I18n.translate("username")}
                     description={username}
                     type='small'
@@ -61,7 +63,7 @@ function AccountDetails() {
                 />
                 { /** username */}
                 <Card
-                    onPress={() => navigation.navigate("DeleteAccount")}
+                    onPress={() => goTo("DeleteAccount")}
                     title={I18n.translate("delete_account")}
                     description={""}
                     type='small'

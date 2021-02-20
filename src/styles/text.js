@@ -55,6 +55,7 @@ export default StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 20,
     letterSpacing: 0.25,
+    marginTop: 4,
     color: colors.text
   },
   buttonXSmall: {
@@ -73,6 +74,7 @@ export default StyleSheet.create({
     fontStyle: "normal",
     lineHeight: 15,
     letterSpacing: 0.75,
+    marginTop: 4,
     color: colors.textPlaceholder
   },
   graphTitle: {
