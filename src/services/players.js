@@ -25,11 +25,7 @@ const Init = async () =>
 
         let version = players && players.version || 0
 
-        let res = await axios.get(`/footballPlayers`, {
-            params: {
-                version
-            }
-        })
+        let res = await axios.get(`/footballPlayers`, { params: { version } })
 
         let data = res && res.data && res.data.data || {}
         if ( data.updated )
@@ -49,7 +45,8 @@ const Init = async () =>
     }
     catch (error)
     {
-        return Promise.reject()
+        console.log("Players Init: ", error)
+        return Promise.reject(error)
     }
 }
 
