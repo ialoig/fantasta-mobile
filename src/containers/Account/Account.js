@@ -28,7 +28,7 @@ function Account () {
         <View style={commonStyle.container}>
 
             { /** header */}
-            <Header title="account" backButton="true" onPress={() => navigation.goBack()}/>
+            <Header title="account" backButton={true} onPress={() => navigation.goBack()}/>
 
             <View style={styles.cardContent}>
                 { /** account */}

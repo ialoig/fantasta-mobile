@@ -72,12 +72,12 @@ const update = async (email, username) => {
         if (res.data) {
             saveUser( res.data );
             //update header authorization cause user parameters has changed
-            if (email) {
-                let auth_token = await Storage.Get( 'token' )
+            //if (email) {
+                let auth_token = Token.Get()
                 if ( auth_token ) {
                     axios.defaults.headers.common['Authorization'] = auth_token || ''
                 }
-            }
+            //}
         }
         return Promise.resolve()
     })
@@ -87,11 +87,30 @@ const update = async (email, username) => {
     })
 }
 
+
+const deleteAccount = async (password) => {
+    console.log("DELETE /auth/deleteAccount");
+    try {
+        await axios({
+            url: "/auth/deleteAccount",
+            method: "DELETE",
+            data: { password }
+        })
+        User.remove();
+        Token.remove();
+
+        return Promise.resolve()
+    } catch (error) {
+        return Promise.reject(error);
+    }
+}
+
 export const Auth = {
     Authenticate,
     Login,
     Register,
-    update
+    update,
+    deleteAccount
 }
 
 const saveUser = ( res ) =>

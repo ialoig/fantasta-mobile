@@ -25,7 +25,7 @@ function EmailSettings() {
     return (
         <View style={[commonStyle.container, commonStyle.flex_start]}>
             { /** header */}
-            <Header title="change_email" backButton="false" onPress={() => navigation.goBack()}/>
+            <Header title="change_email" backButton={true} onPress={() => navigation.goBack()}/>
 
             <Email
                 id={FIELDS_ID.emailId}
