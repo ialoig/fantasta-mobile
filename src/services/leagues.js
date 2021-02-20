@@ -36,8 +36,11 @@ const Create = async ( settings ) =>
 
 const Join = async ( id='', name='', password='', teamname='' ) =>
 {
+    alert(`aaaaaaaaaaaaaaa`)
+    alert(`id:${id}, name:${name}, password:${password}, teamname:${teamname}`)
     if ( id || name && password && teamname )
     {
+        alert(`1111`)
         try
         {
             let data = {
@@ -47,8 +50,9 @@ const Join = async ( id='', name='', password='', teamname='' ) =>
                 teamname
             }
 
+            alert(`2222`)
             let response = await axios.put('/league/join', data, {})
-            
+            alert(`3333`)
             LEAGUES = response.user.leagues || []
             Auction.Init( response.league, response.team )
             
@@ -56,6 +60,7 @@ const Join = async ( id='', name='', password='', teamname='' ) =>
         }
         catch (error)
         {
+            alert(`XXXX`)
             handleError(error)
             return Promise.reject(error)
         }
