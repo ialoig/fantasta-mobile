@@ -48,6 +48,21 @@ const Init = async () =>
     axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, PUT, POST'
     axios.defaults.headers.common['Access-Control-Allow-Credentials'] = true
 
+    axios.interceptors.response.use(
+        (response) => {
+            let data = response && response.data || {}
+            if ( data && data.ok )
+            {
+                return Promise.resolve(data.data)
+            }
+            return Promise.reject(data)
+        },
+        (error) => {
+            let err = error && error.response && error.response.data || {}
+            return Promise.reject(err)
+        }
+    )
+
     return Promise.resolve()
 }
 
