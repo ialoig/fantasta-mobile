@@ -1,6 +1,5 @@
 
 import { Alert } from 'react-native'
-import I18n from 'i18n-js'
 import axios from 'axios'
 
 import { Token } from './server'
@@ -102,7 +101,7 @@ const handleError = ( error ) =>
     let info = error && error.info || {}
     Alert.alert(
         info.title,
-        info.subTitle,
+        info.message,
         [{ text: "OK" }],
         { cancelable: false }
     )
