@@ -71,10 +71,10 @@ const Init = async () =>
         },
         (error) => {
 
-            console.error(error)
+            console.error(error.response)
 
             let err = error && error.response && error.response.data || null
-            err = err = {
+            err = err || {
                 title: error.name || I18n.translate('error'),
                 message: error.message || I18n.translate('something_wrong_happens')
             }
