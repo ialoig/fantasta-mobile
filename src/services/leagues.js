@@ -20,8 +20,8 @@ const Create = async ( settings ) =>
 {
     try
     {
-        let res = await axios.post('/league/create', settings, {})
-        let response = res.data && res.data.data || {}
+        let response = await axios.post('/league/create', settings, {})
+        
         LEAGUES = response.user.leagues || []
         Auction.Init( response.league, response.team )
         
@@ -47,8 +47,8 @@ const Join = async ( id='', name='', password='', teamname='' ) =>
                 teamname
             }
 
-            let res = await axios.put('/league/join', data, {})
-            let response = res.data && res.data.data || {}
+            let response = await axios.put('/league/join', data, {})
+            
             LEAGUES = response.user.leagues || []
             Auction.Init( response.league, response.team )
             
