@@ -26,6 +26,11 @@ const Get = () =>
     return AUTH_TOKEN
 }
 
+const remove = () => {
+    AUTH_TOKEN = ""
+    Storage.Set( 'token', AUTH_TOKEN )
+}
+
 const Init = async () =>
 {
     AUTH_TOKEN = await Storage.Get( 'token' )
@@ -53,5 +58,6 @@ export const Server = {
 
 export const Token = {
     Get,
-    Set
+    Set,
+    remove
 }

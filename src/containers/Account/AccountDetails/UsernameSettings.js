@@ -22,7 +22,7 @@ function UsernameSettings() {
     return (
         <View style={[commonStyle.container, commonStyle.flex_start]}>
             { /** header */}
-            <Header title="change_username" backButton="false" onPress={() => navigation.goBack()}/>
+            <Header title="change_username" backButton={true} onPress={() => navigation.goBack()}/>
 
             <InputText
                 id="name"

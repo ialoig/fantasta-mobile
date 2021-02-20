@@ -16,7 +16,7 @@ function Settings() {
     return (
         <View style={commonStyle.container}>
             { /** header */}
-            <Header title="settings" backButton="true" onPress={() => navigation.goBack()}/>
+            <Header title="settings" backButton={true} onPress={() => navigation.goBack()}/>
 
             <View style={styles.cardContent}>
             { /** language */}

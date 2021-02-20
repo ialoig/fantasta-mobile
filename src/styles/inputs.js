@@ -3,7 +3,7 @@ import colors from "./colors";
 
 export default StyleSheet.create({
     inptView: {
-        width: '100%'
+        minWidth: 327
     },
     inputForm: {
         minHeight: 56,
