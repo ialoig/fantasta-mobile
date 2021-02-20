@@ -17,6 +17,7 @@ export const Init = () =>
         },
         (err) =>
         {
+            console.log("[init] - error: " +err)
             return Promise.reject(err)
         }
     )

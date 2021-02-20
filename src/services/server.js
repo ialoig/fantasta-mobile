@@ -60,7 +60,7 @@ const Init = async () =>
     axios.interceptors.response.use(
         (response) => {
 
-            console.info(response)
+            console.info("[server init]", response)
 
             let data = response && response.data || {}
             if ( data && data.ok )
@@ -71,7 +71,7 @@ const Init = async () =>
         },
         (error) => {
 
-            console.error(error.response)
+            console.error("[server init]", error)
 
             let err = error && error.response && error.response.data || null
             err = err || {
