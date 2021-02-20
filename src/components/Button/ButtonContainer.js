@@ -14,7 +14,7 @@ export default class ButtonContainer extends React.Component {
             title='',
             type='primary',
             size='large',
-            border=true
+            border=false
         } = this.props
 
         return (

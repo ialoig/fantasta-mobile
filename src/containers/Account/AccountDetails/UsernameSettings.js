@@ -22,7 +22,7 @@ function UsernameSettings() {
     return (
         <View style={[commonStyle.container, commonStyle.flex_start]}>
             { /** header */}
-            <Header title="change_username" backButton="false" onPress={() => navigation.goBack()}/>
+            <Header title="change_username" backButton={true} onPress={() => navigation.goBack()}/>
 
             <InputText
                 id="name"
@@ -41,14 +41,12 @@ function UsernameSettings() {
                             return setError(true)
                         }
 
-                        await Auth.update(null, newUsername)
-                        .then (() => {
-                            console.log("[usernameSettings] - new username=" +newUsername+ " - back to AccountDetails ...")
+                        try {
+                            await Auth.update(null, newUsername) 
                             navigation.navigate("AccountDetails", {username: newUsername})
-                        })
-                        .catch((err) => {
+                        } catch (error) {
                             console.log("error:" +err)
-                        })
+                        }
                 }}
                 type='primary'
                 size='large'

@@ -70,5 +70,9 @@
     "delete_account": "Delete account",
     "change_email": "Change email",
     "change_username": "Change username",
-    "save": "Save"
+    "save": "Save",
+    "delete": "Delete",
+    "delete_descr": "Enter your login password to confirm your identity",
+    "delete_warn": "WARNING: Deletion is permanent. This action delete your account and all the links with Fantasta Leagues"
+
 }

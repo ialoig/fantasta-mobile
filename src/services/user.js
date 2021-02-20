@@ -3,16 +3,20 @@
 let USER = {
     email: '',
     id: '',
-    name: ''
+    username: ''
 }
 
-const Set = ( email, id, name ) =>
+const Set = ( user ) =>
 {
     USER = {
-        email,
-        id,
-        name
+        email: user.email,
+        id: user._id,
+        username: user.username
     }
+}
+
+const remove = () => {
+    USER = {}
 }
 
 
@@ -23,5 +27,6 @@ const Get = () =>
 
 export const User = {
     Set,
-    Get
+    Get,
+    remove
 }

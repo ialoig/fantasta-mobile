@@ -7,7 +7,7 @@ export default class HeaderContainer extends Component {
     render() {
         const { 
             title = '',
-            backButton = 'false',
+            backButton = 'true',
             onPress
         } = this.props
     

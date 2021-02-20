@@ -70,5 +70,8 @@
     "delete_account": "Cancella account",
     "change_email": "Cambia email",
     "change_username": "Cambia Username",
-    "save": "Salva"
+    "save": "Salva",
+    "delete": "Cancella",
+    "delete_descr": "Inserisci la tua password di accesso per confermare la tua identità",
+    "delete_warn": "ATTENZIONE: L'eliminazione è permanente. Questa azione elimina il tuo account e i collegamenti con le leghe di Fantasta"
 }
