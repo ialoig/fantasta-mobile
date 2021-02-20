@@ -17,7 +17,7 @@ function LeagueOptions(props) {
     return (
         <View style={[commonStyle.container, commonStyle.flex_start]}>
             { /** header */}
-            <Header title="league_descr" backButton="true" onPress={() => navigation.goBack()}/>
+            <Header title="league_descr" backButton={true} onPress={() => navigation.goBack()}/>
 
             <InputText
                 id={FIELDS_ID.leagueNameId}

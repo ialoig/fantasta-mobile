@@ -23,6 +23,9 @@ export const button = StyleSheet.create({
     secondary: {
         backgroundColor: colors.white,
     },
+    alert: {
+        backgroundColor: colors.errorRed,
+    },
     border: {
         borderWidth: 1,
         borderStyle: 'solid',
@@ -38,6 +41,10 @@ export const text = StyleSheet.create({
     secondary: {
         textAlign: "center",
         color: colors.primary
+    },
+    alert: {
+        textAlign: "center",
+        color: colors.white
     },
     large: {
         fontSize: 20,

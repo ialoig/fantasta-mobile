@@ -55,18 +55,39 @@ const Authenticate = async () =>
 }
 
 const update = async (email, username) => {
-    
-    try
-    {
-        let response = await axios.put( '/auth/update', {email, username}, {})
+    console.log("POST /auth/update - email=" +email+ ", username="+username);
+    try {
+
+        let response = await axios({
+            url: "/auth/update",
+            method: "PUT",
+            data: {email, username},
+        })
+
         saveUser( response )
                 
         return Promise.resolve()
-    }
-    catch (error)
-    {
+    } catch (error) {
         handleError(error)
         return Promise.reject()
+    }
+}
+
+
+const deleteAccount = async (password) => {
+    console.log("DELETE /auth/deleteAccount");
+    try {
+        await axios({
+            url: "/auth/deleteAccount",
+            method: "DELETE",
+            data: { password }
+        })
+        User.remove();
+        Token.remove();
+
+        return Promise.resolve()
+    } catch (error) {
+        return Promise.reject(error);
     }
 }
 
@@ -74,12 +95,13 @@ export const Auth = {
     Authenticate,
     Login,
     Register,
-    update
+    update,
+    deleteAccount
 }
 
 const saveUser = ( response ) =>
 {
-    console.log("[save USer] - " + response)
+    console.log("[saveUser] - " + response)
 
     let data = response || {}
 
