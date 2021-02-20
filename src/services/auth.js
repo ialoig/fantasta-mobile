@@ -8,6 +8,7 @@ import { Leagues } from './leagues'
 
 const Register = async ( email, password ) =>
 {
+    console.log("POST /auth/update - email=" +email+ ", password="+password)
     try
     {
         let response = await axios.post('/auth/register', { email, password }, {})
@@ -24,6 +25,7 @@ const Register = async ( email, password ) =>
 
 const Login = async ( email, password ) =>
 {
+    console.log("PUT /auth/update - email=" +email+ ", password="+password)
     try
     {
         let response = await axios.put('/auth/login', { email, password }, {})
@@ -40,6 +42,7 @@ const Login = async ( email, password ) =>
 
 const Authenticate = async () =>
 {
+    console.log("PUT /auth/token")
     try
     {
         let response = await axios.put('/auth/token', {}, {})
@@ -53,40 +56,40 @@ const Authenticate = async () =>
     }
 }
 
-const update = async (email, username) => {
-    console.log("POST /auth/update - email=" +email+ ", username="+username);
-    try {
+const update = async (email, username) =>
+{
+    console.log("POST /auth/update - email=" +email+ ", username="+username)
+    try
+    {
 
-        let response = await axios({
-            url: "/auth/update",
-            method: "PUT",
-            data: {email, username},
-        })
-
+        let response = await axios.put( '/auth/update', {email, username}, {})
         saveUser( response )
                 
         return Promise.resolve()
-    } catch (error) {
+    }
+    catch (error)
+    {
         handleError(error)
         return Promise.reject()
     }
 }
 
 
-const deleteAccount = async (password) => {
-    console.log("DELETE /auth/deleteAccount");
-    try {
-        await axios({
-            url: "/auth/deleteAccount",
-            method: "DELETE",
-            data: { password }
-        })
-        User.remove();
-        Token.remove();
+const deleteAccount = async (password) =>
+{
+    console.log("DELETE /auth/deleteAccount")
+    try
+    {
+        await axios.delete( '/auth/deleteAccount', { password }, {})
+
+        User.remove()
+        Token.remove()
 
         return Promise.resolve()
-    } catch (error) {
-        return Promise.reject(error);
+    }
+    catch (error)
+    {
+        return Promise.reject(error)
     }
 }
 
