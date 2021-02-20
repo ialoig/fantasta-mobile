@@ -17,6 +17,7 @@ const Register = async ( email, password ) =>
     }
     catch (error)
     {
+        handleError(error)
         return Promise.reject()
     }
 }
@@ -48,7 +49,6 @@ const Authenticate = async () =>
     }
     catch (error)
     {
-        handleError(error)
         return Promise.reject()
     }
 }
