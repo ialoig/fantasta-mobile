@@ -36,5 +36,8 @@ export default StyleSheet.create({
 	},
 	flex_start: {
 		justifyContent: "flex-start"
+	},
+	justifyText: {
+		textAlign: "justify"
 	}
 });

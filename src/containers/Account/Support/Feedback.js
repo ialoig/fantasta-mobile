@@ -15,7 +15,7 @@ function Feedback() {
     return (
         <View style={commonStyle.container}>
             { /** header */}
-            <Header title="feedback" backButton="true" onPress={() => navigation.goBack()}/>
+            <Header title="feedback" backButton={true} onPress={() => navigation.goBack()}/>
 
             <View style={styles.cardContent}>
 

@@ -15,6 +15,10 @@ const Set = ( user ) =>
     }
 }
 
+const remove = () => {
+    USER = {}
+}
+
 
 const Get = () =>
 {
@@ -23,5 +27,6 @@ const Get = () =>
 
 export const User = {
     Set,
-    Get
+    Get,
+    remove
 }

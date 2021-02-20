@@ -12,7 +12,7 @@ const PrevButton = (props) => {
     return (
         <TouchableOpacity onPress={props.onPress} style={button.button}>
             <View >
-                {icon ? <Image source={icon_img} /> : null}
+                {icon && <Image source={icon_img} />}
             </View>
         </TouchableOpacity>
     )

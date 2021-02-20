@@ -11,7 +11,7 @@ const Header = (props) => {
     const { title, backButton, onPress} = props
     return (            
         <View style={commonStyle.header}>
-            {backButton ? <PrevButtonContainer onPress={onPress} icon="true" /> : null}
+            {backButton && <PrevButtonContainer onPress={onPress} icon={true} />}
             <Text style={[textStyles.h1, commonStyle.title]}>{I18n.translate(title)}</Text>
         </View>
     )
