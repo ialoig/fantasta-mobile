@@ -1,4 +1,5 @@
 
+import { Alert } from 'react-native'
 import axios from 'axios'
 
 import { Auction } from './auction'
@@ -28,7 +29,8 @@ const Create = async ( settings ) =>
     }
     catch (error)
     {
-        return Promise.reject(info)
+        handleError(error)
+        return Promise.reject(error)
     }
 }
 
@@ -54,6 +56,7 @@ const Join = async ( id='', name='', password='', teamname='' ) =>
         }
         catch (error)
         {
+            handleError(error)
             return Promise.reject(error)
         }
     }
@@ -64,4 +67,17 @@ export const Leagues = {
     Get,
     Create,
     Join
+}
+
+const handleError = ( error ) =>
+{
+    console.log("[handleError] - ", error)
+
+    let info = error && error.info || {}
+    Alert.alert(
+        info.title,
+        info.message,
+        [{ text: "OK" }],
+        { cancelable: false }
+    )
 }
