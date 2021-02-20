@@ -17,7 +17,6 @@ const Register = async ( email, password ) =>
     }
     catch (error)
     {
-        handleError(error)
         return Promise.reject()
     }
 }
