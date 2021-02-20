@@ -102,7 +102,7 @@ export const Auth = {
 
 const saveUser = ( response ) =>
 {
-    console.log("[save USer] - " + response)
+    console.log("[saveUser] - " + response)
 
     let data = response || {}
 
