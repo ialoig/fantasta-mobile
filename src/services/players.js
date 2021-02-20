@@ -49,6 +49,7 @@ const Init = async () =>
     }
     catch (error)
     {
+        console.log("[players init] - error: ", error)
         return Promise.reject()
     }
 }

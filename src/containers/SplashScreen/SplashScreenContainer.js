@@ -16,7 +16,6 @@ export class SplashScreenContainer extends React.Component {
       }
       catch (error)
       {
-        console.log(error)
 
         //TODO: come vogliamo gestire l'errore???
       }
