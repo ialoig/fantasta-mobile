@@ -17,8 +17,12 @@ let AUTH_TOKEN = ''
 const Set = ( tok ) =>
 {
     AUTH_TOKEN = tok || ''
-    console.log("\tstoring token ...")
     Storage.Set( 'token', AUTH_TOKEN )
+
+    if ( AUTH_TOKEN )
+    {
+        axios.defaults.headers.common['Authorization'] = AUTH_TOKEN
+    }
 }
 
 const Get = () =>
@@ -48,6 +52,21 @@ const Init = async () =>
     axios.defaults.headers.common['Access-Control-Allow-Headers'] = 'Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, Origin, X-Requested-With, Access-Control-Allow-Origin, access-control-allow-credentials'
     axios.defaults.headers.common['Access-Control-Allow-Methods'] = 'GET, PUT, POST'
     axios.defaults.headers.common['Access-Control-Allow-Credentials'] = true
+
+    axios.interceptors.response.use(
+        (response) => {
+            let data = response && response.data || {}
+            if ( data && data.ok )
+            {
+                return Promise.resolve(data.data)
+            }
+            return Promise.reject(data)
+        },
+        (error) => {
+            let err = error && error.response && error.response.data || {}
+            return Promise.reject(err)
+        }
+    )
 
     return Promise.resolve()
 }
