@@ -52,7 +52,7 @@ const Register = (props) => {
                         />
                     </View>
 
-                    <View style={commonStyle.buttonContainer}>
+                    <View style={[commonStyle.flex, commonStyle.buttonContainer]}>
                         <Button
                             title={I18n.translate('register')}
                             onPress={props.Register}
