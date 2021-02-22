@@ -22,6 +22,8 @@ const NumberInc = (props) => {
                 textColor={'#3E5481'}
                 inputStyle={styles.input}
                 buttonStyle={styles.buttonStyle}
+                fontSize={16}
+                buttonFontSize={16}
             />
         </View>
     )
