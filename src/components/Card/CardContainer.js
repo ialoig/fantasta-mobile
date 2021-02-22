@@ -12,10 +12,10 @@ export default class CardContainer extends React.Component {
             title='',
             description='',
             type='default',
-            icon='',
+            icon,
             arrow=''
         } = this.props
-
+        
         return (
             <Card
                 onPress={onPress}

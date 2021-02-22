@@ -9,23 +9,25 @@ export default StyleSheet.create({
 	container: {
     	flex: 1,
     	justifyContent: 'center',
-    	alignItems: 'center',
+    	alignContent: 'center',
+    	//alignItems: 'center',
 		paddingTop: 56,
-		paddingBottom: 32,
+		paddingBottom: 12,
 		paddingHorizontal: 24,
 		backgroundColor: colors.background
   	},
   	content: {
-		flex: 1,
+		flex: 2,
     	justifyContent: 'center'
   	},
   	header: {
-		alignSelf: 'center',
+        flexDirection: 'row',
+		justifyContent: 'center',
 		marginBottom: 12,
-        flexDirection: 'row'
   	},
   	buttonContainer: {
-		marginTop: 12
+		marginTop: 12,
+		justifyContent: "flex-end"
   	},
 	title: {
         flex: 1,

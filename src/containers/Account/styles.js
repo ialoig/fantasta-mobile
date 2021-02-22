@@ -16,6 +16,5 @@ export default StyleSheet.create({
     },
     cardContent: {
 		flex: 1,
-        justifyContent: "flex-start"
     }
 })

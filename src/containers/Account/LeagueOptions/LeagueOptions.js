@@ -32,7 +32,7 @@ function LeagueOptions(props) {
                 onChange={""}
             />
             <NumberInc
-                label={I18n.translate('nPartecipants')}
+                label={I18n.translate('nParticipants')}
                 value={""}
                 step={1}
                 min={2}

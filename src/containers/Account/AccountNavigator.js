@@ -28,7 +28,7 @@ export class AccountNavigator extends Component {
 
         return (
             <NavigationContainer>
-                <AccountStack.Navigator initialRouteName="AccountContainer" headerMode="none" mode="modal">
+                <AccountStack.Navigator initialRouteName="Account" headerMode="none" mode="modal">
                     <AccountStack.Screen name="Account" component={Account} 
                         initialParams={
                             {
