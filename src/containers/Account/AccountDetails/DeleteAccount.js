@@ -62,7 +62,6 @@ function DeleteAccount() {
                 }}
                 type='alert'
                 size='large'
-
             />
 
         </View>

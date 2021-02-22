@@ -4,10 +4,10 @@ import colors from "../../styles/colors";
 export const card = StyleSheet.create({
     card: {
         flex: 1,
-        flexDirection: "row",
+        justifyContent: "center",
         alignItems: "center",
-        marginTop: 12,
         borderRadius: 16,
+        marginTop: 12,
         paddingHorizontal: 24,
         paddingVertical: 16,
         backgroundColor: colors.greyLight
@@ -17,27 +17,50 @@ export const card = StyleSheet.create({
         maxHeight: 180
     },
     large: {
+        flexDirection: "row",
         minWidth: 327,
         maxHeight: 180
     },
     medium: {
+        flexDirection: "row",
         minWidth: 327,
         maxHeight: 110
     },
     small: {
+        flexDirection: "row",
         minWidth: 327,
         maxHeight: 65
     },
-    text: {
+    square: {
+        maxWidth: 140,
+        minHeight: 140
     },
     arrow: {
-        flex: 1,
         alignItems: "flex-end"
     }
 });
 
 
 export const image = StyleSheet.create({
-    forward: {
+    default: {
+        //marginRight: 12
+    },
+    large: {
+        marginRight: 12
+    },
+    medium: {
+        marginRight: 12
+    },
+    small: {
+        marginRight: 12
+    }
+});
+
+
+
+export const text = StyleSheet.create({
+    default: {
+        alignItems: "center",
+        paddingVertical: 12
     }
 });

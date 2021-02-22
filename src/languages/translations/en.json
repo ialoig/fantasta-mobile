@@ -73,6 +73,6 @@
     "save": "Save",
     "delete": "Delete",
     "delete_descr": "Enter your login password to confirm your identity",
-    "delete_warn": "WARNING: Deletion is permanent. This action delete your account and all the links with Fantasta Leagues"
-
+    "delete_warn": "WARNING: Deletion is permanent. This action delete your account and all the links with Fantasta Leagues",
+    "start_league": "Start League"
 }
