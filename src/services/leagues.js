@@ -36,11 +36,8 @@ const Create = async ( settings ) =>
 
 const Join = async ( id='', name='', password='', teamname='' ) =>
 {
-    alert(`aaaaaaaaaaaaaaa`)
-    alert(`id:${id}, name:${name}, password:${password}, teamname:${teamname}`)
     if ( id || name && password && teamname )
     {
-        alert(`1111`)
         try
         {
             let data = {
@@ -50,20 +47,21 @@ const Join = async ( id='', name='', password='', teamname='' ) =>
                 teamname
             }
 
-            alert(`2222`)
             let response = await axios.put('/league/join', data, {})
-            alert(`3333`)
             LEAGUES = response.user.leagues || []
             Auction.Init( response.league, response.team )
-            
             return Promise.resolve()
         }
         catch (error)
         {
-            alert(`XXXX`)
             handleError(error)
             return Promise.reject(error)
         }
+    }
+    else{
+        let error = `Join function called with wrong parameters: id=${id}, name=${name}, password=${password}, teamname=${teamname}`
+        handleError(error)
+        return Promise.reject(error)
     }
 }
 

@@ -48,7 +48,6 @@ export class JoinContainer extends React.Component {
         }
         else {
             try {
-                alert(`Calling League.Join(${this.state[FIELDS_ID.leagueNameId]}, ${this.state[FIELDS_ID.passwordId]}, ${this.state[FIELDS_ID.teamnameId]})`)
                 await Leagues.Join('', this.state[FIELDS_ID.leagueNameId], this.state[FIELDS_ID.passwordId], this.state[FIELDS_ID.teamnameId])
                 Actions.replace('Dashboard')
             }
