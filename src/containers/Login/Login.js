@@ -13,7 +13,7 @@ const Login = (props) => {
     return (
         <KeyboardAvoidingView style={commonStyle.container} >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={commonStyle.content}>
+                <>
                     <View style={commonStyle.header}>
                         <Logo />
                     </View>
@@ -41,7 +41,7 @@ const Login = (props) => {
                             {I18n.translate('forgotPassword')}?
                         </Text>
                     </View>
-                    <View style={commonStyle.buttonContainer}>
+                    <View style={[commonStyle.flex, commonStyle.buttonContainer]}>
                         <Button
                             title={I18n.translate('login')}
                             onPress={props.Login}
@@ -51,18 +51,8 @@ const Login = (props) => {
                         <Text style={[styles.haveAccount, textStyles.button]} onPress={() => props.Register()}>
                             {I18n.translate('noAccount')}{I18n.translate('register')}
                         </Text>
-                        {/* gl: rimosso e sostituito con testo: approvazione rimozione
-                        <View style={commonStyle.buttonContainer}>
-                            <Button
-                                title={I18n.translate('register')}
-                                onPress={props.Register}
-                                type='secondary'
-                                size='large'
-                            />
-                        </View>
-                        */}
                     </View>
-                </View>
+                </>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     )

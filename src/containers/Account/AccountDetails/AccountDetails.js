@@ -51,7 +51,7 @@ function AccountDetails() {
                     title={I18n.translate("email")}
                     description={email}
                     type='small'
-                    arrow='true'
+                    arrow={true}
                 />
                 { /** username */}
                 <Card
@@ -59,7 +59,7 @@ function AccountDetails() {
                     title={I18n.translate("username")}
                     description={username}
                     type='small'
-                    arrow='true'
+                    arrow={true}
                 />
                 { /** username */}
                 <Card
@@ -67,7 +67,7 @@ function AccountDetails() {
                     title={I18n.translate("delete_account")}
                     description={""}
                     type='small'
-                    arrow='true'
+                    arrow={true}
                 />
             </View>
         </View>

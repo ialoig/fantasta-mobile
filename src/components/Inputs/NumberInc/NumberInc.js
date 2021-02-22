@@ -12,17 +12,18 @@ const NumberInc = (props) => {
             <Text style={styles.label}>{props.label}</Text>
             <InputSpinner 
                 value={props.value}
-                append={<Text style={{width: 10}}></Text>}
-                prepend={<Text style={{width: 10}}></Text>}
+                append={<Text style={{width: 5}}></Text>}
+                prepend={<Text style={{width: 5}}></Text>}
                 step={props.step}
                 min={props.min}
                 max={props.max}
                 onChange={props.onChange} 
-                color={"#F4F5F7"}
                 buttonTextColor={'#3E5481'}
                 textColor={'#3E5481'}
-                background={'#F4F5F7'}
                 inputStyle={styles.input}
+                buttonStyle={styles.buttonStyle}
+                fontSize={16}
+                buttonFontSize={16}
             />
         </View>
     )

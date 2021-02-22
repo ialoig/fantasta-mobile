@@ -20,13 +20,13 @@ function Settings() {
 
             <View style={styles.cardContent}>
             { /** language */}
-                <Card
-                    onPress={() => navigation.navigate("Language")}
-                    title={I18n.translate("language")}
-                    description={""}
-                    type='small'
-                    arrow='true'
-                />
+            <Card
+                onPress={() => navigation.navigate("Language")}
+                title={I18n.translate("language")}
+                description=""
+                type='small'
+                arrow={true}
+            />
             </View>
         </View>
     )

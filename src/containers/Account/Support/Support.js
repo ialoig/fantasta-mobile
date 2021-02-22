@@ -25,7 +25,7 @@ function Support() {
                     title={I18n.translate("feedback")}
                     description={I18n.translate("feedback_descr")}
                     type='small'
-                    arrow='true'
+                    arrow={true}
                 />
                 { /** Contact */}
                 <Card
@@ -33,7 +33,7 @@ function Support() {
                     title={I18n.translate("contact")}
                     description={I18n.translate("contact_descr")}
                     type='small'
-                    arrow='true'
+                    arrow={true}
                 />
             </View>
         </View>

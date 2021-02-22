@@ -37,7 +37,8 @@ function Account () {
                     title={username}
                     description={email}
                     type='default'
-                    arrow='true'
+                    arrow={false}
+					icon={require('../../../assets/img/icons/user_50.png')}
                 />
                 <View style={styles.cardContent}>
                     { /** settings */}
@@ -46,7 +47,7 @@ function Account () {
                         title={I18n.translate("settings")}
                         description={I18n.translate("settings_descr")}
                         type='small'
-                        arrow='true'
+                        arrow={true}
                     />
 
                     { /** leagues */}
@@ -55,7 +56,7 @@ function Account () {
                         title={I18n.translate("league")}
                         description={I18n.translate("league_descr")}
                         type='small'
-                        arrow='true'
+                        arrow={true}
                     />
 
                     { /** support */}
@@ -63,7 +64,7 @@ function Account () {
                         onPress={() => navigation.navigate("Support")}
                         title={I18n.translate("support")}
                         type='small'
-                        arrow='true'
+                        arrow={true}
                     />
                 </View>
             </View>
