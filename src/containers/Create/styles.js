@@ -4,8 +4,7 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
     page: {
         flex: 1,
-        flexDirection: 'column',
-        marginBottom: 150
+        flexDirection: 'column'
     },
     header: {
         flex: 1,
@@ -13,13 +12,9 @@ export default StyleSheet.create({
     },
     content: {
         flex: 3,
-        marginTop: -30,
-        margin: 30,
-        alignItems: 'stretch'
+        marginTop: -30
     },
     inputs: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'stretch'
+        
     }
 })

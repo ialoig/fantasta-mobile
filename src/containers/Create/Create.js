@@ -31,14 +31,16 @@ const Create = (props) => {
         const Page = item.component
     
         return (
+            <View style={commonStyle.container}>
                 <View style={commonStyle.content} key={key}>
-                        <View style={styles.header}>
-                            <Text style={carouselSyle.title}>{I18n.translate(item.title)}</Text>
-                        </View>
-                        <View style={styles.content}>
-                            <Page item={item} {...props} />
-                        </View>
+                    <View style={styles.header}>
+                        <Text style={carouselSyle.title}>{I18n.translate(item.title)}</Text>
+                    </View>
+                    <View style={styles.content}>
+                        <Page item={item} {...props} />
+                    </View>
                 </View>
+            </View>
         )
     }
 
