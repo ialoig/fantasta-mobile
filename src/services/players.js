@@ -20,20 +20,21 @@ const Init = async () =>
 {
     try
     {
+        console.log("GET /footballPlayers")
+
         let players = await Storage.Get( 'players' )
         players = typeof(players) == 'string' ? JSON.parse(players) : players
 
         let version = players && players.version || 0
 
-        let res = await axios.get(`/footballPlayers`, { params: { version } })
+        let response = await axios.get(`/footballPlayers`, { params: { version } })
 
-        let data = res && res.data && res.data.data || {}
-        if ( data.updated )
+        if ( response && response.updated )
         {
             PLAYERS = data.footballPlayers
             VERSION = data.version
 
-            Storage.Set( 'players', JSON.stringify({ footballPlayers: data.footballPlayers, version: data.version }) )
+            Storage.Set( 'players', JSON.stringify({ footballPlayers: response.footballPlayers, version: response.version }) )
         }
         else
         {
