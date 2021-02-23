@@ -1,17 +1,12 @@
 
 import React from "react"
-import { Alert } from "react-native"
 import { Actions } from "react-native-router-flux"
-import I18n from 'i18n-js'
-
 import Create from './Create'
 import CreateLeague from './CreateLeague'
 import TeamSettings from './TeamSettings'
 import AuctionSettings from './AuctionSettings'
 import CreateTeam from './CreateTeam'
-
-import { Leagues } from '../../services'
-
+import { Leagues, Error } from '../../services'
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from '../../constants'
 
 const pages = [
@@ -60,56 +55,45 @@ export class CreateContainer extends React.Component {
 
     async onDone () {
         if ( !this.state.settings[FIELDS_ID.leagueNameId] ) {
-            this.showError( 'field_error', 'missing_league_name' )
+            Error.showAlert( 'field_error', 'missing_league_name' )
         }
         else if ( !this.state.settings[FIELDS_ID.passwordId] ) {
-            this.showError( 'field_error', 'missing_password' )
+            Error.showAlert( 'field_error', 'missing_password' )
         }
         else if ( !this.state.settings[FIELDS_ID.teamnameId] ) {
-            this.showError( 'field_error', 'missing_team_name' )
+            Error.showAlert( 'field_error', 'missing_team_name' )
         }
         else if ( this.state.settings[FIELDS_ID.participantsId]<2 ) {
-            this.showError( 'field_error', 'participants_error' )
+            Error.showAlert( 'field_error', 'participants_error' )
         }
         else if ( this.state.settings[FIELDS_ID.goalskeepersId]<1 ) {
-            this.showError( 'field_error', 'goalskeepers_error' )
+            Error.showAlert( 'field_error', 'goalskeepers_error' )
         }
         else if ( this.state.settings[FIELDS_ID.defendersId]<1 ) {
-            this.showError( 'field_error', 'defenders_error' )
+            Error.showAlert( 'field_error', 'defenders_error' )
         }
         else if ( this.state.settings[FIELDS_ID.midfieldersId]<1 ) {
-            this.showError( 'field_error', 'midfielders_error' )
+            Error.showAlert( 'field_error', 'midfielders_error' )
         }
         else if ( this.state.settings[FIELDS_ID.strikersId]<1 ) {
-            this.showError( 'field_error', 'forwarders_error' )
+            Error.showAlert( 'field_error', 'forwarders_error' )
         }
         else if ( this.state.settings[FIELDS_ID.playersId]<1 ) {
-            this.showError( 'field_error', 'players_error' )
+            Error.showAlert( 'field_error', 'players_error' )
         }
         else if ( this.state.settings[FIELDS_ID.countdownId]<3 ) {
-            this.showError( 'field_error', 'countdown_error' )
+            Error.showAlert( 'field_error', 'countdown_error' )
         }
         else {
             try
             {
                 await Leagues.Create( this.state.settings )
-
                 Actions.replace('Dashboard')
             }
             catch (error) {
-                this.showError( error.title, error.subTitle )
+                Error.handleError(error)
             }
         }
-    }
-
-    showError ( title, message )
-    {
-        Alert.alert(
-            I18n.translate(title),
-            I18n.translate(message),
-            [{text: 'OK'}],
-            { cancelable: true }
-        )
     }
 
     render() {

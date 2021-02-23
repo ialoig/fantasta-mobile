@@ -3,6 +3,7 @@ import { Alert } from 'react-native'
 import axios from 'axios'
 
 import { Auction } from './auction'
+import { Error } from '../services'
 
 let LEAGUES = []
 
@@ -29,7 +30,7 @@ const Create = async ( settings ) =>
     }
     catch (error)
     {
-        handleError(error)
+        Error.handleError(error, true)
         return Promise.reject(error)
     }
 }
@@ -54,13 +55,13 @@ const Join = async ( id='', name='', password='', teamname='' ) =>
         }
         catch (error)
         {
-            handleError(error)
+            Error.handleError(error, true)
             return Promise.reject(error)
         }
     }
     else{
         let error = `Join function called with wrong parameters: id=${id}, name=${name}, password=${password}, teamname=${teamname}`
-        handleError(error)
+        Error.handleError(error, true)
         return Promise.reject(error)
     }
 }
@@ -70,17 +71,4 @@ export const Leagues = {
     Get,
     Create,
     Join
-}
-
-const handleError = ( error ) =>
-{
-    console.log("[handleError] - ", error)
-
-    let info = error && error.info || {}
-    Alert.alert(
-        info.title,
-        info.message,
-        [{ text: "OK" }],
-        { cancelable: false }
-    )
 }

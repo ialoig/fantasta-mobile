@@ -6,7 +6,7 @@ import I18n from 'i18n-js'
 
 import Home from './Home'
 
-import { Leagues } from '../../services'
+import { Leagues, Error } from '../../services'
 
 export class HomeContainer extends React.Component {
 
@@ -39,16 +39,10 @@ export class HomeContainer extends React.Component {
             try
             {
                 await Leagues.Join( item._id )
-
                 Actions.Dashboard()
             }
             catch (error) {
-                Alert.alert(
-                    I18n.translate(error.title),
-                    I18n.translate(error.subTitle),
-                    [{text: 'OK'}],
-                    { cancelable: true }
-                )
+                Error.handleError(error, true)
             }
         }
     }
@@ -58,7 +52,7 @@ export class HomeContainer extends React.Component {
             <Home
                 leagues={this.state.leagues}
                 crea={Actions.Create}
-                join={Actions.Join}
+                join={Actions.JoinLeague}
                 joinLeague={this.joinLeague.bind(this)}
             />
         )
