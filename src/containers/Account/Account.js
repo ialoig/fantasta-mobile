@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from 'react'
 
-import { View } from "react-native"
-import I18n from "i18n-js"
-import { Card, PrevButton, Header} from "../../components"
-import { commonStyle, textStyles } from "../../styles"
-
-import styles from "./styles"
+import React from 'react'
+import { Text, View } from "react-native"
+import { Actions } from 'react-native-router-flux'
 import { useNavigation, useRoute } from '@react-navigation/native'
+import Costants from "expo-constants"
+import I18n from "i18n-js"
+
+import { Card, Header, Button} from "../../components"
+import { Token, User } from '../../services'
+
+import { commonStyle, textStyles } from "../../styles"
+import styles from "./styles"
 
 function Account () {
 
@@ -28,7 +32,7 @@ function Account () {
         <View style={commonStyle.container}>
 
             { /** header */}
-            <Header title="account" backButton={true} onPress={() => navigation.goBack()}/>
+            <Header title="account" backButton={true} onPressBack={Actions.pop} rightButton={false}/>
 
             <View style={styles.cardContent}>
                 { /** account */}
@@ -67,6 +71,20 @@ function Account () {
                         arrow={true}
                     />
                 </View>
+
+                <Button
+                    title={I18n.translate('logout')}
+                    onPress={ () => {
+                        User.remove();
+                        Token.remove();
+                        Actions.reset("Login")
+                    }}
+                    type='primary'
+                    size='large'
+                />
+                <Text style={[styles.version, textStyles.description]}>
+                    {"App version: " + Costants.manifest.version}
+                </Text>
             </View>
         </View>
     )

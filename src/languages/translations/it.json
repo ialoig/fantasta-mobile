@@ -74,5 +74,6 @@
     "delete": "Cancella",
     "delete_descr": "Inserisci la tua password di accesso per confermare la tua identità",
     "delete_warn": "ATTENZIONE: L'eliminazione è permanente. Questa azione elimina il tuo account e i collegamenti con le leghe di Fantasta",
-    "start_league": "Inizia la Lega"
+    "start_league": "Inizia la Lega",
+    "logout": "Logout"
 }

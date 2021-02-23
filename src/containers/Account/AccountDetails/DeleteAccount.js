@@ -24,7 +24,7 @@ function DeleteAccount() {
     return (
         <View style={[commonStyle.container, commonStyle.flex_start]}>
             { /** header */}
-            <Header title="delete_account" backButton={true} onPress={() => navigation.goBack()}/>
+            <Header title="delete_account" backButton={true} onPressBack={() => navigation.goBack()}/>
 
             <Text style={[textStyles.h3, commonStyle.justifyText]}>
                 {I18n.translate("delete_warn")}

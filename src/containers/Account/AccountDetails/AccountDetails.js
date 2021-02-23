@@ -42,7 +42,7 @@ function AccountDetails() {
     return (
         <View style={commonStyle.container}>
             { /** header */}
-            <Header title="account_details" backButton={true} onPress={backToAccount}/>
+            <Header title="account_details" backButton={true} onPressBack={backToAccount}/>
 
             <View style={styles.cardContent}>
                 { /** email */}

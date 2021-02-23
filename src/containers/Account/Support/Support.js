@@ -16,7 +16,7 @@ function Support() {
     return (
         <View style={commonStyle.container}>
             { /** header */}
-            <Header title="support" backButton={true} onPress={() => navigation.goBack()}/>
+            <Header title="support" backButton={true} onPressBack={() => navigation.goBack()}/>
 
             <View style={styles.cardContent}>
                 { /** Feedback */}
