@@ -1,20 +1,20 @@
 
 import React from "react"
 
-import PrevButton from './PrevButton'
+import IconButton from './IconButton'
 
-export default class PrevButtonContainer extends React.Component {
+export default class IconButtonContainer extends React.Component {
 
     render() {
 
         const {
             onPress,
-            type='default',
-            icon='true',
+            type="default",
+            icon=true,
         } = this.props
 
         return (
-            <PrevButton
+            <IconButton
                 onPress={onPress}
                 type={type}
                 icon={icon}

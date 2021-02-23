@@ -62,16 +62,6 @@ const Register = (props) => {
                         <Text style={[styles.haveAccount, textStyles.button]} onPress={() => props.login()}>
                             {I18n.translate('haveAccount')}{I18n.translate('login')}
                         </Text>
-
-                        {/*gl: rimosso e sostituito con testo: approvazione rimozione
-                        <Button
-                            title={I18n.translate('login')}
-                            onPress={props.login}
-                            type='secondary'
-                            size='large'
-                            border={false}
-                        />
-                        */}
                     </View>
                 </View>
             </TouchableWithoutFeedback>

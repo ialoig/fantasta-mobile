@@ -23,6 +23,7 @@ export default StyleSheet.create({
   	header: {
         flexDirection: 'row',
 		justifyContent: 'center',
+		alignItems: "center",
 		marginBottom: 12,
   	},
   	buttonContainer: {
@@ -32,9 +33,7 @@ export default StyleSheet.create({
 	title: {
         flex: 1,
         flexGrow: 1,
-        justifyContent: "center",
-        textAlign: 'center',
-        textAlignVertical: 'center'
+        textAlign: 'center'
 	},
 	flex_start: {
 		justifyContent: "flex-start"
