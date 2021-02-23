@@ -28,7 +28,7 @@ const Home = (props) => {
 			{ /** header */}
 			<Header title="start_league" backButton={false} rightButton={true} 
 				iconTypeRight="account" 
-				onPressRight={ () => Actions.reset("Account")} 
+				onPressRight={Actions.Account} 
 			/>
 			
 			{ /** crea/join */}

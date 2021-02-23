@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react'
 
+import React from 'react'
 import { Text, View } from "react-native"
+import { Actions } from 'react-native-router-flux'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import Costants from "expo-constants"
 import I18n from "i18n-js"
+
 import { Card, Header, Button} from "../../components"
-import { commonStyle, textStyles } from "../../styles"
-
-import styles from "./styles"
-import { useNavigation, useRoute } from '@react-navigation/native'
 import { Token, User } from '../../services'
-import { Actions } from 'react-native-router-flux'
 
+import { commonStyle, textStyles } from "../../styles"
+import styles from "./styles"
 
 function Account () {
 
@@ -32,7 +32,7 @@ function Account () {
         <View style={commonStyle.container}>
 
             { /** header */}
-            <Header title="account" backButton={true} rightButton={false}/>
+            <Header title="account" backButton={true} onPressBack={Actions.pop} rightButton={false}/>
 
             <View style={styles.cardContent}>
                 { /** account */}
