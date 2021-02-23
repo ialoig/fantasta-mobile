@@ -42,14 +42,7 @@ export class HomeContainer extends React.Component {
 
                 Actions.Dashboard()
             }
-            catch (error) {
-                Alert.alert(
-                    I18n.translate(error.title),
-                    I18n.translate(error.subTitle),
-                    [{text: 'OK'}],
-                    { cancelable: true }
-                )
-            }
+            catch (error) {}
         }
     }
 
