@@ -5,11 +5,7 @@ import { Alert } from 'react-native'
  * @param {*} error to handle
  * @param {*} createAlert boolean for enabling creation of an alert on the mobile
  */
-const handleError = (error, createAlert) => {
-    console.log(`-------------------------------------`)
-    console.log(`handleError(${error}, ${createAlert})`)
-    console.log(`-------------------------------------`)
-    
+const handleError = (error, createAlert) => {    
     console.log(`[Error]: ${error}`)
     if (createAlert) {
         let info = error && error.info || {}
