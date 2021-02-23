@@ -1,11 +1,7 @@
 
 import React from "react"
-import { Alert } from "react-native"
 import { Actions } from "react-native-router-flux"
-import I18n from 'i18n-js'
-
 import Home from './Home'
-
 import { Leagues, Error } from '../../services'
 
 export class HomeContainer extends React.Component {

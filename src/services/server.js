@@ -63,11 +63,7 @@ const Init = async () =>
             console.info("Interceptor OK: ", response)
 
             let data = response && response.data || {}
-            if ( data && data.ok )
-            {
-                return Promise.resolve(data.data)
-            }
-            return Promise.reject(data)
+            return Promise.resolve(data.data)
         },
         (error) => {
 

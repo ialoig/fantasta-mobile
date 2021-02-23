@@ -61,6 +61,10 @@ export const image = StyleSheet.create({
 export const text = StyleSheet.create({
     default: {
         alignItems: "center",
-        paddingVertical: 12
+        paddingTop: 12
+    },    
+    square: {
+        alignItems: "center",
+        paddingTop: 12
     }
 });
