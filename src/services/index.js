@@ -8,6 +8,7 @@ export { Players } from './players'
 export { Server, Token } from './server'
 export { Storage } from './storage'
 export { User } from './user'
+export { Error } from './error'
 
 
 

@@ -2,14 +2,12 @@
 import React from "react"
 import { View } from "react-native"
 import I18n from 'i18n-js'
-
-import { InputText, NumberInc, Radio } from '../../components'
-import styles from './styles'
+import { InputText } from '../../components'
 
 const JoinLeague = (props) => {
 
     return (
-        <View style={styles.inputs}>
+        <View>
             <InputText
                 id={props.leagueNameId}
                 label={I18n.translate('leagueName')}

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import { Token } from './server'
 import { User } from './user'
-import { Leagues } from './leagues'
+import { Leagues, Error } from './leagues'
 
 const Register = async ( email, password ) =>
 {
@@ -18,7 +18,7 @@ const Register = async ( email, password ) =>
     }
     catch (error)
     {
-        handleError(error)
+        Error.handleError(error, true)
         return Promise.reject()
     }
 }
@@ -35,7 +35,7 @@ const Login = async ( email, password ) =>
     }
     catch (error)
     {
-        handleError(error)
+        Error.handleError(error, true)
         return Promise.reject()
     }
 }
@@ -69,7 +69,7 @@ const update = async (email, username) =>
     }
     catch (error)
     {
-        handleError(error)
+        Error.handleError(error, true)
         return Promise.reject()
     }
 }
@@ -116,17 +116,4 @@ const saveUser = ( response ) =>
 
     let leagues = user.leagues || []
     Leagues.Set( leagues )
-}
-
-const handleError = ( error ) =>
-{
-    console.log("[handleError] - ", error)
-
-    let info = error && error.info || {}
-    Alert.alert(
-        info.title,
-        info.message,
-        [{ text: "OK" }],
-        { cancelable: false }
-    )
 }

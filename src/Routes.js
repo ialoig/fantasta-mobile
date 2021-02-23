@@ -8,7 +8,7 @@ import { RegisterContainer } from './containers/Register/RegisterContainer'
 import { GetStartedContainer } from "./containers/GetStarted/GetStartedContainer"
 import { HomeContainer } from './containers/Home/HomeContainer'
 import { CreateContainer } from './containers/Create/CreateContainer'
-import { JoinContainer } from './containers/Join/JoinContainer'
+import { JoinLeagueContainer } from './containers/JoinLeague/JoinLeagueContainer'
 import { DashboardContainer } from './containers/Dashboard/DashboardContainer'
 import { AccountNavigator } from './containers/Account/AccountNavigator'
 
@@ -21,7 +21,7 @@ const Routes = () => (
       <Scene key="GetStarted" component={GetStartedContainer} title="GetStarted" back={false} hideNavBar="true" /> 
       <Scene key="Home" component={HomeContainer} title="Home" back={false} hideNavBar="true"/>
       <Scene key="Create" component={CreateContainer} title="Create" back={true} hideNavBar="true" />
-      <Scene key="Join" component={JoinContainer} title="Join" back={true} hideNavBar="true" />
+      <Scene key="JoinLeague" component={JoinLeagueContainer} title="JoinLeague" back={true} hideNavBar="true" />
       <Scene key="Dashboard" component={DashboardContainer} title="Dashboard" back={true} hideNavBar="true" />
       <Scene key="Account" component={AccountNavigator} title="Account" back={false} hideNavBar="true" />
     </Scene>

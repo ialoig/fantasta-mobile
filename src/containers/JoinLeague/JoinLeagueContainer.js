@@ -1,12 +1,9 @@
 import React from "react"
-import { Alert } from "react-native"
 import { Actions } from "react-native-router-flux"
-import I18n from 'i18n-js'
-
-import Join from './Join'
+import JoinLeagueSlider from './JoinLeagueSlider'
 import JoinLeague from './JoinLeague'
 import CreateTeam from '../Create/CreateTeam'
-import { Leagues } from '../../services'
+import { Leagues, Error } from '../../services'
 import { FIELDS_ID } from '../../constants'
 
 const pages = [
@@ -14,7 +11,7 @@ const pages = [
     { key: "2", component: CreateTeam, title: 'createTeam', description: "" }
 ]
 
-export class JoinContainer extends React.Component {
+export class JoinLeagueContainer extends React.Component {
 
     constructor(props) {
         super(props)
@@ -35,16 +32,13 @@ export class JoinContainer extends React.Component {
 
     async onDone() {
         if (!this.state[FIELDS_ID.leagueNameId]) {
-            alert("missing_league_name")
-            this.showError('field_error', 'missing_league_name')
+            Error.showAlert('field_error', 'missing_league_name')
         }
         else if (!this.state[FIELDS_ID.passwordId]) {
-            alert("missing_password")
-            this.showError('field_error', 'missing_password')
+            Error.showAlert('field_error', 'missing_password')
         }
         else if (!this.state[FIELDS_ID.teamnameId]) {
-            alert("missing_team_name")
-            this.showError('field_error', 'missing_team_name')
+            Error.showAlert('field_error', 'missing_team_name')
         }
         else {
             try {
@@ -52,25 +46,14 @@ export class JoinContainer extends React.Component {
                 Actions.replace('Dashboard')
             }
             catch (error) {
-                this.showError(error.title, error.subTitle)
+                Error.handleError(error, true)
             }
         }
     }
 
-    showError(title, message) {
-        Alert.alert(
-            // I18n.translate(title),
-            // I18n.translate(message),
-            title,
-            message,
-            [{ text: 'OK' }],
-            { cancelable: true }
-        )
-    }
-
     render() {
         return (
-            <Join
+            <JoinLeagueSlider
                 pages={pages}
                 onChange={this.onChange.bind(this)}
                 onDone={this.onDone.bind(this)}
