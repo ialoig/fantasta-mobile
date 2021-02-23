@@ -45,9 +45,7 @@ export class JoinLeagueContainer extends React.Component {
                 await Leagues.Join('', this.state[FIELDS_ID.leagueNameId], this.state[FIELDS_ID.passwordId], this.state[FIELDS_ID.teamnameId])
                 Actions.replace('Dashboard')
             }
-            catch (error) {
-                Error.handleError(error, true)
-            }
+            catch (error) {/*error handling done in Leagues.Join*/}
         }
     }
 

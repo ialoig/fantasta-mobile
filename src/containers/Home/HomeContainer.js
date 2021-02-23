@@ -37,7 +37,7 @@ export class HomeContainer extends React.Component {
                 await Leagues.Join( item._id )
                 Actions.Dashboard()
             }
-            catch (error) {}
+            catch (error) {/*error handling done in Leagues.Join*/}
         }
     }
 

@@ -90,9 +90,7 @@ export class CreateContainer extends React.Component {
                 await Leagues.Create( this.state.settings )
                 Actions.replace('Dashboard')
             }
-            catch (error) {
-                Error.handleError(error)
-            }
+            catch (error) {/*error handling done in Leagues.Create*/}
         }
     }
 
