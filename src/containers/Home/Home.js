@@ -6,6 +6,7 @@ import I18n from 'i18n-js'
 import { Card, Header } from "../../components"
 import styles from "./styles"
 import { commonStyle, textStyles } from '../../styles'
+import { Actions } from "react-native-router-flux"
 
 const League = ( item, onPress ) => (
 	<Card
@@ -25,7 +26,10 @@ const Home = (props) => {
 		<View style={commonStyle.container}>
 		
 			{ /** header */}
-			<Header title="start_league" backButton={false} />
+			<Header title="start_league" backButton={false} rightButton={true} 
+				iconTypeRight="account" 
+				onPressRight={ () => Actions.reset("Account")} 
+			/>
 			
 			{ /** crea/join */}
 			<View style={styles.buttons}>
