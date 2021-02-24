@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 import colors from "./colors";
 
 export default StyleSheet.create({
-    inptView: {
-        minWidth: 327
+    container: {
+        paddingVertical: 4
     },
     inputForm: {
         minHeight: 56,

@@ -27,7 +27,7 @@ export default StyleSheet.create({
 		marginBottom: 12,
   	},
   	buttonContainer: {
-		marginTop: 12,
+		paddingTop: 12,
 		justifyContent: "flex-end"
   	},
 	title: {
@@ -37,6 +37,9 @@ export default StyleSheet.create({
 	},
 	flex_start: {
 		justifyContent: "flex-start"
+	},
+	flex_end: {
+		justifyContent: "flex-end"
 	},
 	justifyText: {
 		textAlign: "justify"

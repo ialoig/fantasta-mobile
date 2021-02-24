@@ -4,7 +4,8 @@ import axios from 'axios'
 
 import { Token } from './server'
 import { User } from './user'
-import { Leagues, Error } from './leagues'
+import { Leagues } from './leagues'
+import { Error } from './error'
 
 const Register = async ( email, password ) =>
 {
@@ -93,14 +94,6 @@ const deleteAccount = async (password) =>
     }
 }
 
-export const Auth = {
-    Authenticate,
-    Login,
-    Register,
-    update,
-    deleteAccount
-}
-
 const saveUser = ( response ) =>
 {
     console.log("[saveUser] - " + response)
@@ -115,5 +108,14 @@ const saveUser = ( response ) =>
     User.Set( user )
 
     let leagues = user.leagues || []
-    Leagues.Set( leagues )
+    Leagues.Set(leagues)
+}
+
+
+export const Auth = {
+    Authenticate,
+    Login,
+    Register,
+    update,
+    deleteAccount
 }

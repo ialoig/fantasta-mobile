@@ -2,14 +2,16 @@
 import React from "react"
 import { Text, View } from "react-native"
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button'
+import { commonStyle, textStyles } from "../../../styles"
+import colors from "../../../styles/colors"
 
 import styles from './styles'
 
 const Radio = (props) => {
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.label}>{props.label}</Text>
+        <View style={commonStyle.flex_start}>
+            <Text style={[textStyles.h2, styles.radioLabel]}>{props.label}</Text>
             <RadioForm
                 formHorizontal={false}
                 animation={true}
@@ -26,19 +28,18 @@ const Radio = (props) => {
                                 index={i}
                                 labelHorizontal={false}
                                 onPress={props.onChange}
-                                labelStyle={styles.radioLabel}
+                                labelStyle={textStyles.body}
                             />
                             <RadioButtonInput
                                 obj={obj}
                                 index={i}
                                 isSelected={props.value==obj.value}
                                 onPress={props.onChange}
-                                borderWidth={1}
-                                buttonInnerColor={'#1FCC79'}
-                                buttonOuterColor={'#1FCC79'}
-                                buttonSize={20}
-                                buttonOuterSize={25}
-                                buttonWrapStyle={styles.radioInput}
+                                buttonInnerColor={colors.primary}
+                                buttonOuterColor={colors.grey}
+                                buttonSize={12}
+                                buttonStyle={styles.radio}
+                                buttonOuterSize={24}
                             />
                         </RadioButton>
                     ))

@@ -3,11 +3,12 @@ import React from "react"
 import { Text, TextInput, View } from "react-native"
 
 import { inputStyle, textStyles } from '../../../styles'
+import styles from "./styles"
 
 const TextIn = (props) => {
 
     return (
-        <View style={inputStyle.inptView}>
+        <View style={styles.container}>
             <TextInput
                 {...props}
                 style={[textStyles.body, inputStyle.inputForm, props.hasError ? inputStyle.hasError : null]}

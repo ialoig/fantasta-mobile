@@ -1,5 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import colors from "../../styles/colors";
+
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
 
 export const card = StyleSheet.create({
     card: {
@@ -8,8 +11,8 @@ export const card = StyleSheet.create({
         alignItems: "center",
         borderRadius: 16,
         marginTop: 12,
-        paddingHorizontal: 24,
-        paddingVertical: 16,
+        //paddingHorizontal: 24,
+        //paddingVertical: 16,
         backgroundColor: colors.greyLight
     },
     default: {
@@ -28,8 +31,11 @@ export const card = StyleSheet.create({
     },
     small: {
         flexDirection: "row",
-        minWidth: 327,
-        maxHeight: 65
+        //minWidth: 327,
+        marginHorizontal: ((2/375) * deviceWidth),
+        //maxHeight: 65
+        paddingHorizontal: ((20/375) * deviceWidth),
+        paddingVertical: ((10/375) * deviceWidth)
     },
     square: {
         maxWidth: 140,

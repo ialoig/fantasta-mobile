@@ -7,7 +7,7 @@ import { inputStyle, textStyles } from '../../../styles'
 const Password = (props) => {
 
     return (
-        <View style={inputStyle.inptView}>
+        <View style={inputStyle.container}>
             <TextInput
                 {...props}
                 style={[textStyles.body, inputStyle.inputForm, props.hasError ? inputStyle.hasError : null]}

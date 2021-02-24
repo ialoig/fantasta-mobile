@@ -5,10 +5,11 @@ import I18n from 'i18n-js'
 
 import { NumberInc } from '../../components'
 import styles from './styles'
+import { commonStyle } from "../../styles"
 
 const TeamSettings = (props) => {
     return (
-        <View style={styles.inputs}>
+        <View style={commonStyle.flex}>
             <NumberInc
                 label={I18n.translate('nGoalkeepers')}
                 value={props.settings[props.goalskeepersId]}

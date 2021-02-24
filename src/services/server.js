@@ -11,7 +11,7 @@ const URLS = {
     lan_gl: 'http://172.18.0.3:3000/fantasta'
 }
 
-const SERVER_URL = URLS.lan_pippo
+const SERVER_URL = URLS.local
 
 let AUTH_TOKEN = ''
 
