@@ -1,5 +1,6 @@
 
 import { StyleSheet } from "react-native";
+import { deviceScreenWidth, deviceScreenHeight } from "../utils/pixelResolver";
 import colors from "./colors";
 
 export default StyleSheet.create({
@@ -10,10 +11,9 @@ export default StyleSheet.create({
     	flex: 1,
     	justifyContent: 'center',
     	alignContent: 'center',
-    	//alignItems: 'center',
-		paddingTop: 56,
-		paddingBottom: 12,
-		paddingHorizontal: 24,
+		paddingTop: deviceScreenHeight * 0.06,
+		paddingBottom: deviceScreenHeight * 0.02,
+		paddingHorizontal: deviceScreenWidth * 0.06,
 		backgroundColor: colors.background
   	},
   	content: {

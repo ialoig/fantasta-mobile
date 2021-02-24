@@ -56,7 +56,12 @@ const Home = (props) => {
 				<Text style={textStyles.h2}>{I18n.translate('yourLeagues')}</Text>
 				<FlatList
 					data={props.leagues}
-					ListEmptyComponent={() => { return <Text>NESSUNA LEGA</Text> }}
+					ListEmptyComponent={() => { 
+						return (
+							<Text style={textStyles.description}>
+								{I18n.translate('noLeaguesFound')}
+							</Text>) 
+					}}
 					renderItem={item => League(item.item, () => props.joinLeague( item.item ) )}
 					keyExtractor={item => item._id}
 				/>

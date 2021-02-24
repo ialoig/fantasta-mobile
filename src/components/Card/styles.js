@@ -1,8 +1,7 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 import colors from "../../styles/colors";
+import { getHeight, getWidth } from "../../utils/pixelResolver";
 
-const deviceHeight = Dimensions.get('window').height;
-const deviceWidth = Dimensions.get('window').width;
 
 export const card = StyleSheet.create({
     card: {
@@ -11,35 +10,33 @@ export const card = StyleSheet.create({
         alignItems: "center",
         borderRadius: 16,
         marginTop: 12,
-        //paddingHorizontal: 24,
-        //paddingVertical: 16,
         backgroundColor: colors.greyLight
     },
     default: {
-        minWidth: 327,
-        maxHeight: 180
+        marginHorizontal: 0,
+        maxHeight: getHeight(180)
     },
     large: {
-        flexDirection: "row",
-        minWidth: 327,
-        maxHeight: 180
+        marginHorizontal: 0,
+        maxHeight: getHeight(160)
     },
     medium: {
         flexDirection: "row",
-        minWidth: 327,
-        maxHeight: 110
+        marginHorizontal: 0,
+        paddingHorizontal: getWidth(20),
+        paddingVertical: getWidth(20),
+        maxHeight: getHeight(120)
     },
     small: {
         flexDirection: "row",
-        //minWidth: 327,
-        marginHorizontal: ((2/375) * deviceWidth),
-        //maxHeight: 65
-        paddingHorizontal: ((20/375) * deviceWidth),
-        paddingVertical: ((10/375) * deviceWidth)
+        marginHorizontal: 0,
+        paddingHorizontal: getWidth(20),
+        paddingVertical: getWidth(20),
+        maxHeight: getHeight(80)
     },
     square: {
-        maxWidth: 140,
-        minHeight: 140
+        maxWidth: getWidth(150),
+        height: getHeight(150),
     },
     arrow: {
         alignItems: "flex-end"
@@ -49,16 +46,16 @@ export const card = StyleSheet.create({
 
 export const image = StyleSheet.create({
     default: {
-        //marginRight: 12
+        
     },
     large: {
-        marginRight: 12
+        
     },
     medium: {
-        marginRight: 12
+        
     },
     small: {
-        marginRight: 12
+        paddingRight: 12
     }
 });
 
@@ -68,7 +65,11 @@ export const text = StyleSheet.create({
     default: {
         alignItems: "center",
         paddingTop: 12
-    },    
+    },
+    large: {
+        alignItems: "center",
+        paddingTop: 12
+    },
     square: {
         alignItems: "center",
         paddingTop: 12

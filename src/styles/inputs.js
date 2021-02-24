@@ -3,7 +3,8 @@ import colors from "./colors";
 
 export default StyleSheet.create({
     container: {
-        paddingVertical: 4
+        paddingVertical: 4,
+        width: "100%"
     },
     inputForm: {
         minHeight: 56,
