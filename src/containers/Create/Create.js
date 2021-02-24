@@ -8,6 +8,7 @@ import { carouselSyle, commonStyle } from '../../styles'
 import { button, text} from "../../components/Button/styles"
 import styles from './styles'
 import Header from "../../components/Header/Header"
+import { Actions } from "react-native-router-flux"
 
 const Create = (props) => {
 
@@ -30,19 +31,7 @@ const Create = (props) => {
     const Crea = ({ item, key }) => {
     
         const Page = item.component
-    
-        {/*return (
-            <View style={commonStyle.container}>
-                <View style={commonStyle.content} key={key}>
-                    <View style={styles.header}>
-                        <Text style={carouselSyle.title}>{I18n.translate(item.title)}</Text>
-                    </View>
-                    <View style={styles.content}>
-                        <Page item={item} {...props} />
-                    </View>
-                </View>
-            </View>
-        )*/}
+
 
         return (
             <View style={commonStyle.container}>

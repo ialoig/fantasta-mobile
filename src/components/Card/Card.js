@@ -13,8 +13,8 @@ const Card = (props) => {
     return (
         <TouchableOpacity onPress={props.onPress} style={[ card.card, card[type] ]}>
             { icon &&
-                <View>
-                    <Image style={image[type]} source={icon} />
+                <View style={image[type]}>
+                    <Image source={icon} />
                 </View>
             }
             <View style={text[type]}>

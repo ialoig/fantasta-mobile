@@ -7,6 +7,7 @@ import { Header } from "../../components"
 import { carouselSyle, commonStyle } from '../../styles'
 import { button, text } from "../../components/Button/styles"
 import styles from './styles'
+import { Actions } from "react-native-router-flux"
 
 const JoinLeagueSlider = (props) => {
 
@@ -30,11 +31,9 @@ const JoinLeagueSlider = (props) => {
         const Page = item.component
         return (
             <View style={commonStyle.container}>
-                <View style={styles.page}>
-                    <Header title={item.title} backButton={false}/>
-                    <View style={styles.content}>
-                        <Page item={item} {...props} />
-                    </View>
+                <Header title={item.title} />
+                <View style={[commonStyle.content, commonStyle.flex_start]}>
+                    <Page item={item} {...props} />
                 </View>
             </View>
         )
