@@ -1,9 +1,7 @@
-
-import { Alert } from 'react-native'
 import axios from 'axios'
 
 import { Auction } from './auction'
-import { Error } from '../services'
+import { Error } from './error'
 
 let LEAGUES = []
 
@@ -25,7 +23,7 @@ const Create = async ( settings ) =>
         
         LEAGUES = response.user.leagues || []
         Auction.Init( response.league, response.team )
-        
+
         return Promise.resolve()
     }
     catch (error)

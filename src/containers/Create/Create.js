@@ -7,6 +7,7 @@ import I18n from 'i18n-js'
 import { carouselSyle, commonStyle } from '../../styles'
 import { button, text} from "../../components/Button/styles"
 import styles from './styles'
+import Header from "../../components/Header/Header"
 
 const Create = (props) => {
 
@@ -30,7 +31,7 @@ const Create = (props) => {
     
         const Page = item.component
     
-        return (
+        {/*return (
             <View style={commonStyle.container}>
                 <View style={commonStyle.content} key={key}>
                     <View style={styles.header}>
@@ -39,6 +40,15 @@ const Create = (props) => {
                     <View style={styles.content}>
                         <Page item={item} {...props} />
                     </View>
+                </View>
+            </View>
+        )*/}
+
+        return (
+            <View style={commonStyle.container}>
+                <Header title={item.title} />
+                <View style={[commonStyle.content, commonStyle.flex_start]} key={key}>
+                    <Page item={item} {...props} />
                 </View>
             </View>
         )

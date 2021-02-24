@@ -1,27 +1,18 @@
 import { StyleSheet } from "react-native";
+import colors from "../../../styles/colors";
 
 export default StyleSheet.create({
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-        alignItems: 'stretch',
-        marginTop: 10
-    },
-    label: {
-        fontSize: 16
-    },
     radioButton: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 5
+        marginVertical: 4
     },
     radioLabel: {
-        fontSize: 14,
-        color: '#3E5481'
+        marginVertical: 24
     },
-    radioInput: {
-        marginLeft: 10
+    radio: {
+        maxWidth: 32,
+        maxHeight: 32,
+        backgroundColor: colors.grey
     }
 });
