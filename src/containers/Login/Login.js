@@ -13,7 +13,7 @@ const Login = (props) => {
     return (
         <KeyboardAvoidingView style={commonStyle.container} >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <>
+                <View style={commonStyle.content}>
                     <View style={commonStyle.header}>
                         <Logo />
                     </View>
@@ -52,7 +52,7 @@ const Login = (props) => {
                             {I18n.translate('noAccount')}{I18n.translate('register')}
                         </Text>
                     </View>
-                </>
+                </View>
             </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     )
