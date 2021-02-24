@@ -1,17 +1,11 @@
 
 import axios from 'axios'
 import I18n from 'i18n-js'
-
 import { Storage } from './storage'
+import { CUSTOM_CONFIG } from '../../custom_config' // TODO: temporary solution for development
 
-const URLS = {
-    local: 'http://localhost:3000/fantasta',
-    lan_inkubo: 'http://192.168.1.196:3000/fantasta',
-    lan_pippo: 'http://192.168.0.96:3000/fantasta',
-    lan_gl: 'http://172.18.0.3:3000/fantasta'
-}
-
-const SERVER_URL = URLS.lan_pippo
+const SERVER_URL = CUSTOM_CONFIG.fantasta_server_url
+// const SERVER_URL = 'http://localhost:3000/fantasta' // TODO: restore for production
 
 let AUTH_TOKEN = ''
 
