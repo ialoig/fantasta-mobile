@@ -54,15 +54,6 @@ function Account () {
                         arrow={true}
                     />
 
-                    { /** leagues */}
-                    <Card 
-                        onPress={() => navigation.navigate("LeagueOptions")}
-                        title={I18n.translate("league")}
-                        description={I18n.translate("league_descr")}
-                        type='small'
-                        arrow={true}
-                    />
-
                     { /** support */}
                     <Card 
                         onPress={() => navigation.navigate("Support")}
