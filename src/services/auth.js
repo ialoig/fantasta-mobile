@@ -26,7 +26,7 @@ const Register = async ( email, password ) =>
 
 const Login = async ( email, password ) =>
 {
-    console.log("PUT /auth/update - email=" +email+ ", password="+password)
+    console.log("PUT /auth/login - email=" +email+ ", password="+password)
     try
     {
         let response = await axios.put('/auth/login', { email, password }, {})
