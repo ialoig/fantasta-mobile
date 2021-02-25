@@ -26,6 +26,10 @@ I18n.fallbacks = true
 I18n.defaultLocale = defaultLang
 I18n.locale = deviceLang || defaultLang
 
+I18n.missingTranslation = (key) => {
+    return key
+}
+
 I18n.translations = langs
 
 
