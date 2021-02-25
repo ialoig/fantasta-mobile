@@ -9,7 +9,7 @@ const handleError = (error, createAlert) => {
     console.log(`[Error]: ${error}`)
     if (createAlert) {
         let info = error && error.info || {}
-        showAlert(info.subTitle, info.message)
+        showAlert(info.title, info.message)
     }
 }
 
