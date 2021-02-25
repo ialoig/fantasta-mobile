@@ -4,13 +4,13 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import Account from './Account';
 
-import LeagueOptions from './LeagueOptions/LeagueOptions';
-
 //Support
 import Support from './Support/Support';
 import Feedback from './Support/Feedback';
 //Account Details
 import AccountDetailsNavigator from './AccountDetails/AccountDetailsNavigator';
+
+import Settings from './Settings/Settings';
 
 import { User } from "../../services"
 
@@ -34,7 +34,7 @@ export class AccountNavigator extends Component {
                                 username: username
                             }} />
                     <AccountStack.Screen name="AccountDetailsNavigator" component={AccountDetailsNavigator} />
-                    <AccountStack.Screen name="LeagueOptions" component={LeagueOptions} />
+                    <AccountStack.Screen name="Settings" component={Settings} />
                     <AccountStack.Screen name="Support" component={Support} />
                 </AccountStack.Navigator>
             </NavigationContainer>
