@@ -1,4 +1,6 @@
+
 import { Alert } from 'react-native'
+import I18n from 'i18n-js'
 
 /**
  * 
@@ -20,8 +22,8 @@ const handleError = (error, createAlert) => {
  */
 const showAlert = (title, message) => {
     Alert.alert(
-        title,
-        message,
+        I18n.translate(title),
+        I18n.translate(message),
         [{ text: "OK" }],
         { cancelable: false }
     )
