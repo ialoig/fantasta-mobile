@@ -4,7 +4,7 @@ import colors from "../../styles/colors";
 export default StyleSheet.create({
     haveAccount: {
       alignSelf: "center",
-      paddingVertical: 8,
+      paddingVertical: 4,
       color: colors.textPlaceholder,
     }
 });

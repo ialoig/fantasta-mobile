@@ -3,7 +3,7 @@ import colors from "./colors";
 
 export default StyleSheet.create({
     container: {
-        paddingVertical: 4,
+        paddingVertical: 0,
         width: "100%"
     },
     inputForm: {
@@ -22,7 +22,7 @@ export default StyleSheet.create({
         borderColor: colors.primary
     },
     hasError: {
-        marginTop: 8,
+        marginTop: 2,
         borderStyle: "solid",
         borderWidth: 1,
         backgroundColor: colors.errorRedBg,
