@@ -41,6 +41,9 @@ export default StyleSheet.create({
 	flex_end: {
 		justifyContent: "flex-end"
 	},
+	center: {
+		justifyContent: "center"
+	},
 	justifyText: {
 		textAlign: "justify"
 	}

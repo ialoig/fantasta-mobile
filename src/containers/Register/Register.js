@@ -1,6 +1,6 @@
 
 import React from "react"
-import { Keyboard, TouchableWithoutFeedback, View, Text, KeyboardAvoidingView } from "react-native"
+import { Keyboard, TouchableWithoutFeedback, View, Text, KeyboardAvoidingView, Platform } from "react-native"
 import I18n from 'i18n-js'
 
 import { commonStyle, textStyles } from "../../styles"
@@ -10,7 +10,9 @@ import { Button, Email, Logo, Password, RepeatPassword } from '../../components'
 
 const Register = (props) => {
     return (
-        <KeyboardAvoidingView style={commonStyle.container}>
+        <KeyboardAvoidingView style={commonStyle.container}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={commonStyle.content}>
                     <View style={commonStyle.header}>

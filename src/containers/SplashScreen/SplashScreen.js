@@ -9,7 +9,7 @@ import { commonStyle } from "../../styles"
 
 const SplashScreen = (props) => {
   return (
-    <View style={commonStyle.container}>
+    <View style={commonStyle.flex}>
       <View style={styles.logo}>
         <Logo />
       </View>

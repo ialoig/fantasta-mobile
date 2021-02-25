@@ -35,7 +35,7 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: "normal",
     fontStyle: "normal",
-    lineHeight: 28,
+    //lineHeight: 28,
     letterSpacing: 0.75,
     color: colors.text
   },
