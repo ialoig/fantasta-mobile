@@ -26,17 +26,19 @@ export class SplashScreenContainer extends React.Component {
         try
         {
           let res = await Auth.Authenticate( token )
-
-          Actions.reset('Home')
+          this.props.navigation.navigate("Home")
+          //Actions.reset('Home')
         }
         catch (error)
         {
-          Actions.reset('Login')
+          this.props.navigation.navigate("Login")
+          //Actions.reset('Login')
         }
       }
       else
       {
-        Actions.reset('Login')
+        this.props.navigation.navigate("Login")
+        //Actions.reset('Login')
       }
   }
 

@@ -54,7 +54,8 @@ export class RegisterContainer extends React.Component {
             {
                 let res = await Auth.Register( email, pw1 )
 
-                Actions.reset('GetStarted')
+                this.props.navigation.navigate("GetStarted");
+                //Actions.reset('GetStarted')
             }
             catch (error)
             {
@@ -73,7 +74,10 @@ export class RegisterContainer extends React.Component {
                 showError={this.state.showError}
                 onChange={this.onChange.bind(this)}
                 Register={this.register.bind(this)}
-                login={Actions.pop}
+                login={
+                    //Actions.pop
+                    () => this.props.navigation.navigate("Login")
+                }
             />
         )
     }

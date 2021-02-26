@@ -35,7 +35,8 @@ export class HomeContainer extends React.Component {
             try
             {
                 await Leagues.Join( item._id )
-                Actions.Dashboard()
+                // Actions.Dashboard()
+                this.props.navigation.navigate("Dashboard");
             }
             catch (error) {/*error handling done in Leagues.Join*/}
         }
@@ -44,9 +45,11 @@ export class HomeContainer extends React.Component {
     render () {
         return (
             <Home
+                {...this.props}
                 leagues={this.state.leagues}
-                crea={Actions.Create}
-                join={Actions.JoinLeague}
+                crea={() => this.props.navigation.navigate("CreateLeague")}
+                join={() => this.props.navigation.navigate("JoinLeague")}
+                account={() => this.props.navigation.navigate("AccountNavigator")}
                 joinLeague={this.joinLeague.bind(this)}
             />
         )

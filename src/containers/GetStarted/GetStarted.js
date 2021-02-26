@@ -32,7 +32,7 @@ const GetStarted = (props) => {
         
         return (
             <View style={commonStyle.container} key={key}>
-                <View style={commonStyle.content} key={key}>
+                <View style={styles.image} key={key}>
                     <Image source={item.image} />
                 </View>
                 <View style={commonStyle.flex} key={key}>

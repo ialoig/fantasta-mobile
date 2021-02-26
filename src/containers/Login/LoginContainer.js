@@ -36,8 +36,8 @@ export class LoginContainer extends React.Component {
             try
             {
                 let res = await Auth.Login( email, pw )
-
-                Actions.reset('Home')
+                this.props.navigation.navigate("Home");
+                //Actions.reset('Home')
             }
             catch (error)
             {
@@ -51,7 +51,8 @@ export class LoginContainer extends React.Component {
     }
 
     register () {
-        Actions.Register()
+        return this.props.navigation.navigate("Register");
+        //Actions.Register()
     }
 
     forgotPassword () {
