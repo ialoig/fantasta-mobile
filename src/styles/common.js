@@ -17,7 +17,7 @@ export default StyleSheet.create({
 		backgroundColor: colors.background
   	},
   	content: {
-		flex: 2,
+		flex: 1,
     	justifyContent: 'center'
   	},
   	header: {
