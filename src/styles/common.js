@@ -12,7 +12,7 @@ export default StyleSheet.create({
     	justifyContent: 'center',
     	alignContent: 'center',
 		paddingTop: deviceScreenHeight * 0.06,
-		paddingBottom: deviceScreenHeight * 0.02,
+		paddingBottom: deviceScreenHeight * 0.01,
 		paddingHorizontal: deviceScreenWidth * 0.06,
 		backgroundColor: colors.background
   	},
