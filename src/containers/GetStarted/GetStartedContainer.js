@@ -8,7 +8,8 @@ import { Actions } from 'react-native-router-flux'
 export class GetStartedContainer extends React.Component {
 
     onDone () {
-        Actions.reset('Home')
+        //Actions.reset('Home')
+        this.props.navigation.navigate("Home")
     }
     
     render() {

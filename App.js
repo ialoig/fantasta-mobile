@@ -1,6 +1,6 @@
 import React from "react";
-import Routes from './src/Routes.js';
 import * as T from './src/languages';
+import Routes from "./src/navigation/Routes";
 
 export default class App extends React.Component {
 

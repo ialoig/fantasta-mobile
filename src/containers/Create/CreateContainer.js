@@ -88,7 +88,8 @@ export class CreateContainer extends React.Component {
             try
             {
                 await Leagues.Create( this.state.settings )
-                Actions.replace('Dashboard')
+                // Actions.replace('Dashboard')
+                this.props.navigation.navigate("Dashboard")
             }
             catch (error) {/*error handling done in Leagues.Create*/}
         }

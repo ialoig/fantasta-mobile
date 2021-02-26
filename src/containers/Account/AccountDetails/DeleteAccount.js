@@ -54,7 +54,8 @@ function DeleteAccount() {
                         }
                         try {
                             await Auth.deleteAccount(check);
-                            Actions.reset("Login");
+                            //Actions.reset("Login");
+                            navigation.navigate("Login")
                         } catch (error) {
                             console.log("[DeleteAccount] - error=" +JSON.stringify(error))
                             return setError(true)

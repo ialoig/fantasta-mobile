@@ -32,7 +32,7 @@ function Account () {
         <View style={commonStyle.container}>
 
             { /** header */}
-            <Header title="account" backButton={true} onPressBack={Actions.pop} rightButton={false}/>
+            <Header title="account" backButton={true} onPressBack={() => navigation.goBack()} rightButton={false}/>
 
             <View style={styles.cardContent}>
                 { /** account */}
@@ -68,7 +68,8 @@ function Account () {
                     onPress={ () => {
                         User.remove();
                         Token.remove();
-                        Actions.reset("Login")
+                        // Actions.reset("Login")
+                        navigation.navigate("Login")
                     }}
                     type='primary'
                     size='large'
