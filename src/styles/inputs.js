@@ -22,7 +22,7 @@ export default StyleSheet.create({
         borderColor: colors.primary
     },
     hasError: {
-        marginTop: 2,
+        marginTop: 0,
         borderStyle: "solid",
         borderWidth: 1,
         backgroundColor: colors.errorRedBg,

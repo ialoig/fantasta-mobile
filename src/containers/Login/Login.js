@@ -11,7 +11,7 @@ import { Button, Password, Email, Logo } from '../../components'
 const Login = (props) => {
     return (
         <KeyboardAvoidingView style={commonStyle.container}
-            behavior={Platform.OS === "ios" ? "padding" : "height"} >
+            behavior={Platform.OS === "ios" ? "padding" : undefined} >
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <View style={commonStyle.content}>
                     <Logo />
