@@ -57,7 +57,7 @@ const Init = async () =>
             console.info("Interceptor OK: ", response)
 
             let data = response && response.data || {}
-            return Promise.resolve(data.data)
+            return Promise.resolve(data)
         },
         (error) => {
 
