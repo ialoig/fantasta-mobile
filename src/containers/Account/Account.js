@@ -1,7 +1,6 @@
 
 import React from 'react'
 import { Text, View } from "react-native"
-import { Actions } from 'react-native-router-flux'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import Costants from "expo-constants"
 import I18n from "i18n-js"
@@ -68,7 +67,6 @@ function Account () {
                     onPress={ () => {
                         User.remove();
                         Token.remove();
-                        // Actions.reset("Login")
                         navigation.navigate("Login")
                     }}
                     type='primary'

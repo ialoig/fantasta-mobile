@@ -7,7 +7,7 @@ import Account from '../containers/Account/Account';
 import Support from '../containers/Account/Support/Support';
 import Feedback from '../containers/Account/Support/Feedback';
 //Account Details
-import AccountDetailsNavigator from '../containers/Account/AccountDetails/AccountDetailsNavigator';
+import AccountDetailsNavigator from './AccountDetailsNavigator';
 
 import Settings from '../containers/Account/Settings/Settings';
 

@@ -1,5 +1,5 @@
 import React from "react"
-import { Actions } from "react-native-router-flux"
+
 import JoinLeagueSlider from './JoinLeagueSlider'
 import JoinLeague from './JoinLeague'
 import CreateTeam from '../Create/CreateTeam'
@@ -43,7 +43,7 @@ export class JoinLeagueContainer extends React.Component {
         else {
             try {
                 await Leagues.Join('', this.state[FIELDS_ID.leagueNameId], this.state[FIELDS_ID.passwordId], this.state[FIELDS_ID.teamnameId])
-                Actions.replace('Dashboard')
+                this.props.navigation.navigate("Dashboard")
             }
             catch (error) {/*error handling done in Leagues.Join*/}
         }

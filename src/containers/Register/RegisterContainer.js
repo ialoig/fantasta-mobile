@@ -1,8 +1,7 @@
 
 import React from "react"
-import { Actions } from "react-native-router-flux"
-import Validator from 'validator'
 
+import Validator from 'validator'
 import { Auth } from "../../services"
 import { FIELDS_ID, PASSWORD_OPT } from '../../constants'
 
@@ -55,7 +54,6 @@ export class RegisterContainer extends React.Component {
                 let res = await Auth.Register( email, pw1 )
 
                 this.props.navigation.navigate("GetStarted");
-                //Actions.reset('GetStarted')
             }
             catch (error)
             {
@@ -75,7 +73,6 @@ export class RegisterContainer extends React.Component {
                 onChange={this.onChange.bind(this)}
                 Register={this.register.bind(this)}
                 login={
-                    //Actions.pop
                     () => this.props.navigation.navigate("Login")
                 }
             />

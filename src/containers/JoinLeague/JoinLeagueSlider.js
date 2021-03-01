@@ -7,7 +7,6 @@ import { Header } from "../../components"
 import { carouselSyle, commonStyle } from '../../styles'
 import { button, text } from "../../components/Button/styles"
 import styles from './styles'
-import { Actions } from "react-native-router-flux"
 
 const JoinLeagueSlider = (props) => {
 

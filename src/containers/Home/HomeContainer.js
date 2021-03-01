@@ -1,6 +1,5 @@
 
 import React from "react"
-import { Actions } from "react-native-router-flux"
 import Home from './Home'
 import { Leagues, Error } from '../../services'
 
@@ -35,7 +34,6 @@ export class HomeContainer extends React.Component {
             try
             {
                 await Leagues.Join( item._id )
-                // Actions.Dashboard()
                 this.props.navigation.navigate("Dashboard");
             }
             catch (error) {/*error handling done in Leagues.Join*/}

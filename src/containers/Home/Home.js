@@ -6,7 +6,6 @@ import I18n from 'i18n-js'
 import { Card, Header } from "../../components"
 import styles from "./styles"
 import { commonStyle, textStyles } from '../../styles'
-import { Actions } from "react-native-router-flux"
 
 const League = ( item, onPress ) => (
 	<Card

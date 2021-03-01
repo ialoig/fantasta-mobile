@@ -8,7 +8,6 @@ import { Header, Button, Password } from "../../../components"
 import { commonStyle, textStyles } from "../../../styles"
 import { FIELDS_ID } from "../../../constants"
 import { Auth } from '../../../services'
-import { Actions } from 'react-native-router-flux'
 
 function DeleteAccount() {
 
@@ -54,7 +53,6 @@ function DeleteAccount() {
                         }
                         try {
                             await Auth.deleteAccount(check);
-                            //Actions.reset("Login");
                             navigation.navigate("Login")
                         } catch (error) {
                             console.log("[DeleteAccount] - error=" +JSON.stringify(error))
