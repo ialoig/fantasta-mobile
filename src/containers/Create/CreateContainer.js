@@ -1,6 +1,5 @@
 
 import React from "react"
-import { Actions } from "react-native-router-flux"
 import Create from './Create'
 import CreateLeague from './CreateLeague'
 import TeamSettings from './TeamSettings'
@@ -88,7 +87,6 @@ export class CreateContainer extends React.Component {
             try
             {
                 await Leagues.Create( this.state.settings )
-                // Actions.replace('Dashboard')
                 this.props.navigation.navigate("Dashboard")
             }
             catch (error) {/*error handling done in Leagues.Create*/}

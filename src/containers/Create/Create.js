@@ -8,7 +8,6 @@ import { carouselSyle, commonStyle } from '../../styles'
 import { button, text} from "../../components/Button/styles"
 import styles from './styles'
 import Header from "../../components/Header/Header"
-import { Actions } from "react-native-router-flux"
 
 const Create = (props) => {
 

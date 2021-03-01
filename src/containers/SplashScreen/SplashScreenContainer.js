@@ -1,6 +1,5 @@
 
 import React from "react"
-import { Actions } from "react-native-router-flux"
 
 import { Auth, Init, Token } from '../../services'
 
@@ -27,18 +26,15 @@ export class SplashScreenContainer extends React.Component {
         {
           let res = await Auth.Authenticate( token )
           this.props.navigation.navigate("Home")
-          //Actions.reset('Home')
         }
         catch (error)
         {
           this.props.navigation.navigate("Login")
-          //Actions.reset('Login')
         }
       }
       else
       {
         this.props.navigation.navigate("Login")
-        //Actions.reset('Login')
       }
   }
 

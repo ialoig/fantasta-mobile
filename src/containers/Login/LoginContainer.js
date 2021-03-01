@@ -1,6 +1,5 @@
 
 import React from "react"
-import { Actions } from "react-native-router-flux"
 import Validator from 'validator'
 
 import { Auth } from "../../services"
@@ -37,7 +36,6 @@ export class LoginContainer extends React.Component {
             {
                 let res = await Auth.Login( email, pw )
                 this.props.navigation.navigate("Home");
-                //Actions.reset('Home')
             }
             catch (error)
             {
@@ -52,7 +50,6 @@ export class LoginContainer extends React.Component {
 
     register () {
         return this.props.navigation.navigate("Register");
-        //Actions.Register()
     }
 
     forgotPassword () {
