@@ -7,10 +7,10 @@ import { RegisterContainer } from '../containers/Register/RegisterContainer'
 import { LoginContainer } from '../containers/Login/LoginContainer'
 import { SplashScreenContainer } from '../containers/SplashScreen/SplashScreenContainer'
 import { HomeContainer } from '../containers/Home/HomeContainer'
-import AccountNavigator from './AccountNavigator'
 import { CreateContainer } from '../containers/Create/CreateContainer'
 import { JoinLeagueContainer } from '../containers/JoinLeague/JoinLeagueContainer'
 import { DashboardContainer } from '../containers/Dashboard/DashboardContainer'
+import AccountNavigator from './AccountNavigator';
 
 
 const AppStack = createStackNavigator();

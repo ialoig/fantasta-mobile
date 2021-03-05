@@ -46,7 +46,7 @@ function Account () {
                 <View style={styles.cardContent}>
                     { /** settings */}
                     <Card
-                        onPress={() => navigation.navigate("Settings")}
+                        onPress={() => navigation.navigate("SettingsNavigator")}
                         title={I18n.translate("settings")}
                         description={I18n.translate("settings_descr")}
                         type='small'
@@ -55,7 +55,7 @@ function Account () {
 
                     { /** support */}
                     <Card 
-                        onPress={() => navigation.navigate("Support")}
+                        onPress={() => navigation.navigate("SupportNavigator")}
                         title={I18n.translate("support")}
                         type='small'
                         arrow={true}

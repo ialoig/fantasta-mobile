@@ -29,7 +29,7 @@ function Support() {
                 />
                 { /** Contact */}
                 <Card
-                    onPress={() => navigation.navigate("Language")}
+                    onPress={() => navigation.navigate("ContactUs")}
                     title={I18n.translate("contact")}
                     description={I18n.translate("contact_descr")}
                     type='small'
