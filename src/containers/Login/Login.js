@@ -8,7 +8,7 @@ import { commonStyle, textStyles } from "../../styles"
 
 import { Button, Password, Email, Logo } from '../../components'
 
-const Login = (props) => {
+const Login = (props) => { 
     return (
         <KeyboardAvoidingView style={commonStyle.container}
             behavior={Platform.OS === "ios" ? "padding" : undefined} >

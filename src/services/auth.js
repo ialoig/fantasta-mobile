@@ -1,121 +1,120 @@
 
-import { Alert } from 'react-native'
 import axios from 'axios'
-
+import { Alert } from 'react-native'
+import { Error } from './error'
+import { Leagues } from './leagues'
 import { Token } from './server'
 import { User } from './user'
-import { Leagues } from './leagues'
-import { Error } from './error'
 
 const Register = async ( email, password ) =>
 {
-    console.log("POST /auth/update - email=" +email+ ", password="+password)
-    try
-    {
-        let response = await axios.post('/auth/register', { email, password }, {})
-        saveUser( response )
+	console.log("POST /auth/update - email=" +email+ ", password="+password)
+	try
+	{
+		let response = await axios.post('/auth/register', { email, password }, {})
+		saveUser( response )
 
-        return Promise.resolve()
-    }
-    catch (error)
-    {
-        Error.handleError(error, true)
-        return Promise.reject()
-    }
+		return Promise.resolve()
+	}
+	catch (error)
+	{
+		Error.handleError(error, true)
+		return Promise.reject()
+	}
 }
 
 const Login = async ( email, password ) =>
 {
-    console.log("PUT /auth/login - email=" +email+ ", password="+password)
-    try
-    {
-        let response = await axios.put('/auth/login', { email, password }, {})
-        saveUser( response )
+	console.log("PUT /auth/login - email=" +email+ ", password="+password)
+	try
+	{
+		let response = await axios.put('/auth/login', { email, password }, {})
+		saveUser( response )
 
-        return Promise.resolve()
-    }
-    catch (error)
-    {
-        Error.handleError(error, true)
-        return Promise.reject()
-    }
+		return Promise.resolve()
+	}
+	catch (error)
+	{
+		Error.handleError(error, true)
+		return Promise.reject()
+	}
 }
 
 const Authenticate = async () =>
 {
-    console.log("PUT /auth/token")
-    try
-    {
-        let response = await axios.put('/auth/token', {}, {})
-        saveUser( response )
+	console.log("PUT /auth/token")
+	try
+	{
+		let response = await axios.put('/auth/token', {}, {})
+		saveUser( response )
 
-        return Promise.resolve()
-    }
-    catch (error)
-    {
-        return Promise.reject()
-    }
+		return Promise.resolve()
+	}
+	catch (error)
+	{
+		return Promise.reject()
+	}
 }
 
 const update = async (email, username) =>
 {
-    console.log("POST /auth/update - email=" +email+ ", username="+username)
-    try
-    {
+	console.log("POST /auth/update - email=" +email+ ", username="+username)
+	try
+	{
 
-        let response = await axios.put( '/auth/update', {email, username}, {})
-        saveUser( response )
+		let response = await axios.put( '/auth/update', {email, username}, {})
+		saveUser( response )
                 
-        return Promise.resolve()
-    }
-    catch (error)
-    {
-        Error.handleError(error, true)
-        return Promise.reject()
-    }
+		return Promise.resolve()
+	}
+	catch (error)
+	{
+		Error.handleError(error, true)
+		return Promise.reject()
+	}
 }
 
 
 const deleteAccount = async (password) =>
 {
-    console.log("DELETE /auth/deleteAccount")
-    try
-    {
-        await axios.delete( '/auth/deleteAccount', { password }, {})
+	console.log("DELETE /auth/deleteAccount")
+	try
+	{
+		await axios.delete( '/auth/deleteAccount', { password }, {})
 
-        User.remove()
-        Token.remove()
+		User.remove()
+		Token.remove()
 
-        return Promise.resolve()
-    }
-    catch (error)
-    {
-        return Promise.reject(error)
-    }
+		return Promise.resolve()
+	}
+	catch (error)
+	{
+		return Promise.reject(error)
+	}
 }
 
 const saveUser = ( response ) =>
 {
-    console.log("[saveUser] - " + response)
+	console.log("[saveUser] - " + response)
 
-    let data = response || {}
+	let data = response || {}
 
-    let token = data.token || ''
-    Token.Set( token )
+	let token = data.token || ''
+	Token.Set( token )
 
-    let user = data.user || {}
+	let user = data.user || {}
     
-    User.Set( user )
+	User.Set( user )
 
-    let leagues = user.leagues || []
-    Leagues.Set(leagues)
+	let leagues = user.leagues || []
+	Leagues.Set(leagues)
 }
 
 
 export const Auth = {
-    Authenticate,
-    Login,
-    Register,
-    update,
-    deleteAccount
+	Authenticate,
+	Login,
+	Register,
+	update,
+	deleteAccount
 }
