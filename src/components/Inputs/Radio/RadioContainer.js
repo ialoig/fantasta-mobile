@@ -1,29 +1,29 @@
 
 import React from "react"
 
-import Radio from './Radio'
+import Radio from "./Radio"
 
 export default class RadioContainer extends React.Component {
 
-    render() {
+	render() {
 
-        const {
-            id,
-            label='',
-            value='',
-            items=[],
-            onChange
-        } = this.props
+		const {
+			id,
+			label="",
+			value="",
+			items=[],
+			onChange
+		} = this.props
 
-        return (
-            <Radio
-                id={id}
-                name={id}
-                label={label}
-                value={value}
-                items={items}
-                onChange={onChange}
-            />
-        )
-    }
+		return (
+			<Radio
+				id={id}
+				name={id}
+				label={label}
+				value={value}
+				items={items}
+				onChange={onChange}
+			/>
+		)
+	}
 }

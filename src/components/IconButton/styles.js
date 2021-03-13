@@ -1,14 +1,14 @@
-import { StyleSheet } from "react-native";
-import colors from "../../styles/colors";
+import { StyleSheet } from "react-native"
+import colors from "../../styles/colors"
 
 export const button = StyleSheet.create({
-    back: {
-        minWidth: 35,
-        minHeight: 35,
-        borderRadius: 40,
-        backgroundColor: colors.primary
-    },
-    account: {
+	account: {
         
-    }
-});
+	},
+	back: {
+		backgroundColor: colors.primary,
+		borderRadius: 40,
+		minHeight: 35,
+		minWidth: 35
+	}
+})

@@ -5,7 +5,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint": "eslint --fix src/ && eslint --fix --ext .json --format node_modules/eslint-plugin-i18n-json/formatter.js src/languages/"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.13.3",
@@ -37,7 +38,11 @@
     "validator": "^13.5.2"
   },
   "devDependencies": {
-    "@babel/core": "~7.12.10"
+    "eslint": "^7.21.0",
+    "eslint-plugin-i18n-json": "^3.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-native": "^3.10.0"
   },
   "private": true
 }

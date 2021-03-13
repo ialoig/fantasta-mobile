@@ -1,12 +1,12 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native"
 
 export default StyleSheet.create({
   
-  textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1
-  },
+	textInput: {
+		borderColor: "gray",
+		borderWidth: 1,
+		height: 40
+	},
 
   
-});
+})
