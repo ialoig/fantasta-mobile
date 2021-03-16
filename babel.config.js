@@ -1,4 +1,3 @@
-console.log("[babel] - Start Babel config file")
 
 module.exports = function(api) {
 	api.cache(true)
