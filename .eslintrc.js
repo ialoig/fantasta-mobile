@@ -10,7 +10,7 @@ module.exports = {
 		"plugin:react-native/all",
 		"plugin:import/errors",
 		"plugin:import/warnings",
-		'plugin:i18n-json/recommended'
+		"plugin:i18n-json/recommended"
 	],
 	settings: {
 		"react": {
@@ -34,6 +34,10 @@ module.exports = {
 		indent: [
 			"error",
 			"tab"
+		],
+		quotes: [
+			"warn",
+			"double"
 		],
 		"linebreak-style": [
 			"error",
@@ -78,14 +82,14 @@ module.exports = {
 		"react-native/no-raw-text": 2,
 		"react-native/no-single-element-style-arrays": 2,
 		/** translations rules */
-		'i18n-json/valid-message-syntax': [2, {
-			syntax: 'icu',
+		"i18n-json/valid-message-syntax": [2, {
+			syntax: "icu",
 		}],
-		'i18n-json/valid-json': 2,// linting of each JSON translation file
-		'i18n-json/sorted-keys': [2, { //automatic case-sensitive ascending sort of all keys in the translation file
-			order: 'asc',
+		"i18n-json/valid-json": 2,// linting of each JSON translation file
+		"i18n-json/sorted-keys": [2, { //automatic case-sensitive ascending sort of all keys in the translation file
+			order: "asc",
 			indentSpaces: 2,
 		}],
-		'i18n-json/identical-keys': 0, //compare each translation file's key structure with a reference translation file to ensure consistency
+		"i18n-json/identical-keys": 0, //compare each translation file's key structure with a reference translation file to ensure consistency
 	}
 }
