@@ -1,6 +1,6 @@
 
-import en from './en.json'
-import it from './it.json'
+import en from "./en.json"
+import it from "./it.json"
 
 export const langs = {
 	it,

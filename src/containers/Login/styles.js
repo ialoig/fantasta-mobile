@@ -1,15 +1,15 @@
-import { StyleSheet } from "react-native";
-import colors from "../../styles/colors";
+import { StyleSheet } from "react-native"
+import colors from "../../styles/colors"
 
 export default StyleSheet.create({
-  forgot: {
-    alignSelf: "flex-end",
-    paddingTop: 8,
-    color: colors.textPlaceholder,
-  },
-  haveAccount: {
-    alignSelf: "center",
-    paddingVertical: 4,
-    color: colors.textPlaceholder
-  }
-});
+	forgot: {
+		alignSelf: "flex-end",
+		color: colors.textPlaceholder,
+		paddingTop: 8,
+	},
+	haveAccount: {
+		alignSelf: "center",
+		color: colors.textPlaceholder,
+		paddingVertical: 4
+	}
+})

@@ -1,17 +1,17 @@
 
-import axios from 'axios'
-import { Alert } from 'react-native'
-import { Error } from './error'
-import { Leagues } from './leagues'
-import { Token } from './server'
-import { User } from './user'
+import axios from "axios"
+import { Alert } from "react-native"
+import { Error } from "./error"
+import { Leagues } from "./leagues"
+import { Token } from "./server"
+import { User } from "./user"
 
 const Register = async ( email, password ) =>
 {
 	console.log("POST /auth/update - email=" +email+ ", password="+password)
 	try
 	{
-		let response = await axios.post('/auth/register', { email, password }, {})
+		let response = await axios.post("/auth/register", { email, password }, {})
 		saveUser( response )
 
 		return Promise.resolve()
@@ -28,7 +28,7 @@ const Login = async ( email, password ) =>
 	console.log("PUT /auth/login - email=" +email+ ", password="+password)
 	try
 	{
-		let response = await axios.put('/auth/login', { email, password }, {})
+		let response = await axios.put("/auth/login", { email, password }, {})
 		saveUser( response )
 
 		return Promise.resolve()
@@ -45,7 +45,7 @@ const Authenticate = async () =>
 	console.log("PUT /auth/token")
 	try
 	{
-		let response = await axios.put('/auth/token', {}, {})
+		let response = await axios.put("/auth/token", {}, {})
 		saveUser( response )
 
 		return Promise.resolve()
@@ -62,7 +62,7 @@ const update = async (email, username) =>
 	try
 	{
 
-		let response = await axios.put( '/auth/update', {email, username}, {})
+		let response = await axios.put( "/auth/update", {email, username}, {})
 		saveUser( response )
                 
 		return Promise.resolve()
@@ -80,7 +80,7 @@ const deleteAccount = async (password) =>
 	console.log("DELETE /auth/deleteAccount")
 	try
 	{
-		await axios.delete( '/auth/deleteAccount', { password }, {})
+		await axios.delete( "/auth/deleteAccount", { password }, {})
 
 		User.remove()
 		Token.remove()
@@ -99,7 +99,7 @@ const saveUser = ( response ) =>
 
 	let data = response || {}
 
-	let token = data.token || ''
+	let token = data.token || ""
 	Token.Set( token )
 
 	let user = data.user || {}

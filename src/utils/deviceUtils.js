@@ -8,9 +8,7 @@ export const android = Platform.OS === "android" ? true : false
 export const { width: deviceScreenWidth, height: deviceHeight } = Dimensions.get("window")
 
 export const deviceScreenHeight = 
-    isIphoneXor11 ? deviceHeight * 0.9 : 
-    	android ? deviceHeight - StatusBar.currentHeight : 
-    		deviceHeight
+    isIphoneXor11 ? (deviceHeight * 0.9) : android ? (deviceHeight - StatusBar.currentHeight) : deviceHeight
 
 
 
