@@ -1,47 +1,48 @@
 
 import React from "react"
+import routes from "../../navigation/routesNames"
 
-import { Auth, Init, Token } from '../../services'
+import { Auth, Init, Token } from "../../services"
 
-import SplashScreen from './SplashScreen'
+import SplashScreen from "./SplashScreen"
 
 export class SplashScreenContainer extends React.Component {
 
-  async componentDidMount ()
-  {
-      try
-      {
-        await Init()
-      }
-      catch (error)
-      {
+	async componentDidMount ()
+	{
+		try
+		{
+			await Init()
+		}
+		catch (error)
+		{
 
-        //TODO: come vogliamo gestire l'errore???
-      }
+			//TODO: come vogliamo gestire l'errore???
+		}
 
-      let token = Token.Get()
-      if ( token )
-      {
-        try
-        {
-          let res = await Auth.Authenticate( token )
-          this.props.navigation.navigate("Home")
-        }
-        catch (error)
-        {
-          this.props.navigation.navigate("Login")
-        }
-      }
-      else
-      {
-        this.props.navigation.navigate("Login")
-      }
-  }
+		let token = Token.Get()
+		if ( token )
+		{
+			try
+			{
+				let res = await Auth.Authenticate( token )
+				this.props.navigation.navigate(routes.HOME)
+			}
+			catch (error)
+			{
+				this.props.navigation.navigate(routes.LOGIN)
+			}
+		}
+		else
+		{
+			this.props.navigation.navigate(routes.LOGIN)
+		}
+	}
 
-  render() {
+	render() {
 
-    return (
-      <SplashScreen />
-    )
-  }
+		return (
+			<SplashScreen />
+		)
+	}
 }

@@ -1,81 +1,80 @@
 
 import React from "react"
-
-import Validator from 'validator'
+import Validator from "validator"
+import { FIELDS_ID, PASSWORD_OPT } from "../../constants"
+import routes from "../../navigation/routesNames"
 import { Auth } from "../../services"
-import { FIELDS_ID, PASSWORD_OPT } from '../../constants'
-
 import Register from "./Register"
 
 export class RegisterContainer extends React.Component {
 
-    constructor (props) {
-        super(props)
+	constructor (props) {
+		super(props)
 
-        this.state = {
-            [FIELDS_ID.emailId]: '',
-            [FIELDS_ID.passwordId]: '',
-            [FIELDS_ID.repeatPasswordId]: '',
-            showError: false
-        }
-    }
+		this.state = {
+			[FIELDS_ID.emailId]: "",
+			[FIELDS_ID.passwordId]: "",
+			[FIELDS_ID.repeatPasswordId]: "",
+			showError: false
+		}
+	}
 
-    onChange ( id, value, valid ) {
-        this.setState({
-            [id]: value
-        })
-    }
+	onChange ( id, value, valid ) {
+		this.setState({
+			[id]: value
+		})
+	}
 
-    async register () {
+	async register () {
 
-        const email = this.state[FIELDS_ID.emailId] || ''
-        const pw1 = this.state[FIELDS_ID.passwordId] || ''
-        const pw2 = this.state[FIELDS_ID.repeatPasswordId] || ''
+		const email = this.state[FIELDS_ID.emailId] || ""
+		const pw1 = this.state[FIELDS_ID.passwordId] || ""
+		const pw2 = this.state[FIELDS_ID.repeatPasswordId] || ""
 
-        if ( !email || !Validator.isEmail(email) ) {
-            this.setState({showError: true})
-            return
-        }
+		if ( !email || !Validator.isEmail(email) ) {
+			this.setState({showError: true})
+			return
+		}
 
-        if ( !pw1 || !Validator.isStrongPassword(pw1, PASSWORD_OPT) ) {
-            this.setState({showError: true})
-            return
-        }
+		if ( !pw1 || !Validator.isStrongPassword(pw1, PASSWORD_OPT) ) {
+			this.setState({showError: true})
+			return
+		}
 
-        if ( pw1!=pw2 ) {
-            this.setState({showError: true})
-            return
-        }
+		if ( pw1!=pw2 ) {
+			this.setState({showError: true})
+			return
+		}
 
-        if ( email && pw1 && pw1==pw2 )
-        {
-            try
-            {
-                let res = await Auth.Register( email, pw1 )
+		if ( email && pw1 && pw1==pw2 )
+		{
+			try
+			{
+				let res = await Auth.Register( email, pw1 )
 
-                this.props.navigation.navigate("GetStarted");
-            }
-            catch (error)
-            {
+				this.props.navigation.navigate(routes.GETSTARTED)
+			}
+			catch (error)
+			{
                 
-            }
-        }
-    }
+			}
+		}
+	}
     
-    render() {
-        return (
-            <Register
-                emailId={FIELDS_ID.emailId}
-                passwordId={FIELDS_ID.passwordId}
-                repeatPasswordId={FIELDS_ID.repeatPasswordId}
-                password={this.state[FIELDS_ID.passwordId]}
-                showError={this.state.showError}
-                onChange={this.onChange.bind(this)}
-                Register={this.register.bind(this)}
-                login={
-                    () => this.props.navigation.navigate("Login")
-                }
-            />
-        )
-    }
+	render() {
+		return (
+			<Register
+				emailId={FIELDS_ID.emailId}
+				passwordId={FIELDS_ID.passwordId}
+				repeatPasswordId={FIELDS_ID.repeatPasswordId}
+				password={this.state[FIELDS_ID.passwordId]}
+				showError={this.state.showError}
+				onChange={this.onChange.bind(this)}
+				Register={this.register.bind(this)}
+				login={
+					() => this.props.navigation.navigate(routes.LOGIN)
+				}
+			/>
+		)
+	}
 }

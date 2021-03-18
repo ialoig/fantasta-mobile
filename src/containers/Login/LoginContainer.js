@@ -2,6 +2,7 @@
 import React from "react"
 import Validator from "validator"
 import { FIELDS_ID, PASSWORD_OPT } from "../../constants"
+import routes from "../../navigation/routesNames"
 import { Auth } from "../../services"
 
 import Login from "./Login"
@@ -34,7 +35,7 @@ export class LoginContainer extends React.Component {
 			try
 			{
 				let res = await Auth.Login( email, pw )
-				this.props.navigation.navigate("Home")
+				this.props.navigation.navigate(routes.HOME)
 			}
 			catch (error)
 			{
@@ -48,7 +49,7 @@ export class LoginContainer extends React.Component {
 	}
 
 	register () {
-		return this.props.navigation.navigate("Register")
+		return this.props.navigation.navigate(routes.REGISTER)
 	}
 
 	forgotPassword () {
