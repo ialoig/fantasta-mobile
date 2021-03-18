@@ -1,38 +1,38 @@
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from "react-native"
 import colors from "./colors"
 
 export default StyleSheet.create({
-    dotStyle: {
-        width: 10,
-        height: 8,
-        borderRadius: 3,
-        backgroundColor: colors.greenDisabled
-    },
-    activeDotStyle: {
-        width: 30,
-        height: 8,
-        borderRadius: 3,
-        backgroundColor: colors.primary
-    },
-    title: {
-        fontFamily: "PoppinsSemiBold",
-        fontSize: 22,
-        fontWeight: "600",
-        fontStyle: "normal",
-        lineHeight: 30,
-        letterSpacing: 0.75,
-        textAlign: "center",
-        color: colors.text
-    },
-    description: {
-        fontFamily: "PoppinsMedium",
-        fontSize: 14,
-        fontWeight: "500",
-        fontStyle: "normal",
-        lineHeight: 20,
-        letterSpacing: 0.25,
-        textAlign: "center",
-        color: colors.textPlaceholder
-    }
+	activeDotStyle: {
+		backgroundColor: colors.primary,
+		borderRadius: 3,
+		height: 8,
+		width: 30
+	},
+	description: {
+		color: colors.textPlaceholder,
+		fontFamily: "PoppinsMedium",
+		fontSize: 14,
+		fontStyle: "normal",
+		fontWeight: "500",
+		letterSpacing: 0.25,
+		lineHeight: 20,
+		textAlign: "center"
+	},
+	dotStyle: {
+		backgroundColor: colors.greenDisabled,
+		borderRadius: 3,
+		height: 8,
+		width: 10
+	},
+	title: {
+		color: colors.text,
+		fontFamily: "PoppinsSemiBold",
+		fontSize: 22,
+		fontStyle: "normal",
+		fontWeight: "600",
+		letterSpacing: 0.75,
+		lineHeight: 30,
+		textAlign: "center"
+	}
 })

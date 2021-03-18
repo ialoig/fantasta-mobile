@@ -1,32 +1,32 @@
 
 
 let USER = {
-    email: '',
-    id: '',
-    username: ''
+	email: "",
+	id: "",
+	username: ""
 }
 
 const Set = ( user ) =>
 {
-    USER = {
-        email: user.email,
-        id: user._id,
-        username: user.username
-    }
+	USER = {
+		email: user.email,
+		id: user._id,
+		username: user.username
+	}
 }
 
 const remove = () => {
-    USER = {}
+	USER = {}
 }
 
 
 const Get = () =>
 {
-    return USER
+	return USER
 }
 
 export const User = {
-    Set,
-    Get,
-    remove
+	Set,
+	Get,
+	remove
 }
