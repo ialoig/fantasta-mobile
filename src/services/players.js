@@ -1,58 +1,58 @@
 
-import axios from 'axios'
+import axios from "axios"
 
-import { Storage } from './storage'
+import { Storage } from "./storage"
 
 let PLAYERS = {}
-let VERSION = ''
+let VERSION = ""
 
 const Set = ( players ) =>
 {
-    PLAYERS = players || []
+	PLAYERS = players || []
 }
 
 const Get = () =>
 {
-    return PLAYERS
+	return PLAYERS
 }
 
 const Init = async () =>
 {
-    try
-    {
-        console.log("GET /footballPlayers")
+	try
+	{
+		console.log("GET /footballPlayers")
 
-        let players = await Storage.Get( 'players' )
-        players = typeof(players) == 'string' ? JSON.parse(players) : players
+		let players = await Storage.Get( "players" )
+		players = typeof(players) == "string" ? JSON.parse(players) : players
 
-        let version = players && players.version || 0
+		let version = players && players.version || 0
 
-        let response = await axios.get(`/footballPlayers`, { params: { version } })
+		let response = await axios.get("/footballPlayers", { params: { version } })
 
-        if ( response && response.updated )
-        {
-            PLAYERS = data.footballPlayers
-            VERSION = data.version
+		if ( response && response.updated )
+		{
+			PLAYERS = data.footballPlayers
+			VERSION = data.version
 
-            Storage.Set( 'players', JSON.stringify({ footballPlayers: response.footballPlayers, version: response.version }) )
-        }
-        else
-        {
-            PLAYERS = players.footballPlayers
-            VERSION = version
-        }
+			Storage.Set( "players", JSON.stringify({ footballPlayers: response.footballPlayers, version: response.version }) )
+		}
+		else
+		{
+			PLAYERS = players.footballPlayers
+			VERSION = version
+		}
 
-        return Promise.resolve()
-    }
-    catch (error)
-    {
-        console.log("[players init] - error: ", error)
-        return Promise.reject(error)
-    }
+		return Promise.resolve()
+	}
+	catch (error)
+	{
+		console.log("[players init] - error: ", error)
+		return Promise.reject(error)
+	}
 }
 
 export const Players = {
-    Set,
-    Get,
-    Init
+	Set,
+	Get,
+	Init
 }

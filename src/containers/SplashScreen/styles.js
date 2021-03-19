@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native"
 
 export default StyleSheet.create({
   	logo: {
-		flex: 1,
-    	alignItems: 'center',
-    	justifyContent: 'center'
+		alignItems: "center",
+    	flex: 1,
+    	justifyContent: "center"
   	}
-});
+})

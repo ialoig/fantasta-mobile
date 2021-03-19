@@ -1,50 +1,50 @@
 
-import { StyleSheet } from "react-native";
-import { deviceScreenWidth, deviceScreenHeight } from "../utils/pixelResolver";
-import colors from "./colors";
+import { StyleSheet } from "react-native"
+import { deviceScreenHeight, deviceScreenWidth } from "../utils/deviceUtils"
+import colors from "./colors"
 
 export default StyleSheet.create({
-	flex: {
-		flex: 1
-	},
-	container: {
-    	flex: 1,
-    	justifyContent: 'center',
-    	alignContent: 'center',
-		paddingTop: deviceScreenHeight * 0.06,
-		paddingBottom: deviceScreenHeight * 0.01,
-		paddingHorizontal: deviceScreenWidth * 0.06,
-		backgroundColor: colors.background
-  	},
-  	content: {
-		flex: 1,
-    	justifyContent: 'center'
-  	},
-  	header: {
-        flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: "center",
-		marginBottom: 12,
-  	},
-  	buttonContainer: {
-		paddingTop: 12,
-		justifyContent: "flex-end"
-  	},
-	title: {
-        flex: 1,
-        flexGrow: 1,
-        textAlign: 'center'
-	},
-	flex_start: {
-		justifyContent: "flex-start"
-	},
-	flex_end: {
-		justifyContent: "flex-end"
+	buttonContainer: {
+		justifyContent: "flex-end",
+		paddingTop: 12
 	},
 	center: {
 		justifyContent: "center"
 	},
+	container: {
+		alignContent: "center",
+		backgroundColor: colors.background,
+		flex: 1,
+		justifyContent: "center",
+		paddingBottom: deviceScreenHeight * 0.01,
+		paddingHorizontal: deviceScreenWidth * 0.06,
+		paddingTop: deviceScreenHeight * 0.06
+	},
+	content: {
+		flex: 1,
+		justifyContent: "center"
+	},
+	flex: {
+		flex: 1
+	},
+	flex_end: {
+		justifyContent: "flex-end"
+	},
+	flex_start: {
+		justifyContent: "flex-start"
+	},
+	header: {
+		alignItems: "center",
+		flexDirection: "row",
+		justifyContent: "center",
+		marginBottom: 12,
+	},
 	justifyText: {
 		textAlign: "justify"
+	},
+	title: {
+		flex: 1,
+		flexGrow: 1,
+		textAlign: "center"
 	}
-});
+})

@@ -1,18 +1,20 @@
 
 import React from "react"
-import Create from './Create'
-import CreateLeague from './CreateLeague'
-import TeamSettings from './TeamSettings'
-import AuctionSettings from './AuctionSettings'
-import CreateTeam from './CreateTeam'
-import { Leagues, Error } from '../../services'
-import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from '../../constants'
+import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
+import routes from "../../navigation/routesNames"
+import { Error, Leagues } from "../../services"
+import AuctionSettings from "./AuctionSettings"
+import Create from "./Create"
+import CreateLeague from "./CreateLeague"
+import CreateTeam from "./CreateTeam"
+import TeamSettings from "./TeamSettings"
 
 const pages = [
-    { key: "1", component: CreateLeague, title: 'createLeague', description: "" },
-    { key: "2", component: TeamSettings, title: 'teamSettings', description: "" },
-    { key: "3", component: AuctionSettings, title: 'auctionSettings', description: "" },
-    { key: "4", component: CreateTeam, title: 'createTeam', description: "" }
+
+    { key: "1", component: CreateLeague, title: "createLeague", description: "" },
+    { key: "2", component: TeamSettings, title: "teamSettings", description: "" },
+    { key: "3", component: AuctionSettings, title: "auctionSettings", description: "" },
+    { key: "4", component: CreateTeam, title: "createTeam", description: "" }
 ]
 
 export class CreateContainer extends React.Component {
@@ -20,37 +22,37 @@ export class CreateContainer extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            pages,
-            settings: {
-                [FIELDS_ID.leagueNameId]: '',
-                [FIELDS_ID.passwordId]: '',
-                [FIELDS_ID.participantsId]: 8,
-                [FIELDS_ID.tipologyId]: TIPOLOGY.CLASSIC,
-                [FIELDS_ID.goalskeepersId]: 3,
-                [FIELDS_ID.defendersId]: 8,
-                [FIELDS_ID.midfieldersId]: 8,
-                [FIELDS_ID.strikersId]: 6,
-                [FIELDS_ID.playersId]: 22,
-                [FIELDS_ID.budgetId]: 500,
-                [FIELDS_ID.countdownId]: 60,
-                [FIELDS_ID.auctiontypeId]: AUCTION_TYPE.RANDOM,
-                [FIELDS_ID.startpriceId]: STARTING_PRICE.NONE,
-                [FIELDS_ID.teamnameId]: ''
-            }
-        }
-    }
+		this.state = {
+			pages,
+			settings: {
+				[FIELDS_ID.leagueNameId]: "",
+				[FIELDS_ID.passwordId]: "",
+				[FIELDS_ID.participantsId]: 8,
+				[FIELDS_ID.tipologyId]: TIPOLOGY.CLASSIC,
+				[FIELDS_ID.goalskeepersId]: 3,
+				[FIELDS_ID.defendersId]: 8,
+				[FIELDS_ID.midfieldersId]: 8,
+				[FIELDS_ID.strikersId]: 6,
+				[FIELDS_ID.playersId]: 22,
+				[FIELDS_ID.budgetId]: 500,
+				[FIELDS_ID.countdownId]: 60,
+				[FIELDS_ID.auctiontypeId]: AUCTION_TYPE.RANDOM,
+				[FIELDS_ID.startpriceId]: STARTING_PRICE.NONE,
+				[FIELDS_ID.teamnameId]: ""
+			}
+		}
+	}
 
     onChange(id, value, valid) {
 
-        let settings = {
-            [id]: value
-        }
+		let settings = {
+			[id]: value
+		}
 
-        this.setState({
-            settings: Object.assign({}, this.state.settings, settings)
-        })
-    }
+		this.setState({
+			settings: Object.assign({}, this.state.settings, settings)
+		})
+	}
 
     async onDone() {
         if (!this.state.settings[FIELDS_ID.leagueNameId]) {
