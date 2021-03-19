@@ -27,7 +27,7 @@ export const AUCTION_TYPE = {
 
 export const STARTING_PRICE = {
     NONE: 'zero',
-    LIST: 'list'
+    LIST: 'listPrice'
 }
 
 export const FIELDS_ID = {

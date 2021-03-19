@@ -10,14 +10,14 @@ import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from '../../constan
 
 const pages = [
     { key: "1", component: CreateLeague, title: 'createLeague', description: "" },
-    { key: "2", component: TeamSettings, title: 'teamSettings', description: "" },    
+    { key: "2", component: TeamSettings, title: 'teamSettings', description: "" },
     { key: "3", component: AuctionSettings, title: 'auctionSettings', description: "" },
     { key: "4", component: CreateTeam, title: 'createTeam', description: "" }
 ]
 
 export class CreateContainer extends React.Component {
 
-    constructor (props) {
+    constructor(props) {
         super(props)
 
         this.state = {
@@ -41,7 +41,7 @@ export class CreateContainer extends React.Component {
         }
     }
 
-    onChange ( id, value, valid ) {
+    onChange(id, value, valid) {
 
         let settings = {
             [id]: value
@@ -52,44 +52,46 @@ export class CreateContainer extends React.Component {
         })
     }
 
-    async onDone () {
-        if ( !this.state.settings[FIELDS_ID.leagueNameId] ) {
-            Error.showAlert( 'field_error', 'missing_league_name' )
+    async onDone() {
+        if (!this.state.settings[FIELDS_ID.leagueNameId]) {
+            Error.showAlert('field_error', 'missing_league_name')
         }
-        else if ( !this.state.settings[FIELDS_ID.passwordId] ) {
-            Error.showAlert( 'field_error', 'missing_password' )
+        else if (!this.state.settings[FIELDS_ID.passwordId]) {
+            Error.showAlert('field_error', 'missing_password')
         }
-        else if ( !this.state.settings[FIELDS_ID.teamnameId] ) {
-            Error.showAlert( 'field_error', 'missing_team_name' )
+        else if (!this.state.settings[FIELDS_ID.teamnameId]) {
+            Error.showAlert('field_error', 'missing_team_name')
         }
-        else if ( this.state.settings[FIELDS_ID.participantsId]<2 ) {
-            Error.showAlert( 'field_error', 'participants_error' )
+        else if (this.state.settings[FIELDS_ID.participantsId] < 2) {
+            Error.showAlert('field_error', 'participants_error')
         }
-        else if ( this.state.settings[FIELDS_ID.goalskeepersId]<1 ) {
-            Error.showAlert( 'field_error', 'goalskeepers_error' )
+        else if (this.state.settings[FIELDS_ID.goalskeepersId] < 1) {
+            Error.showAlert('field_error', 'goalskeepers_error')
         }
-        else if ( this.state.settings[FIELDS_ID.defendersId]<1 ) {
-            Error.showAlert( 'field_error', 'defenders_error' )
+        else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
+            Error.showAlert('field_error', 'defenders_error')
         }
-        else if ( this.state.settings[FIELDS_ID.midfieldersId]<1 ) {
-            Error.showAlert( 'field_error', 'midfielders_error' )
+        else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.midfieldersId] < 3) {
+            Error.showAlert('field_error', 'midfielders_error')
         }
-        else if ( this.state.settings[FIELDS_ID.strikersId]<1 ) {
-            Error.showAlert( 'field_error', 'forwarders_error' )
+        else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.strikersId] < 1) {
+            Error.showAlert('field_error', 'forwarders_error')
         }
-        else if ( this.state.settings[FIELDS_ID.playersId]<1 ) {
-            Error.showAlert( 'field_error', 'players_error' )
+        else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] + this.state.settings[FIELDS_ID.midfieldersId] + this.state.settings[FIELDS_ID.strikersId] < 10) {
+            Error.showAlert('field_error', 'players_error') // todo: maybe a better error?
         }
-        else if ( this.state.settings[FIELDS_ID.countdownId]<3 ) {
-            Error.showAlert( 'field_error', 'countdown_error' )
+        else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA && this.state.settings[FIELDS_ID.playersId] < 10) {
+            Error.showAlert('field_error', 'players_error')
+        }
+        else if (this.state.settings[FIELDS_ID.countdownId] < 3) {
+            Error.showAlert('field_error', 'countdown_error')
         }
         else {
-            try
-            {
-                await Leagues.Create( this.state.settings )
+            try {
+                await Leagues.Create(this.state.settings)
                 this.props.navigation.navigate("Dashboard")
             }
-            catch (error) {/*error handling done in Leagues.Create*/}
+            catch (error) { /* error handling done in Leagues.Create */ }
         }
     }
 
@@ -120,5 +122,5 @@ export class CreateContainer extends React.Component {
             />
         )
     }
-    
 }
+

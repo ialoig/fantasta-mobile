@@ -96,7 +96,7 @@ const deleteAccount = async (password) =>
 
 const saveUser = ( response ) =>
 {
-    console.log("[saveUser] - " + response)
+    console.log(`[saveUser] - ${JSON.stringify(response, null, 2)}`)
 
     let data = response || {}
 
