@@ -1,24 +1,24 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native"
 
 export default StyleSheet.create({
+	cardContent: {
+		flex: 1,
+	},
 	header: {
-		marginTop: 56,
+		flexDirection: "row",
 		marginBottom: 12,
 		marginHorizontal: 24,
-		flexDirection: 'row',
+		marginTop: 56,
 	},
 	title: {
 		flex: 1,
 		flexGrow: 1,
 		justifyContent: "center",
-		textAlign: 'center',
-		textAlignVertical: 'center'
-	},
-	cardContent: {
-		flex: 1,
+		textAlign: "center",
+		textAlignVertical: "center"
 	},
 	version: {
-		textAlign: "center",
-		paddingVertical: 12
+		paddingVertical: 12,
+		textAlign: "center"
 	}
 })

@@ -1,21 +1,22 @@
 
-import React from 'react'
+import React from "react"
 
-import GetStarted from './GetStarted'
+import routes from "../../navigation/routesNames"
+import GetStarted from "./GetStarted"
 import {data} from "./costants"
 
 export class GetStartedContainer extends React.Component {
 
-    onDone () {
-        this.props.navigation.navigate("Home")
-    }
+	onDone () {
+		this.props.navigation.navigate(routes.HOME)
+	}
     
-    render() {
-        return (
-            <GetStarted
-                data={data}
-                onDone={this.onDone.bind(this)}
-            />
-        )
-    }
+	render() {
+		return (
+			<GetStarted
+				data={data}
+				onDone={this.onDone.bind(this)}
+			/>
+		)
+	}
 }

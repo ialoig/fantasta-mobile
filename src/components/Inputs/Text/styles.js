@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from "react-native"
 
 export default StyleSheet.create({
-    container: {
-        paddingVertical: 4
-    }
-});
+	container: {
+		paddingVertical: 4
+	}
+})

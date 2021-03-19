@@ -1,35 +1,35 @@
-import { StyleSheet } from "react-native";
-import colors from "./colors";
+import { StyleSheet } from "react-native"
+import colors from "./colors"
 
 export default StyleSheet.create({
-    container: {
-        paddingVertical: 4,
-        width: "100%"
-    },
-    inputForm: {
-        minHeight: 56,
-        marginTop: 8,
-        paddingTop: 2,
-        borderRadius: 40,
-        backgroundColor: colors.greyLight,
-        paddingHorizontal: 32,
-        textAlignVertical: "center"
-    },
-    isValid: {
-        backgroundColor: colors.successGreen,
-        borderStyle: "solid",
-        borderWidth: 2,
-        borderColor: colors.primary
-    },
-    hasError: {
-        marginTop: 0,
-        borderStyle: "solid",
-        borderWidth: 1,
-        backgroundColor: colors.errorRedBg,
-        borderColor: colors.errorRed,
-    },
-    inputError: {
-        color: colors.errorRed
-    }
+	container: {
+		paddingVertical: 4,
+		width: "100%"
+	},
+	hasError: {
+		backgroundColor: colors.errorRedBg,
+		borderColor: colors.errorRed,
+		borderStyle: "solid",
+		borderWidth: 1,
+		marginTop: 0,
+	},
+	inputError: {
+		color: colors.errorRed
+	},
+	inputForm: {
+		backgroundColor: colors.greyLight,
+		borderRadius: 40,
+		marginTop: 8,
+		minHeight: 56,
+		paddingHorizontal: 32,
+		paddingTop: 2,
+		textAlignVertical: "center"
+	},
+	isValid: {
+		backgroundColor: colors.successGreen,
+		borderColor: colors.primary,
+		borderStyle: "solid",
+		borderWidth: 2
+	}
 
-});
+})

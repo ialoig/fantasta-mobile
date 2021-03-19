@@ -1,16 +1,16 @@
 
 import React from "react"
 
-import Logo from './Logo'
+import Logo from "./Logo"
 
 export default class LogoContainer extends React.Component {
 
-    render() {
+	render() {
 
-        const { size='', type='png' } = this.props
+		const { size="", type="png" } = this.props
 
-        return (
-            <Logo size={size} type={type} />
-        )
-    }
+		return (
+			<Logo size={size} type={type} />
+		)
+	}
 }

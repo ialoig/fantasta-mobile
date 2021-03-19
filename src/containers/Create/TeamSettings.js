@@ -1,17 +1,17 @@
 
+import I18n from "i18n-js"
 import React from "react"
 import { View } from "react-native"
-import I18n from 'i18n-js'
 
-import { NumberInc } from '../../components'
-import styles from './styles'
+import { NumberInc } from "../../components"
 import { commonStyle } from "../../styles"
+import styles from "./styles"
 
 const TeamSettings = (props) => {
     return (
         <View style={commonStyle.flex}>
             <NumberInc
-                label={I18n.translate('nGoalkeepers')}
+                label={I18n.translate("nGoalkeepers")}
                 value={props.settings[props.goalskeepersId]}
                 step={1}
                 min={1}
@@ -21,21 +21,21 @@ const TeamSettings = (props) => {
                 props.settings[props.tipologyId] == props.tipology.CLASSIC ?
                     <View>
                         <NumberInc
-                            label={I18n.translate('nDefenders')}
+                            label={I18n.translate("nDefenders")}
                             value={props.settings[props.defendersId]}
                             step={1}
                             min={3}
                             onChange={value => props.onChange(props.defendersId, value)}
                         />
                         <NumberInc
-                            label={I18n.translate('nMidfielders')}
+                            label={I18n.translate("nMidfielders")}
                             value={props.settings[props.midfieldersId]}
                             step={1}
                             min={3}
                             onChange={value => props.onChange(props.midfieldersId, value)}
                         />
                         <NumberInc
-                            label={I18n.translate('nStrikers')}
+                            label={I18n.translate("nStrikers")}
                             value={props.settings[props.strikersId]}
                             step={1}
                             min={1}
@@ -46,7 +46,7 @@ const TeamSettings = (props) => {
             {
                 props.settings[props.tipologyId] == props.tipology.MANTRA ?
                     <NumberInc
-                        label={I18n.translate('nPlayers')}
+                        label={I18n.translate("nPlayers")}
                         value={props.settings[props.playersId]}
                         step={1}
                         min={10}
@@ -54,7 +54,7 @@ const TeamSettings = (props) => {
                     /> : null
             }
             <NumberInc
-                label={I18n.translate('startingBudget')}
+                label={I18n.translate("startingBudget")}
                 value={props.settings[props.budgetId]}
                 step={10}
                 min={11} // todo: mi fa scendere fino a 10 anche se poi manda 11
