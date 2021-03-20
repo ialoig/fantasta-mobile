@@ -42,6 +42,10 @@ export default StyleSheet.create({
 	justifyText: {
 		textAlign: "justify"
 	},
+	modal: {
+		borderTopLeftRadius: 32,
+		borderTopRightRadius: 32,
+	},
 	title: {
 		flex: 1,
 		flexGrow: 1,

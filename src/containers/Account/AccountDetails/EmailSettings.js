@@ -10,6 +10,7 @@ import routes from "../../../navigation/routesNames"
 
 import { Auth } from "../../../services"
 import { commonStyle } from "../../../styles"
+import styles from "../styles"
 
 function EmailSettings() {
 
@@ -24,7 +25,7 @@ function EmailSettings() {
 
 
 	return (
-		<View style={[commonStyle.container, commonStyle.flex_start]}>
+		<View style={[commonStyle.container, commonStyle.modal, commonStyle.flex_start]}>
 			{ /** header */}
 			<Header title="change_email" backButton={true} onPressBack={() => goBack()}/>
 

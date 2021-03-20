@@ -14,14 +14,14 @@ function UsernameSettings() {
 	//hook which give access to the navigation object from the component directly
 	const { navigate, goBack } = useNavigation()
 	const route = useRoute()
-	//gettin username from route
+	//get username from route
 	const { username } = route.params
 
 	const [newUsername, setNewUsername] = useState(username)
 	const [error, setError] = useState(false)
 
 	return (
-		<View style={[commonStyle.container, commonStyle.flex_start]}>
+		<View style={[commonStyle.container, commonStyle.modal, commonStyle.flex_start]}>
 			{ /** header */}
 			<Header title="change_username" backButton={true} onPressBack={() => goBack()}/>
 
