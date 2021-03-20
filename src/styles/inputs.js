@@ -11,7 +11,7 @@ export default StyleSheet.create({
 		borderColor: colors.errorRed,
 		borderStyle: "solid",
 		borderWidth: 1,
-		marginTop: 0,
+		marginTop: 0
 	},
 	inputError: {
 		color: colors.errorRed

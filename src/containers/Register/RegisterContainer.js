@@ -52,11 +52,11 @@ export class RegisterContainer extends React.Component {
 			{
 				let res = await Auth.Register( email, pw1 )
 
-				this.props.navigation.navigate(routes.GETSTARTED)
+				this.props.navigation.navigate(routes.COMPLETE_REGISTER)
 			}
 			catch (error)
 			{
-                
+				//managed on services/auth.js
 			}
 		}
 	}

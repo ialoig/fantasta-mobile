@@ -1,17 +1,18 @@
 
 import I18n from "i18n-js"
 import React from "react"
-import { Keyboard, KeyboardAvoidingView, Platform, Text, TouchableWithoutFeedback, View } from "react-native"
+import { Keyboard, KeyboardAvoidingView, Text, TouchableWithoutFeedback, View } from "react-native"
 
 import { Button, Email, Logo, Password } from "../../components"
 import { commonStyle, textStyles } from "../../styles"
+import { ios } from "../../utils/deviceUtils"
 import styles from "./styles"
 
 
 const Login = (props) => { 
 	return (
 		<KeyboardAvoidingView style={commonStyle.container}
-			behavior={Platform.OS === "ios" ? "padding" : undefined} >
+			behavior={ios ? "padding" : undefined} >
 			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 				<View style={commonStyle.content}>
 					<Logo />

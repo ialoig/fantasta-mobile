@@ -61,6 +61,7 @@
   "players_error": "Minimum motion soccer players number is 10",
   "random": "Random",
   "register": "Register",
+  "complete_register": "Complete registration",
   "repeatPassword": "Repeat password",
   "requiredField": "Required field",
   "save": "Save",
