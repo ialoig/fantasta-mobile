@@ -61,6 +61,7 @@
   "players_error": "Il numero minimo di giocatori è 2",
   "random": "Casuale",
   "register": "Register",
+  "complete_register": "Completa la registrazione",
   "repeatPassword": "Ripeti password",
   "requiredField": "Campo obbligatorio",
   "save": "Salva",

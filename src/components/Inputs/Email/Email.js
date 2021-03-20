@@ -14,7 +14,8 @@ const Email = (props) => {
 				ref={(ref)=> { props.onRef(ref) }}
 				keyboardType='email-address'
 			/>
-			{ props.hasError ? <Text style={[textStyles.description, inputStyle.inputError]}>{props.error}</Text> : null }
+			{ props.hasError ? 
+				<Text style={[textStyles.description, inputStyle.inputError]}>{props.error}</Text> : null }
 		</View>
 	)
 }
