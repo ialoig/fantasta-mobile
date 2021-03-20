@@ -18,16 +18,6 @@ function Account () {
 	const { navigate, goBack } = useNavigation()
 	const route = useRoute()
 	const { email, username } = route.params
-    
-
-	// const navigateToAccountDetails = () => {
-	// 	return navigate("AccountDetailsNavigator", 
-	// 		{
-	// 			email: email,
-	// 			username: username
-	// 		})
-	// }
-
 
 	return (
 		<View style={commonStyle.container}>

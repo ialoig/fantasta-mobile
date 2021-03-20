@@ -42,6 +42,7 @@ export const screenOptions = {
 const screenIosModalConfig = {
 	cardOverlayEnabled: true,
 	cardShadowEnabled: true,
+	cardStyle: { backgroundColor: "transparent", overflow: "visible" },
 	gestureEnabled: true,
 	gestureResponseDistance: {
 		vertical: deviceHeight
@@ -56,7 +57,7 @@ const screenIosModalConfig = {
 const screenAndroidModalConfig = {
 	cardOverlayEnabled: true,
 	cardShadowEnabled: true,
-	cardTransparent: true,
+	cardStyle: { backgroundColor: "transparent", overflow: "visible" },
 	gestureEnabled: true,
 	gestureResponseDistance: {
 		vertical: deviceHeight

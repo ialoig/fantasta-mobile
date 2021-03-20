@@ -21,7 +21,7 @@ function DeleteAccount() {
 	const [error, setError] = useState(false)
 
 	return (
-		<View style={[commonStyle.container, commonStyle.flex_start]}>
+		<View style={[commonStyle.container, commonStyle.modal, commonStyle.flex_start]}>
 			{ /** header */}
 			<Header title="delete_account" backButton={true} onPressBack={() => goBack()}/>
 
