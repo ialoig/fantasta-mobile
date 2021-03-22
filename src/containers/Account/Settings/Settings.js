@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import React from "react"
 import { View } from "react-native"
-import { Card, Header} from "../../../components"
+import { Card } from "../../../components"
 import routes from "../../../navigation/routesNames"
 import { commonStyle } from "../../../styles"
 import styles from "../styles"
@@ -15,8 +15,6 @@ function Settings() {
     
 	return (
 		<View style={commonStyle.container}>
-			{ /** header */}
-			<Header title="settings" backButton={true} onPressBack={() => goBack()}/>
 			<View style={styles.cardContent}>
 				{ /** language */}
 				<Card

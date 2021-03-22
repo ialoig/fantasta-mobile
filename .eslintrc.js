@@ -17,7 +17,6 @@ module.exports = {
 			version: "17"
 		}
 	},
-	//parser: "@babel/eslint-parser", //!!not used - does not solve the issue "Error: Couldn't find a Program"
 	parserOptions: {
 		ecmaFeatures: {
 			"jsx": true
@@ -62,7 +61,7 @@ module.exports = {
 		//severity level: 0 = off, 1 = warn, 2 = error
 		"import/no-unresolved": 2, //Ensure imports point to a file/module that can be resolved.
 		"import/named": 0, //Ensure named imports correspond to a named export in the remote file
-		"import/namespace": 2, //Ensure imported namespaces contain dereferenced properties as they are dereferenced.
+		"import/namespace": 0, //Ensure imported namespaces contain dereferenced properties as they are dereferenced.
 		"import/default": 2, //Ensure a default export is present, given a default import
 		"import/order": //Enforce a convention in module import order
 		[

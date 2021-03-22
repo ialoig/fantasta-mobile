@@ -3,7 +3,7 @@ import I18n from "i18n-js"
 import React from "react"
 import { View } from "react-native"
 
-import { Card, Header} from "../../../components"
+import { Card } from "../../../components"
 import routes from "../../../navigation/routesNames"
 import { commonStyle } from "../../../styles"
 import styles from "../styles"
@@ -42,8 +42,8 @@ function AccountDetails() {
 
 	return (
 		<View style={commonStyle.container}>
-			{ /** header */}
-			<Header title="account_details" backButton={true} onPressBack={(backToAccount)}/>
+			{ /** header 
+			<Header title="account_details" backButton={true} onPressBack={(backToAccount)}/>*/}
 
 			<View style={styles.cardContent}>
 				{ /** email */}

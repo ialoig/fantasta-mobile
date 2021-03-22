@@ -1,4 +1,5 @@
 
+import PropTypes from "prop-types"
 import React from "react"
 import routes from "../../navigation/routesNames"
 
@@ -6,8 +7,12 @@ import { Auth, Init, Token } from "../../services"
 
 import SplashScreen from "./SplashScreen"
 
-export class SplashScreenContainer extends React.Component {
 
+export class SplashScreenContainer extends React.Component {
+	static propTypes = {
+		navigation: PropTypes.object.isRequired
+	}
+	
 	async componentDidMount ()
 	{
 		try

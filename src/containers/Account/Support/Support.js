@@ -3,7 +3,7 @@ import I18n from "i18n-js"
 import React from "react"
 
 import { View } from "react-native"
-import { Card, Header} from "../../../components"
+import { Card } from "../../../components"
 import routes from "../../../navigation/routesNames"
 import { commonStyle } from "../../../styles"
 
@@ -16,9 +16,6 @@ function Support() {
 
 	return (
 		<View style={commonStyle.container}>
-			{ /** header */}
-			<Header title="support" backButton={true} onPressBack={() => goBack()}/>
-
 			<View style={styles.cardContent}>
 				{ /** Feedback */}
 				<Card
