@@ -6,6 +6,10 @@ import { Text, View } from "react-native"
 import { commonStyle, textStyles } from "../../styles"
 import IconButtonContainer from "../IconButton/IconButtonContainer"
 
+
+/**
+ * TODO: gl - valutare se ancora necessario. Viene usato solo nelle pagine gestite come slide.
+ */
 const Header = (props) => {
 
 	const { title, backButton, onPressBack, rightButton, onPressRight, iconTypeBack, iconTypeRight } = props
