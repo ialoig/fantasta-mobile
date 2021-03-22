@@ -3,7 +3,7 @@ import { useNavigation, useRoute } from "@react-navigation/native"
 import I18n from "i18n-js"
 import React, { useState } from "react"
 import { Text, View } from "react-native"
-import { Button, Header, Password } from "../../../components"
+import { Button, Password } from "../../../components"
 
 import { FIELDS_ID } from "../../../constants"
 import { Auth } from "../../../services"
@@ -21,10 +21,7 @@ function DeleteAccount() {
 	const [error, setError] = useState(false)
 
 	return (
-		<View style={[commonStyle.container, commonStyle.modal, commonStyle.flex_start]}>
-			{ /** header */}
-			<Header title="delete_account" backButton={true} onPressBack={() => goBack()}/>
-
+		<View style={[commonStyle.container, commonStyle.flex_start]}>
 			<Text style={[textStyles.h3, commonStyle.justifyText]}>
 				{I18n.translate("delete_warn")}
 			</Text>
