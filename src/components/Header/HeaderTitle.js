@@ -7,6 +7,8 @@ import { textStyles } from "../../styles"
 
 function HeaderTitle({children}) {
 
+	//TODO: gl - valutare possibilita di scorrere una mappa con tutte le routes ed impostare il titolo 
+	//dell'header in maniera più furba
 	const title = (children) => {
 		switch(children) {
 		case routes.ACCOUNT:

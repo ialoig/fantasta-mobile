@@ -14,6 +14,7 @@ const Card = (props) => {
 		<TouchableOpacity onPress={props.onPress} style={[ card.card, card[type] ]}>
 			{ icon &&
                 <View style={image[type]}>
+                	{/** TODO: gl - valutare sostituzione con componente Icon e relativo uso di Svg */}
                 	<Image source={icon} />
                 </View>
 			}

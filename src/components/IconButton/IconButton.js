@@ -4,6 +4,10 @@ import { Image, TouchableOpacity, View } from "react-native"
 
 import { button } from "./styles"
 
+/**
+ * TODO: gl - valutare se utilizzare ancora in relazione ad uso di componente HeaderContainer
+ * 
+ */
 const IconButton = (props) => {
 
 	const { type, icon } = props

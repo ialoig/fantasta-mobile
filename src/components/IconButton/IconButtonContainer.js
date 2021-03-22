@@ -1,6 +1,10 @@
 import React from "react"
 import IconButton from "./IconButton"
 
+/**
+ * TODO: gl - valutare se utilizzare ancora in relazione ad uso di componente HeaderContainer
+ * 
+ */
 export default class IconButtonContainer extends React.Component {
 
 	constructor (props) {
