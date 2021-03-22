@@ -51,7 +51,7 @@ export default StyleSheet.create({
 	h1: {
 		color: colors.text,
 		fontFamily: "PoppinsSemiBold",
-		fontSize: 25,
+		fontSize: 20,
 		fontStyle: "normal",
 		fontWeight: "600",
 		letterSpacing: 0.75,
@@ -60,7 +60,7 @@ export default StyleSheet.create({
 	h2: {
 		color: colors.text,
 		fontFamily: "PoppinsSemiBold",
-		fontSize: 22,
+		fontSize: 16,
 		fontStyle: "normal",
 		fontWeight: "600",
 		letterSpacing: 0.75,

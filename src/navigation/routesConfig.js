@@ -1,6 +1,11 @@
 import { TransitionPresets } from "@react-navigation/stack"
-import { Keyboard } from "react-native"
-import { android, deviceHeight, ios } from "../utils/deviceUtils"
+import React from "react"
+import { Keyboard} from "react-native"
+import EmptyButtonPlaceHolder from "../components/Header/EmptyButtonPlaceHolder"
+import HeaderRightButton from "../components/Header/HeaderRightButton"
+import HeaderTitle from "../components/Header/HeaderTitle"
+import Icon from "../components/Icon/Icon"
+import { android, deviceHeight, deviceScreenWidth, ios } from "../utils/deviceUtils"
 
 
 /**
@@ -16,22 +21,30 @@ export const closeKeyboardOnClose = {
 }
 
 /**
- *  Basic configuration for screen options
+ *  Default configuration for screen options
  * 
  */
 export const defaultScreenOptions = {
-	headerMode: "none"
+	headerMode: "screen",
 }
 
-
 /**
- *  Screen configuration for that screens where a modal behavior is defined
+ *  Screen option for Navigator where modals are defined.
+ *  It works on Android devices: when modal is dismissed keyboard does not dismiss automatically,
+ *  but it's closed by a custom listener.
  * 
  */
-export const screenOptions = {
+export const defaultModalScreenOptions = {
 	...defaultScreenOptions,
 	keyboardHandlingEnabled: ios ? true : false,
-	//mode: "modal",
+}
+
+/**
+ *  Screen configuration for pages with no header defined
+ * 
+ */
+export const noHeaderScreenConfig = {
+	headerShown: false
 }
 
 
@@ -39,7 +52,7 @@ export const screenOptions = {
  *  Modal screen configuration for IOS devices
  * 
  */
-const screenIosModalConfig = {
+const screeniOSModalConfig = {
 	cardOverlayEnabled: true,
 	cardShadowEnabled: true,
 	cardStyle: { backgroundColor: "transparent", overflow: "visible" },
@@ -66,4 +79,84 @@ const screenAndroidModalConfig = {
 }
 
 
-export const screenModalConfig = ios ? screenIosModalConfig : android ? screenAndroidModalConfig : {}
+export const screenModalConfig = ios ? screeniOSModalConfig : android ? screenAndroidModalConfig : {}
+
+
+export const headerTitleConfig = {
+	headerTitleAlign: "center",
+	headerTitle: props => <HeaderTitle {...props}/>,
+	headerStyle: {
+		elevation: 0,//define shadow offset line
+		shadowColor: "transparent", //for iOS configuration, disable shadow
+		borderTopLeftRadius: ios ? 32 : 0, //rounded top border for iOS modal
+		borderTopRightRadius: ios ? 32 : 0 //rounded top border for iOS modal
+	},
+	headerStatusBarHeight: 24,
+}
+
+/**
+ *  Disable right button on header
+ * 
+ */
+export const headerNORightConfig = {
+	headerRight: () => <EmptyButtonPlaceHolder />,
+}
+
+/**
+ *  Set a back button on header and return a back icon
+ * 
+ */
+export const headerBackConfig = {
+	headerBackImage: () => <Icon name="back" />,
+	headerBackTitleVisible: false,
+	headerLeftContainerStyle: {
+		paddingLeft: deviceScreenWidth * 0.04
+	},
+}
+
+/**
+ *  Disable back button on header
+ * 
+ */
+export const headerNOBackConfig = {
+	headerBackImage: () => <EmptyButtonPlaceHolder />
+}
+
+
+/**
+ * 
+ * @param {String} type : specifies icon type and route for the right button
+ * @returns an Icon object with the onPress prop
+ */
+export const getHeaderRightConfig = (type) => {
+
+	return {
+		headerRight: (props) => <HeaderRightButton type={type} {...props}/>,
+		headerRightContainerStyle: {
+			paddingRight: deviceScreenWidth * 0.06
+		}
+	}
+}
+
+/**
+ * 
+ * @param {Boolean} modal : if true, screen will be shown as modal and with specific transitions
+ * @param {String} right : string that specifies the route and icon to be setted as right button
+ * @param {Boolean} back : if true, back button will be shown
+ * @returns option prop for Screen
+ */
+export const getScreenConfig = (modal, right, back) => {
+
+	const headerRight = right ? getHeaderRightConfig(right) : headerNORightConfig
+	const headerBack = back ? headerBackConfig : headerNOBackConfig
+	const modalConfig = modal ? screenModalConfig : null
+
+	return {
+		...headerTitleConfig, //define header style and title style 
+		...headerRight, //define right button component 
+		...headerBack, //define back button component 
+		...modalConfig //define modal configuration and transitions 
+	}
+}
+
+
