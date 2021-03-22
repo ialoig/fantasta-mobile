@@ -8,7 +8,7 @@ import { GetStartedContainer } from "../containers/GetStarted/GetStartedContaine
 import { HomeContainer } from "../containers/Home/HomeContainer"
 import { JoinLeagueContainer } from "../containers/JoinLeague/JoinLeagueContainer"
 import { LoginContainer } from "../containers/Login/LoginContainer"
-// import CompleteRegistration from "../containers/Register/CompleteRegistration"
+import CompleteRegistration from "../containers/Register/CompleteRegistration"
 import { RegisterContainer } from "../containers/Register/RegisterContainer"
 import { SplashScreenContainer } from "../containers/SplashScreen/SplashScreenContainer"
 import AccountNavigator from "./AccountNavigator"
