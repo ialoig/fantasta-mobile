@@ -1,9 +1,9 @@
 
 import I18n from "i18n-js"
 import React from "react"
-import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
+import { FlatList, Text, View } from "react-native"
 
-import { Card, Header } from "../../components"
+import { Card } from "../../components"
 import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
 
@@ -23,12 +23,6 @@ const League = ( item, onPress ) => (
 const Home = (props) => {
 	return (
 		<View style={commonStyle.container}>
-		
-			{ /** header */}
-			<Header title="start_league" backButton={false} rightButton={true} 
-				iconTypeRight="account" 
-				onPressRight={props.account}
-			/>
 			
 			{ /** crea/join */}
 			<View style={styles.buttons}>

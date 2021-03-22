@@ -7,7 +7,7 @@ import { button } from "./styles"
 const IconButton = (props) => {
 
 	const { type, icon } = props
-	let icon_img = require("../../../assets/img/icons/prev.png")
+	console.log("[IconButton] props", props)
 
 	const handleIconType = (type) => {
 		switch (type) {

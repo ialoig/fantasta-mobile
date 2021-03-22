@@ -12,7 +12,7 @@ import CompleteRegistration from "../containers/Register/CompleteRegistration"
 import { RegisterContainer } from "../containers/Register/RegisterContainer"
 import { SplashScreenContainer } from "../containers/SplashScreen/SplashScreenContainer"
 import AccountNavigator from "./AccountNavigator"
-import { defaultScreenOptions } from "./routesConfig"
+import { defaultScreenOptions, getScreenConfig, noHeaderScreenConfig } from "./routesConfig"
 import routes from "./routesNames"
 
 const AppStack = createStackNavigator()
@@ -21,18 +21,34 @@ export default function Routes() {
 	return (
 		<NavigationContainer>
 			<AppStack.Navigator
-				{...defaultScreenOptions}
-				initialRouteName={routes.SPLASHSCREEN}>
-				<AppStack.Screen name={routes.SPLASHSCREEN} component={SplashScreenContainer} />
-				<AppStack.Screen name={routes.LOGIN} component={LoginContainer} />
-				<AppStack.Screen name={routes.REGISTER} component={RegisterContainer} />
-				<AppStack.Screen name={routes.COMPLETE_REGISTER} component={CompleteRegistration} />
-				<AppStack.Screen name={routes.GETSTARTED} component={GetStartedContainer} />
-				<AppStack.Screen name={routes.HOME} component={HomeContainer} />
-				<AppStack.Screen name={routes.CREATE_LEAGUE} component={CreateContainer} />
-				<AppStack.Screen name={routes.JOIN_LEAGUE} component={JoinLeagueContainer} />
-				<AppStack.Screen name={routes.DASHBOARD} component={DashboardContainer} />
-				<AppStack.Screen name={routes.ACCOUNTNAVIGATOR} component={AccountNavigator} />
+				initialRouteName={routes.SPLASHSCREEN}
+				{...defaultScreenOptions} >
+				<AppStack.Screen name={routes.SPLASHSCREEN} component={SplashScreenContainer} 
+					options={noHeaderScreenConfig} />
+				<AppStack.Screen name={routes.LOGIN} component={LoginContainer} 
+					options={noHeaderScreenConfig} />
+				<AppStack.Screen name={routes.REGISTER} component={RegisterContainer} 
+					options={noHeaderScreenConfig} />
+				<AppStack.Screen name={routes.COMPLETE_REGISTER} component={CompleteRegistration} 
+					options={
+						getScreenConfig(false, false, false)
+					} />
+				<AppStack.Screen name={routes.GETSTARTED} component={GetStartedContainer} 
+					options={noHeaderScreenConfig} />
+				<AppStack.Screen name={routes.HOME} component={HomeContainer} 
+					options={ 
+						getScreenConfig(false, "account", false)
+					} />
+				<AppStack.Screen name={routes.CREATE_LEAGUE} component={CreateContainer} 
+					options={noHeaderScreenConfig} />
+				<AppStack.Screen name={routes.JOIN_LEAGUE} component={JoinLeagueContainer} 
+					options={noHeaderScreenConfig} />
+				<AppStack.Screen name={routes.DASHBOARD} component={DashboardContainer} 
+					options={
+						getScreenConfig(false, "account", false)
+					} />
+				<AppStack.Screen name={routes.ACCOUNTNAVIGATOR} component={AccountNavigator}
+					options={noHeaderScreenConfig} />
 			</AppStack.Navigator>
 		</NavigationContainer>
 	)
