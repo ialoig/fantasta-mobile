@@ -44,15 +44,15 @@ function DeleteAccount() {
 			<Button
 				title={I18n.translate("delete")}
 				onPress={
-					async() => {
-						if ( !check ) {
+					async () => {
+						if (!check) {
 							return setError(true)
 						}
 						try {
 							await Auth.deleteAccount(check)
 							navigate("Login")
 						} catch (error) {
-							console.log("[DeleteAccount] - error=" +JSON.stringify(error))
+							console.log("[DeleteAccount] - error=" + JSON.stringify(error))
 							return setError(true)
 						}
 					}}
