@@ -1,8 +1,10 @@
 
 import React from "react"
-import { Text, TextInput, View } from "react-native"
+import { TextInput, View } from "react-native"
 
 import { inputStyle, textStyles } from "../../../styles"
+import ErrorHandler from "../../ErrorHandler/ErrorHandler"
+
 
 const Email = (props) => {
 
@@ -14,8 +16,7 @@ const Email = (props) => {
 				ref={(ref)=> { props.onRef(ref) }}
 				keyboardType='email-address'
 			/>
-			{ props.hasError ? 
-				<Text style={[textStyles.description, inputStyle.inputError]}>{props.error}</Text> : null }
+			<ErrorHandler {...props} />
 		</View>
 	)
 }
