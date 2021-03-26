@@ -2,7 +2,8 @@
 import React from "react"
 import { Text, View } from "react-native"
 import InputSpinner from "react-native-input-spinner"
-import { COLORS, commonStyle, textStyles } from "../../../styles"
+import { textStyles } from "../../../styles"
+import colors from "../../../styles/colors"
 
 import styles from "./styles"
 
@@ -10,7 +11,7 @@ const NumberInc = (props) => {
 
 	return (
 		<View style={styles.container}>
-			<Text style={[textStyles.body, styles.label, commonStyle.flex_start]}>
+			<Text style={[textStyles.body, styles.label]}>
 				{props.label}
 			</Text>
 			<InputSpinner
@@ -20,14 +21,13 @@ const NumberInc = (props) => {
 				step={props.step}
 				min={props.min}
 				max={props.max}
-				onChange={props.onChange} 
-				buttonTextColor={COLORS.text}
-				textColor={COLORS.text}
-				inputStyle={styles.input}
+				onChange={props.onChange}
+				height={32}
+				width={120}
+				colorPress={colors.primary}
 				buttonStyle={styles.buttonStyle}
-				style={commonStyle.flex_end}
-				fontSize={16}
-				buttonFontSize={16}
+				buttonTextColor={colors.text}
+				inputStyle={textStyles.body}
 			/>
 		</View>
 	)
