@@ -1,16 +1,17 @@
+// import PropTypes from "prop-types"
+// import React from "react"
+// import colors from "../../styles/colors"
+// import Logo from "./Logo"
 
-import React from "react"
+// export default class LogoContainer extends React.Component {
 
-import Logo from "./Logo"
 
-export default class LogoContainer extends React.Component {
+// 	render() {
 
-	render() {
+// 		const { type="png", ...props } = this.props
 
-		const { size="", type="png" } = this.props
-
-		return (
-			<Logo size={size} type={type} />
-		)
-	}
-}
+// 		return (
+// 			<Logo type={type} {...this.props} />
+// 		)
+// 	}
+// }

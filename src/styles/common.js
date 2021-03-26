@@ -9,6 +9,7 @@ export default StyleSheet.create({
 		paddingTop: 12
 	},
 	center: {
+		alignSelf: "center",
 		justifyContent: "center"
 	},
 	container: {

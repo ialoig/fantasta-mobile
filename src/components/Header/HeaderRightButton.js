@@ -22,7 +22,7 @@ function HeaderRightButton (props) {
 
 	return (
 		<TouchableOpacity onPress={handlePress} >
-			<Icon name={type} />
+			<Icon name={type} width={35} height={35}/>
 		</TouchableOpacity>
 	)
 }

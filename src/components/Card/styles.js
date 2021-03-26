@@ -30,6 +30,9 @@ export const card = StyleSheet.create({
 		paddingHorizontal: getWidth(20),
 		paddingVertical: getWidth(20)
 	},
+	paddingIcon: {
+		padding: 4
+	},
 	small: {
 		flexDirection: "row",
 		marginHorizontal: 0,

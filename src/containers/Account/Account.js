@@ -30,7 +30,7 @@ function Account () {
 					description={email}
 					type='default'
 					arrow={false}
-					icon={require("../../../assets/img/icons/user_50.png")}
+					icon={"account"}
 				/>
 				{ /** settings */}
 				<Card
@@ -55,7 +55,7 @@ function Account () {
 				onPress={ () => {
 					User.remove()
 					Token.remove()
-					navigate("Login")
+					navigate(routes.LOGIN)
 				}}
 				type='primary'
 				size='large'

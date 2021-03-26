@@ -4,13 +4,13 @@ import colors from "./colors"
 
 export default StyleSheet.create({
 	body: {
+		color: colors.text,
 		fontFamily: "PoppinsRegular",
 		fontSize: 16,
-		fontWeight: "normal",
 		fontStyle: "normal",
+		fontWeight: "normal",
 		//lineHeight: 28,
-		letterSpacing: 0.75,
-		color: colors.text
+		letterSpacing: 0.75
 	},
 	button: {
 		color: colors.text,

@@ -1,8 +1,9 @@
 
 import React from "react"
-import { Text, TextInput, View } from "react-native"
+import { TextInput, View } from "react-native"
 
 import { inputStyle, textStyles } from "../../../styles"
+import ErrorHandler from "../../ErrorHandler/ErrorHandler"
 
 const RepeatPassword = (props) => {
 
@@ -15,7 +16,7 @@ const RepeatPassword = (props) => {
 				keyboardType='default'
 				secureTextEntry={true}
 			/>
-			{ props.hasError ? <Text style={[textStyles.description, inputStyle.inputError]}>{props.error}</Text> : null }
+			<ErrorHandler {...props} />
 		</View>
 	)
 }

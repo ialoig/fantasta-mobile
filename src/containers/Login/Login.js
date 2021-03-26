@@ -5,6 +5,7 @@ import { Keyboard, KeyboardAvoidingView, Text, TouchableWithoutFeedback, View } 
 
 import { Button, Email, Logo, Password } from "../../components"
 import { commonStyle, textStyles } from "../../styles"
+import colors from "../../styles/colors"
 import { ios } from "../../utils/deviceUtils"
 import styles from "./styles"
 

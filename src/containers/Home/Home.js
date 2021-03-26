@@ -15,7 +15,7 @@ const League = ( item, onPress ) => (
 		description={item.team.name}
 		type='small'
 		arrow={true}
-		icon={require("../../../assets/img/icons/League.png")}
+		icon={"league"}
 	/>
 )
 	
@@ -32,7 +32,7 @@ const Home = (props) => {
 					description=""
 					type='square'
 					arrow={false}
-					icon={require("../../../assets/img/icons/Add.png")}
+					icon={"create_league"}
 				/>
 				<Card
 					onPress={props.join}
@@ -40,7 +40,7 @@ const Home = (props) => {
 					description=""
 					type='square'
 					arrow={false}
-					icon={require("../../../assets/img/icons/Join.png")}
+					icon={"join_league"}
 				/>
 			</View>
 
