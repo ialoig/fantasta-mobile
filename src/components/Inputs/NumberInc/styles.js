@@ -1,30 +1,29 @@
 import { StyleSheet } from "react-native"
-import { COLORS } from "../../../styles"
+import colors from "../../../styles/colors"
 
 export default StyleSheet.create({
-	buttonStyle: {
-		backgroundColor: COLORS.greyLight,
+	buttonPressStyle: {
+		alignItems: "center",
+		backgroundColor: colors.primary,
+		borderRadius: 50,
+		justifyContent: "center",
 		maxHeight: 32,
-		maxWidth: 32
+		minWidth: 32
+	},
+	buttonStyle: {
+		alignItems: "center",
+		backgroundColor: colors.greyLight,
+		borderRadius: 50,
+		justifyContent: "center",
+		maxHeight: 32,
+		minWidth: 32
 	},
 	container: {
-		//flex: 1,
 		flexDirection: "row",
-		//justifyContent: "space-between",
-		//alignContent: "center",
-		//alignItems: 'center',
+		justifyContent: "space-between",
 		paddingVertical: 12,
-		//marginTop: 10,
-		//height: 40
-	},
-	input: {
-		backgroundColor: COLORS.background,
-		maxHeight: 32,
-		maxWidth: 32
 	},
 	label: {
-		//fontSize: 16,
-		//width: '60%'
 		alignSelf: "center",
 	}
 })
