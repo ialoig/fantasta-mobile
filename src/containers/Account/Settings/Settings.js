@@ -1,24 +1,20 @@
-import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
 import { Card } from "../../../components"
-import routes from "../../../navigation/routesNames"
 import { commonStyle } from "../../../styles"
 import styles from "../styles"
 
-
-function Settings() {
+function Settings(props) {
     
-	//hook which give access to the navigation object from the component directly
-	const { navigate, goBack } = useNavigation()
     
 	return (
 		<View style={commonStyle.container}>
 			<View style={styles.cardContent}>
 				{ /** language */}
 				<Card
-					onPress={() => navigate(routes.LANGUAGE)}
+					onPress={props.onPressLanguage}
 					title={I18n.translate("language")}
 					description=""
 					type='small'
@@ -28,4 +24,11 @@ function Settings() {
 		</View>
 	)
 }
+
+
+Settings.propTypes = {
+	onPressLanguage: PropTypes.func.isRequired
+}
+
+
 export default Settings

@@ -1,7 +1,6 @@
 import React from "react"
 import Card from "./Card"
-
-export default class CardContainer extends React.Component {
+class CardContainer extends React.Component {
 
 	render() {
 		const {
@@ -10,7 +9,7 @@ export default class CardContainer extends React.Component {
 			description="",
 			type="default",
 			icon,
-			arrow=""
+			arrow
 		} = this.props
         
 		return (
@@ -25,3 +24,14 @@ export default class CardContainer extends React.Component {
 		)
 	}
 }
+
+
+CardContainer.propTypes = {
+	...Card.propTypes
+}
+
+CardContainer.defaultProps = {
+	...Card.defaultProps
+}
+
+export default CardContainer

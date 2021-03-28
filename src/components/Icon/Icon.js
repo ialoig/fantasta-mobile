@@ -22,8 +22,7 @@ function Icon({name, ...props}) {
 	const IconComponent = IconType[name] || EmptyIcon
 
 	return (
-		<IconComponent {...props}
-		/>
+		<IconComponent {...props} />
 	)
 }
 

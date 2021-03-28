@@ -1,23 +1,15 @@
 
-import { useNavigation, useRoute } from "@react-navigation/native"
 import Costants from "expo-constants"
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { Text, View } from "react-native"
-
 import { Button, Card } from "../../components"
-import routes from "../../navigation/routesNames"
-import { Token, User } from "../../services"
-
 import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
 
-function Account () {
+function Account (props) {
 
-	//hook which give access to the navigation object from the component directly
-	const { navigate } = useNavigation()
-	const route = useRoute()
-	const { email, username } = route.params
 
 	return (
 		<View style={commonStyle.container}>
@@ -25,16 +17,16 @@ function Account () {
 			<View style={commonStyle.flex}>
 				{ /** account */}
 				<Card 
-					onPress={() => navigate(routes.ACCOUNT_DETAILS)}
-					title={username}
-					description={email}
+					onPress={props.onPressAccountDetails}
+					title={props.username}
+					description={props.email}
 					type='default'
 					arrow={false}
 					icon={"account"}
 				/>
 				{ /** settings */}
 				<Card
-					onPress={() => navigate(routes.SETTINGS)}
+					onPress={props.onPressSettings}
 					title={I18n.translate("settings")}
 					description={I18n.translate("settings_descr")}
 					type='small'
@@ -43,7 +35,7 @@ function Account () {
 
 				{ /** support */}
 				<Card 
-					onPress={() => navigate(routes.SUPPORT)}
+					onPress={props.onPressSupport}
 					title={I18n.translate("support")}
 					type='small'
 					arrow={true}
@@ -52,11 +44,7 @@ function Account () {
 
 			<Button
 				title={I18n.translate("logout")}
-				onPress={ () => {
-					User.remove()
-					Token.remove()
-					navigate(routes.LOGIN)
-				}}
+				onPress={props.logout}
 				type='primary'
 				size='large'
 			/>
@@ -65,6 +53,16 @@ function Account () {
 			</Text>
 		</View>
 	)
+}
+
+
+Account.propTypes = {
+	username: PropTypes.string.isRequired,
+	email: PropTypes.string.isRequired,
+	onPressAccountDetails: PropTypes.func.isRequired,
+	onPressSettings: PropTypes.func.isRequired,
+	onPressSupport: PropTypes.func.isRequired,
+	logout: PropTypes.func.isRequired,
 }
 
 export default Account

@@ -1,25 +1,20 @@
-import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
-
 import { View } from "react-native"
 import { Card } from "../../../components"
-import routes from "../../../navigation/routesNames"
 import { commonStyle } from "../../../styles"
 
 import styles from "../styles"
 
-function Support() {
-
-	//hook which give access to the object from the component directly
-	const { navigate, goBack } = useNavigation()
+function Support(props) {
 
 	return (
 		<View style={commonStyle.container}>
 			<View style={styles.cardContent}>
 				{ /** Feedback */}
 				<Card
-					onPress={() => navigate(routes.FEEDBACK)}
+					onPress={props.onPressFeedback}
 					title={I18n.translate("feedback")}
 					description={I18n.translate("feedback_descr")}
 					type='small'
@@ -27,7 +22,7 @@ function Support() {
 				/>
 				{ /** Contact */}
 				<Card
-					onPress={() => navigate(routes.CONTACTUS)}
+					onPress={props.onPressContactUs}
 					title={I18n.translate("contact")}
 					description={I18n.translate("contact_descr")}
 					type='small'
@@ -36,6 +31,12 @@ function Support() {
 			</View>
 		</View>
 	)
+}
+
+
+Support.propTypes = {
+	onPressFeedback: PropTypes.func.isRequired,
+	onPressContactUs: PropTypes.func.isRequired
 }
 
 export default Support

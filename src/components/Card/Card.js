@@ -6,13 +6,12 @@ import Icon from "../Icon/Icon"
 
 import { card, image, text } from "./styles"
 
-const Card = (props) => {
+const Card = ({ title, description, type, icon, arrow, onPress}) => {
 
-	const { title, description, type, icon, arrow } = props
 	let arrow_img = require("../../../assets/img/icons/forward.png")
 
 	return (
-		<TouchableOpacity onPress={props.onPress} style={[ card.card, card[type] ]}>
+		<TouchableOpacity onPress={onPress} style={[ card.card, card[type] ]}>
 			{ icon && 
 			<View style={card.paddingIcon}>
 				<Icon name={icon} />
@@ -39,7 +38,8 @@ Card.propTypes = {
 	description: PropTypes.string,
 	type: PropTypes.string.isRequired,
 	icon: PropTypes.string,
-	arrow: PropTypes.bool
+	arrow: PropTypes.bool,
+	onPress: PropTypes.func
 }
 
 Card.defaultProps = {
