@@ -16,7 +16,7 @@ export class HomeContainer extends React.Component {
 	componentDidMount () {
 		this.mounted = true
 		this.props.navigation.addListener(
-			"didFocus",
+			"focus",
 			() => {
 				this.mounted && this.setState({
 					leagues: Leagues.Get().sort((a, b)=> a.name > b.name ? 1 : -1)

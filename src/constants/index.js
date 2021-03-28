@@ -30,6 +30,7 @@ export const STARTING_PRICE = {
 }
 
 export const FIELDS_ID = {
+	username: "username",
 	emailId: "email",
 	passwordId: "password",
 	repeatPasswordId: "repeatPassword",

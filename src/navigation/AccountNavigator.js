@@ -1,17 +1,18 @@
 import { createStackNavigator} from "@react-navigation/stack"
 import React from "react"
 
-import Account from "../containers/Account/Account"
-import AccountDetails from "../containers/Account/AccountDetails/AccountDetails"
-import DeleteAccount from "../containers/Account/AccountDetails/DeleteAccount"
-import EmailSettings from "../containers/Account/AccountDetails/EmailSettings"
-import UsernameSettings from "../containers/Account/AccountDetails/UsernameSettings"
-import Language from "../containers/Account/Settings/Language"
-import Settings from "../containers/Account/Settings/Settings"
-import ContactUs from "../containers/Account/Support/ContactUs"
-import Feedback from "../containers/Account/Support/Feedback"
-import Support from "../containers/Account/Support/Support"
-import { User } from "../services"
+import { 
+	Account, 
+	AccountDetails, 
+	ContactUs, 
+	DeleteAccount, 
+	EmailSettings, 
+	Feedback, 
+	Language,
+	Settings,
+	Support,
+	UsernameSettings
+} from "../containers/Account"
 import {closeKeyboardOnClose, defaultModalScreenOptions, getScreenConfig } from "./routesConfig"
 import routes from "./routesNames"
 
@@ -22,7 +23,6 @@ const AccountStack = createStackNavigator()
  *  Account Navigator implements screen whithin Account page 
  */
 export default function AccountNavigator()  {
-	const params = userParams()
 
 	return (
 		<AccountStack.Navigator
@@ -30,12 +30,10 @@ export default function AccountNavigator()  {
 			{...defaultModalScreenOptions}
 		>
 			<AccountStack.Screen name={routes.ACCOUNT} component={Account} 
-				initialParams={params} 
 				options={
 					getScreenConfig(false, false, true)
 				}/>
 			<AccountStack.Screen name={routes.ACCOUNT_DETAILS} component={AccountDetails} 
-				initialParams={params} 
 				options={
 					getScreenConfig(false, false, true)
 				} />
@@ -79,14 +77,4 @@ export default function AccountNavigator()  {
 				}/>
 		</AccountStack.Navigator>
 	)
-}
-
-function userParams () {
-	const email = User.Get().email
-	const username = User.Get().username ? User.Get().username : email
-
-	return {
-		email: email,
-		username: username
-	}
 }

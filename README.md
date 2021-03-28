@@ -48,3 +48,63 @@ Il secondo pulsante in alto a sinistra permette di visualizzare la pagina del br
 
   **Elements** vi mostrerà il sorgente html della vostra pagina
   **Sources** vi mostrerà all'interno di source i vostri file e sarà possibile mettere dei brakpoint sul vostro codice
+
+***
+## 🎨 Design Patters
+
+Design patterns can be seen as templates for how to solve problems.
+In that mobile app following common patterns are used :
+
+* ### [Container Pattern](https://medium.com/@Ziimm_/four-javascript-design-patterns-in-react-abdbcbcfaee7)
+*Also reffered as Container and Presentational Pattern.*
+
+This pattern is especially ideal for separation of concerns, between logic and presentation.
+
+*Logic* refers to anything outside of the UI; for example, API calls, event handlers and data manipulation.
+
+*Presentation* refers to the contents of the render method where we create elements to be displayed on the UI.
+
+Here an example.
+
+Given this reusable `CommentList` component:
+
+```javascript
+const CommentList = ({ comments }) => (
+  <ul>
+    {comments.map(comment => (
+      <li>
+        {comment.body}-{comment.author}
+      </li>
+    ))}
+  </ul>
+);
+```
+
+We can create a new component responsible for fetching data and rendering the CommentList function component.
+```javascript
+class "CommentListContainer" extends React.Component {
+  constructor() {
+    super()
+    this.state = { comments: [] }
+  }
+
+  componentDidMount() {
+    $.ajax({
+      url: "/my-comments.json",
+      dataType: 'json',
+      success: comments =>
+        this.setState({comments: comments});
+    })
+  }
+
+  render() {
+    return <CommentList comments={this.state.comments} />
+  }
+}
+```
+
+***Best practice**: Append ‘container’ to the end of the container component filename and give the original name -profile.js, to the presentational one. The container component is usually a class component, while the presentational component will be a functional component.*
+
+The spread operator is a convenient way to pass attributes as opposed to writing each one manually.
+
+References: [The Container Pattern](https://medium.com/@Ziimm_/four-javascript-design-patterns-in-react-abdbcbcfaee7)
