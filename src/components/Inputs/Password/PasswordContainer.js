@@ -11,7 +11,7 @@ export default class PasswordContainer extends React.Component {
 
 		this.state = {
 			value: props.value!==undefined && props.value!==null ? props.value : "",
-			error: "",
+			error: props.error,
 			valid: true,
 			changed: false,
 			touched: false,

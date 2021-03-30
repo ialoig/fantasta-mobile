@@ -5,6 +5,7 @@ import { Image, Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider"
 
 import { button, text} from "../../components/Button/styles"
+import Icon from "../../components/Icon/Icon"
 import { carouselSyle, commonStyle } from "../../styles"
 import styles from "./styles"
 
@@ -33,7 +34,7 @@ const GetStarted = (props) => {
 		return (
 			<View style={commonStyle.container} key={key}>
 				<View style={styles.image} key={key}>
-					<Image source={item.image} />
+					<Icon name={item.image} width={120} height={120} />
 				</View>
 				<View style={commonStyle.flex} key={key}>
 					<Text style={carouselSyle.title}>{item.title}</Text>

@@ -1,10 +1,9 @@
-import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
 import { commonStyle } from "../../../../styles"
 import styles from "../../styles"
 
-function Language(props) {
+function Language() {
 
 
 	return (
@@ -16,10 +15,6 @@ function Language(props) {
 	)
 }
 
-
-Language.propTypes = {
-	
-}
 
 export default Language
 

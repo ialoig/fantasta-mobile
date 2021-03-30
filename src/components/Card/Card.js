@@ -1,14 +1,12 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { Image, Text, TouchableOpacity, View } from "react-native"
+import { Text, TouchableOpacity, View } from "react-native"
 import { commonStyle, textStyles } from "../../styles"
 import Icon from "../Icon/Icon"
 
-import { card, image, text } from "./styles"
+import { card, text } from "./styles"
 
 const Card = ({ title, description, type, icon, arrow, onPress}) => {
-
-	let arrow_img = require("../../../assets/img/icons/forward.png")
 
 	return (
 		<TouchableOpacity onPress={onPress} style={[ card.card, card[type] ]}>
@@ -25,7 +23,7 @@ const Card = ({ title, description, type, icon, arrow, onPress}) => {
 
 			{ arrow && 
 			<View style={[commonStyle.flex, card.arrow]}>
-				<Image style={image.forward} source={arrow_img} />
+				<Icon name="forward" />
 			</View>
 			}
 		</TouchableOpacity>

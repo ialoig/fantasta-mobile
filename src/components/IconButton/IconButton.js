@@ -1,36 +1,34 @@
-
+import PropTypes from "prop-types"
 import React from "react"
-import { Image, TouchableOpacity, View } from "react-native"
-
+import { TouchableOpacity, View } from "react-native"
+import Icon from "../Icon/Icon"
 import { button } from "./styles"
 
 /**
- * TODO: gl - valutare se utilizzare ancora in relazione ad uso di componente HeaderContainer
+ * TODO: gl - valutare se utilizzare ancora in relazione ad uso di componente Header
  * 
  */
-const IconButton = (props) => {
-
-	const { type, icon } = props
-	console.log("[IconButton] props", props)
-
-	const handleIconType = (type) => {
-		switch (type) {
-		case "back":
-			return require("../../../assets/img/icons/prev.png")
-		case "account":
-			return require("../../../assets/img/icons/user_24.png")
-		default:
-			return require("../../../assets/img/icons/prev.png")
-		}
-	}
+const IconButton = ({type, icon, onPress}) => {
 
 	return (
-		<TouchableOpacity onPress={props.onPress} style={button[type]}>
+		<TouchableOpacity onPress={onPress} style={button[type]}>
 			<View >
-				{icon && <Image source={handleIconType(type)} />}
+				{icon && <Icon name={type} />}
 			</View>
 		</TouchableOpacity>
 	)
+}
+
+
+IconButton.propTypes = {
+	type: PropTypes.string,
+	icon: PropTypes.bool,
+	onPress: PropTypes.func
+}
+
+IconButton.defaultTypes = {
+	type: "default",
+	icon: true
 }
 
 export default IconButton

@@ -27,10 +27,11 @@ function HeaderRightButton (props) {
 	)
 }
 
-export default HeaderRightButton
-
-
 HeaderRightButton.propTypes = {
 	type: PropTypes.string.isRequired
 }
+
+export default HeaderRightButton
+
+
 

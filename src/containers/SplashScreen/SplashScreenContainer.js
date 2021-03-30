@@ -9,10 +9,7 @@ import SplashScreen from "./SplashScreen"
 
 
 export class SplashScreenContainer extends React.Component {
-	static propTypes = {
-		navigation: PropTypes.object.isRequired
-	}
-	
+
 	async componentDidMount ()
 	{
 		try
@@ -50,4 +47,9 @@ export class SplashScreenContainer extends React.Component {
 			<SplashScreen />
 		)
 	}
+}
+
+
+SplashScreenContainer.propTypes = {
+	navigation: PropTypes.object.isRequired
 }
