@@ -1,12 +1,43 @@
-
+import { useIsFocused, useNavigation } from "@react-navigation/core"
 import I18n from "i18n-js"
-import PropTypes from "prop-types"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { View } from "react-native"
+import validator from "validator"
 import { Button, Email } from "../../../../components"
+import routes from "../../../../navigation/routesNames"
+import { Auth, User } from "../../../../services"
 import { commonStyle } from "../../../../styles"
 
-function EmailSettings({email, onChange, onPress, showError}) {
+function EmailSettings() {
+
+	//hook which give access to the navigation object from the component directly
+	const { navigate }  = useNavigation()
+	const isFocused = useIsFocused()
+
+	const [email, setEmail] = useState(User.Get().email)
+	const [newEmail, setNewEmail] = useState(null)
+	const [showError, setShowError] = useState(false)
+
+
+	useEffect( () => {
+		setEmail(User.Get().email)
+	}, [email, isFocused])
+
+	
+	const onPress = async() => {
+		if ( !newEmail || !validator.isEmail(newEmail) ) {
+			setShowError(true)
+		}
+
+		try {
+			await Auth.update(newEmail, null)    
+			navigate(routes.ACCOUNT_DETAILS)
+		} catch (error) {
+			console.log("[EmailSettings] handleOnPress - error:" +error)
+			return setShowError(true)
+		}
+	}
+
 
 	return (
 		<View style={[commonStyle.container, commonStyle.flex_start]}>
@@ -18,7 +49,7 @@ function EmailSettings({email, onChange, onPress, showError}) {
 				showError={showError}
 				required={true}
 				clearButtonMode='while-editing'
-				onChange={onChange}
+				onChange={(id, value) => setNewEmail(value)}
 			/>
 
 			<Button
@@ -30,14 +61,6 @@ function EmailSettings({email, onChange, onPress, showError}) {
 
 		</View>
 	)
-}
-
-
-EmailSettings.propTypes = {
-	email: PropTypes.string.isRequired,
-	onPress: PropTypes.func.isRequired,
-	onChange: PropTypes.func.isRequired,
-	showError: PropTypes.bool.isRequired
 }
 
 export default EmailSettings

@@ -4,16 +4,22 @@ import AccountIcon from "./svg/AccountIcon"
 import BackIcon from "./svg/BackIcon"
 import CreateLeagueIcon from "./svg/CreateLeagueIcon"
 import EmptyIcon from "./svg/EmptyIcon"
+import ForwardIcon from "./svg/ForwardIcon"
 import JoinLeagueIcon from "./svg/JoinLeagueIcon"
 import LeagueIcon from "./svg/LeagueIcon"
+import MarketIcon from "./svg/MarketIcon"
+import TeamIcon from "./svg/TeamIcon"
 
 
 const IconType = {
 	account: AccountIcon,
 	back: BackIcon,
+	forward: ForwardIcon,
 	create_league: CreateLeagueIcon,
 	join_league: JoinLeagueIcon,
-	league: LeagueIcon
+	league: LeagueIcon,
+	team: TeamIcon,
+	market: MarketIcon
 }
 
 

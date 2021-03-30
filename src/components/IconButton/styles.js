@@ -2,9 +2,6 @@ import { StyleSheet } from "react-native"
 import colors from "../../styles/colors"
 
 export const button = StyleSheet.create({
-	account: {
-        
-	},
 	back: {
 		backgroundColor: colors.primary,
 		borderRadius: 40,

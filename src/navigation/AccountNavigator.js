@@ -1,18 +1,16 @@
 import { createStackNavigator} from "@react-navigation/stack"
 import React from "react"
 
-import { 
-	Account, 
-	AccountDetails, 
-	ContactUs, 
-	DeleteAccount, 
-	EmailSettings, 
-	Feedback, 
-	Language,
-	Settings,
-	Support,
-	UsernameSettings
-} from "../containers/Account"
+import Account from "../containers/Account/Account"
+import AccountDetails from "../containers/Account/AccountDetails/AccountDetails"
+import DeleteAccount from "../containers/Account/AccountDetails/DeleteAccount/DeleteAccount"
+import EmailSettings from "../containers/Account/AccountDetails/EmailSettings/EmailSettings"
+import UsernameSettings from "../containers/Account/AccountDetails/UsernameSettings/UsernameSettings"
+import Language from "../containers/Account/Settings/Language/Language"
+import Settings from "../containers/Account/Settings/Settings"
+import ContactUs from "../containers/Account/Support/ContactUs/ContactUs"
+import Feedback from "../containers/Account/Support/Feedback/Feedback"
+import Support from "../containers/Account/Support/Support"
 import {closeKeyboardOnClose, defaultModalScreenOptions, getScreenConfig } from "./routesConfig"
 import routes from "./routesNames"
 

@@ -1,11 +1,41 @@
+import { useIsFocused, useNavigation } from "@react-navigation/core"
 import I18n from "i18n-js"
-import PropTypes from "prop-types"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { View } from "react-native"
 import { Button, InputText } from "../../../../components"
+import routes from "../../../../navigation/routesNames"
+import { Auth, User } from "../../../../services"
 import { commonStyle } from "../../../../styles"
 
-function UsernameSettings({username, onPress, onChange, showError}) {
+function UsernameSettings() {
+
+	//hook which give access to the navigation object from the component directly
+	const { navigate }  = useNavigation()
+	const isFocused = useIsFocused()
+
+	const [username, setUsername] = useState(User.Get().username)
+	const [newUsername, setNewUsername] = useState(null)
+	const [showError, setShowError] = useState(false)
+
+
+	useEffect( () => {
+		setUsername(User.Get().username)
+	}, [username, isFocused])
+
+	
+	const onPress = async() => {
+		if ( !newUsername ) {
+			return setShowError(true)
+		}
+
+		try {
+			await Auth.update(null, newUsername) 
+			navigate(routes.ACCOUNT_DETAILS)
+		} catch (error) {
+			console.log("[UsernameSettings] handleOnPress - error:" +error)
+			return setShowError(true)
+		}
+	}
 
 	return (
 		<View style={[commonStyle.container, commonStyle.flex_start]}>
@@ -15,7 +45,7 @@ function UsernameSettings({username, onPress, onChange, showError}) {
 				value={username}
 				required={true}
 				showError={showError}
-				onChange={onChange}
+				onChange={(id, value) => setNewUsername(value)}
 			/>
 
 			<Button
@@ -29,12 +59,5 @@ function UsernameSettings({username, onPress, onChange, showError}) {
 	)
 }
 
-
-UsernameSettings.propTypes = {
-	username: PropTypes.string.isRequired,
-	onPress: PropTypes.func.isRequired,
-	onChange: PropTypes.func.isRequired,
-	showError: PropTypes.bool.isRequired
-}
 
 export default UsernameSettings
