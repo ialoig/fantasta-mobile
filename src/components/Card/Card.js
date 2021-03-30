@@ -41,6 +41,7 @@ Card.propTypes = {
 }
 
 Card.defaultProps = {
+	title: "",
 	type: "default"
 }
 
