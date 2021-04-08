@@ -46,6 +46,12 @@ module.exports = {
 			"error",
 			"never"
 		],
+		//https://eslint.org/docs/rules/object-curly-spacing
+		//require or disallow spaces between curly braces 
+		"object-curly-spacing": ["error", 
+			"always", 
+			{ "arraysInObjects": false } //disallows spacing inside of braces of objects beginning and/or ending with an array element (applies when the first option is set to always)
+		],
 		"sort-imports": ["error", {
 			ignoreCase: true, //When true the rule ignores the case-sensitivity of the imports local name.
 			ignoreDeclarationSort: true, //Ignores the sorting of import declaration statements.
