@@ -1,21 +1,23 @@
 
 import I18n from "i18n-js"
 import React from "react"
-import { Keyboard, KeyboardAvoidingView, Text, TouchableWithoutFeedback, View } from "react-native"
+import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native"
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view"
 
 import { Button, Email, Logo, Password, RepeatPassword } from "../../components"
 import { commonStyle, textStyles } from "../../styles"
-import { ios } from "../../utils/deviceUtils"
 import styles from "./styles"
 
 
 const Register = (props) => {
+	
 	return (
-		<KeyboardAvoidingView style={commonStyle.container}
-			behavior={ios ? "padding" : undefined} >
-			<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-				<View style={commonStyle.content}>
-					<Logo />
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+			<View style={commonStyle.container}>
+				<Logo />
+				<KeyboardAwareScrollView 
+					showsVerticalScrollIndicator={false}
+				>
 					<Email
 						id={props.emailId}
 						label={I18n.translate("email")}
@@ -53,11 +55,12 @@ const Register = (props) => {
 						size='large'
 					/>
 					<Text style={[styles.haveAccount, textStyles.button]} onPress={() => props.login()}>
-						{I18n.translate("haveAccount")}{I18n.translate("login")}
+						{I18n.translate("haveAccount")}
+						<Text style={ textStyles.title}>{I18n.translate("login")}</Text>
 					</Text>
-				</View>
-			</TouchableWithoutFeedback>
-		</KeyboardAvoidingView>
+				</KeyboardAwareScrollView>
+			</View>
+		</TouchableWithoutFeedback>
 	)
 }
 

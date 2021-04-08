@@ -23,7 +23,7 @@ const IconType = {
 }
 
 
-function Icon({name, ...props}) {
+function Icon({ name, ...props }) {
 
 	const IconComponent = IconType[name] || EmptyIcon
 

@@ -10,10 +10,10 @@ export const card = StyleSheet.create({
 	card: {
 		alignItems: "center",
 		backgroundColor: colors.greyLight,
-		borderRadius: 16,
+		borderRadius: 24,
 		flex: 1,
 		justifyContent: "center",
-		marginTop: 12
+		marginTop: 12,
 	},
 	default: {
 		marginHorizontal: 0,
@@ -36,12 +36,12 @@ export const card = StyleSheet.create({
 	small: {
 		flexDirection: "row",
 		marginHorizontal: 0,
-		maxHeight: getHeight(80),
+		maxHeight: getHeight(100),
 		paddingHorizontal: getWidth(20),
 		paddingVertical: getWidth(20)
 	},
 	square: {
-		height: getHeight(150),
+		height: getHeight(180),
 		maxWidth: getWidth(150),
 	}
 })
