@@ -4,7 +4,7 @@ import React from "react"
 import Svg, { Path } from "react-native-svg"
 import colors from "../../../styles/colors"
 
-function ForwardIcon({primary, width, height, ...props}) {
+function ForwardIcon({ primary, width, height, ...props }) {
 	return (
 		<Svg width={width} height={height} 
 			viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
