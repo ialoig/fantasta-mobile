@@ -32,17 +32,17 @@ export class RegisterContainer extends React.Component {
 		const pw2 = this.state[FIELDS_ID.repeatPasswordId] || ""
 
 		if ( !email || !Validator.isEmail(email) ) {
-			this.setState({showError: true})
+			this.setState({ showError: true })
 			return
 		}
 
 		if ( !pw1 || !Validator.isStrongPassword(pw1, PASSWORD_OPT) ) {
-			this.setState({showError: true})
+			this.setState({ showError: true })
 			return
 		}
 
 		if ( pw1!=pw2 ) {
-			this.setState({showError: true})
+			this.setState({ showError: true })
 			return
 		}
 

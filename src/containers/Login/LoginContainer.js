@@ -44,7 +44,7 @@ export class LoginContainer extends React.Component {
 		}
 		else
 		{
-			this.setState({showError: true})
+			this.setState({ showError: true })
 		}
 	}
 

@@ -4,7 +4,7 @@ import React from "react"
 import { Image, Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider"
 
-import { button, text} from "../../components/Button/styles"
+import { button, text } from "../../components/Button/styles"
 import Icon from "../../components/Icon/Icon"
 import { carouselSyle, commonStyle } from "../../styles"
 import styles from "./styles"

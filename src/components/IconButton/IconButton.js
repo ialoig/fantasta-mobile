@@ -8,7 +8,7 @@ import { button } from "./styles"
  * TODO: gl - valutare se utilizzare ancora in relazione ad uso di componente Header
  * 
  */
-const IconButton = ({type, icon, onPress}) => {
+const IconButton = ({ type, icon, onPress }) => {
 
 	return (
 		<TouchableOpacity onPress={onPress} style={button[type]}>
