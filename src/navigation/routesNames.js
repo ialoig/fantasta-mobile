@@ -18,6 +18,7 @@ const RoutesName = {
 	GETSTARTED: "GetStarted",
 	LOGIN: "Login",
 	REGISTER: "Register",
+	FORGOT: "Forgot",
 	HOME: "Home",
 	DASHBOARD: "Dashboard",
 	JOIN_LEAGUE: "JoinLeague",

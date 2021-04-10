@@ -34,6 +34,18 @@ const Login = async (email, password) => {
 	}
 }
 
+const forgot = async (email) => {
+	console.log("PUT /auth/forgot - email=" + email)
+	try {
+		let response = await axios.put("/auth/forgot", { email }, {})
+		return Promise.resolve()
+	}
+	catch (error) {
+		Error.handleError(error, true)
+		return Promise.reject()
+	}
+}
+
 const Authenticate = async () => {
 	console.log("PUT /auth/token")
 	try {
@@ -101,6 +113,7 @@ const saveUser = (response) => {
 export const Auth = {
 	Authenticate,
 	Login,
+	forgot,
 	Register,
 	update,
 	deleteAccount

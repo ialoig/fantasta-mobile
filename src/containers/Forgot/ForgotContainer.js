@@ -3,18 +3,17 @@ import React from "react"
 import Validator from "validator"
 import { FIELDS_ID, PASSWORD_OPT } from "../../constants"
 import routes from "../../navigation/routesNames"
-import { Auth } from "../../services"
+import { Error, Auth } from "../../services"
 
-import Login from "./Login"
+import Forgot from "./Forgot"
 
-export class LoginContainer extends React.Component {
+export class ForgotContainer extends React.Component {
 
 	constructor(props) {
 		super(props)
 
 		this.state = {
 			[FIELDS_ID.emailId]: "",
-			[FIELDS_ID.passwordId]: "",
 			showError: false
 		}
 	}
@@ -25,15 +24,16 @@ export class LoginContainer extends React.Component {
 		})
 	}
 
-	async login() {
+	async forgot() {
 
 		const email = this.state[FIELDS_ID.emailId] || ""
-		const pw = this.state[FIELDS_ID.passwordId] || ""
 
-		if (email && pw && Validator.isEmail(email) && Validator.isStrongPassword(pw, PASSWORD_OPT)) {
+		if (email && Validator.isEmail(email)) {
 			try {
-				let res = await Auth.Login(email, pw)
-				this.props.navigation.navigate(routes.HOME)
+				let res = await Auth.forgot(email)
+				// todo: show proper notification instead of alert
+				Error.showAlert("Email inviata", "Controlla nella posta in arrivo")
+				this.props.navigation.navigate(routes.LOGIN)
 			}
 			catch (error) {
 				//managed on services/auth.js
@@ -49,17 +49,17 @@ export class LoginContainer extends React.Component {
 	}
 
 	forgotPassword() {
-		return this.props.navigation.navigate(routes.FORGOT)
+		console.log("forgot password")
 	}
 
 	render() {
 		return (
-			<Login
+			<Forgot
 				emailId={FIELDS_ID.emailId}
 				passwordId={FIELDS_ID.passwordId}
 				showError={this.state.showError}
 				onChange={this.onChange.bind(this)}
-				Login={this.login.bind(this)}
+				Forgot={this.forgot.bind(this)}
 				Register={this.register.bind(this)}
 				ForgotPassword={this.forgotPassword.bind(this)}
 			/>
