@@ -8,7 +8,7 @@ import Register from "./Register"
 
 export class RegisterContainer extends React.Component {
 
-	constructor (props) {
+	constructor(props) {
 		super(props)
 
 		this.state = {
@@ -19,48 +19,45 @@ export class RegisterContainer extends React.Component {
 		}
 	}
 
-	onChange ( id, value, valid ) {
+	onChange(id, value, valid) {
 		this.setState({
 			[id]: value
 		})
 	}
 
-	async register () {
+	async register() {
 
 		const email = this.state[FIELDS_ID.emailId] || ""
 		const pw1 = this.state[FIELDS_ID.passwordId] || ""
 		const pw2 = this.state[FIELDS_ID.repeatPasswordId] || ""
 
-		if ( !email || !Validator.isEmail(email) ) {
-			this.setState({showError: true})
+		if (!email || !Validator.isEmail(email)) {
+			this.setState({ showError: true })
 			return
 		}
 
-		if ( !pw1 || !Validator.isStrongPassword(pw1, PASSWORD_OPT) ) {
-			this.setState({showError: true})
+		if (!pw1 || !Validator.isStrongPassword(pw1, PASSWORD_OPT)) {
+			this.setState({ showError: true })
 			return
 		}
 
-		if ( pw1!=pw2 ) {
-			this.setState({showError: true})
+		if (pw1 != pw2) {
+			this.setState({ showError: true })
 			return
 		}
 
-		if ( email && pw1 && pw1==pw2 )
-		{
-			try
-			{
-				let res = await Auth.Register( email, pw1 )
+		if (email && pw1 && pw1 == pw2) {
+			try {
+				let res = await Auth.Register(email, pw1)
 
 				this.props.navigation.navigate(routes.COMPLETE_REGISTER)
 			}
-			catch (error)
-			{
+			catch (error) {
 				//managed on services/auth.js
 			}
 		}
 	}
-    
+
 	render() {
 		return (
 			<Register
