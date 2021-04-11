@@ -16,8 +16,8 @@ const NumberInc = (props) => {
 			</Text>
 			<InputSpinner
 				value={props.value}
-				append={<Text style={{width: 5}}></Text>}
-				prepend={<Text style={{width: 5}}></Text>}
+				append={<Text style={{ width: 5 }}></Text>}
+				prepend={<Text style={{ width: 5 }}></Text>}
 				step={props.step}
 				min={props.min}
 				max={props.max}

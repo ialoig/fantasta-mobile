@@ -1,7 +1,7 @@
 
 import React from "react"
 import { Text, View } from "react-native"
-import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from "react-native-simple-radio-button"
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from "react-native-simple-radio-button"
 import { commonStyle, textStyles } from "../../../styles"
 import colors from "../../../styles/colors"
 

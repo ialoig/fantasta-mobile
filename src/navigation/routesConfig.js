@@ -1,6 +1,6 @@
 import { TransitionPresets } from "@react-navigation/stack"
 import React from "react"
-import { Keyboard} from "react-native"
+import { Keyboard } from "react-native"
 import EmptyButtonPlaceHolder from "../components/Header/EmptyButtonPlaceHolder"
 import HeaderRightButton from "../components/Header/HeaderRightButton"
 import HeaderTitle from "../components/Header/HeaderTitle"

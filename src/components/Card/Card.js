@@ -6,7 +6,7 @@ import Icon from "../Icon/Icon"
 
 import { card, text } from "./styles"
 
-const Card = ({ title, description, type, icon, arrow, onPress}) => {
+const Card = ({ title, description, type, icon, arrow, onPress }) => {
 
 	return (
 		<TouchableOpacity onPress={onPress} style={[ card.card, card[type] ]}>

@@ -1,4 +1,4 @@
-import { createStackNavigator} from "@react-navigation/stack"
+import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
 
 import Account from "../containers/Account/Account"
@@ -11,7 +11,7 @@ import Settings from "../containers/Account/Settings/Settings"
 import ContactUs from "../containers/Account/Support/ContactUs/ContactUs"
 import Feedback from "../containers/Account/Support/Feedback/Feedback"
 import Support from "../containers/Account/Support/Support"
-import {closeKeyboardOnClose, defaultModalScreenOptions, getScreenConfig } from "./routesConfig"
+import { closeKeyboardOnClose, defaultModalScreenOptions, getScreenConfig } from "./routesConfig"
 import routes from "./routesNames"
 
 

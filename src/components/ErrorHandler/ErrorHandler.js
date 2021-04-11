@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react"
 import { Animated } from "react-native"
 import { inputStyle, textStyles } from "../../styles"
 
-function ErrorHandler({error, hasError}) {
+function ErrorHandler({ error, hasError }) {
 
 	const fadeAnim = useRef(new Animated.Value(0)).current
 
