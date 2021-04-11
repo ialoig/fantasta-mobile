@@ -1,9 +1,9 @@
 
 import React from "react"
 import Validator from "validator"
-import { FIELDS_ID, PASSWORD_OPT } from "../../constants"
+import { FIELDS_ID } from "../../constants"
 import routes from "../../navigation/routesNames"
-import { Error, Auth } from "../../services"
+import { Auth, Error } from "../../services"
 
 import Forgot from "./Forgot"
 
