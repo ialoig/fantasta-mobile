@@ -26,12 +26,12 @@ export class RegisterContainer extends React.Component {
 	}
 
 	async register() {
-
 		const email = this.state[FIELDS_ID.emailId] || ""
 		const pw1 = this.state[FIELDS_ID.passwordId] || ""
 		const pw2 = this.state[FIELDS_ID.repeatPasswordId] || ""
 
 		if (!email || !Validator.isEmail(email)) {
+
 			this.setState({ showError: true })
 			return
 		}

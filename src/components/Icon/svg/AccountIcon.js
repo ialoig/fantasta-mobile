@@ -4,7 +4,7 @@ import React from "react"
 import Svg, { G, Mask, Path, Rect } from "react-native-svg"
 import colors from "../../../styles/colors"
 
-function AccountIcon({primary, secondary, shadow, width, height, ...props}) {
+function AccountIcon({ primary, secondary, shadow, width, height, ...props }) {
 	return (
 		<Svg width={width} height={height} {...props}
 			viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">

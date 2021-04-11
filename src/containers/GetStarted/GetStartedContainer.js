@@ -3,7 +3,7 @@ import React from "react"
 
 import routes from "../../navigation/routesNames"
 import GetStarted from "./GetStarted"
-import {data} from "./costants"
+import { data } from "./costants"
 
 export class GetStartedContainer extends React.Component {
 

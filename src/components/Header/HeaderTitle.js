@@ -5,7 +5,7 @@ import { Text } from "react-native"
 import routes from "../../navigation/routesNames"
 import { textStyles } from "../../styles"
 
-function HeaderTitle({children}) {
+function HeaderTitle({ children }) {
 
 	//TODO: gl - valutare possibilita di scorrere una mappa con tutte le routes ed impostare il titolo 
 	//dell'header in maniera più furba
