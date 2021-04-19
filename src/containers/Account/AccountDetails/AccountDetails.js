@@ -46,7 +46,16 @@ function AccountDetails() {
 					type='small'
 					arrow={true}
 				/>
-				{ /** username */}
+
+				{ /** change password */}
+				<Card
+					onPress={() => navigate(routes.PASSWORD_SETTINGS)}
+					title={I18n.translate("change_password")}
+					type='small'
+					arrow={true}
+				/>
+
+				{ /** delete account */}
 				<Card
 					onPress={() => navigate(routes.DELETE_ACCOUNT)}
 					title={I18n.translate("delete_account")}
