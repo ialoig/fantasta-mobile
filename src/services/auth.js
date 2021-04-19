@@ -59,11 +59,11 @@ const Authenticate = async () => {
 	}
 }
 
-const update = async (email, username) => {
+const update = async (email, username, password) => {
 	console.log("POST /auth/update - email=" + email + ", username=" + username)
 	try {
 
-		let response = await axios.put("/auth/update", { email, username }, {})
+		let response = await axios.put("/auth/update", { email, username, password }, {})
 		saveUser(response)
 
 		return Promise.resolve()

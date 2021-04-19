@@ -23,6 +23,8 @@ function HeaderTitle({ children }) {
 			return I18n.translate("change_email")
 		case routes.USERNAME_SETTINGS:
 			return I18n.translate("change_username")
+		case routes.PASSWORD_SETTINGS:
+			return I18n.translate("change_password")
 		case routes.DELETE_ACCOUNT:
 			return I18n.translate("delete_account")
 		case routes.LANGUAGE:
