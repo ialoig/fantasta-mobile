@@ -32,12 +32,12 @@ export class SplashScreenContainer extends React.Component {
 			}
 			catch (error)
 			{
-				this.props.navigation.navigate(routes.HOME)
+				this.props.navigation.navigate(routes.LOGIN)
 			}
 		}
 		else
 		{
-			this.props.navigation.navigate(routes.HOME)
+			this.props.navigation.navigate(routes.LOGIN)
 		}
 	}
 
