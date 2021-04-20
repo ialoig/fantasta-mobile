@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "Fantasta",
+    "scheme": "fantasta",
     "slug": "Fantasta_mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -29,7 +30,11 @@
       "favicon": "./assets/favicon.png"
     },
     "packagerOpts": {
-      "sourceExts": ["js", "ts", "tsx"]
+      "sourceExts": [
+        "js",
+        "ts",
+        "tsx"
+      ]
     }
   }
 }

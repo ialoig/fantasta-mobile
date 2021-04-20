@@ -5,6 +5,7 @@ import React from "react"
 import { CreateContainer } from "../containers/Create/CreateContainer"
 import { DashboardContainer } from "../containers/Dashboard/DashboardContainer"
 import { ForgotContainer } from "../containers/Forgot/ForgotContainer"
+import ResetPassword from "../containers/ResetPassword/ResetPassword"
 import { GetStartedContainer } from "../containers/GetStarted/GetStartedContainer"
 import { HomeContainer } from "../containers/Home/HomeContainer"
 import { JoinLeagueContainer } from "../containers/JoinLeague/JoinLeagueContainer"
@@ -34,6 +35,8 @@ export default function Routes() {
 					options={
 						getScreenConfig(false, false, false)
 					} />
+				<AppStack.Screen name={routes.RESET_PASSWORD} component={ResetPassword}
+					options={noHeaderScreenConfig} />
 				<AppStack.Screen name={routes.FORGOT} component={ForgotContainer}
 					options={noHeaderScreenConfig} />
 				<AppStack.Screen name={routes.GETSTARTED} component={GetStartedContainer}
