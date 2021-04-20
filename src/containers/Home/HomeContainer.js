@@ -6,42 +6,40 @@ import Home from "./Home"
 
 export class HomeContainer extends React.Component {
 
-	constructor (props) {
+	constructor(props) {
 		super(props)
 		this.state = {
-			leagues: Leagues.Get().sort((a, b)=> a.name > b.name ? 1 : -1)
+			leagues: Leagues.Get().sort((a, b) => a.name > b.name ? 1 : -1)
 		}
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		this.mounted = true
 		this.props.navigation.addListener(
 			"focus",
 			() => {
 				this.mounted && this.setState({
-					leagues: Leagues.Get().sort((a, b)=> a.name > b.name ? 1 : -1)
+					leagues: Leagues.Get().sort((a, b) => a.name > b.name ? 1 : -1)
 				})
 			}
 		)
 	}
 
-	componentWillUnmount () {
+	componentWillUnmount() {
 		this.mounted = false
 	}
 
-	async joinLeague ( item ) {
-		if ( item && item._id )
-		{
-			try
-			{
-				await Leagues.Join( item._id )
+	async joinLeague(item) {
+		if (item && item._id) {
+			try {
+				await Leagues.Join(item._id)
 				this.props.navigation.navigate(routes.DASHBOARD)
 			}
-			catch (error) {/*error handling done in Leagues.Join*/}
+			catch (error) {/*error handling done in Leagues.Join*/ }
 		}
 	}
 
-	render () {
+	render() {
 		return (
 			<Home
 				{...this.props}
@@ -53,5 +51,5 @@ export class HomeContainer extends React.Component {
 			/>
 		)
 	}
-    
+
 }

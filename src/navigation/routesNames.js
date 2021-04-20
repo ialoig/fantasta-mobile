@@ -19,6 +19,7 @@ const RoutesName = {
 	LOGIN: "Login",
 	REGISTER: "Register",
 	FORGOT: "Forgot",
+	RESET_PASSWORD: "ResetPassword",
 	HOME: "Home",
 	DASHBOARD: "Dashboard",
 	JOIN_LEAGUE: "JoinLeague",

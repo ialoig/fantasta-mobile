@@ -10,6 +10,7 @@ import styles from "./styles"
 
 
 const Forgot = (props) => {
+
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 			<View style={commonStyle.container}>
@@ -32,6 +33,12 @@ const Forgot = (props) => {
 					<Button
 						title={I18n.translate("retrieve_password")}
 						onPress={props.Forgot}
+						type='primary'
+						size='large'
+					/>
+					<Button
+						title={"DEEP LINK"}
+						onPress={props.deepLink}
 						type='primary'
 						size='large'
 					/>
