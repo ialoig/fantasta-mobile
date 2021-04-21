@@ -36,13 +36,13 @@ export const card = StyleSheet.create({
 	small: {
 		flexDirection: "row",
 		marginHorizontal: 0,
-		maxHeight: getHeight(100),
+		maxHeight: getHeight(80),
 		paddingHorizontal: getWidth(20),
 		paddingVertical: getWidth(20)
 	},
 	square: {
-		height: getHeight(180),
-		maxWidth: getWidth(150),
+		height: getHeight(140),
+		maxWidth: getWidth(140),
 	}
 })
 

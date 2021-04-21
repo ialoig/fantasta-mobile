@@ -38,6 +38,7 @@ const RoutesName = {
 const ModalRoutes = {
 	EMAIL_SETTINGS: "EmailSettings",
 	USERNAME_SETTINGS: "UsernameSettings",
+	PASSWORD_SETTINGS: "PasswordSettings",
 	DELETE_ACCOUNT: "DeleteAccount",
 	LANGUAGE: "Language",
 	FEEDBACK: "Feedback",

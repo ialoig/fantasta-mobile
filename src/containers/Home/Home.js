@@ -4,7 +4,7 @@ import React from "react"
 import { FlatList, Text, View } from "react-native"
 
 import { Card } from "../../components"
-import { commonStyle, textStyles } from "../../styles"
+import { textStyles } from "../../styles"
 import styles from "./styles"
 
 const League = ( item, onPress ) => (
@@ -18,11 +18,12 @@ const League = ( item, onPress ) => (
 		icon={"league"}
 	/>
 )
-	
+
+
 	
 const Home = (props) => {
 	return (
-		<View style={commonStyle.container}>
+		<View style={styles.container}>
 			
 			{ /** crea/join */}
 			<View style={styles.buttons}>
@@ -46,17 +47,18 @@ const Home = (props) => {
 
 			{ /** leagues */}
 			<View style={styles.list}>
-				<Text style={textStyles.h2}>{I18n.translate("yourLeagues")}</Text>
+				<Text style={textStyles.h1}>{I18n.translate("yourLeagues")}</Text>
 				<FlatList
 					data={props.leagues}
 					ListEmptyComponent={() => { 
 						return (
-							<Text style={textStyles.description}>
+							<Text style={[textStyles.description, styles.description]}>
 								{I18n.translate("noLeaguesFound")}
 							</Text>) 
 					}}
 					renderItem={item => League(item.item, () => props.joinLeague( item.item ) )}
 					keyExtractor={item => item._id}
+					showsVerticalScrollIndicator={false}
 				/>
 			</View>
 		</View>
@@ -64,4 +66,3 @@ const Home = (props) => {
 }
 		
 export default Home
-		
