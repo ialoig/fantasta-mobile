@@ -37,10 +37,6 @@ function ResetPassword({ route }) {
 	}
 
 	function reset() {
-		console.log(`email: ${email}`)
-		console.log(`password: ${password}`)
-		console.log(`repeatPassword: ${repeatPassword}`)
-
 		if (!email || !Validator.isEmail(email)) {
 			setError(true)
 			return
@@ -58,8 +54,7 @@ function ResetPassword({ route }) {
 
 		if (email && password && password == repeatPassword) {
 			try {
-				// let res = await Auth.Register(email, password) // todo: reset API
-				setError(false)
+				// let res = await Auth.Reset(email, password) // todo: reset API
 				navigate(routes.LOGIN)
 			}
 			catch (error) {
@@ -68,7 +63,6 @@ function ResetPassword({ route }) {
 			}
 		}
 	}
-
 
 	return (
 		<View style={[commonStyle.container, commonStyle.flex_start]}>
