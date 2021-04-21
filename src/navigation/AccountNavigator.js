@@ -5,6 +5,7 @@ import Account from "../containers/Account/Account"
 import AccountDetails from "../containers/Account/AccountDetails/AccountDetails"
 import DeleteAccount from "../containers/Account/AccountDetails/DeleteAccount/DeleteAccount"
 import EmailSettings from "../containers/Account/AccountDetails/EmailSettings/EmailSettings"
+import PasswordSettings from "../containers/Account/AccountDetails/PasswordSettings/PasswordSettings"
 import UsernameSettings from "../containers/Account/AccountDetails/UsernameSettings/UsernameSettings"
 import Language from "../containers/Account/Settings/Language/Language"
 import Settings from "../containers/Account/Settings/Settings"
@@ -49,6 +50,11 @@ export default function AccountNavigator()  {
 					getScreenConfig(true, false, true)
 				}/>
 			<AccountStack.Screen name={routes.USERNAME_SETTINGS} component={UsernameSettings}
+				{...closeKeyboardOnClose}
+				options={
+					getScreenConfig(true, false, true)
+				}/>
+			<AccountStack.Screen name={routes.PASSWORD_SETTINGS} component={PasswordSettings}
 				{...closeKeyboardOnClose}
 				options={
 					getScreenConfig(true, false, true)
