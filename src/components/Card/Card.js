@@ -9,22 +9,22 @@ import { card, text } from "./styles"
 const Card = ({ title, description, type, icon, arrow, onPress }) => {
 
 	return (
-		<TouchableOpacity onPress={onPress} style={[ card.card, card[type] ]}>
-			{ icon && 
-			<View style={card.paddingIcon}>
-				<Icon name={icon} />
-			</View> 
+		<TouchableOpacity onPress={onPress} style={[card.card, card[type]]}>
+			{ icon &&
+				<View style={card.paddingIcon}>
+					<Icon name={icon} />
+				</View>
 			}
-			
+
 			<View style={text[type]}>
 				<Text style={textStyles.title}>{title}</Text>
 				{description ? <Text style={textStyles.description}>{description}</Text> : null}
 			</View>
 
-			{ arrow && 
-			<View style={[commonStyle.flex, card.arrow]}>
-				<Icon name="forward" />
-			</View>
+			{ arrow &&
+				<View style={[commonStyle.flex, card.arrow]}>
+					<Icon name="forward" />
+				</View>
 			}
 		</TouchableOpacity>
 	)

@@ -3,14 +3,14 @@ import I18n from "i18n-js"
 import React, { useState } from "react"
 import { Text, View } from "react-native"
 import Validator from "validator"
+import { Button, Email } from "../../components"
+import routes from "../../navigation/routesNames"
 import { Auth, Error } from "../../services"
-import { Button, Email, Logo } from "../../components"
 import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
-import Icon from "../../components/Icon/Icon"
 
 
-function ForgotPasswordConfirmation() {
+function ForgotPassword() {
 
 	const { navigate } = useNavigation()
 	const [email, setEmail] = useState(null)
@@ -23,9 +23,7 @@ function ForgotPasswordConfirmation() {
 		setEmail(value)
 	}
 
-	const forgot = async () => {
-
-		console.log(`========== forgot()`)
+	async function forgot() {
 
 		if (!email || !Validator.isEmail(email)) {
 			setError(true)
@@ -33,12 +31,9 @@ function ForgotPasswordConfirmation() {
 		}
 
 		try {
-			console.log(`========== 111`)
-			let res = await Auth.forgot(email)
-			console.log(`========== 222`)
-
+			await Auth.forgot(email)
 			Error.showAlert("Email inviata", "Controlla nella posta in arrivo")
-			this.props.navigation.navigate(routes.LOGIN)
+			navigate(routes.FORGOT_PASSWORD_CONFIRMATION)
 		}
 		catch (error) {
 			//managed on services/auth.js
@@ -48,12 +43,8 @@ function ForgotPasswordConfirmation() {
 
 	return (
 		<View style={[commonStyle.container, commonStyle.flex_start]}>
-			{/* <Logo /> */}
-			<View style={styles.image}>
-				<Icon name={"check"} />
-			</View>
 
-			{/* <Text style={[styles.haveAccount, textStyles.button]} >
+			<Text style={[styles.haveAccount, textStyles.button]} >
 				{I18n.translate("forgot_password_explanation")}
 			</Text>
 
@@ -71,11 +62,11 @@ function ForgotPasswordConfirmation() {
 				onPress={() => forgot()}
 				type='primary'
 				size='large'
-			/> */}
+			/>
 		</View>
 	)
 }
 
-export default ForgotPasswordConfirmation
+export default ForgotPassword
 
 

@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import AccountIcon from "./svg/AccountIcon"
 import BackIcon from "./svg/BackIcon"
+import ConfirmIcon from "./svg/ConfirmIcon"
 import CreateLeagueIcon from "./svg/CreateLeagueIcon"
 import EmptyIcon from "./svg/EmptyIcon"
 import ForwardIcon from "./svg/ForwardIcon"
@@ -9,19 +10,18 @@ import JoinLeagueIcon from "./svg/JoinLeagueIcon"
 import LeagueIcon from "./svg/LeagueIcon"
 import MarketIcon from "./svg/MarketIcon"
 import TeamIcon from "./svg/TeamIcon"
-import CheckIcon from "./svg/CheckIcon"
 
 
 const IconType = {
 	account: AccountIcon,
 	back: BackIcon,
 	forward: ForwardIcon,
+	confirm: ConfirmIcon,
 	create_league: CreateLeagueIcon,
 	join_league: JoinLeagueIcon,
 	league: LeagueIcon,
 	team: TeamIcon,
-	market: MarketIcon,
-	check: CheckIcon
+	market: MarketIcon
 }
 
 
