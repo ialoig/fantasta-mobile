@@ -1,22 +1,21 @@
-
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React, { useState } from "react"
-import { Text, View, TextInput } from "react-native"
+import { TextInput, View } from "react-native"
+import Validator from "validator"
 import { Button, Logo, Password, RepeatPassword } from "../../components"
+import { PASSWORD_OPT } from "../../constants"
 import routes from "../../navigation/routesNames"
 import { Auth } from "../../services"
-import { commonStyle, textStyles, inputStyle } from "../../styles"
-import Validator from "validator"
-import { PASSWORD_OPT } from "../../constants"
+import { commonStyle, inputStyle, textStyles } from "../../styles"
 import styles from "./styles"
 
 function ResetPassword({ route }) {
 
-	const { email } = route.params
-
-	//hook which give access to the navigation object from the component directly
 	const { navigate } = useNavigation()
+
+	const { email } = route.params
 
 	const [password, setPassword] = useState(null)
 	const [repeatPassword, setRepeatPassword] = useState(null)
@@ -36,7 +35,7 @@ function ResetPassword({ route }) {
 		setRepeatPassword(value)
 	}
 
-	function reset() {
+	async function reset() {
 		if (!email || !Validator.isEmail(email)) {
 			setError(true)
 			return
@@ -54,12 +53,11 @@ function ResetPassword({ route }) {
 
 		if (email && password && password == repeatPassword) {
 			try {
-				// let res = await Auth.Reset(email, password) // todo: reset API
-				navigate(routes.LOGIN)
+				await Auth.reset(email, password)
+				navigate(routes.RESET_PASSWORD_CONFIRMATION)
 			}
 			catch (error) {
-				//todo: remove this useless try/catch
-				//managed on services/auth.js
+				console.log(`error: ${error}`)
 			}
 		}
 	}
@@ -107,6 +105,14 @@ function ResetPassword({ route }) {
 			/>
 		</View>
 	)
+}
+
+ResetPassword.propTypes = {
+	route: PropTypes.object.isRequired
+}
+
+ResetPassword.defaultProps = {
+	route: {}
 }
 
 export default ResetPassword

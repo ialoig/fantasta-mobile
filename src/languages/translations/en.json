@@ -12,6 +12,8 @@
   "classic": "Classic",
   "complete_register": "Registration",
   "complete_register_descr": "Let your friend know which is your profile name",
+  "confirmation_reset_password_title": "Your password has been successfully changed",
+  "confirmation_reset_password_description": "Please login again",
   "contact": "Contact us",
   "contact_descr": "Get in touch with us",
   "countdown": "Countdown",

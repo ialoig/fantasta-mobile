@@ -12,6 +12,8 @@
   "classic": "Classico",
   "complete_register": "Registrazione",
   "complete_register_descr": "Imposta il tuo nome profilo cosi i partecipanti alla Lega sapranno con chi stanno giocando",
+  "confirmation_reset_password_title": "La tua password è stata cambiata con successo",
+  "confirmation_reset_password_description": "Effettua nuovamente il Login",
   "contact": "Contattaci",
   "contact_descr": "Entra in contatto con noi",
   "countdown": "Countdown",

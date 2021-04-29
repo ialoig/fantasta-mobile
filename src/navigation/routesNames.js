@@ -1,4 +1,3 @@
-
 /**
  *  Routes definition for Navigator. 
  *  Needed to define params to be passed as initial params to specific screens
@@ -18,9 +17,9 @@ const RoutesName = {
 	GETSTARTED: "GetStarted",
 	LOGIN: "Login",
 	REGISTER: "Register",
-	FORGOT_PASSWORD: "Forgot",
-	FORGOT_PASSWORD_CONFIRMATION: "ForgotPasswordConfirmation",
+	FORGOT_PASSWORD: "ForgotPassword",
 	RESET_PASSWORD: "ResetPassword",
+	RESET_PASSWORD_CONFIRMATION: "ResetPasswordConfirmation",
 	HOME: "Home",
 	DASHBOARD: "Dashboard",
 	JOIN_LEAGUE: "JoinLeague",
@@ -28,7 +27,8 @@ const RoutesName = {
 	ACCOUNT: "Account",
 	ACCOUNT_DETAILS: "AccountDetails",
 	SUPPORT: "Support",
-	SETTINGS: "Settings"
+	SETTINGS: "Settings",
+	CONFIRMATION: "Confirmation"
 }
 
 
