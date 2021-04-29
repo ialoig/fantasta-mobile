@@ -11,5 +11,10 @@ export default StyleSheet.create({
 		alignSelf: "center",
 		color: colors.textPlaceholder,
 		paddingVertical: 4
-	}
+	},
+	image: {
+		alignItems: "center",
+		flex: 1,
+		justifyContent: "center"
+	},
 })

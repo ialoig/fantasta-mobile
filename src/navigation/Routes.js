@@ -4,7 +4,9 @@ import React from "react"
 
 import { CreateContainer } from "../containers/Create/CreateContainer"
 import { DashboardContainer } from "../containers/Dashboard/DashboardContainer"
-import { ForgotContainer } from "../containers/Forgot/ForgotContainer"
+// import { ForgotContainer } from "../containers/Forgot/ForgotContainer"
+import ForgotPassword from "../containers/Forgot/ForgotPassword"
+import ForgotPasswordConfirmation from "../containers/Forgot/ForgotPasswordConfirmation"
 import ResetPassword from "../containers/ResetPassword/ResetPassword"
 import { GetStartedContainer } from "../containers/GetStarted/GetStartedContainer"
 import { HomeContainer } from "../containers/Home/HomeContainer"
@@ -23,7 +25,8 @@ export default function Routes() {
 	return (
 		<NavigationContainer>
 			<AppStack.Navigator
-				initialRouteName={routes.SPLASHSCREEN}
+				// initialRouteName={routes.SPLASHSCREEN}
+				initialRouteName={routes.FORGOT_PASSWORD_CONFIRMATION}
 				{...defaultScreenOptions} >
 				<AppStack.Screen name={routes.SPLASHSCREEN} component={SplashScreenContainer}
 					options={noHeaderScreenConfig} />
@@ -32,27 +35,25 @@ export default function Routes() {
 				<AppStack.Screen name={routes.REGISTER} component={RegisterContainer}
 					options={noHeaderScreenConfig} />
 				<AppStack.Screen name={routes.COMPLETE_REGISTER} component={CompleteRegistration}
-					options={
-						getScreenConfig(false, false, false)
-					} />
+					options={getScreenConfig(false, false, false)} />
 				<AppStack.Screen name={routes.RESET_PASSWORD} component={ResetPassword}
 					options={noHeaderScreenConfig} />
-				<AppStack.Screen name={routes.FORGOT} component={ForgotContainer}
+				{/* <AppStack.Screen name={routes.FORGOT} component={ForgotContainer}
+					options={noHeaderScreenConfig} /> */}
+				<AppStack.Screen name={routes.FORGOT_PASSWORD} component={ForgotPassword}
+					options={getScreenConfig(false, "login", true)} />
+				<AppStack.Screen name={routes.FORGOT_PASSWORD_CONFIRMATION} component={ForgotPasswordConfirmation}
 					options={noHeaderScreenConfig} />
 				<AppStack.Screen name={routes.GETSTARTED} component={GetStartedContainer}
 					options={noHeaderScreenConfig} />
 				<AppStack.Screen name={routes.HOME} component={HomeContainer}
-					options={
-						getScreenConfig(false, "account", false)
-					} />
+					options={getScreenConfig(false, "account", false)} />
 				<AppStack.Screen name={routes.CREATE_LEAGUE} component={CreateContainer}
 					options={noHeaderScreenConfig} />
 				<AppStack.Screen name={routes.JOIN_LEAGUE} component={JoinLeagueContainer}
 					options={noHeaderScreenConfig} />
 				<AppStack.Screen name={routes.DASHBOARD} component={DashboardContainer}
-					options={
-						getScreenConfig(false, "account", false)
-					} />
+					options={getScreenConfig(false, "account", false)} />
 				<AppStack.Screen name={routes.ACCOUNTNAVIGATOR} component={AccountNavigator}
 					options={noHeaderScreenConfig} />
 			</AppStack.Navigator>
