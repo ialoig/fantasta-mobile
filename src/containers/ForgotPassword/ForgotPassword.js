@@ -5,7 +5,7 @@ import { Text, View } from "react-native"
 import Validator from "validator"
 import { Button, Email } from "../../components"
 import routes from "../../navigation/routesNames"
-import { Auth, Error } from "../../services"
+import { Auth } from "../../services"
 import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
 
@@ -32,7 +32,6 @@ function ForgotPassword() {
 
 		try {
 			await Auth.forgot(email)
-			Error.showAlert("Email inviata", "Controlla nella posta in arrivo")
 			navigate(routes.FORGOT_PASSWORD_CONFIRMATION)
 		}
 		catch (error) {

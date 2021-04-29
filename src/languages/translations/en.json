@@ -12,6 +12,8 @@
   "classic": "Classic",
   "complete_register": "Registration",
   "complete_register_descr": "Let your friend know which is your profile name",
+  "confirmation_forgot_password_title": "We have sent you a link to reset your password",
+  "confirmation_forgot_password_description": "Please click on the link we have just sent to you on your email address",
   "confirmation_reset_password_title": "Your password has been successfully changed",
   "confirmation_reset_password_description": "Please login again",
   "contact": "Contact us",

@@ -18,6 +18,7 @@ const RoutesName = {
 	LOGIN: "Login",
 	REGISTER: "Register",
 	FORGOT_PASSWORD: "ForgotPassword",
+	FORGOT_PASSWORD_CONFIRMATION: "ForgotPasswordConfirmation",
 	RESET_PASSWORD: "ResetPassword",
 	RESET_PASSWORD_CONFIRMATION: "ResetPasswordConfirmation",
 	HOME: "Home",

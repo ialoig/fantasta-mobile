@@ -6,6 +6,7 @@ import Confirmation from "../containers/Confirmation/Confirmation"
 import { CreateContainer } from "../containers/Create/CreateContainer"
 import { DashboardContainer } from "../containers/Dashboard/DashboardContainer"
 import ForgotPassword from "../containers/ForgotPassword/ForgotPassword"
+import ForgotPasswordConfirmation from "../containers/ForgotPassword/ForgotPasswordConfirmation"
 import { GetStartedContainer } from "../containers/GetStarted/GetStartedContainer"
 import { HomeContainer } from "../containers/Home/HomeContainer"
 import { JoinLeagueContainer } from "../containers/JoinLeague/JoinLeagueContainer"
@@ -25,8 +26,8 @@ export default function Routes() {
 	return (
 		<NavigationContainer>
 			<AppStack.Navigator
-				// initialRouteName={routes.SPLASHSCREEN}
-				initialRouteName={routes.RESET_PASSWORD_CONFIRMATION}
+				initialRouteName={routes.SPLASHSCREEN}
+				// initialRouteName={routes.RESET_PASSWORD_CONFIRMATION}
 				{...defaultScreenOptions} >
 				<AppStack.Screen
 					name={routes.SPLASHSCREEN}
@@ -56,6 +57,10 @@ export default function Routes() {
 					name={routes.FORGOT_PASSWORD}
 					component={ForgotPassword}
 					options={getScreenConfig(false, "login", true)} />
+				<AppStack.Screen
+					name={routes.FORGOT_PASSWORD_CONFIRMATION}
+					component={ForgotPasswordConfirmation}
+					options={noHeaderScreenConfig} />
 				<AppStack.Screen
 					name={routes.CONFIRMATION}
 					component={Confirmation}
