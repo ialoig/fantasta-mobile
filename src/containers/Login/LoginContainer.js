@@ -49,7 +49,7 @@ export class LoginContainer extends React.Component {
 	}
 
 	forgotPassword() {
-		return this.props.navigation.navigate(routes.FORGOT)
+		return this.props.navigation.navigate(routes.FORGOT_PASSWORD)
 	}
 
 	render() {

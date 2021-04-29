@@ -9,6 +9,7 @@ import JoinLeagueIcon from "./svg/JoinLeagueIcon"
 import LeagueIcon from "./svg/LeagueIcon"
 import MarketIcon from "./svg/MarketIcon"
 import TeamIcon from "./svg/TeamIcon"
+import CheckIcon from "./svg/CheckIcon"
 
 
 const IconType = {
@@ -19,7 +20,8 @@ const IconType = {
 	join_league: JoinLeagueIcon,
 	league: LeagueIcon,
 	team: TeamIcon,
-	market: MarketIcon
+	market: MarketIcon,
+	check: CheckIcon
 }
 
 
