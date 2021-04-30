@@ -28,7 +28,6 @@ export default function Routes() {
 		<NavigationContainer>
 			<AppStack.Navigator
 				initialRouteName={routes.SPLASHSCREEN}
-				// initialRouteName={routes.RESET_PASSWORD_CONFIRMATION}
 				{...defaultScreenOptions} >
 				<AppStack.Screen
 					name={routes.SPLASHSCREEN}
