@@ -21,6 +21,7 @@ const RoutesName = {
 	FORGOT_PASSWORD_CONFIRMATION: "ForgotPasswordConfirmation",
 	RESET_PASSWORD: "ResetPassword",
 	RESET_PASSWORD_CONFIRMATION: "ResetPasswordConfirmation",
+	RESET_PASSWORD_ERROR: "ResetPasswordError",
 	HOME: "Home",
 	DASHBOARD: "Dashboard",
 	JOIN_LEAGUE: "JoinLeague",
