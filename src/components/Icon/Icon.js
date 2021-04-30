@@ -3,6 +3,7 @@ import React from "react"
 import AccountIcon from "./svg/AccountIcon"
 import BackIcon from "./svg/BackIcon"
 import ConfirmIcon from "./svg/ConfirmIcon"
+import ErrorIcon from "./svg/ErrorIcon"
 import CreateLeagueIcon from "./svg/CreateLeagueIcon"
 import EmptyIcon from "./svg/EmptyIcon"
 import ForwardIcon from "./svg/ForwardIcon"
@@ -17,6 +18,7 @@ const IconType = {
 	back: BackIcon,
 	forward: ForwardIcon,
 	confirm: ConfirmIcon,
+	error: ErrorIcon,
 	create_league: CreateLeagueIcon,
 	join_league: JoinLeagueIcon,
 	league: LeagueIcon,

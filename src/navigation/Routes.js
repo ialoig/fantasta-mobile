@@ -15,6 +15,7 @@ import CompleteRegistration from "../containers/Register/CompleteRegistration"
 import { RegisterContainer } from "../containers/Register/RegisterContainer"
 import ResetPassword from "../containers/ResetPassword/ResetPassword"
 import ResetPasswordConfirmation from "../containers/ResetPassword/ResetPasswordConfirmation"
+import ResetPasswordError from "../containers/ResetPassword/ResetPasswordError"
 import { SplashScreenContainer } from "../containers/SplashScreen/SplashScreenContainer"
 import AccountNavigator from "./AccountNavigator"
 import { defaultScreenOptions, getScreenConfig, noHeaderScreenConfig } from "./routesConfig"
@@ -52,6 +53,10 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.RESET_PASSWORD_CONFIRMATION}
 					component={ResetPasswordConfirmation}
+					options={noHeaderScreenConfig} />
+				<AppStack.Screen
+					name={routes.RESET_PASSWORD_ERROR}
+					component={ResetPasswordError}
 					options={noHeaderScreenConfig} />
 				<AppStack.Screen
 					name={routes.FORGOT_PASSWORD}
