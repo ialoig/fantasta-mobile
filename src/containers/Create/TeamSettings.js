@@ -1,11 +1,9 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
-
 import { NumberInc } from "../../components"
 import { commonStyle } from "../../styles"
-import styles from "./styles"
 
 const TeamSettings = (props) => {
 	return (
@@ -62,6 +60,20 @@ const TeamSettings = (props) => {
 			/>
 		</View>
 	)
+}
+
+
+TeamSettings.propTypes = {
+	goalskeepersId: PropTypes.string.isRequired,
+	defendersId: PropTypes.string.isRequired,
+	midfieldersId: PropTypes.string.isRequired,
+	strikersId: PropTypes.string.isRequired,
+	budgetId: PropTypes.string.isRequired,
+	playersId: PropTypes.string.isRequired,
+	tipology: PropTypes.object.isRequired,
+	tipologyId: PropTypes.string.isRequired,
+	settings: PropTypes.object.isRequired,
+	onChange: PropTypes.func.isRequired
 }
 
 export default TeamSettings

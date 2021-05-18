@@ -1,9 +1,8 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native"
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view"
-
 import { Button, Email, Logo, Password, RepeatPassword } from "../../components"
 import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
@@ -65,3 +64,15 @@ const Register = (props) => {
 }
 
 export default Register
+
+
+Register.propTypes = {
+	emailId: PropTypes.string.isRequired,
+	passwordId: PropTypes.string.isRequired,
+	repeatPasswordId: PropTypes.string.isRequired,
+	password: PropTypes.string.isRequired,
+	showError: PropTypes.bool.isRequired,
+	onChange: PropTypes.func.isRequired,
+	Register: PropTypes.func.isRequired,
+	login: PropTypes.func.isRequired
+}

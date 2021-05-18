@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import Validator from "validator"
 import { FIELDS_ID, PASSWORD_OPT } from "../../constants"
@@ -19,7 +19,7 @@ export class RegisterContainer extends React.Component {
 		}
 	}
 
-	onChange(id, value, valid) {
+	onChange(id, value) {
 		this.setState({
 			[id]: value
 		})
@@ -48,7 +48,7 @@ export class RegisterContainer extends React.Component {
 
 		if (email && pw1 && pw1 == pw2) {
 			try {
-				let res = await Auth.Register(email, pw1)
+				await Auth.Register(email, pw1)
 
 				this.props.navigation.navigate(routes.COMPLETE_REGISTER)
 			}
@@ -74,4 +74,9 @@ export class RegisterContainer extends React.Component {
 			/>
 		)
 	}
+}
+
+
+RegisterContainer.propTypes = {
+	navigation: PropTypes.object.isRequired
 }

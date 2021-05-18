@@ -1,5 +1,5 @@
+import PropTypes from "prop-types"
 import React from "react"
-
 import { FIELDS_ID } from "../../constants"
 import routes from "../../navigation/routesNames"
 import { Error, Leagues } from "../../services"
@@ -25,7 +25,7 @@ export class JoinLeagueContainer extends React.Component {
 		}
 	}
     
-	onChange ( id, value, valid ) {
+	onChange ( id, value ) {
 		this.setState({
 			[id]: value
 		})
@@ -63,4 +63,9 @@ export class JoinLeagueContainer extends React.Component {
 		)
 	}
 
+}
+
+
+JoinLeagueContainer.propTypes = {
+	navigation: PropTypes.object.isRequired
 }

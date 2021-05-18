@@ -1,7 +1,7 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
-import { Image, Text, View } from "react-native"
+import { Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider"
 
 import { button, text } from "../../components/Button/styles"
@@ -59,3 +59,9 @@ const GetStarted = (props) => {
 }
 
 export default GetStarted
+
+
+GetStarted.propTypes = {
+	data: PropTypes.object.isRequired,
+	onDone: PropTypes.func.isRequired
+}

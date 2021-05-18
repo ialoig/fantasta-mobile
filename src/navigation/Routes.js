@@ -2,7 +2,6 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
 
-import Confirmation from "../containers/Confirmation/Confirmation"
 import { CreateContainer } from "../containers/Create/CreateContainer"
 import { DashboardContainer } from "../containers/Dashboard/DashboardContainer"
 import ForgotPassword from "../containers/ForgotPassword/ForgotPassword"
@@ -11,6 +10,7 @@ import { GetStartedContainer } from "../containers/GetStarted/GetStartedContaine
 import { HomeContainer } from "../containers/Home/HomeContainer"
 import { JoinLeagueContainer } from "../containers/JoinLeague/JoinLeagueContainer"
 import { LoginContainer } from "../containers/Login/LoginContainer"
+import CompleteRegistratioConfirmation from "../containers/Register/CompleteRegistratioConfirmation"
 import CompleteRegistration from "../containers/Register/CompleteRegistration"
 import { RegisterContainer } from "../containers/Register/RegisterContainer"
 import ResetPassword from "../containers/ResetPassword/ResetPassword"
@@ -46,6 +46,10 @@ export default function Routes() {
 					component={CompleteRegistration}
 					options={getScreenConfig(false, false, false)} />
 				<AppStack.Screen
+					name={routes.COMPLETE_REGISTER_CONFIRMATION}
+					component={CompleteRegistratioConfirmation}
+					options={noHeaderScreenConfig} />
+				<AppStack.Screen
 					name={routes.RESET_PASSWORD}
 					component={ResetPassword}
 					options={noHeaderScreenConfig} />
@@ -64,10 +68,6 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.FORGOT_PASSWORD_CONFIRMATION}
 					component={ForgotPasswordConfirmation}
-					options={noHeaderScreenConfig} />
-				<AppStack.Screen
-					name={routes.CONFIRMATION}
-					component={Confirmation}
 					options={noHeaderScreenConfig} />
 				<AppStack.Screen
 					name={routes.GETSTARTED}

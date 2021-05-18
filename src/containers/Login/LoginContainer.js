@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import Validator from "validator"
 import { FIELDS_ID, PASSWORD_OPT } from "../../constants"
@@ -19,7 +19,7 @@ export class LoginContainer extends React.Component {
 		}
 	}
 
-	onChange(id, value, valid) {
+	onChange(id, value) {
 		this.setState({
 			[id]: value
 		})
@@ -32,7 +32,7 @@ export class LoginContainer extends React.Component {
 
 		if (email && pw && Validator.isEmail(email) && Validator.isStrongPassword(pw, PASSWORD_OPT)) {
 			try {
-				let res = await Auth.Login(email, pw)
+				await Auth.Login(email, pw)
 				this.props.navigation.navigate(routes.HOME)
 			}
 			catch (error) {
@@ -65,4 +65,9 @@ export class LoginContainer extends React.Component {
 			/>
 		)
 	}
+}
+
+
+LoginContainer.propTypes = {
+	navigation: PropTypes.object.isRequired
 }
