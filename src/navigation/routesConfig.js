@@ -84,6 +84,7 @@ export const screenModalConfig = ios ? screeniOSModalConfig : android ? screenAn
 
 export const headerTitleConfig = {
 	headerTitleAlign: "center",
+	// eslint-disable-next-line react/display-name
 	headerTitle: props => <HeaderTitle {...props}/>,
 	headerStyle: {
 		elevation: 0,//define shadow offset line
@@ -99,6 +100,7 @@ export const headerTitleConfig = {
  * 
  */
 export const headerNORightConfig = {
+	// eslint-disable-next-line react/display-name
 	headerRight: () => <EmptyButtonPlaceHolder />,
 }
 
@@ -107,6 +109,7 @@ export const headerNORightConfig = {
  * 
  */
 export const headerBackConfig = {
+	// eslint-disable-next-line react/display-name
 	headerBackImage: () => <Icon name="back" />,
 	headerBackTitleVisible: false,
 	headerLeftContainerStyle: {
@@ -119,6 +122,7 @@ export const headerBackConfig = {
  * 
  */
 export const headerNOBackConfig = {
+	// eslint-disable-next-line react/display-name
 	headerBackImage: () => <EmptyButtonPlaceHolder />
 }
 
@@ -131,6 +135,7 @@ export const headerNOBackConfig = {
 export const getHeaderRightConfig = (type) => {
 
 	return {
+		// eslint-disable-next-line react/display-name
 		headerRight: (props) => <HeaderRightButton type={type} {...props}/>,
 		headerRightContainerStyle: {
 			paddingRight: deviceScreenWidth * 0.06

@@ -1,13 +1,11 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider"
-
 import { button, text } from "../../components/Button/styles"
 import Header from "../../components/Header/Header"
 import { carouselSyle, commonStyle } from "../../styles"
-import styles from "./styles"
 
 const Create = (props) => {
 
@@ -54,6 +52,12 @@ const Create = (props) => {
 			renderDoneButton={renderDoneButton}
 		/>
 	)
+}
+
+
+Create.propTypes = {
+	pages: PropTypes.array.isRequired,
+	onDone: PropTypes.func.isRequired
 }
 
 export default Create

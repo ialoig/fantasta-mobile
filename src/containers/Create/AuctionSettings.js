@@ -1,11 +1,9 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
-
 import { NumberInc, Radio } from "../../components"
 import { commonStyle } from "../../styles"
-import styles from "./styles"
 
 const AuctionSettings = (props) => {
 	return (
@@ -40,5 +38,16 @@ const AuctionSettings = (props) => {
 		</View>
 	)
 }
+
+AuctionSettings.propTypes = {
+	auctionType: PropTypes.object.isRequired,
+	auctiontypeId: PropTypes.string.isRequired,
+	countdownId: PropTypes.string.isRequired,
+	startingPrice: PropTypes.object.isRequired,
+	startpriceId: PropTypes.string.isRequired,
+	settings: PropTypes.object.isRequired,
+	onChange: PropTypes.func.isRequired
+}
+
 
 export default AuctionSettings

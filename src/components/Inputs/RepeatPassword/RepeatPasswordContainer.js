@@ -1,12 +1,11 @@
-
 import I18n from "i18n-js"
 import _ from "lodash"
+import PropTypes from "prop-types"
 import React from "react"
-
 import { checkValidity } from "../utils"
 import RepeatPassword from "./RepeatPassword"
 
-export default class PasswordContainer extends React.Component {
+export default class RepeatPasswordContainer extends React.Component {
 
 	constructor (props) {
 		super(props)
@@ -125,4 +124,39 @@ export default class PasswordContainer extends React.Component {
 			/>
 		)
 	}
+}
+
+
+RepeatPasswordContainer.propTypes = {
+	id: PropTypes.string.isRequired,
+	label: PropTypes.string.isRequired,
+	placeholder: PropTypes.string,
+	autoCapitalize: PropTypes.string,
+	clearButtonMode: PropTypes.string,
+	showError: PropTypes.bool,
+	hideError: PropTypes.bool,
+	required: PropTypes.bool,
+	editable: PropTypes.bool,
+	selectTextOnFocus: PropTypes.bool,
+	minLength: PropTypes.number,
+	maxLength: PropTypes.number,
+	errors: PropTypes.string,
+	onChange: PropTypes.func,
+	onBlur: PropTypes.func,
+	onFocus: PropTypes.func
+}
+
+
+RepeatPasswordContainer.defaultTypes = {
+	label: "",
+	placeholder: "",
+	autoCapitalize: "none",
+	clearButtonMode: "while-editing",
+	showError: false,
+	hideError: false,
+	required: false,
+	editable: true,
+	selectTextOnFocus: false,
+	minLength: 0,
+	maxLength: 100
 }

@@ -1,7 +1,6 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
-import routes from "../../navigation/routesNames"
 import { Error, Leagues } from "../../services"
 import AuctionSettings from "./AuctionSettings"
 import Create from "./Create"
@@ -42,7 +41,7 @@ export class CreateContainer extends React.Component {
 		}
 	}
 
-	onChange(id, value, valid) {
+	onChange(id, value) {
 
 		let settings = {
 			[id]: value
@@ -125,3 +124,7 @@ export class CreateContainer extends React.Component {
 	}
 }
 
+
+CreateContainer.propTypes = {
+	navigation: PropTypes.object.isRequired
+}

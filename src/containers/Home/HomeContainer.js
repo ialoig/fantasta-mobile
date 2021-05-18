@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import routes from "../../navigation/routesNames"
 import { Leagues } from "../../services"
@@ -52,4 +52,9 @@ export class HomeContainer extends React.Component {
 		)
 	}
 
+}
+
+
+HomeContainer.propTypes = {
+	navigation: PropTypes.object.isRequired
 }

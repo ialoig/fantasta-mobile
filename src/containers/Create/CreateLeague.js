@@ -1,11 +1,9 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
-
 import { InputText, NumberInc, Radio } from "../../components"
 import { commonStyle } from "../../styles"
-import styles from "./styles"
 
 const CreateLeague = (props) => {
 	return (
@@ -40,6 +38,16 @@ const CreateLeague = (props) => {
 			/>
 		</View>
 	)
+}
+
+CreateLeague.propTypes = {
+	leagueNameId: PropTypes.string.isRequired,
+	passwordId: PropTypes.string.isRequired,
+	participantsId: PropTypes.string.isRequired,
+	tipology: PropTypes.object.isRequired,
+	tipologyId: PropTypes.string.isRequired,
+	settings: PropTypes.object.isRequired,
+	onChange: PropTypes.func.isRequired
 }
 
 export default CreateLeague

@@ -3,8 +3,8 @@ import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React from "react"
+import Result from "../../components/Result/Result"
 import routes from "../../navigation/routesNames"
-import Error from "../Error/Error"
 
 function ResetPasswordError({ route }) {
 
@@ -17,9 +17,10 @@ function ResetPasswordError({ route }) {
 	}
 
 	return (
-		<Error
+		<Result
 			title={title}
 			description={message}
+			iconType={"error"}
 			buttonText={I18n.translate("forgotPassword")}
 			buttonOnPress={goToForgotPassword}
 		/>

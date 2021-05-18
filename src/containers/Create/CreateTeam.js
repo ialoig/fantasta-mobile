@@ -1,14 +1,12 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
-
 import { InputText } from "../../components"
-import styles from "./styles"
 
 const CreateTeam = (props) => {
 	return (
-		<View style={styles.inputs}>
+		<View>
 			<InputText
 				id={props.teamnameId}
 				label={I18n.translate("teamName")}
@@ -17,6 +15,11 @@ const CreateTeam = (props) => {
 			/>
 		</View>
 	)
+}
+
+CreateTeam.propTypes = {
+	teamnameId: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired
 }
 
 export default CreateTeam
