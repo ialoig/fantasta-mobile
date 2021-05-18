@@ -6,7 +6,7 @@ import colors from "../../../styles/colors"
 
 function ForwardIcon({ primary, width, height, ...props }) {
 	return (
-		<Svg width={width} height={height} 
+		<Svg width={width} height={height} {...props}
 			viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<Path d="M9.15137 5.01855L15.5988 11.4659L9.15137 17.9133" 
 				stroke={primary} 

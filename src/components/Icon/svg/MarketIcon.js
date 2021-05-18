@@ -6,7 +6,7 @@ import colors from "../../../styles/colors"
 
 function MarketIcon({ primary, secondary, shadow, width, height, ...props }) {
 	return (
-		<Svg width={width} height={height} 
+		<Svg width={width} height={height} {...props}
 			viewBox="0 0 51 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<Rect x="0.45459" width="50" height="50" rx="16" 
 				fill={secondary} />

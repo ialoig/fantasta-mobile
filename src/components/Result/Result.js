@@ -1,23 +1,23 @@
 import PropTypes from "prop-types"
 import React from "react"
 import { Text, View } from "react-native"
-import { Button } from "../../components"
-import Icon from "../../components/Icon/Icon"
-import { commonStyle } from "../../styles/"
+import { Button } from ".."
+import { carouselSyle, commonStyle } from "../../styles"
+import Icon from "../Icon/Icon"
 import styles from "./styles"
 
-function Confirmation({ title, description, buttonText, buttonOnPress }) {
+function Result({ title, description, iconType, buttonText, buttonOnPress }) {
 
 	return (
-		<View style={[commonStyle.container, commonStyle.flex_start]}>
+		<View style={commonStyle.container}>
 
 			<View style={styles.image}>
-				<Icon name={"confirm"} width={120} height={120} />
+				<Icon name={iconType} width={120} height={120} />
 			</View>
 
-			<View style={commonStyle.flex}>
-				<Text style={styles.title}>{title}</Text>
-				<Text style={styles.description}>{description}</Text>
+			<View style={commonStyle.title}>
+				<Text style={carouselSyle.title}>{title}</Text>
+				<Text style={carouselSyle.description}>{description}</Text>
 			</View>
 
 			<Button
@@ -30,19 +30,20 @@ function Confirmation({ title, description, buttonText, buttonOnPress }) {
 	)
 }
 
-Confirmation.propTypes = {
+Result.propTypes = {
 	title: PropTypes.string.isRequired,
 	description: PropTypes.string.isRequired,
+	iconType: PropTypes.string.isRequired,
 	buttonText: PropTypes.string.isRequired,
 	buttonOnPress: PropTypes.func
 }
 
-Confirmation.defaultProps = {
+Result.defaultProps = {
 	title: "Title",
 	description: "Description",
 	buttonText: "ButtonText"
 }
 
-export default Confirmation
+export default Result
 
 

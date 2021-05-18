@@ -1,6 +1,5 @@
-
+import PropTypes from "prop-types"
 import React from "react"
-
 import routes from "../../navigation/routesNames"
 import GetStarted from "./GetStarted"
 import { data } from "./costants"
@@ -19,4 +18,9 @@ export class GetStartedContainer extends React.Component {
 			/>
 		)
 	}
+}
+
+
+GetStartedContainer.propTypes = {
+	navigation: PropTypes.object.isRequired
 }

@@ -1,5 +1,5 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
 import { InputText } from "../../components"
@@ -23,5 +23,12 @@ const JoinLeague = (props) => {
 		</View>
 	)
 }
+
+JoinLeague.propTypes = {
+	leagueNameId: PropTypes.string.isRequired,
+	passwordId: PropTypes.string.isRequired,
+	onChange: PropTypes.func.isRequired
+}
+
 
 export default JoinLeague
