@@ -31,8 +31,8 @@ const Init = async () =>
 
 		if ( response && response.updated )
 		{
-			PLAYERS = data.footballPlayers
-			VERSION = data.version
+			PLAYERS = response.footballPlayers
+			VERSION = response.version
 
 			Storage.Set( "players", JSON.stringify({ footballPlayers: response.footballPlayers, version: response.version }) )
 		}
