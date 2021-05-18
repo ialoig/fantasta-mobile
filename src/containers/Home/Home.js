@@ -1,8 +1,8 @@
 
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { FlatList, Text, View } from "react-native"
-
 import { Card } from "../../components"
 import { textStyles } from "../../styles"
 import styles from "./styles"
@@ -66,3 +66,11 @@ const Home = (props) => {
 }
 		
 export default Home
+
+
+Home.propTypes = {
+	leagues: PropTypes.array,
+	join: PropTypes.func,
+	crea: PropTypes.func,
+	joinLeague: PropTypes.func
+}

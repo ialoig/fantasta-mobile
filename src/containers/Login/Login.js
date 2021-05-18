@@ -1,9 +1,8 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { Keyboard, Text, TouchableWithoutFeedback, View } from "react-native"
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view"
-
 import { Button, Email, Logo, Password } from "../../components"
 import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
@@ -58,3 +57,12 @@ const Login = (props) => {
 export default Login
 
 
+Login.propTypes = {
+	emailId: PropTypes.string.isRequired,
+	passwordId: PropTypes.string.isRequired,
+	showError: PropTypes.bool.isRequired,
+	onChange: PropTypes.func.isRequired,
+	Login: PropTypes.func.isRequired,
+	ForgotPassword: PropTypes.func.isRequired,
+	Register: PropTypes.func.isRequired
+}

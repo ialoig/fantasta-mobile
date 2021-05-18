@@ -5,23 +5,23 @@ import React from "react"
 import Result from "../../components/Result/Result"
 import routes from "../../navigation/routesNames"
 
-function ForgotPasswordConfirmation() {
+function CompleteRegistratioConfirmation() {
 
 	const { navigate } = useNavigation()
 
 	function goToLogin() {
-		return navigate(routes.LOGIN)
+		return navigate(routes.GETSTARTED)
 	}
 
 	return (
 		<Result
-			title={I18n.translate("confirmation_forgot_password_title")}
-			description={I18n.translate("confirmation_forgot_password_description")}
-			iconType={"send"}
-			buttonText={I18n.translate("ok")}
+			title={I18n.translate("complete_register_confirm")}
+			description={I18n.translate("complete_register_confirm_desc")}
+			iconType={"confirm"}
+			buttonText={I18n.translate("continue")}
 			buttonOnPress={goToLogin}
 		/>
 	)
 }
 
-export default ForgotPasswordConfirmation
+export default CompleteRegistratioConfirmation

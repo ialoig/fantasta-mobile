@@ -10,6 +10,7 @@ import ForwardIcon from "./svg/ForwardIcon"
 import JoinLeagueIcon from "./svg/JoinLeagueIcon"
 import LeagueIcon from "./svg/LeagueIcon"
 import MarketIcon from "./svg/MarketIcon"
+import SendIcon from "./svg/SendIcon"
 import TeamIcon from "./svg/TeamIcon"
 
 
@@ -19,6 +20,7 @@ const IconType = {
 	confirm: ConfirmIcon,
 	create_league: CreateLeagueIcon,
 	error: ErrorIcon,
+	send: SendIcon,
 	forward: ForwardIcon,
 	join_league: JoinLeagueIcon,
 	league: LeagueIcon,

@@ -14,6 +14,7 @@ const RoutesNavigator = {
 const RoutesName = {
 	SPLASHSCREEN: "SplashScreen",
 	COMPLETE_REGISTER: "CompleteRegister",
+	COMPLETE_REGISTER_CONFIRMATION: "CompleteRegisterConfirmation",
 	GETSTARTED: "GetStarted",
 	LOGIN: "Login",
 	REGISTER: "Register",
@@ -29,8 +30,7 @@ const RoutesName = {
 	ACCOUNT: "Account",
 	ACCOUNT_DETAILS: "AccountDetails",
 	SUPPORT: "Support",
-	SETTINGS: "Settings",
-	CONFIRMATION: "Confirmation"
+	SETTINGS: "Settings"
 }
 
 

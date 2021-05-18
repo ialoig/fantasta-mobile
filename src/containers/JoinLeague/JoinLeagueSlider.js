@@ -1,12 +1,11 @@
-
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React from "react"
 import { Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider"
 import { Header } from "../../components"
 import { button, text } from "../../components/Button/styles"
 import { carouselSyle, commonStyle } from "../../styles"
-import styles from "./styles"
 
 const JoinLeagueSlider = (props) => {
 
@@ -52,4 +51,12 @@ const JoinLeagueSlider = (props) => {
 	)
 }
 
+JoinLeagueSlider.propTypes = {
+	pages: PropTypes.array.isRequired,
+	onDone: PropTypes.func.isRequired
+}
+
+
 export default JoinLeagueSlider
+
+
