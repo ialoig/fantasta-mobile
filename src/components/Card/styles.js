@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 import colors from "../../styles/colors"
-import { getHeight, getWidth } from "../../utils/pixelResolver"
+import { dynamicHeight, dynamicWidth, getWidth } from "../../utils/pixelResolver"
 
 
 export const card = StyleSheet.create({
@@ -17,16 +17,19 @@ export const card = StyleSheet.create({
 	},
 	default: {
 		marginHorizontal: 0,
-		maxHeight: getHeight(180)
+		maxHeight: dynamicHeight(327, 180),
+		maxWidth: dynamicWidth(327)
 	},
 	large: {
 		marginHorizontal: 0,
-		maxHeight: getHeight(160)
+		maxHeight: dynamicHeight(327, 160),
+		maxWidth: dynamicWidth(327),
 	},
 	medium: {
 		flexDirection: "row",
 		marginHorizontal: 0,
-		maxHeight: getHeight(120),
+		maxHeight: dynamicHeight(327, 120),
+		maxWidth: dynamicWidth(327),
 		paddingHorizontal: getWidth(20),
 		paddingVertical: getWidth(20)
 	},
@@ -36,13 +39,14 @@ export const card = StyleSheet.create({
 	small: {
 		flexDirection: "row",
 		marginHorizontal: 0,
-		maxHeight: getHeight(80),
+		maxHeight: dynamicHeight(327, 80),
+		maxWidth: dynamicWidth(327),
 		paddingHorizontal: getWidth(20),
 		paddingVertical: getWidth(20)
 	},
 	square: {
-		height: getHeight(140),
-		maxWidth: getWidth(140),
+		height: dynamicHeight(140, 140),
+		maxWidth: dynamicWidth(140),
 	}
 })
 

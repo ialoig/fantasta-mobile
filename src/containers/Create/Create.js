@@ -5,22 +5,24 @@ import { Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider"
 import { button, text } from "../../components/Button/styles"
 import Header from "../../components/Header/Header"
-import { carouselSyle, commonStyle } from "../../styles"
+import { carouselSyle, commonStyle, textStyles } from "../../styles"
 
 const Create = (props) => {
 
 	const renderNextButton = () => {
+		const type = "primary"
 		return (
 			<View style={[button.button, button.large, button.primary, commonStyle.content]}>
-				<Text style={[text.text, text.large, text.primary]}>{I18n.translate("next")}</Text>
+				<Text style={[textStyles.button, text[type]]}>{I18n.translate("next")}</Text>
 			</View>
 		)
 	}
     
 	const renderDoneButton = () => {
+		const type = "primary"
 		return (
 			<View style={[button.button, button.large, button.primary, commonStyle.content]}>
-				<Text style={[text.text, text.large, text.primary]}>{I18n.translate("create")}</Text>
+				<Text style={[textStyles.button, text[type]]}>{I18n.translate("create")}</Text>
 			</View>
 		)
 	}

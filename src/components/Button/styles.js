@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import colors from "../../styles/colors"
+import { dynamicHeight, dynamicWidth } from "../../utils/pixelResolver"
 
 export const button = StyleSheet.create({
 	alert: {
@@ -17,9 +18,9 @@ export const button = StyleSheet.create({
 		marginTop: 12
 	},
 	large: {
-		maxHeight: 56,
-		minHeight: 56,
-		width: "100%"
+		maxHeight: dynamicHeight(327, 56),
+		minHeight: dynamicHeight(327, 56),
+		width: dynamicWidth(327)
 	},
 	primary: {
 		backgroundColor: colors.primary,
@@ -28,8 +29,9 @@ export const button = StyleSheet.create({
 		backgroundColor: colors.white,
 	},
 	small: {
-		minHeight: 54,
-		width: "50%"
+		maxHeight: dynamicHeight(156, 56),
+		minHeight: dynamicHeight(156, 56),
+		width: dynamicWidth(156)
 	}
 })
 
@@ -38,9 +40,6 @@ export const text = StyleSheet.create({
 		color: colors.white,
 		textAlign: "center"
 	},
-	large: {
-		fontSize: 20,
-	},
 	primary: {
 		color: colors.white,
 		textAlign: "center"
@@ -48,8 +47,5 @@ export const text = StyleSheet.create({
 	secondary: {
 		color: colors.primary,
 		textAlign: "center"
-	},
-	small: {
-		fontSize: 12,
 	}
 })
