@@ -90,5 +90,9 @@
   "tooShortField": "Too short field",
   "username": "Username",
   "yourLeagues": "Your leagues",
-  "zero": "Zero"
+  "zero": "Zero",
+  "dashboard": "Dashboard",
+  "team": "Team",
+  "market": "Market",
+  "players": "Players"
 }
