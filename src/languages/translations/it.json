@@ -90,5 +90,9 @@
   "tooShortField": "Campo troppo breve",
   "username": "Username",
   "yourLeagues": "Le tue leghe",
-  "zero": "Zero"
+  "zero": "Zero",
+  "dashboard": "Dashboard",
+  "team": "Squadra",
+  "market": "Market",
+  "players": "Giocatori"
 }

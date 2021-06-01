@@ -12,7 +12,7 @@ const Login = (props) => {
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 			<View style={commonStyle.container}>
-				<Logo />
+				<Logo horizontal/>
 				<KeyboardAwareScrollView 
 					showsVerticalScrollIndicator={false}
 				>
