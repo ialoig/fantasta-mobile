@@ -37,11 +37,9 @@ Contains Header and Card configurations to use on Screen declaration.
 All routes names as global variables.
 
 
-## 📝✅ Todo vs Done
+## Todo 📝 vs Done ✅
 
 📝 Transition between pages (right to left/ from bottom ...)
-
-📝 Is it correct to get initial params from Navigator or it's better to get them inside Component ??
 
 ✅ Routes as global variables
 

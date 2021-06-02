@@ -3,7 +3,7 @@ import React from "react"
 import Svg, { Path, Rect } from "react-native-svg"
 import colors from "../../../styles/colors"
 
-function HomeTabIcon({ primary, secondary, width, height, ...props }) {
+function DashboardTabIcon({ primary, secondary, width, height, ...props }) {
 	return (
 		<Svg width={width} height={height} {...props}
 			viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,19 +15,19 @@ function HomeTabIcon({ primary, secondary, width, height, ...props }) {
 	)
 }
 
-HomeTabIcon.propTypes = {
+DashboardTabIcon.propTypes = {
 	primary: PropTypes.string,
 	secondary: PropTypes.string,
 	width: PropTypes.number,
 	height: PropTypes.number
 }
 
-HomeTabIcon.defaultProps = {
+DashboardTabIcon.defaultProps = {
 	primary: colors.primary,
 	secondary: colors.secondary,
 	width: 50,
 	height: 50
 }
 
-export default HomeTabIcon
+export default DashboardTabIcon
 

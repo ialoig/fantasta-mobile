@@ -12,7 +12,7 @@ export const card = StyleSheet.create({
 		backgroundColor: colors.greyLight,
 		borderRadius: 24,
 		flex: 1,
-		justifyContent: "center",
+		//justifyContent: "center",
 		marginTop: 12,
 	},
 	default: {
@@ -34,7 +34,7 @@ export const card = StyleSheet.create({
 		paddingVertical: getWidth(20)
 	},
 	paddingIcon: {
-		padding: 4
+		padding: 8
 	},
 	small: {
 		flexDirection: "row",
@@ -46,6 +46,7 @@ export const card = StyleSheet.create({
 	},
 	square: {
 		height: dynamicHeight(140, 140),
+		justifyContent: "center",
 		maxWidth: dynamicWidth(140),
 	}
 })

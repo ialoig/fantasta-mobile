@@ -4,14 +4,15 @@ import AccountIcon from "./svg/AccountIcon"
 import BackIcon from "./svg/BackIcon"
 import ConfirmIcon from "./svg/ConfirmIcon"
 import CreateLeagueIcon from "./svg/CreateLeagueIcon"
+import DashboardTabIcon from "./svg/DashboardTabIcon"
 import EmptyIcon from "./svg/EmptyIcon"
 import ErrorIcon from "./svg/ErrorIcon"
 import ForwardIcon from "./svg/ForwardIcon"
-import HomeTabIcon from "./svg/HomeTabIcon"
 import JoinLeagueIcon from "./svg/JoinLeagueIcon"
 import LeagueIcon from "./svg/LeagueIcon"
 import MarketIcon from "./svg/MarketIcon"
 import MarketTabIcon from "./svg/MarketTabIcon"
+import PlayerRoleIcon from "./svg/PlayerRoleIcon"
 import PlayersTabIcon from "./svg/PlayersTabIcon"
 import SendIcon from "./svg/SendIcon"
 import TeamIcon from "./svg/TeamIcon"
@@ -30,10 +31,11 @@ const IconType = {
 	league: LeagueIcon,
 	market: MarketIcon,
 	team: TeamIcon,
-	home_tab: HomeTabIcon,
+	dashboard_tab: DashboardTabIcon,
 	teams_tab: TeamsTabIcon,
 	market_tab: MarketTabIcon,
-	players_tab: PlayersTabIcon
+	players_tab: PlayersTabIcon,
+	role: PlayerRoleIcon
 }
 
 

@@ -31,9 +31,10 @@ const Init = async () =>
 
 		if ( response && response.updated )
 		{
-			PLAYERS = data.footballPlayers
-			VERSION = data.version
+			PLAYERS = response.footballPlayers
+			VERSION = response.version
 
+			console.log("footballPlayers (typeof)", typeof(PLAYERS))
 			Storage.Set( "players", JSON.stringify({ footballPlayers: response.footballPlayers, version: response.version }) )
 		}
 		else
