@@ -4,15 +4,18 @@ import { deviceScreenHeight, deviceScreenWidth } from "../../utils/deviceUtils"
 
 
 export default StyleSheet.create({
+	badges: {
+		flexDirection: "row"
+	},
 	container: {
 		...StyleSheet.absoluteFillObject,
 		backgroundColor: colors.background,
-		paddingTop: deviceScreenHeight * 0.06
+		paddingHorizontal: deviceScreenWidth * 0.06,
+		paddingTop: deviceScreenHeight * 0.06,
 	},
 	list: {
 		flex: 1,
 		paddingBottom: 0,
-		paddingHorizontal: deviceScreenWidth * 0.06,
 		paddingTop: 20
 	}
 })
