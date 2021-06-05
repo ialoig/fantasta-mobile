@@ -1,7 +1,7 @@
 
 import _ from "lodash"
+import PropTypes from "prop-types"
 import React from "react"
-
 import { checkValidity } from "../utils"
 import Text from "./Text"
 
@@ -44,7 +44,7 @@ export default class TextContainer extends React.Component {
 
 	onBlur ( e ) {
 		this.setState({
-			focused: false
+			focused: false,
 		})
 
 		this.props.onBlur && this.props.onBlur( this.props.id, this.state.value, this.state.valid )
@@ -119,4 +119,43 @@ export default class TextContainer extends React.Component {
 			/>
 		)
 	}
+}
+
+
+
+TextContainer.propTypes = {
+	id: PropTypes.string.isRequired,
+	label: PropTypes.string.isRequired,
+	value: PropTypes.string,
+	placeholder: PropTypes.string,
+	autoCapitalize: PropTypes.string,
+	clearButtonMode: PropTypes.string,
+	textContentType: PropTypes.string,
+	showError: PropTypes.bool,
+	hideError: PropTypes.bool,
+	required: PropTypes.bool,
+	editable: PropTypes.bool,
+	selectTextOnFocus: PropTypes.bool,
+	minLength: PropTypes.number,
+	maxLength: PropTypes.number,
+	errors: PropTypes.string,
+	onChange: PropTypes.func,
+	onBlur: PropTypes.func,
+	onFocus: PropTypes.func
+}
+
+
+TextContainer.defaultTypes = {
+	label: "",
+	placeholder: "",
+	autoCapitalize: "none",
+	clearButtonMode: "while-editing",
+	textContentType: "none",
+	showError: false,
+	hideError: false,
+	required: false,
+	editable: true,
+	selectTextOnFocus: false,
+	minLength: 0,
+	maxLength: 100
 }
