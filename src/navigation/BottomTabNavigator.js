@@ -24,7 +24,8 @@ function BottomTabNavigator() {
 				style: {
 					...bottomTabStyle,
 					...bottomTabShadow
-				}
+				},
+				keyboardHidesTabBar: true
 			}}
 		>
 			<Tab.Screen 

@@ -3,16 +3,13 @@ import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { FlatList, Text, View } from "react-native"
-import { Badge, Card, Header } from "../../components"
+import { Badge, Card, Header, InputText } from "../../components"
 import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY } from "../../constants"
 import { Players } from "../../services"
 import { textStyles } from "../../styles"
 import colors from "../../styles/colors"
+import { deviceHeight } from "../../utils/deviceUtils"
 import styles from "./styles"
-
-
-const PLAYERS_LIMIT_PER_PAGE = 600
-
 
 
 function PlayersContainer() {
@@ -23,40 +20,44 @@ function PlayersContainer() {
 	const [allPlayers, setAllPlayers] = useState(null)
 	//define active role to show on page
 	const [activeRole, setActiveRole] = useState(ROLE_CLASSIC.all)
+	//query is the text searched by user
+	const [query, setQuery] = useState("")
 	//define if page is focused or not
 	const isFocused = useIsFocused()
 
 	useEffect( () => {
-		//setting active role as ALL to show always all players
-		setActiveRole(ROLE_CLASSIC.all)
+		console.log("PlayersContainer - [useEffect] - activeRole=", activeRole)
 
+		if (activeRole === ROLE_CLASSIC.all) {
+			defaultList()
+		} else if (activeRole === "none" && query != "") {
+			handleSearch(query)
+		} else {
+			filterByRole(activeRole)
+		}
+
+	}, [isFocused, activeRole, query])
+
+
+
+	const defaultList = () => {
+		//get players from api
 		const apiPlayers = Players.Get()
 		let players = Object.values(apiPlayers)
-
+		//sort players high price to low
+		sortList(players)
 		//setting all players retrieved from api
 		setAllPlayers(players)
+		//query value should be reset to default
+		setQuery("")
+	}
 
+	const sortList = (players) => {
 		const size = players.length
 		console.log("PlayersContainer - [useEffect] - n. players =", size)
-		console.log("PlayersContainer - [useEffect] - activeRole =", activeRole)
+		let sortedList = players.sort(highPriceToLow)
 		
-		if (size > PLAYERS_LIMIT_PER_PAGE) {
-			console.log("PlayersContainer - [useEffect] - ", PLAYERS_LIMIT_PER_PAGE, " players")
-			let reducedList = players.slice(0, PLAYERS_LIMIT_PER_PAGE).sort(highPriceToLow)
-			
-			setPlayers(reducedList)
-		} else {
-			console.log("PlayersContainer - [useEffect] - show all players")
-			let reducedList = players.sort(highPriceToLow)
-			setPlayers(reducedList)
-		}
-	}, [isFocused])
-
-
-	const resetDefaultList = () => {
-		//setting active role as ALL to show always all players
-		setActiveRole(ROLE_CLASSIC.all)
-		setPlayers(allPlayers)
+		setPlayers(sortedList)
 	}
 
 
@@ -69,9 +70,11 @@ function PlayersContainer() {
 		})
 		const size = filteredList.length
 		console.log("PlayersContainer - [filterByRole] - role= "+role+", n. players=", size)
+		setQuery("")
 		setPlayers(filteredList)
 		setActiveRole(role)
 	}
+
 
 	const highPriceToLow = (playerA, playerB) => {
 		if (playerA.initialPrice > playerB.initialPrice) {
@@ -80,6 +83,8 @@ function PlayersContainer() {
 			return 1
 	}
 
+
+	//define a badge button as active or not, It change background color
 	const isActive = (role) => {
 		if (activeRole === role){
 			console.log("PlayersContainer - [isActive]=true, role=", role)
@@ -88,43 +93,72 @@ function PlayersContainer() {
 		return false
 	}
 
+
+	const handleSearch = (text) => {
+		const query = text.toLowerCase()
+		console.log("PlayersContainer - [handleSearch] - query=", query)
+		const results = allPlayers.filter((player) => {
+			const { name } = player
+			if (name.toLowerCase().includes(query)) {
+				return true
+			}
+			return false
+		})
+		setQuery(query)
+		setPlayers(results)
+	}
+
+
 	return (
 		<View style={styles.container}>
 			<Header title="players" />
-			
+
+			<InputText 
+				id="search"
+				label="Search"
+				placeholder="Search"
+				value={query}
+				clearButtonMode="always"
+				onChange={(id, value) => {
+					setQuery(value)
+					setActiveRole("none")
+				}}
+			/> 
+
 			<View style={styles.badges}>
 				<Badge 
-					onPress={() => resetDefaultList()}
+					onPress={() => setActiveRole(ROLE_CLASSIC_DISPLAY.all)}
 					title={ROLE_CLASSIC_DISPLAY.all}
 					active={isActive(ROLE_CLASSIC.all)}
 					activeColor={colors.secondary}
 				/>
 				<Badge 
-					onPress={() => filterByRole(ROLE_CLASSIC.por)}
+					onPress={() => setActiveRole(ROLE_CLASSIC.por)}
 					title={ROLE_CLASSIC_DISPLAY.por}
 					active={isActive(ROLE_CLASSIC.por)}
 					activeColor={colors.por}
 				/>
 				<Badge 
-					onPress={() => filterByRole(ROLE_CLASSIC.dif)}
+					onPress={() => setActiveRole(ROLE_CLASSIC.dif)}
 					title={ROLE_CLASSIC_DISPLAY.dif}
 					active={isActive(ROLE_CLASSIC.dif)}
 					activeColor={colors.dif}
 				/>
 				<Badge 
-					onPress={() => filterByRole(ROLE_CLASSIC.cen)}
+					onPress={() => setActiveRole(ROLE_CLASSIC.cen)}
 					title={ROLE_CLASSIC_DISPLAY.cen}
 					active={isActive(ROLE_CLASSIC.cen)}
 					activeColor={colors.cen}
 				/>
 				<Badge 
-					onPress={() => filterByRole(ROLE_CLASSIC.att)}
+					onPress={() => setActiveRole(ROLE_CLASSIC.att)}
 					title={ROLE_CLASSIC_DISPLAY.att}
 					active={isActive(ROLE_CLASSIC.att)}
 					activeColor={colors.att}
 				/>
 			</View>
 
+			
 			<View style={styles.list}>
 				<FlatList 
 					data={players}
@@ -166,3 +200,4 @@ const PlayerCard = ({ item }) => {
 PlayerCard.propTypes = {
 	item: PropTypes.object.isRequired
 }
+
