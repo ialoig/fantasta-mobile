@@ -48,3 +48,19 @@ export const FIELDS_ID = {
 	startpriceId: "startPrice",
 	teamnameId: "teamname"
 }
+
+export const ROLE_CLASSIC = {
+	all: "ALL",
+	por: "P",
+	dif: "D",
+	cen: "C",
+	att: "A"
+}
+
+export const ROLE_CLASSIC_DISPLAY = {
+	all: "ALL",
+	por: "por",
+	dif: "dif",
+	cen: "cen",
+	att: "att"
+}

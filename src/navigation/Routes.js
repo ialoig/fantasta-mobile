@@ -18,6 +18,7 @@ import ResetPasswordConfirmation from "../containers/ResetPassword/ResetPassword
 import ResetPasswordError from "../containers/ResetPassword/ResetPasswordError"
 import { SplashScreenContainer } from "../containers/SplashScreen/SplashScreenContainer"
 import AccountNavigator from "./AccountNavigator"
+import BottomTabNavigator from "./BottomTabNavigator"
 import { defaultScreenOptions, getScreenConfig, noHeaderScreenConfig } from "./routesConfig"
 import routes from "./routesNames"
 
@@ -86,9 +87,9 @@ export default function Routes() {
 					component={JoinLeagueContainer}
 					options={noHeaderScreenConfig} />
 				<AppStack.Screen
-					name={routes.DASHBOARD}
-					component={DashboardContainer}
-					options={getScreenConfig(false, "account", false)} />
+					name={routes.BOTTOMTABNAVIGATOR}
+					component={BottomTabNavigator}
+					options={noHeaderScreenConfig} />
 				<AppStack.Screen
 					name={routes.ACCOUNTNAVIGATOR}
 					component={AccountNavigator}

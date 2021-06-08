@@ -3,7 +3,7 @@ import colors from "../../styles/colors"
 import { dynamicHeight, dynamicWidth, getWidth } from "../../utils/pixelResolver"
 
 
-export const card = StyleSheet.create({
+export const style = StyleSheet.create({
 	arrow: {
 		alignItems: "flex-end"
 	},
@@ -12,10 +12,11 @@ export const card = StyleSheet.create({
 		backgroundColor: colors.greyLight,
 		borderRadius: 24,
 		flex: 1,
-		justifyContent: "center",
+		//justifyContent: "center",
 		marginTop: 12,
 	},
 	default: {
+		justifyContent: "center",
 		marginHorizontal: 0,
 		maxHeight: dynamicHeight(327, 180),
 		maxWidth: dynamicWidth(327)
@@ -34,7 +35,7 @@ export const card = StyleSheet.create({
 		paddingVertical: getWidth(20)
 	},
 	paddingIcon: {
-		padding: 4
+		padding: 8
 	},
 	small: {
 		flexDirection: "row",
@@ -46,6 +47,7 @@ export const card = StyleSheet.create({
 	},
 	square: {
 		height: dynamicHeight(140, 140),
+		justifyContent: "center",
 		maxWidth: dynamicWidth(140),
 	}
 })

@@ -3,7 +3,8 @@
  *  Needed to define params to be passed as initial params to specific screens
  */
 const RoutesNavigator = {
-	ACCOUNTNAVIGATOR: "AccountNavigator"
+	ACCOUNTNAVIGATOR: "AccountNavigator",
+	BOTTOMTABNAVIGATOR: "BottomTabNavigator"
 }
 
 
@@ -30,7 +31,10 @@ const RoutesName = {
 	ACCOUNT: "Account",
 	ACCOUNT_DETAILS: "AccountDetails",
 	SUPPORT: "Support",
-	SETTINGS: "Settings"
+	SETTINGS: "Settings",
+	TEAM: "Team",
+	MARKET: "Market",
+	PLAYERS: "Players"
 }
 
 

@@ -14,6 +14,7 @@ const TextIn = (props) => {
 				style={[textStyles.body, inputStyle.inputForm, props.hasError ? inputStyle.hasError : null]}
 				ref={(ref)=> { props.onRef(ref) }}
 				keyboardType='default'
+				autoCorrect={false}
 			/>
 			{ props.hasError ? <Text style={[textStyles.description, inputStyle.inputError]}>{props.error}</Text> : null }
 		</View>

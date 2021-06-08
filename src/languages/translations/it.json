@@ -65,6 +65,7 @@
   "next": "Avanti",
   "noAccount": "Non hai un account? ",
   "noLeaguesFound": "Le tue leghe vengono mostrate qui",
+  "noPlayersFound": "Nessun giocatore trovato",
   "nome_lega": "Nome lega",
   "notValidField": "Campo non valido",
   "ok": "OK",
@@ -90,5 +91,9 @@
   "tooShortField": "Campo troppo breve",
   "username": "Username",
   "yourLeagues": "Le tue leghe",
-  "zero": "Zero"
+  "zero": "Zero",
+  "dashboard": "Dashboard",
+  "team": "Squadra",
+  "market": "Market",
+  "players": "Giocatori"
 }

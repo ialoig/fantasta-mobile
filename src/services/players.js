@@ -5,15 +5,26 @@ import { Storage } from "./storage"
 
 let PLAYERS = {}
 let VERSION = ""
+let STATISTICS = {}
 
-const Set = ( players ) =>
+const SetPlayers = ( players ) =>
 {
 	PLAYERS = players || []
 }
 
-const Get = () =>
+const GetPlayers = () =>
 {
 	return PLAYERS
+}
+
+const SetStatistics = ( statistics ) =>
+{
+	STATISTICS = statistics || []
+}
+
+const GetStatistics = () =>
+{
+	return STATISTICS
 }
 
 const Init = async () =>
@@ -31,14 +42,21 @@ const Init = async () =>
 
 		if ( response && response.updated )
 		{
-			PLAYERS = response.footballPlayers
+			PLAYERS = response.list
+			STATISTICS = response.statistics
 			VERSION = response.version
 
-			Storage.Set( "players", JSON.stringify({ footballPlayers: response.footballPlayers, version: response.version }) )
+			console.log("footballPlayers (typeof)", typeof(PLAYERS))
+			Storage.Set( "players", JSON.stringify({ 
+				list: response.list, 
+				statistics: response.statistics, 
+				version: response.version 
+			}) )
 		}
 		else
 		{
-			PLAYERS = players.footballPlayers
+			PLAYERS = players.list
+			STATISTICS = players.statistics
 			VERSION = version
 		}
 
@@ -52,7 +70,9 @@ const Init = async () =>
 }
 
 export const Players = {
-	Set,
-	Get,
+	SetPlayers,
+	GetPlayers,
+	SetStatistics,
+	GetStatistics,
 	Init
 }

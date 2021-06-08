@@ -36,7 +36,6 @@ export const getHeight = (num) => {
 export const dynamicWidth = (num) => {
 	const width = (num / designSizeWidth) * deviceScreenWidth
 	const pixel = PixelRatio.roundToNearestPixel(width)
-	console.log("dynamicWith=", pixel)
 	return pixel
 }
 
@@ -51,6 +50,5 @@ export const dynamicHeight = (width, num) => {
 	const aspectRatio = width / num
 	const height = dynamicWidth(width) / aspectRatio
 	const pixel = PixelRatio.roundToNearestPixel(height)
-	console.log("dynamicHeight=", pixel)
 	return pixel
 }
