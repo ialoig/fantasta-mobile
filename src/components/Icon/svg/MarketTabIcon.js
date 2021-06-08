@@ -7,7 +7,7 @@ function MarketTabIcon({ primary, secondary, width, height, ...props }) {
 	return (
 		<Svg width={width} height={height} {...props}
 			viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<Rect x="0.75" width="50" height="50" rx="16" 
+			<Rect width="50" height="50" rx="16" 
 				fill={secondary} />
 			<Path d="M38 25.0014C38 31.6278 32.63 37.0005 25.9997 37.0005C19.377 37.0005 14 31.6278 14 25.0014C14 18.3732 19.377 13 25.9992 13C32.63 13 38 18.3732 38 25.0014Z" 
 				fill={primary} />
