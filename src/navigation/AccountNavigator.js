@@ -28,57 +28,57 @@ export default function AccountNavigator()  {
 			initialRouteName={routes.ACCOUNT}
 			{...defaultModalScreenOptions}
 		>
-			<AccountStack.Screen name={routes.ACCOUNT} component={Account} 
-				options={
-					getScreenConfig(false, false, true)
-				}/>
-			<AccountStack.Screen name={routes.ACCOUNT_DETAILS} component={AccountDetails} 
-				options={
-					getScreenConfig(false, false, true)
-				} />
-			<AccountStack.Screen name={routes.SUPPORT} component={Support} 
-				options={
-					getScreenConfig(false, false, true)
-				}/>
-			<AccountStack.Screen name={routes.SETTINGS} component={Settings} 
-				options={
-					getScreenConfig(false, false, true)
-				}/>
-			<AccountStack.Screen name={routes.EMAIL_SETTINGS} component={EmailSettings}
+			<AccountStack.Screen 
+				name={routes.ACCOUNT} 
+				component={Account} 
+				options={getScreenConfig(false, false, true)}/>
+			<AccountStack.Screen 
+				name={routes.ACCOUNT_DETAILS}
+				component={AccountDetails} 
+				options={getScreenConfig(false, false, true)} />
+			<AccountStack.Screen 
+				name={routes.SUPPORT} 
+				component={Support} 
+				options={getScreenConfig(false, false, true)}/>
+			<AccountStack.Screen
+				name={routes.SETTINGS}
+				component={Settings} 
+				options={getScreenConfig(false, false, true)}/>
+			<AccountStack.Screen 
+				name={routes.EMAIL_SETTINGS} 
+				component={EmailSettings}
 				{...closeKeyboardOnClose}
-				options={
-					getScreenConfig(true, false, true)
-				}/>
-			<AccountStack.Screen name={routes.USERNAME_SETTINGS} component={UsernameSettings}
+				options={getScreenConfig(true, false, true)}/>
+			<AccountStack.Screen
+				name={routes.USERNAME_SETTINGS}
+				component={UsernameSettings}
 				{...closeKeyboardOnClose}
-				options={
-					getScreenConfig(true, false, true)
-				}/>
-			<AccountStack.Screen name={routes.PASSWORD_SETTINGS} component={PasswordSettings}
+				options={getScreenConfig(true, false, true)}/>
+			<AccountStack.Screen 
+				name={routes.PASSWORD_SETTINGS} 
+				component={PasswordSettings}
 				{...closeKeyboardOnClose}
-				options={
-					getScreenConfig(true, false, true)
-				}/>
-			<AccountStack.Screen name={routes.DELETE_ACCOUNT} component={DeleteAccount}
+				options={getScreenConfig(true, false, true)}/>
+			<AccountStack.Screen 
+				name={routes.DELETE_ACCOUNT} 
+				component={DeleteAccount}
 				{...closeKeyboardOnClose}
-				options={
-					getScreenConfig(true, false, true)
-				}/>
-			<AccountStack.Screen name={routes.LANGUAGE} component={Language} 
+				options={getScreenConfig(true, false, true)}/>
+			<AccountStack.Screen 
+				name={routes.LANGUAGE} 
+				component={Language} 
 				{...closeKeyboardOnClose}
-				options={
-					getScreenConfig(true, false, true)
-				}/>
-			<AccountStack.Screen name={routes.FEEDBACK} component={Feedback} 
+				options={getScreenConfig(true, false, true)}/>
+			<AccountStack.Screen 
+				name={routes.FEEDBACK} 
+				component={Feedback} 
 				{...closeKeyboardOnClose}
-				options={
-					getScreenConfig(true, false, true)
-				}/>
-			<AccountStack.Screen name={routes.CONTACTUS} component={ContactUs} 
+				options={getScreenConfig(true, false, true)}/>
+			<AccountStack.Screen 
+				name={routes.CONTACTUS} 
+				component={ContactUs} 
 				{...closeKeyboardOnClose}
-				options={
-					getScreenConfig(true, false, true)
-				}/>
+				options={getScreenConfig(true, false, true)}/>
 		</AccountStack.Navigator>
 	)
 }

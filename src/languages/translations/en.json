@@ -65,6 +65,7 @@
   "next": "Next",
   "noAccount": "Don't have an account? ",
   "noLeaguesFound": "Your Leagues appears here",
+  "noPlayersFound": "Players not found",
   "nome_lega": "League name",
   "notValidField": "Field not valid",
   "ok": "OK",
@@ -90,5 +91,9 @@
   "tooShortField": "Too short field",
   "username": "Username",
   "yourLeagues": "Your leagues",
-  "zero": "Zero"
+  "zero": "Zero",
+  "dashboard": "Dashboard",
+  "team": "Team",
+  "market": "Market",
+  "players": "Players"
 }

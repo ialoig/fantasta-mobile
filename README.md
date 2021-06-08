@@ -1,8 +1,9 @@
-# Fantasta
+![Fantasta](./assets/img/logo/logo-horizontal.svg "Fantasta")
 
-## Introduction
+The most exciting Fantacalcio auction
 
 Mobile app to run Fantacalcio auction per League. Outcome will be an .xls file sent to the League participants.
+Participants can participate to the auction League to bet on preferred players.
 
 ## Getting Started
 

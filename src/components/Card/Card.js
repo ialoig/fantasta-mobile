@@ -4,15 +4,15 @@ import { Text, TouchableOpacity, View } from "react-native"
 import { commonStyle, textStyles } from "../../styles"
 import Icon from "../Icon/Icon"
 
-import { card, text } from "./styles"
+import { style, text } from "./styles"
 
-const Card = ({ title, description, type, icon, arrow, onPress }) => {
+const Card = ({ title, description, type, icon, arrow, onPress, ...props }) => {
 
 	return (
-		<TouchableOpacity onPress={onPress} style={[card.card, card[type]]}>
+		<TouchableOpacity onPress={onPress} style={[style.card, style[type]]}>
 			{ icon &&
-				<View style={card.paddingIcon}>
-					<Icon name={icon} />
+				<View style={style.paddingIcon}>
+					<Icon name={icon} {...props}/>
 				</View>
 			}
 
@@ -22,7 +22,7 @@ const Card = ({ title, description, type, icon, arrow, onPress }) => {
 			</View>
 
 			{ arrow &&
-				<View style={[commonStyle.flex, card.arrow]}>
+				<View style={[commonStyle.flex, style.arrow]}>
 					<Icon name="forward" />
 				</View>
 			}
@@ -33,7 +33,7 @@ const Card = ({ title, description, type, icon, arrow, onPress }) => {
 
 Card.propTypes = {
 	title: PropTypes.string.isRequired,
-	description: PropTypes.string,
+	description: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	type: PropTypes.string.isRequired,
 	icon: PropTypes.string,
 	arrow: PropTypes.bool,

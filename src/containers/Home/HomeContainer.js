@@ -33,7 +33,7 @@ export class HomeContainer extends React.Component {
 		if (item && item._id) {
 			try {
 				await Leagues.Join(item._id)
-				this.props.navigation.navigate(routes.DASHBOARD)
+				this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
 			}
 			catch (error) {/*error handling done in Leagues.Join*/ }
 		}

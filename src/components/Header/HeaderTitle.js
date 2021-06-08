@@ -41,6 +41,14 @@ function HeaderTitle({ children }) {
 			return I18n.translate("createLeague")
 		case routes.JOIN_LEAGUE:
 			return I18n.translate("joinLeague")
+		case routes.DASHBOARD:
+			return I18n.translate("dashboard")
+		case routes.TEAM:
+			return I18n.translate("team")
+		case routes.MARKET:
+			return I18n.translate("market")
+		case routes.PLAYERS:
+			return I18n.translate("players")
 		default:
 			return children
 		}
