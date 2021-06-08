@@ -7,7 +7,7 @@ function TeamsTabIcon({ primary, secondary, width, height, ...props }) {
 	return (
 		<Svg width={width} height={height} {...props}
 			viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-			<Rect x="0.5" width="50" height="50" rx="16" 
+			<Rect width="50" height="50" rx="16" 
 				fill={secondary} />
 			<Path d="M35.2746 37L35.2745 20.2689V13H30.5149C30.5149 15.4071 28.5956 17.6108 26.1873 17.6108C23.7692 17.6108 21.8499 15.4071 21.8499 13L17.09 13L17.0903 37H35.2746Z" 
 				fill={primary} />

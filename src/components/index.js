@@ -14,3 +14,5 @@ export { default as Header } from "./Header/Header"
 export { default as ErrorHandler } from "./ErrorHandler/ErrorHandler"
 
 export { default as Badge } from "./Badge/Badge"
+
+export { default as PlayerCard } from "./PlayerCard/PlayerCard"

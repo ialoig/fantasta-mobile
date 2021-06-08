@@ -42,7 +42,7 @@ function Account () {
 					description={email}
 					type='default'
 					arrow={false}
-					icon={"account"}
+					icon="account"
 				/>
 				{ /** settings */}
 				<Card

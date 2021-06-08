@@ -1,29 +1,28 @@
 import { useIsFocused } from "@react-navigation/native"
 import I18n from "i18n-js"
-import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { FlatList, Text, View } from "react-native"
-import { Badge, Card, Header, InputText } from "../../components"
+import { Badge, Header, InputText, PlayerCard } from "../../components"
 import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY } from "../../constants"
 import { Players } from "../../services"
 import { textStyles } from "../../styles"
 import colors from "../../styles/colors"
-import { deviceHeight } from "../../utils/deviceUtils"
 import styles from "./styles"
 
 
 function PlayersContainer() {
 
-	//define list of players
+	//define list of players to show
 	const [players, setPlayers] = useState(null)
 	//define list of All players from API
 	const [allPlayers, setAllPlayers] = useState(null)
-	//define active role to show on page
+	//define the active player role to show on page
 	const [activeRole, setActiveRole] = useState(ROLE_CLASSIC.all)
 	//query is the text searched by user
 	const [query, setQuery] = useState("")
 	//define if page is focused or not
 	const isFocused = useIsFocused()
+
 
 	useEffect( () => {
 		console.log("PlayersContainer - [useEffect] - activeRole=", activeRole)
@@ -42,7 +41,7 @@ function PlayersContainer() {
 
 	const defaultList = () => {
 		//get players from api
-		const apiPlayers = Players.Get()
+		const apiPlayers = Players.GetPlayers()
 		let players = Object.values(apiPlayers)
 		//sort players high price to low
 		sortList(players)
@@ -84,10 +83,9 @@ function PlayersContainer() {
 	}
 
 
-	//define a badge button as active or not, It change background color
+	//define a badge button as active or not. It change the background color
 	const isActive = (role) => {
-		if (activeRole === role){
-			console.log("PlayersContainer - [isActive]=true, role=", role)
+		if (activeRole === role) {
 			return true
 		}
 		return false
@@ -118,7 +116,6 @@ function PlayersContainer() {
 				label="Search"
 				placeholder="Search"
 				value={query}
-				clearButtonMode="always"
 				onChange={(id, value) => {
 					setQuery(value)
 					setActiveRole("none")
@@ -163,7 +160,7 @@ function PlayersContainer() {
 				<FlatList 
 					data={players}
 					keyExtractor={player => player.id.toString()}
-					renderItem={PlayerCard}
+					renderItem={(player) => <PlayerCard type="details-small" player={player.item} />}
 					ListEmptyComponent={() => { 
 						return (
 							<Text style={textStyles.description}>
@@ -177,27 +174,5 @@ function PlayersContainer() {
 	)
 }
 
-Players.propTypes = {
-
-}
 
 export default PlayersContainer
-
-
-
-const PlayerCard = ({ item }) => {
-	return (
-		<Card 
-			icon="role"
-			role={item.roleClassic}
-			title={item.name}
-			description={item.initialPrice}
-			type="small"
-		/>
-	)
-}
-
-PlayerCard.propTypes = {
-	item: PropTypes.object.isRequired
-}
-
