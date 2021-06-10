@@ -25,7 +25,7 @@ function PlayerRoleIcon({ role, ...props }) {
 }
 
 PlayerRoleIcon.propTypes = {
-	role: PropTypes.string
+	role: PropTypes.oneOf([...Object.keys(RoleIcon)]).isRequired
 }
 
 PlayerRoleIcon.defaultProps = {

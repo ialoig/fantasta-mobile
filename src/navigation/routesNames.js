@@ -49,7 +49,8 @@ const ModalRoutes = {
 	DELETE_ACCOUNT: "DeleteAccount",
 	LANGUAGE: "Language",
 	FEEDBACK: "Feedback",
-	CONTACTUS: "ContactUs"
+	CONTACTUS: "ContactUs",
+	PLAYER_DETAILS: "PlayerDetails"
 }
 
 const routes = {

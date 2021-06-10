@@ -15,6 +15,7 @@ import MarketTabIcon from "./svg/MarketTabIcon"
 import PlayerRoleIcon from "./svg/PlayerRoleIcon"
 import PlayersTabIcon from "./svg/PlayersTabIcon"
 import SendIcon from "./svg/SendIcon"
+import SeparatorIcon from "./svg/SeparatorIcon"
 import TeamIcon from "./svg/TeamIcon"
 import TeamsTabIcon from "./svg/TeamsTabIcon"
 
@@ -35,7 +36,8 @@ const IconType = {
 	teams_tab: TeamsTabIcon,
 	market_tab: MarketTabIcon,
 	players_tab: PlayersTabIcon,
-	role: PlayerRoleIcon
+	role: PlayerRoleIcon,
+	separator: SeparatorIcon
 }
 
 
@@ -49,7 +51,7 @@ function Icon({ name, ...props }) {
 }
 
 Icon.propTypes = {
-	name: PropTypes.string.isRequired, //TODO: gl - definirlo come uno degli elementi di IconType
+	name: PropTypes.oneOf([...Object.keys(IconType)]).isRequired,
 	color: PropTypes.string
 }
 
