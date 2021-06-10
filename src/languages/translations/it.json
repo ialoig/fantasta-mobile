@@ -95,5 +95,16 @@
   "dashboard": "Dashboard",
   "team": "Squadra",
   "market": "Market",
-  "players": "Giocatori"
+  "players": "Giocatori",
+  "por_short": "POR",
+  "dif_short": "DIF",
+  "cen_short": "CEN",
+  "att_short": "ATT",
+  "por": "Portiere",
+  "dif": "Difensore",
+  "cen": "Centrocampista",
+  "att": "Attaccante",
+  "initial_evaluation": "Valutazione Iniziale",
+  "final_price": "Prezzo Finale",
+  "statistics": "Statistiche"
 }

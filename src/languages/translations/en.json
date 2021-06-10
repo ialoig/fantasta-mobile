@@ -95,5 +95,16 @@
   "dashboard": "Dashboard",
   "team": "Team",
   "market": "Market",
-  "players": "Players"
+  "players": "Players",
+  "por_short": "GK",
+  "dif_short": "DF",
+  "cen_short": "MD",
+  "att_short": "ST",
+  "por": "Goalkeeper",
+  "dif": "Defender",
+  "cen": "Midfielder",
+  "att": "Striker",
+  "initial_evaluation": "Initial Evalutation",
+  "final_price": "Final price",
+  "statistics": "Statistics"
 }

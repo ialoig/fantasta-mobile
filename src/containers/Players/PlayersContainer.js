@@ -1,9 +1,10 @@
-import { useIsFocused } from "@react-navigation/native"
+import { useIsFocused, useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import React, { useEffect, useState } from "react"
 import { FlatList, Text, View } from "react-native"
 import { Badge, Header, InputText, PlayerCard } from "../../components"
-import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY } from "../../constants"
+import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY_SHORT } from "../../constants"
+import routes from "../../navigation/routesNames"
 import { Players } from "../../services"
 import { textStyles } from "../../styles"
 import colors from "../../styles/colors"
@@ -22,7 +23,8 @@ function PlayersContainer() {
 	const [query, setQuery] = useState("")
 	//define if page is focused or not
 	const isFocused = useIsFocused()
-
+	//navigation route
+	const { navigate }  = useNavigation()
 
 	useEffect( () => {
 		console.log("PlayersContainer - [useEffect] - activeRole=", activeRole)
@@ -124,32 +126,32 @@ function PlayersContainer() {
 
 			<View style={styles.badges}>
 				<Badge 
-					onPress={() => setActiveRole(ROLE_CLASSIC_DISPLAY.all)}
-					title={ROLE_CLASSIC_DISPLAY.all}
+					onPress={() => setActiveRole(ROLE_CLASSIC.all)}
+					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.all]}
 					active={isActive(ROLE_CLASSIC.all)}
 					activeColor={colors.secondary}
 				/>
 				<Badge 
 					onPress={() => setActiveRole(ROLE_CLASSIC.por)}
-					title={ROLE_CLASSIC_DISPLAY.por}
+					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.por]}
 					active={isActive(ROLE_CLASSIC.por)}
 					activeColor={colors.por}
 				/>
 				<Badge 
 					onPress={() => setActiveRole(ROLE_CLASSIC.dif)}
-					title={ROLE_CLASSIC_DISPLAY.dif}
+					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.dif]}
 					active={isActive(ROLE_CLASSIC.dif)}
 					activeColor={colors.dif}
 				/>
 				<Badge 
 					onPress={() => setActiveRole(ROLE_CLASSIC.cen)}
-					title={ROLE_CLASSIC_DISPLAY.cen}
+					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.cen]}
 					active={isActive(ROLE_CLASSIC.cen)}
 					activeColor={colors.cen}
 				/>
 				<Badge 
 					onPress={() => setActiveRole(ROLE_CLASSIC.att)}
-					title={ROLE_CLASSIC_DISPLAY.att}
+					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.att]}
 					active={isActive(ROLE_CLASSIC.att)}
 					activeColor={colors.att}
 				/>
@@ -160,7 +162,16 @@ function PlayersContainer() {
 				<FlatList 
 					data={players}
 					keyExtractor={player => player.id.toString()}
-					renderItem={(player) => <PlayerCard type="details-small" player={player.item} />}
+					renderItem={(player) => 
+						<PlayerCard
+							type="small" 
+							player={player.item} 
+							onPress={() => 
+								navigate(routes.PLAYER_DETAILS, {
+									player: player.item
+								})}
+						/>
+					}
 					ListEmptyComponent={() => { 
 						return (
 							<Text style={textStyles.description}>
