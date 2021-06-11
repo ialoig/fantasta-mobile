@@ -1,8 +1,9 @@
 import I18n from "i18n-js"
+import { isNil } from "lodash"
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { Pressable, Text, View } from "react-native"
-import { ROLE_CLASSIC_DISPLAY_LONG, ROLE_CLASSIC_DISPLAY_SHORT } from "../../constants"
+import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY_LONG, ROLE_CLASSIC_DISPLAY_SHORT } from "../../constants"
 import { textStyles } from "../../styles"
 import Icon from "../Icon/Icon"
 import { size, style } from "./styles"
@@ -11,7 +12,7 @@ import { size, style } from "./styles"
 const playerCardType = ["default", "small", "large"]
 
 
-const PlayerCard = ({ type, player, onPress }) => {
+const PlayerCard = ({ type, name, role, team, quotation, onPress }) => {
 
 	const [playerInfo, setPlayerInfo] = useState("")
 	const [playerInfoPrice, setPlayerInfoPrice] = useState("")
@@ -25,14 +26,14 @@ const PlayerCard = ({ type, player, onPress }) => {
 	const defineCardType = () => {
 		switch(type) {
 		case "small":
-			setPlayerInfo(ROLE_CLASSIC_DISPLAY_SHORT[player.roleClassic] + " - " +player.team)
+			setPlayerInfo(ROLE_CLASSIC_DISPLAY_SHORT[role] + " - " +team)
 			break
 		case "large":
-			setPlayerInfo(player.team+ " - " + ROLE_CLASSIC_DISPLAY_LONG[player.roleClassic])
-			setPlayerInfoPrice(I18n.translate("initial_evaluation"))
+			setPlayerInfo(team+ " - " + ROLE_CLASSIC_DISPLAY_LONG[role])
+			!isNil(quotation) ? setPlayerInfoPrice(I18n.translate("initial_price")) : null
 			break
 		default:
-			setPlayerInfo(player.team+ " - " + ROLE_CLASSIC_DISPLAY_LONG[player.roleClassic])
+			setPlayerInfo(team+ " - " + ROLE_CLASSIC_DISPLAY_LONG[role])
 			break
 		}
 	}
@@ -41,19 +42,19 @@ const PlayerCard = ({ type, player, onPress }) => {
 		<Pressable onPress={onPress} style={[style.card, size[type], style[type]]}>
 
 			<View style={style.player}>
-				<Icon name="role" role={player.roleClassic} />
+				<Icon name="role" role={role} />
 				<View style={style.playerInfo}>
-					<Text style={textStyles.title}>{player.name}</Text>
+					<Text style={textStyles.title}>{name}</Text>
 					{playerInfo ? <Text style={textStyles.description}>{playerInfo}</Text> : null}
 				</View>
 			</View>
 			
 			{
-				type === "large" &&
+				type === "large" && !isNil(quotation) &&
 				<View style={style.separator}>
 					<Icon name="separator" />
 					<Text style={textStyles.h3}>{playerInfoPrice}</Text>
-					<Text style={textStyles.title}>{player.initialPrice}
+					<Text style={textStyles.title}>{quotation}
 						<Text style={textStyles.buttonXSmall}>{" fm"}</Text>
 					</Text>
 				</View>
@@ -70,7 +71,10 @@ const PlayerCard = ({ type, player, onPress }) => {
 }
 
 PlayerCard.propTypes = {
-	player: PropTypes.object.isRequired,
+	name: PropTypes.string.isRequired,
+	role: PropTypes.oneOf([...Object.values(ROLE_CLASSIC)]).isRequired,
+	team: PropTypes.string.isRequired,
+	quotation: PropTypes.number,
 	type: PropTypes.oneOf([...Object.values(playerCardType)]).isRequired,
 	onPress: PropTypes.func
 }

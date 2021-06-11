@@ -7,6 +7,7 @@ import CreateLeagueIcon from "./svg/CreateLeagueIcon"
 import DashboardTabIcon from "./svg/DashboardTabIcon"
 import EmptyIcon from "./svg/EmptyIcon"
 import ErrorIcon from "./svg/ErrorIcon"
+import FieldRoleIcon from "./svg/FieldRoleIcon"
 import ForwardIcon from "./svg/ForwardIcon"
 import JoinLeagueIcon from "./svg/JoinLeagueIcon"
 import LeagueIcon from "./svg/LeagueIcon"
@@ -37,7 +38,8 @@ const IconType = {
 	market_tab: MarketTabIcon,
 	players_tab: PlayersTabIcon,
 	role: PlayerRoleIcon,
-	separator: SeparatorIcon
+	separator: SeparatorIcon,
+	field_role: FieldRoleIcon
 }
 
 
