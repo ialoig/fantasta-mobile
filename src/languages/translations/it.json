@@ -104,7 +104,10 @@
   "dif": "Difensore",
   "cen": "Centrocampista",
   "att": "Attaccante",
-  "initial_evaluation": "Valutazione Iniziale",
   "final_price": "Prezzo Finale",
-  "statistics": "Statistiche"
+  "statistics": "Statistiche",
+  "actual_price": "Quotaz. attuale",
+  "initial_price": "Quotaz. iniziale",
+  "media_voto": "Media voto",
+  "fanta_media": "Fanta media"
 }

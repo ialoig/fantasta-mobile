@@ -104,7 +104,10 @@
   "dif": "Defender",
   "cen": "Midfielder",
   "att": "Striker",
-  "initial_evaluation": "Initial Evalutation",
   "final_price": "Final price",
-  "statistics": "Statistics"
+  "statistics": "Statistics",
+  "actual_price": "Actual price",
+  "initial_price": "Initial price",
+  "media_voto": "Average rating",
+  "fanta_media": "Fanta rating"
 }

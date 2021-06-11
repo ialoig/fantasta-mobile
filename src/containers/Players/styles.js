@@ -19,5 +19,20 @@ export default StyleSheet.create({
 		flex: 1,
 		paddingBottom: 0,
 		paddingTop: 20
+	},
+	role: {
+		//...StyleSheet.absoluteFillObject,
+		backgroundColor: colors.primary,
+	},
+	statistics: {
+		alignItems: "center",
+		flexDirection: "row",
+		justifyContent: "space-between"
+	},
+	statistics_dx: {
+		//alignContent: "flex-end"
+	},
+	statistics_sx: {
+		//alignContent: "flex-start"
 	}
 })

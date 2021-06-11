@@ -37,7 +37,7 @@ function PlayersContainer() {
 			filterByRole(activeRole)
 		}
 
-	}, [isFocused, activeRole, query])
+	}, [activeRole, query])
 
 
 
@@ -98,8 +98,8 @@ function PlayersContainer() {
 		const query = text.toLowerCase()
 		console.log("PlayersContainer - [handleSearch] - query=", query)
 		const results = allPlayers.filter((player) => {
-			const { name } = player
-			if (name.toLowerCase().includes(query)) {
+			const { name, team } = player
+			if (name.toLowerCase().includes(query) || team.toLowerCase().includes(query)) {
 				return true
 			}
 			return false
@@ -164,11 +164,14 @@ function PlayersContainer() {
 					keyExtractor={player => player.id.toString()}
 					renderItem={(player) => 
 						<PlayerCard
-							type="small" 
-							player={player.item} 
+							type="small"
+							name={player.item.name}
+							role={player.item.roleClassic}
+							team={player.item.team}
+							quotation={player.item.initialPrice}
 							onPress={() => 
 								navigate(routes.PLAYER_DETAILS, {
-									player: player.item
+									id: player.item.id
 								})}
 						/>
 					}
