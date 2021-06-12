@@ -6,8 +6,10 @@ import { dynamicHeight, dynamicWidth, getWidth } from "../../utils/pixelResolver
 
 export const size = StyleSheet.create({
 	large: {
-		maxHeight: dynamicHeight(327, 80),
-		maxWidth: dynamicWidth(327),
+		height: dynamicHeight(327, 80),
+		width: dynamicWidth(327),
+		// minHeight: dynamicHeight(327, 80),
+		// minWidth: dynamicWidth(327),
 		paddingHorizontal: getWidth(20),
 		paddingVertical: getWidth(20)
 	},
@@ -31,11 +33,16 @@ export const style = StyleSheet.create({
 	},
 	large: {
 		alignItems: "center",
+		flexDirection: "row",
 		justifyContent: "center"
 	},
 	small: {
 		//alignContent: "center",
 		//justifyContent: "center"
+	},
+	stat: {
+		alignItems: "center",
+		flex: 1
 	}
 })
 
@@ -49,7 +56,7 @@ export const text = StyleSheet.create({
 		fontWeight: "300",
 		textAlign: "center"
 	},
-	value: {
+	statValue: {
 		color: colors.text,
 		fontFamily: "PoppinsSemiBold",
 		fontSize: 20,

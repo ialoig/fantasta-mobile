@@ -3,6 +3,7 @@ import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { Text, View } from "react-native"
+import { ScrollView } from "react-native-gesture-handler"
 import { PlayerCard, StatsCard } from "../../components"
 import { style } from "../../components/Card/styles"
 import Icon from "../../components/Icon/Icon"
@@ -44,36 +45,69 @@ function PlayersDetails() {
 
 			{/* statistics */}
 			<Text style={textStyles.h1}>{I18n.translate("statistics")}</Text>
-			<View style={styles.statistics}>
-				<View style={styles.statistics_sx}>
-					<StatsCard 
-						type="small"
-						number={player.initialPrice}
-						description={I18n.translate("initial_price")}
-					/>
-					<StatsCard 
-						type="small"
-						number={player.actualPrice}
-						description={I18n.translate("actual_price")}
-					/>
-				</View>
-				<View style={styles.role}>
-					<Icon name="field_role" />
-				</View>
-				<View style={styles.statistics_dx}>
-					<StatsCard 
-						type="small"
-						number={playerStats.mv}
-						description={I18n.translate("media_voto")}
-					/>
-					<StatsCard 
-						type="small"
-						number={playerStats.mf}
-						description={I18n.translate("fanta_media")}
-					/>
-				</View>
-			</View>
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<View style={styles.statistics}>
+				
+					{/* statistics sx*/}
+					<View>
+						<StatsCard 
+							type="small"
+							value1={player.initialPrice}
+							desc1={I18n.translate("initial_price")}
+						/>
+						<StatsCard 
+							type="small"
+							value1={player.actualPrice}
+							desc1={I18n.translate("actual_price")}
+						/>
+					</View>
 
+
+					{/* field svg */}
+					<Icon name="field_role" role={player.roleClassic} />
+
+					{/* statistics dx*/}
+					<View>
+						<StatsCard 
+							type="small"
+							value1={playerStats.mv}
+							desc1={I18n.translate("media_voto")}
+						/>
+						<StatsCard 
+							type="small"
+							value1={playerStats.mf}
+							desc1={I18n.translate("fanta_media")}
+						/>
+					</View>
+
+				</View>
+
+				<View style={styles.statistics}>
+					<StatsCard 
+						type="large"
+						value1={playerStats.pg}
+						desc1={I18n.translate("partite_giocate")}
+						value2={playerStats.gf}
+						desc2={I18n.translate("goal")}
+						value3={playerStats.ass}
+						desc3={I18n.translate("assist")}
+						value4={playerStats.asf}
+						desc4={I18n.translate("assist_fermo")}
+					/>
+				</View>
+
+				<View style={styles.statistics}>
+					<StatsCard 
+						type="large"
+						value1={playerStats.amm}
+						desc1={I18n.translate("ammonizioni")}
+						value2={playerStats.esp}
+						desc2={I18n.translate("espulsioni")}
+						value3={playerStats.au}
+						desc3={I18n.translate("autogol")}
+					/>
+				</View>
+			</ScrollView>
 		</View>
 	)
 }

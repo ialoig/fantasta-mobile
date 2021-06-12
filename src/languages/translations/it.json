@@ -109,5 +109,12 @@
   "actual_price": "Quotaz. attuale",
   "initial_price": "Quotaz. iniziale",
   "media_voto": "Media voto",
-  "fanta_media": "Fanta media"
+  "fanta_media": "Fanta media",
+  "partite_giocate": "Partite",
+  "goal": "Goal",
+  "assist": "Assist",
+  "assist_fermo": "Assist fermo",
+  "ammonizioni": "Amm.",
+  "espulsioni": "Esp.",
+  "autogol": "Autogol"
 }
