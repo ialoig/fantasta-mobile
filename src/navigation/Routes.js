@@ -10,6 +10,7 @@ import { GetStartedContainer } from "../containers/GetStarted/GetStartedContaine
 import { HomeContainer } from "../containers/Home/HomeContainer"
 import { JoinLeagueContainer } from "../containers/JoinLeague/JoinLeagueContainer"
 import { LoginContainer } from "../containers/Login/LoginContainer"
+import PlayersDetails from "../containers/Players/PlayersDetails"
 import CompleteRegistratioConfirmation from "../containers/Register/CompleteRegistratioConfirmation"
 import CompleteRegistration from "../containers/Register/CompleteRegistration"
 import { RegisterContainer } from "../containers/Register/RegisterContainer"
@@ -94,6 +95,10 @@ export default function Routes() {
 					name={routes.ACCOUNTNAVIGATOR}
 					component={AccountNavigator}
 					options={noHeaderScreenConfig} />
+				<AppStack.Screen
+					name={routes.PLAYER_DETAILS}
+					component={PlayersDetails}
+					options={getScreenConfig(true, false, true)}/>
 			</AppStack.Navigator>
 		</NavigationContainer>
 	)

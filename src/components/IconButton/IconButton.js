@@ -1,20 +1,21 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { TouchableOpacity, View } from "react-native"
+import { TouchableOpacity } from "react-native"
 import Icon from "../Icon/Icon"
-import { button } from "./styles"
+import { style } from "./styles"
 
 /**
  * TODO: gl - valutare se utilizzare ancora in relazione ad uso di componente Header
  * 
  */
-const IconButton = ({ type, icon, onPress }) => {
+const IconButton = ({ type, icon, onPress, ...props }) => {
 
 	return (
-		<TouchableOpacity onPress={onPress} style={button[type]}>
-			<View >
-				{icon && <Icon name={type} />}
-			</View>
+		<TouchableOpacity onPress={onPress} style={[style.container, style[type]]}>
+			{ 
+				icon && 
+				<Icon name={type} {...props} />
+			}
 		</TouchableOpacity>
 	)
 }
@@ -27,7 +28,7 @@ IconButton.propTypes = {
 }
 
 IconButton.defaultTypes = {
-	type: "default",
+	type: "back",
 	icon: true
 }
 

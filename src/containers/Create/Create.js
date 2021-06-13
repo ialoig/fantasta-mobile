@@ -6,6 +6,7 @@ import AppIntroSlider from "react-native-app-intro-slider"
 import { button, text } from "../../components/Button/styles"
 import Header from "../../components/Header/Header"
 import { carouselSyle, commonStyle, textStyles } from "../../styles"
+import { getHeaderHeight } from "../../utils/deviceUtils"
 
 const Create = (props) => {
 
@@ -33,7 +34,7 @@ const Create = (props) => {
 
 
 		return (
-			<View style={commonStyle.container}>
+			<View style={[commonStyle.container, commonStyle.paddingHeader]}>
 				<Header title={item.title} />
 				<View style={[commonStyle.content, commonStyle.flex_start]} key={key}>
 					<Page item={item} {...props} />

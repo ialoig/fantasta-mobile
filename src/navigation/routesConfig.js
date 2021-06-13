@@ -138,7 +138,7 @@ export const getHeaderRightConfig = (type) => {
 		// eslint-disable-next-line react/display-name
 		headerRight: (props) => <HeaderRightButton type={type} {...props}/>,
 		headerRightContainerStyle: {
-			paddingRight: deviceScreenWidth * 0.06
+			paddingRight: deviceScreenWidth * 0.04
 		}
 	}
 }

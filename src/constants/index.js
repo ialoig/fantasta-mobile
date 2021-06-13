@@ -1,3 +1,5 @@
+import I18n from "i18n-js"
+
 export const PASSWORD_OPT = {
 	minLength: 6,
 	minLowercase: 0,
@@ -57,10 +59,18 @@ export const ROLE_CLASSIC = {
 	att: "A"
 }
 
-export const ROLE_CLASSIC_DISPLAY = {
-	all: "ALL",
-	por: "por",
-	dif: "dif",
-	cen: "cen",
-	att: "att"
+export const ROLE_CLASSIC_DISPLAY_SHORT = {
+	ALL: "ALL",
+	P: I18n.translate("por_short"),
+	D: I18n.translate("dif_short"),
+	C: I18n.translate("cen_short"),
+	A: I18n.translate("att_short")
+}
+
+export const ROLE_CLASSIC_DISPLAY_LONG = {
+	ALL: "ALL",
+	P: I18n.translate("por"),
+	D: I18n.translate("dif"),
+	C: I18n.translate("cen"),
+	A: I18n.translate("att")
 }

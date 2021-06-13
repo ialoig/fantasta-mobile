@@ -12,6 +12,20 @@ export const deviceScreenHeight =
     isIphoneXor11 ? (deviceHeight * 0.9) : android ? (deviceHeight - StatusBar.currentHeight) : deviceHeight
 
 
+export const getHeaderHeight = () => {
+	let headerHeight
+	
+	if (Platform.OS === "ios") {
+		headerHeight = 44
+	} else if (Platform.OS === "android") {
+		headerHeight = 56
+	} else {
+		headerHeight = 64
+	}
+	headerHeight += StatusBar.currentHeight + 20 //total height = 100 (same as navigator header)
+	
+	return headerHeight
+}
 
 /**
  * @method isIphoneXor11: true if devide is Iphone X or Iphone 11 Pro Max
