@@ -30,7 +30,7 @@ const JoinLeagueSlider = (props) => {
 	const _renderItem = ({ item, key }) => {
 		const Page = item.component
 		return (
-			<View style={commonStyle.container}>
+			<View style={[commonStyle.container, commonStyle.paddingHeader]}>
 				<Header title={item.title} />
 				<View style={[commonStyle.content, commonStyle.flex_start]}>
 					<Page item={item} {...props} />

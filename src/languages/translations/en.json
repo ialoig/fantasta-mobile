@@ -112,9 +112,11 @@
   "fanta_media": "Fanta rating",
   "partite_giocate": "Match",
   "goal": "Goals",
+  "goal_subiti": "Goal conceded",
   "assist": "Assist",
   "assist_fermo": "Assist",
   "ammonizioni": "Yellow card",
   "espulsioni": "Red card",
-  "autogol": "Autogol"
+  "autogol": "Own goal",
+  "rigori_parati": "Penalties saved"
 }

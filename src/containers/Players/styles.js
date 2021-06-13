@@ -13,8 +13,7 @@ export default StyleSheet.create({
 		...StyleSheet.absoluteFillObject,
 		backgroundColor: colors.background,
 		paddingBottom: deviceScreenHeight * 0.01,
-		paddingHorizontal: deviceScreenWidth * 0.06,
-		paddingTop: deviceScreenHeight * 0.06,
+		paddingHorizontal: deviceScreenWidth * 0.06
 	},
 	list: {
 		flex: 1,

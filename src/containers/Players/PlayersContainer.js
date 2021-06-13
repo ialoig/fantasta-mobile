@@ -6,8 +6,9 @@ import { Badge, Header, InputText, PlayerCard } from "../../components"
 import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY_SHORT } from "../../constants"
 import routes from "../../navigation/routesNames"
 import { Players } from "../../services"
-import { textStyles } from "../../styles"
+import { commonStyle, textStyles } from "../../styles"
 import colors from "../../styles/colors"
+import { getHeaderHeight } from "../../utils/deviceUtils"
 import styles from "./styles"
 
 
@@ -110,7 +111,7 @@ function PlayersContainer() {
 
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, commonStyle.paddingHeader]}>
 			<Header title="players" />
 
 			<InputText 

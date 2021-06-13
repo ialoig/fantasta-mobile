@@ -1,7 +1,6 @@
-import I18n from "i18n-js"
 import { isNil } from "lodash"
 import PropTypes from "prop-types"
-import React, { useEffect } from "react"
+import React from "react"
 import { Pressable, Text, View } from "react-native"
 import Icon from "../Icon/Icon"
 import { size, style, text } from "./styles"
@@ -61,7 +60,13 @@ const StatsCard = ({ type, value1, desc1, ...props }) => {
 StatsCard.propTypes = {
 	type: PropTypes.oneOf([...Object.values(statsCardType)]).isRequired,
 	value1: PropTypes.number,
-	desc1: PropTypes.string
+	desc1: PropTypes.string,
+	value2: PropTypes.number,
+	desc2: PropTypes.string,
+	value3: PropTypes.number,
+	desc3: PropTypes.string,
+	value4: PropTypes.number,
+	desc4: PropTypes.string
 }
 
 export default StatsCard
