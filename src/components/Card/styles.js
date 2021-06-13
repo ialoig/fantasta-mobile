@@ -22,6 +22,7 @@ export const style = StyleSheet.create({
 		maxWidth: dynamicWidth(327)
 	},
 	large: {
+		justifyContent: "center",
 		marginHorizontal: 0,
 		maxHeight: dynamicHeight(327, 160),
 		maxWidth: dynamicWidth(327),

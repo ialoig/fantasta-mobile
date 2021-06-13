@@ -1,6 +1,6 @@
 
 import { StyleSheet } from "react-native"
-import { deviceScreenHeight, deviceScreenWidth } from "../utils/deviceUtils"
+import { deviceScreenHeight, deviceScreenWidth, getHeaderHeight } from "../utils/deviceUtils"
 import colors from "./colors"
 
 export default StyleSheet.create({
@@ -13,13 +13,12 @@ export default StyleSheet.create({
 		justifyContent: "center"
 	},
 	container: {
+		...StyleSheet.absoluteFillObject,
 		alignContent: "center",
 		backgroundColor: colors.background,
-		flex: 1,
 		justifyContent: "center",
 		paddingBottom: deviceScreenHeight * 0.01,
 		paddingHorizontal: deviceScreenWidth * 0.06,
-		paddingTop: deviceScreenHeight * 0.06
 	},
 	content: {
 		flex: 1,
@@ -34,12 +33,6 @@ export default StyleSheet.create({
 	flex_start: {
 		justifyContent: "flex-start"
 	},
-	header: {
-		alignItems: "center",
-		flexDirection: "row",
-		justifyContent: "center",
-		marginBottom: 12,
-	},
 	justifyText: {
 		textAlign: "justify"
 	},
@@ -47,9 +40,7 @@ export default StyleSheet.create({
 		borderTopLeftRadius: 32,
 		borderTopRightRadius: 32,
 	},
-	title: {
-		flex: 1,
-		flexGrow: 1,
-		textAlign: "center"
-	}
+	paddingHeader: {
+		paddingTop: getHeaderHeight()
+	},
 })

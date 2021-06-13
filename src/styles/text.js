@@ -28,7 +28,7 @@ export default StyleSheet.create({
 		fontStyle: "normal",
 		fontWeight: "600",
 		letterSpacing: 0.75,
-		lineHeight: 20
+		//lineHeight: 20
 	},
 	description: {
 		color: colors.textPlaceholder,
@@ -55,7 +55,8 @@ export default StyleSheet.create({
 		fontStyle: "normal",
 		fontWeight: "600",
 		letterSpacing: 0.75,
-		lineHeight: 30
+		lineHeight: 30,
+		paddingVertical: 16
 	},
 	h2: {
 		color: colors.text,
@@ -64,7 +65,8 @@ export default StyleSheet.create({
 		fontStyle: "normal",
 		fontWeight: "600",
 		letterSpacing: 0.75,
-		lineHeight: 30
+		lineHeight: 30,
+		paddingVertical: 8
 	},
 	h3: {
 		color: colors.text,
@@ -74,7 +76,7 @@ export default StyleSheet.create({
 		fontWeight: "500",
 		letterSpacing: 0.25,
 		lineHeight: 20,
-		marginTop: 4
+		paddingVertical: 4
 	},
 	p1: {
 		color: colors.text,

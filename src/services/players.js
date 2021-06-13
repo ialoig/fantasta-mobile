@@ -17,6 +17,13 @@ const GetPlayers = () =>
 	return PLAYERS
 }
 
+const GetPlayersByID = (searchID) =>
+{
+	const playersList = Object.values(PLAYERS)
+	const result = playersList.find( ({ id }) => id === searchID)
+	return result
+}
+
 const SetStatistics = ( statistics ) =>
 {
 	STATISTICS = statistics || []
@@ -25,6 +32,13 @@ const SetStatistics = ( statistics ) =>
 const GetStatistics = () =>
 {
 	return STATISTICS
+}
+
+const GetStatisticsByPlayerID = (playerID) =>
+{
+	const statisticsList = Object.values(STATISTICS)
+	const result = statisticsList.find( ({ id }) => id === playerID)
+	return result
 }
 
 const Init = async () =>
@@ -72,7 +86,9 @@ const Init = async () =>
 export const Players = {
 	SetPlayers,
 	GetPlayers,
+	GetPlayersByID,
 	SetStatistics,
 	GetStatistics,
+	GetStatisticsByPlayerID,
 	Init
 }

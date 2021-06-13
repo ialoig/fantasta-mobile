@@ -12,12 +12,17 @@ export default StyleSheet.create({
 	container: {
 		...StyleSheet.absoluteFillObject,
 		backgroundColor: colors.background,
-		paddingHorizontal: deviceScreenWidth * 0.06,
-		paddingTop: deviceScreenHeight * 0.06,
+		paddingBottom: deviceScreenHeight * 0.01,
+		paddingHorizontal: deviceScreenWidth * 0.06
 	},
 	list: {
 		flex: 1,
 		paddingBottom: 0,
 		paddingTop: 20
+	},
+	statistics: {
+		alignItems: "center",
+		flexDirection: "row",
+		justifyContent: "space-between"
 	}
 })
