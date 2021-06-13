@@ -7,11 +7,9 @@ import { dynamicHeight, dynamicWidth, getWidth } from "../../utils/pixelResolver
 export const size = StyleSheet.create({
 	large: {
 		height: dynamicHeight(327, 80),
-		width: dynamicWidth(327),
-		// minHeight: dynamicHeight(327, 80),
-		// minWidth: dynamicWidth(327),
 		paddingHorizontal: getWidth(20),
-		paddingVertical: getWidth(20)
+		paddingVertical: getWidth(20),
+		width: dynamicWidth(327),
 	},
 	small: {
 		maxHeight: dynamicHeight(70, 70),
@@ -37,8 +35,6 @@ export const style = StyleSheet.create({
 		justifyContent: "center"
 	},
 	small: {
-		//alignContent: "center",
-		//justifyContent: "center"
 	},
 	stat: {
 		alignItems: "center",

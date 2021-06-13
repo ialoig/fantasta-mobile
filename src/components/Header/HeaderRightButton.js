@@ -1,13 +1,11 @@
 import { useNavigation } from "@react-navigation/core"
 import PropTypes from "prop-types"
 import React from "react"
-import { TouchableOpacity } from "react-native-gesture-handler"
 import routes from "../../navigation/routesNames"
-import Icon from "../Icon/Icon"
+import IconButton from "../IconButton/IconButton"
 
-function HeaderRightButton (props) {
+function HeaderRightButton ({ type, ...props }) {
 
-	const { type } = props
 	const { navigate } = useNavigation()
 	
 
@@ -21,15 +19,21 @@ function HeaderRightButton (props) {
 	}
 
 	return (
-		<TouchableOpacity onPress={handlePress} >
-			<Icon name={type} width={35} height={35}/>
-		</TouchableOpacity>
+		<IconButton 
+			onPress={handlePress} 
+			icon 
+			type={type} 
+			width={35} 
+			height={35} 
+			{...props} 
+		/>
 	)
 }
 
 HeaderRightButton.propTypes = {
-	type: PropTypes.string.isRequired
+	type: PropTypes.string.isRequired,
 }
+
 
 export default HeaderRightButton
 

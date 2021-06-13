@@ -50,7 +50,7 @@ function HeaderTitle({ children }) {
 		case routes.PLAYERS:
 			return I18n.translate("players")
 		default:
-			return children
+			return ""
 		}
 	}
 

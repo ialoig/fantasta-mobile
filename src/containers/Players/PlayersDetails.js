@@ -33,19 +33,19 @@ function PlayersDetails() {
 
 
 	return (
-
 		<View style={styles.container}>
-			<PlayerCard
-				type="large"
-				name={player.name}
-				role={player.roleClassic}
-				team={player.team}
-				quotation={player.initialPrice}
-			/>
-
-			{/* statistics */}
-			<Text style={textStyles.h1}>{I18n.translate("statistics")}</Text>
 			<ScrollView showsVerticalScrollIndicator={false}>
+				<PlayerCard
+					type="large"
+					name={player.name}
+					role={player.roleClassic}
+					team={player.team}
+					quotation={player.initialPrice}
+				/>
+
+				{/* statistics */}
+				<Text style={textStyles.h1}>{I18n.translate("statistics")}</Text>
+			
 				<View style={styles.statistics}>
 				
 					{/* statistics sx*/}
@@ -87,12 +87,12 @@ function PlayersDetails() {
 						type="large"
 						value1={playerStats.pg}
 						desc1={I18n.translate("partite_giocate")}
-						value2={playerStats.gf}
-						desc2={I18n.translate("goal")}
+						value2={player.roleClassic === "P" ? playerStats.gs : playerStats.gf}
+						desc2={player.roleClassic === "P" ? I18n.translate("goal_subiti") : I18n.translate("goal")}
 						value3={playerStats.ass}
 						desc3={I18n.translate("assist")}
-						value4={playerStats.asf}
-						desc4={I18n.translate("assist_fermo")}
+						value4={player.roleClassic === "P" ? playerStats.rp : playerStats.asf}
+						desc4={player.roleClassic === "P" ? I18n.translate("rigori_parati") : I18n.translate("assist_fermo")}
 					/>
 				</View>
 

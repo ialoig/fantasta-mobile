@@ -112,9 +112,11 @@
   "fanta_media": "Fanta media",
   "partite_giocate": "Partite",
   "goal": "Goal",
+  "goal_subiti": "Goal subiti",
   "assist": "Assist",
   "assist_fermo": "Assist fermo",
   "ammonizioni": "Amm.",
   "espulsioni": "Esp.",
-  "autogol": "Autogol"
+  "autogol": "Autogol",
+  "rigori_parati": "Rigori parati"
 }

@@ -5,16 +5,16 @@ import { dynamicHeight, dynamicWidth, getWidth } from "../../utils/pixelResolver
 
 export const size = StyleSheet.create({
 	large: {
-		maxHeight: dynamicHeight(327, 160),
-		maxWidth: dynamicWidth(327),
-		paddingHorizontal: getWidth(20),
-		paddingVertical: getWidth(20)
-	},
-	small: {
-		maxHeight: dynamicHeight(327, 80),
-		maxWidth: dynamicWidth(327),
+		height: dynamicHeight(327, 160),
 		paddingHorizontal: getWidth(20),
 		paddingVertical: getWidth(20),
+		width: dynamicWidth(327)
+	},
+	small: {
+		height: dynamicHeight(327, 80),
+		paddingHorizontal: getWidth(20),
+		paddingVertical: getWidth(20),
+		width: dynamicWidth(327),
 	},
 })
 
