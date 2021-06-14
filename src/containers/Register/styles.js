@@ -6,5 +6,8 @@ export default StyleSheet.create({
 		alignSelf: "center",
 		color: colors.textPlaceholder,
 		paddingVertical: 4,
+	},
+	paddingTop: {
+		paddingTop: 12
 	}
 })

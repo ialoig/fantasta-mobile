@@ -18,7 +18,7 @@ export default StyleSheet.create({
 		backgroundColor: colors.background,
 		justifyContent: "center",
 		paddingBottom: deviceScreenHeight * 0.01,
-		paddingHorizontal: deviceScreenWidth * 0.06,
+		paddingHorizontal: deviceScreenWidth * 0.06
 	},
 	content: {
 		flex: 1,

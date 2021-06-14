@@ -1,11 +1,9 @@
 import { useRoute } from "@react-navigation/native"
 import I18n from "i18n-js"
-import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { Text, View } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 import { PlayerCard, StatsCard } from "../../components"
-import { style } from "../../components/Card/styles"
 import Icon from "../../components/Icon/Icon"
 import { Players } from "../../services"
 import { textStyles } from "../../styles"
@@ -52,13 +50,13 @@ function PlayersDetails() {
 					<View>
 						<StatsCard 
 							type="small"
-							value1={player.initialPrice}
-							desc1={I18n.translate("initial_price")}
+							values={[player.initialPrice]}
+							descriptions={[I18n.translate("initial_price")]}
 						/>
 						<StatsCard 
 							type="small"
-							value1={player.actualPrice}
-							desc1={I18n.translate("actual_price")}
+							values={[player.actualPrice]}
+							descriptions={[I18n.translate("actual_price")]}
 						/>
 					</View>
 
@@ -70,13 +68,13 @@ function PlayersDetails() {
 					<View>
 						<StatsCard 
 							type="small"
-							value1={playerStats.mv}
-							desc1={I18n.translate("media_voto")}
+							values={[playerStats.mv]}
+							descriptions={[I18n.translate("media_voto")]}
 						/>
 						<StatsCard 
 							type="small"
-							value1={playerStats.mf}
-							desc1={I18n.translate("fanta_media")}
+							values={[playerStats.mf]}
+							descriptions={[I18n.translate("fanta_media")]}
 						/>
 					</View>
 
@@ -85,35 +83,38 @@ function PlayersDetails() {
 				<View style={styles.statistics}>
 					<StatsCard 
 						type="large"
-						value1={playerStats.pg}
-						desc1={I18n.translate("partite_giocate")}
-						value2={player.roleClassic === "P" ? playerStats.gs : playerStats.gf}
-						desc2={player.roleClassic === "P" ? I18n.translate("goal_subiti") : I18n.translate("goal")}
-						value3={playerStats.ass}
-						desc3={I18n.translate("assist")}
-						value4={player.roleClassic === "P" ? playerStats.rp : playerStats.asf}
-						desc4={player.roleClassic === "P" ? I18n.translate("rigori_parati") : I18n.translate("assist_fermo")}
-					/>
+						values={[
+							playerStats.pg,
+							player.roleClassic === "P" ? playerStats.gs : playerStats.gf,
+							playerStats.ass,
+							player.roleClassic === "P" ? playerStats.rp : playerStats.asf
+						]}
+						descriptions={[
+							I18n.translate("partite_giocate"),
+							player.roleClassic === "P" ? I18n.translate("goal_subiti") : I18n.translate("goal"),
+							I18n.translate("assist"),
+							player.roleClassic === "P" ? I18n.translate("rigori_parati") : I18n.translate("assist_fermo")
+						]}/>
 				</View>
 
 				<View style={styles.statistics}>
 					<StatsCard 
 						type="large"
-						value1={playerStats.amm}
-						desc1={I18n.translate("ammonizioni")}
-						value2={playerStats.esp}
-						desc2={I18n.translate("espulsioni")}
-						value3={playerStats.au}
-						desc3={I18n.translate("autogol")}
+						values={[
+							playerStats.amm,
+							playerStats.esp,
+							playerStats.au
+						]}
+						descriptions={[
+							I18n.translate("ammonizioni"),
+							I18n.translate("espulsioni"),
+							I18n.translate("autogol")
+						]}
 					/>
 				</View>
 			</ScrollView>
 		</View>
 	)
-}
-
-PlayersDetails.propTypes = {
-
 }
 
 export default PlayersDetails
