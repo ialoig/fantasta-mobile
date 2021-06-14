@@ -8,7 +8,6 @@ import routes from "../../navigation/routesNames"
 import { Players } from "../../services"
 import { commonStyle, textStyles } from "../../styles"
 import colors from "../../styles/colors"
-import { getHeaderHeight } from "../../utils/deviceUtils"
 import styles from "./styles"
 
 
@@ -22,8 +21,6 @@ function PlayersContainer() {
 	const [activeRole, setActiveRole] = useState(ROLE_CLASSIC.all)
 	//query is the text searched by user
 	const [query, setQuery] = useState("")
-	//define if page is focused or not
-	const isFocused = useIsFocused()
 	//navigation route
 	const { navigate }  = useNavigation()
 

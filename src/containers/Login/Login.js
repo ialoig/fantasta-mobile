@@ -11,7 +11,7 @@ import styles from "./styles"
 const Login = (props) => { 
 	return (
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-			<View style={commonStyle.container}>
+			<View style={[commonStyle.container, styles.paddingTop]}>
 				<Logo horizontal/>
 				<KeyboardAwareScrollView 
 					showsVerticalScrollIndicator={false}
