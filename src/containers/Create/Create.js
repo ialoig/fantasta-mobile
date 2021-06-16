@@ -6,7 +6,6 @@ import AppIntroSlider from "react-native-app-intro-slider"
 import { button, text } from "../../components/Button/styles"
 import Header from "../../components/Header/Header"
 import { carouselSyle, commonStyle, textStyles } from "../../styles"
-import { getHeaderHeight } from "../../utils/deviceUtils"
 
 const Create = (props) => {
 

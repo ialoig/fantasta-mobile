@@ -19,9 +19,7 @@ const GetPlayers = () =>
 
 const GetPlayersByID = (searchID) =>
 {
-	const playersList = Object.values(PLAYERS)
-	const result = playersList.find( ({ id }) => id === searchID)
-	return result
+	return PLAYERS[searchID]
 }
 
 const SetStatistics = ( statistics ) =>
@@ -36,9 +34,7 @@ const GetStatistics = () =>
 
 const GetStatisticsByPlayerID = (playerID) =>
 {
-	const statisticsList = Object.values(STATISTICS)
-	const result = statisticsList.find( ({ id }) => id === playerID)
-	return result
+	return STATISTICS[playerID]
 }
 
 const Init = async () =>

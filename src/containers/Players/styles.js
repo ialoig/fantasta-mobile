@@ -7,7 +7,7 @@ export default StyleSheet.create({
 	badges: {
 		flexDirection: "row",
 		justifyContent: "center",
-		paddingTop: 8
+		paddingTop: 8,
 	},
 	container: {
 		...StyleSheet.absoluteFillObject,
@@ -19,6 +19,9 @@ export default StyleSheet.create({
 		flex: 1,
 		paddingBottom: 0,
 		paddingTop: 20
+	},
+	scrollContent: {
+		// width: 600
 	},
 	statistics: {
 		alignItems: "center",

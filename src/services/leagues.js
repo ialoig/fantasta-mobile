@@ -4,15 +4,22 @@ import { Auction } from "./auction"
 import { Error } from "./error"
 
 let LEAGUES = []
+let ACTIVE_LEAGUE = []
 
-const Set = ( leagues ) =>
-{
+const SetLeagues = ( leagues ) => {
 	LEAGUES = leagues || []
 }
 
-const Get = () =>
-{
+const GetLeagues = () => {
 	return LEAGUES
+}
+
+const SetActiveLeague = ( league ) => {
+	ACTIVE_LEAGUE = league || []
+}
+
+const GetActiveLeague = () => {
+	return ACTIVE_LEAGUE
 }
 
 const Create = async ( settings ) =>
@@ -47,7 +54,7 @@ const Join = async ( id="", name="", password="", teamname="" ) =>
 			}
 
 			let response = await axios.put("/league/join", data, {})
-			LEAGUES = response.user.leagues || []
+			ACTIVE_LEAGUE = response.league || []
 			Auction.Init( response.league, response.team )
 			return Promise.resolve()
 		}
@@ -65,8 +72,10 @@ const Join = async ( id="", name="", password="", teamname="" ) =>
 }
 
 export const Leagues = {
-	Set,
-	Get,
+	SetLeagues,
+	GetLeagues,
+	SetActiveLeague,
+	GetActiveLeague,
 	Create,
 	Join
 }

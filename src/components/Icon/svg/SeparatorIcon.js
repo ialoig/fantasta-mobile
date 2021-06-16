@@ -10,7 +10,7 @@ const styleHorizontal = {
 }
 
 const styleVertical = {
-	paddingHorizontal: 12
+	paddingHorizontal: 8
 }
 
 function SeparatorIcon({ primary, width, height, horizontal, ...props }) {

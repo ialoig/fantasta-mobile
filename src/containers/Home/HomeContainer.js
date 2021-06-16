@@ -9,7 +9,7 @@ export class HomeContainer extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			leagues: Leagues.Get().sort((a, b) => a.name > b.name ? 1 : -1)
+			leagues: Leagues.GetLeagues().sort((a, b) => a.name > b.name ? 1 : -1)
 		}
 	}
 
@@ -19,7 +19,7 @@ export class HomeContainer extends React.Component {
 			"focus",
 			() => {
 				this.mounted && this.setState({
-					leagues: Leagues.Get().sort((a, b) => a.name > b.name ? 1 : -1)
+					leagues: Leagues.GetLeagues().sort((a, b) => a.name > b.name ? 1 : -1)
 				})
 			}
 		)
