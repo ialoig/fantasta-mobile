@@ -2,21 +2,24 @@
 import axios from "axios"
 import { Error } from "./error"
 
-const feedBack = async ( text ) =>
+const feedBack = ( text ) =>
 {
 	console.log("POST /support - Feedback, ", text )
-	
-    send( text, 'Feedback' )
+    return send( text, 'Feedback' )
 }
 
-const contact = async ( text ) => {
+const contact = ( text ) => {
 	console.log("POST /support - Contact Us, ", text )
-	
-    send( text, 'Contact Us' )
+    return send( text, 'Contact Us' )
 }
 
-const send = ( text, subject ) =>
+const send = async ( text, subject ) =>
 {
+	if ( !text )
+	{
+		return Promise.reject()
+	}
+
     try {
 		let response = await axios.post("/support", { text, subject }, {})
 
