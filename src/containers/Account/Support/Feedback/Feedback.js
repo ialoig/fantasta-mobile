@@ -1,10 +1,11 @@
 import { useIsFocused, useNavigation } from "@react-navigation/core"
 import React, { useEffect, useState } from "react"
+import I18n from "i18n-js"
 import { View } from "react-native"
 import { commonStyle } from "../../../../styles"
 import routes from "../../../../navigation/routesNames"
 import { Support } from "../../../../services"
-
+import { Button, Textarea } from '../../../../components'
 
 function Feedback() {
 
@@ -30,14 +31,13 @@ function Feedback() {
 
 	return (
 		<View style={[commonStyle.container, commonStyle.flex_start]}>
-			<Email
+			<Textarea
 				id={"emailText"}
 				label={I18n.translate("message")}
 				value={emailText}
 				showError={showError}
-				required={true}
-				clearButtonMode='while-editing'
 				onChange={(id, value) => setEmailText(value)}
+				lines={10}
 			/>
 
 			<Button
