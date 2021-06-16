@@ -52,11 +52,30 @@ export const FIELDS_ID = {
 }
 
 export const ROLE_CLASSIC = {
-	all: "ALL",
-	por: "P",
-	dif: "D",
-	cen: "C",
-	att: "A"
+	"ALL": "ALL",
+	"P": I18n.translate("por_short"),
+	"D": I18n.translate("dif_short"),
+	"C": I18n.translate("cen_short"),
+	"A": I18n.translate("att_short")
+}
+
+export const ROLE_MANTRA = {
+	"Por": "Por",
+	"Dd": "Dd",
+	"Ds": "Ds",
+	"Dc": "Dc",
+	"E": "E",
+	"M": "M",
+	"C": "C",
+	"W": "W",
+	"T": "T",
+	"A": "A",
+	"Pc": "Pc"
+}
+
+export const ROLES = {
+	...ROLE_CLASSIC,
+	...ROLE_MANTRA
 }
 
 export const ROLE_CLASSIC_DISPLAY_SHORT = {
@@ -73,4 +92,19 @@ export const ROLE_CLASSIC_DISPLAY_LONG = {
 	D: I18n.translate("dif"),
 	C: I18n.translate("cen"),
 	A: I18n.translate("att")
+}
+
+
+export const ROLE_MANTRA_DISPLAY_SHORT = {
+	"Por": "Por",
+	"Dd": "Dd",
+	"Ds": "Ds",
+	"Dc": "Dc",
+	"E": "E",
+	"M": "M",
+	"C": "C",
+	"W": "W",
+	"T": "T",
+	"A": "A",
+	"Pc": "Pc"
 }

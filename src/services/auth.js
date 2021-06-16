@@ -118,7 +118,7 @@ const saveUser = (response) => {
 	User.Set(user)
 
 	let leagues = user.leagues || []
-	Leagues.Set(leagues)
+	Leagues.SetLeagues(leagues)
 }
 
 

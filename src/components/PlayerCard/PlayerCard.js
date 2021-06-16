@@ -3,7 +3,7 @@ import { isNil } from "lodash"
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { Pressable, Text, View } from "react-native"
-import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY_LONG, ROLE_CLASSIC_DISPLAY_SHORT } from "../../constants"
+import { ROLES } from "../../constants"
 import { textStyles } from "../../styles"
 import Icon from "../Icon/Icon"
 import { size, style } from "./styles"
@@ -26,14 +26,14 @@ const PlayerCard = ({ type, name, role, team, quotation, onPress }) => {
 	const defineCardType = () => {
 		switch(type) {
 		case "small":
-			setPlayerInfo(ROLE_CLASSIC_DISPLAY_SHORT[role] + " - " +team)
+			setPlayerInfo(ROLES[role] + " - " +team)
 			break
 		case "large":
-			setPlayerInfo(team+ " - " + ROLE_CLASSIC_DISPLAY_LONG[role])
+			setPlayerInfo(team+ " - " + ROLES[role])
 			!isNil(quotation) ? setPlayerInfoPrice(I18n.translate("initial_price")) : null
 			break
 		default:
-			setPlayerInfo(team+ " - " + ROLE_CLASSIC_DISPLAY_LONG[role])
+			setPlayerInfo(team+ " - " + ROLES[role])
 			break
 		}
 	}
@@ -72,7 +72,7 @@ const PlayerCard = ({ type, name, role, team, quotation, onPress }) => {
 
 PlayerCard.propTypes = {
 	name: PropTypes.string.isRequired,
-	role: PropTypes.oneOf([...Object.values(ROLE_CLASSIC)]).isRequired,
+	role: PropTypes.oneOf([...Object.keys(ROLES)]).isRequired,
 	team: PropTypes.string.isRequired,
 	quotation: PropTypes.number,
 	type: PropTypes.oneOf([...Object.values(playerCardType)]).isRequired,

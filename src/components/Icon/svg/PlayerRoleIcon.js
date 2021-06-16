@@ -9,9 +9,18 @@ import EmptyIcon from "./EmptyIcon"
 
 const RoleIcon = {
 	P: PorRoleIcon,
+	Por: PorRoleIcon,
 	D: DifRoleIcon,
+	Dd: DifRoleIcon,
+	Ds: DifRoleIcon,
+	Dc: DifRoleIcon,
 	C: CenRoleIcon,
-	A: AttRoleIcon
+	M: CenRoleIcon,
+	E: CenRoleIcon,
+	W: CenRoleIcon,
+	T: CenRoleIcon,
+	A: AttRoleIcon,
+	Pc: AttRoleIcon,
 }
 
 

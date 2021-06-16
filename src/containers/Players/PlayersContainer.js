@@ -1,13 +1,12 @@
-import { useIsFocused, useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import React, { useEffect, useState } from "react"
-import { FlatList, Text, View } from "react-native"
-import { Badge, Header, InputText, PlayerCard } from "../../components"
-import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY_SHORT } from "../../constants"
-import routes from "../../navigation/routesNames"
-import { Players } from "../../services"
-import { commonStyle, textStyles } from "../../styles"
+import { FlatList, ScrollView, Text, View } from "react-native"
+import { Badge, Header, InputText } from "../../components"
+import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY_SHORT, ROLE_MANTRA, ROLE_MANTRA_DISPLAY_SHORT } from "../../constants"
+import { Leagues, Players } from "../../services"
+import { commonStyle } from "../../styles"
 import colors from "../../styles/colors"
+import PlayerList from "./PlayerList"
 import styles from "./styles"
 
 
@@ -21,11 +20,20 @@ function PlayersContainer() {
 	const [activeRole, setActiveRole] = useState(ROLE_CLASSIC.all)
 	//query is the text searched by user
 	const [query, setQuery] = useState("")
-	//navigation route
-	const { navigate }  = useNavigation()
+
+	const [roles, setRoles] = useState(ROLE_CLASSIC)
+	const [league, setLeague] = useState(Leagues.GetActiveLeague())
 
 	useEffect( () => {
 		console.log("PlayersContainer - [useEffect] - activeRole=", activeRole)
+
+		const apiLeague =  Leagues.GetActiveLeague()
+		setLeague(apiLeague)
+		setRoles(league.type === "classic" ? ROLE_CLASSIC : ROLE_MANTRA)
+
+		console.log("PlayersContainer - [useEffect] - players=", players)
+		console.log("PlayersContainer - [useEffect] - roles=", roles)
+		console.log("PlayersContainer - [useEffect] - league=", league)
 
 		if (activeRole === ROLE_CLASSIC.all) {
 			defaultList()
@@ -35,7 +43,7 @@ function PlayersContainer() {
 			filterByRole(activeRole)
 		}
 
-	}, [activeRole, query])
+	}, [activeRole, query, roles])
 
 
 
@@ -62,7 +70,8 @@ function PlayersContainer() {
 
 	const filterByRole = (role) => {
 		let filteredList = allPlayers.filter((player) => {
-			if (player.roleClassic === role) {
+			const { roleClassic, roleMantra } = player
+			if (roleClassic === role || roleMantra === role) {
 				return true
 			}
 			return false
@@ -122,66 +131,37 @@ function PlayersContainer() {
 				}}
 			/> 
 
+
+			{/* itearating through the roles to get filters */}
 			<View style={styles.badges}>
-				<Badge 
-					onPress={() => setActiveRole(ROLE_CLASSIC.all)}
-					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.all]}
-					active={isActive(ROLE_CLASSIC.all)}
-					activeColor={colors.secondary}
-				/>
-				<Badge 
-					onPress={() => setActiveRole(ROLE_CLASSIC.por)}
-					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.por]}
-					active={isActive(ROLE_CLASSIC.por)}
-					activeColor={colors.por}
-				/>
-				<Badge 
-					onPress={() => setActiveRole(ROLE_CLASSIC.dif)}
-					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.dif]}
-					active={isActive(ROLE_CLASSIC.dif)}
-					activeColor={colors.dif}
-				/>
-				<Badge 
-					onPress={() => setActiveRole(ROLE_CLASSIC.cen)}
-					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.cen]}
-					active={isActive(ROLE_CLASSIC.cen)}
-					activeColor={colors.cen}
-				/>
-				<Badge 
-					onPress={() => setActiveRole(ROLE_CLASSIC.att)}
-					title={ROLE_CLASSIC_DISPLAY_SHORT[ROLE_CLASSIC.att]}
-					active={isActive(ROLE_CLASSIC.att)}
-					activeColor={colors.att}
-				/>
+				<ScrollView 
+					contentContainerStyle={[styles.scrollContent]}
+					bounces
+					horizontal
+					showsHorizontalScrollIndicator={false}
+				>
+					{
+						Object.entries(roles).map(([key, value]) => {
+							return (
+								<Badge 
+									key={key}
+									onPress={() => setActiveRole(value)}
+									title={roles[value]}
+									active={isActive(value)}
+									activeColor={colors[key]}
+								/>
+							)
+						})
+					}
+				</ScrollView>
 			</View>
 
-			
-			<View style={styles.list}>
-				<FlatList 
-					data={players}
-					keyExtractor={player => player.id.toString()}
-					renderItem={(player) => 
-						<PlayerCard
-							type="small"
-							name={player.item.name}
-							role={player.item.roleClassic}
-							team={player.item.team}
-							quotation={player.item.initialPrice}
-							onPress={() => 
-								navigate(routes.PLAYER_DETAILS, {
-									id: player.item.id
-								})}
-						/>
-					}
-					ListEmptyComponent={() => { 
-						return (
-							<Text style={textStyles.description}>
-								{I18n.translate("noPlayersFound")}
-							</Text>) 
-					}}
-					showsVerticalScrollIndicator={false}
-				/>
-			</View>
+			{/* Rendering list of players */}
+			<PlayerList 
+				players={players}
+				isClassic={league.type === "classic" ? true : false}
+			/>
+
 		</View>
 	)
 }
