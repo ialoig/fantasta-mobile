@@ -17,6 +17,10 @@ function HeaderTitle({ children }) {
 			return I18n.translate("settings")
 		case routes.SUPPORT:
 			return I18n.translate("support")
+		case routes.FEEDBACK:
+			return I18n.translate("leave_feedback")
+		case routes.CONTACTUS:
+			return I18n.translate("contact_us")
 		case routes.ACCOUNT_DETAILS:
 			return I18n.translate("account_details")
 		case routes.EMAIL_SETTINGS:
