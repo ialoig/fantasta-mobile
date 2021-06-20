@@ -1,6 +1,5 @@
 
 import axios from "axios"
-import { Alert } from "react-native"
 import { Error } from "./error"
 import { Leagues } from "./leagues"
 import { Token } from "./server"
@@ -72,7 +71,7 @@ const Authenticate = async () => {
 }
 
 const update = async (email, username, password) => {
-	console.log("POST /auth/update - email=" + email + ", username=" + username)
+	console.log("PUT /auth/update - email=" + email + ", username=" + username)
 	try {
 
 		let response = await axios.put("/auth/update", { email, username, password }, {})
