@@ -7,7 +7,7 @@ import Textarea from "./Textarea"
 
 export default class TextareaContainer extends React.Component {
 
-	constructor (props) {
+	constructor (props) { 
 		super(props)
 
 		this.state = {

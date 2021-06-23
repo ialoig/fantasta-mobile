@@ -60,6 +60,7 @@ export const ROLE_CLASSIC = {
 }
 
 export const ROLE_MANTRA = {
+	"ALL": "ALL",
 	"Por": "Por",
 	"Dd": "Dd",
 	"Ds": "Ds",

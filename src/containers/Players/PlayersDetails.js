@@ -14,6 +14,8 @@ function PlayersDetails() {
 	const { params } = useRoute()
 	//get player object from route params
 	const playerID = params?.id
+	//get league type
+	const isClassic = params?.isClassic
 	//player object found by ID passed by props
 	const [player, setPlayer] = useState(Players.GetPlayersByID(playerID))
 	//player statistics object found by player ID passed by props
@@ -36,7 +38,8 @@ function PlayersDetails() {
 				<PlayerCard
 					type="large"
 					name={player.name}
-					role={player.roleClassic}
+					isClassic={isClassic}
+					roles={isClassic ?  [...player.roleClassic] : player.roleMantra}
 					team={player.team}
 					quotation={player.initialPrice}
 				/>
@@ -62,7 +65,10 @@ function PlayersDetails() {
 
 
 					{/* field svg */}
-					<Icon name="field_role" role={player.roleClassic} />
+					<Icon 
+						name="field_role" 
+						roles={isClassic ?  [...player.roleClassic] : player.roleMantra} 
+					/>
 
 					{/* statistics dx*/}
 					<View>

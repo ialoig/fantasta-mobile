@@ -1,16 +1,15 @@
-import { useIsFocused, useNavigation } from "@react-navigation/core"
-import React, { useEffect, useState } from "react"
+import { useNavigation } from "@react-navigation/core"
 import I18n from "i18n-js"
+import React, { useState } from "react"
 import { View } from "react-native"
-import { commonStyle } from "../../../../styles"
+import { Button, Textarea } from "../../../../components"
 import routes from "../../../../navigation/routesNames"
 import { Support } from "../../../../services"
-import { Button, Textarea } from '../../../../components'
+import { commonStyle } from "../../../../styles"
 
 function Feedback() {
 
 	const { navigate }  = useNavigation()
-	const isFocused = useIsFocused()
 
 	const [emailText, setEmailText] = useState(null)
 	const [showError, setShowError] = useState(false)

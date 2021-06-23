@@ -1,8 +1,7 @@
-import I18n from "i18n-js"
 import React, { useEffect, useState } from "react"
-import { FlatList, ScrollView, Text, View } from "react-native"
+import { ScrollView, View } from "react-native"
 import { Badge, Header, InputText } from "../../components"
-import { ROLE_CLASSIC, ROLE_CLASSIC_DISPLAY_SHORT, ROLE_MANTRA, ROLE_MANTRA_DISPLAY_SHORT } from "../../constants"
+import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import { Leagues, Players } from "../../services"
 import { commonStyle } from "../../styles"
 import colors from "../../styles/colors"
@@ -17,33 +16,36 @@ function PlayersContainer() {
 	//define list of All players from API
 	const [allPlayers, setAllPlayers] = useState(null)
 	//define the active player role to show on page
-	const [activeRole, setActiveRole] = useState(ROLE_CLASSIC.all)
+	const [activeRoles, setActiveRoles] = useState([ROLE_CLASSIC.ALL])
 	//query is the text searched by user
 	const [query, setQuery] = useState("")
 
 	const [roles, setRoles] = useState(ROLE_CLASSIC)
 	const [league, setLeague] = useState(Leagues.GetActiveLeague())
+	const [isClassic, setIsClassic] = useState(true)
 
 	useEffect( () => {
-		console.log("PlayersContainer - [useEffect] - activeRole=", activeRole)
+		console.log("PlayersContainer - [useEffect] - activeRoles=", activeRoles)
 
 		const apiLeague =  Leagues.GetActiveLeague()
 		setLeague(apiLeague)
 		setRoles(league.type === "classic" ? ROLE_CLASSIC : ROLE_MANTRA)
+		setIsClassic(league.type === "classic" ? true : false)
 
-		console.log("PlayersContainer - [useEffect] - players=", players)
-		console.log("PlayersContainer - [useEffect] - roles=", roles)
-		console.log("PlayersContainer - [useEffect] - league=", league)
+		// console.log("PlayersContainer - [useEffect] - players=", players)
+		// console.log("PlayersContainer - [useEffect] - roles=", roles)
+		// console.log("PlayersContainer - [useEffect] - league=", league)
 
-		if (activeRole === ROLE_CLASSIC.all) {
+		if (activeRoles.includes(ROLE_CLASSIC.ALL)) {
 			defaultList()
-		} else if (activeRole === "none" && query != "") {
+		} else if (activeRoles.includes("none") && query != "") {
 			handleSearch(query)
-		} else {
-			filterByRole(activeRole)
+		} 
+		else {
+			filterByRole(activeRoles)
 		}
 
-	}, [activeRole, query, roles])
+	}, [activeRoles, query, roles])
 
 
 
@@ -61,28 +63,31 @@ function PlayersContainer() {
 
 	const sortList = (players) => {
 		const size = players.length
-		console.log("PlayersContainer - [useEffect] - n. players =", size)
+		console.log("PlayersContainer - [sortList] - n. players =", size)
 		let sortedList = players.sort(highPriceToLow)
 		
 		setPlayers(sortedList)
 	}
 
 
-	const filterByRole = (role) => {
+	const filterByRole = (roles) => {
 		let filteredList = allPlayers.filter((player) => {
 			const { roleClassic, roleMantra } = player
-			if (roleClassic === role || roleMantra === role) {
-				return true
+			// filtering by classic roles
+			if (isClassic ){
+				return roles.some( (role) => roleClassic.includes(role))
+			} 
+			// case 1 - filtering by mantra roles
+			else if (!isClassic) {
+				return roles.some( (role) => roleMantra.includes(role))
 			}
 			return false
 		})
 		const size = filteredList.length
-		console.log("PlayersContainer - [filterByRole] - role= "+role+", n. players=", size)
+		console.log("PlayersContainer - [filterByRole] - role= "+roles+", n. players=", size)
 		setQuery("")
 		setPlayers(filteredList)
-		setActiveRole(role)
 	}
-
 
 	const highPriceToLow = (playerA, playerB) => {
 		if (playerA.initialPrice > playerB.initialPrice) {
@@ -94,10 +99,7 @@ function PlayersContainer() {
 
 	//define a badge button as active or not. It change the background color
 	const isActive = (role) => {
-		if (activeRole === role) {
-			return true
-		}
-		return false
+		return activeRoles.includes(role)
 	}
 
 
@@ -115,6 +117,31 @@ function PlayersContainer() {
 		setPlayers(results)
 	}
 
+	const handlePressFilter = (role) => {
+		if (role === ROLE_CLASSIC.ALL && !activeRoles.includes(role)) {
+			setActiveRoles([role])
+		}
+		// case 0 - removing role: means that filter button has been pressed twice
+		else if (activeRoles.includes(role)) {
+			console.log("PlayersContainer - [handlePressFilter] - removing role=", role)
+			const cleanActiveRole = activeRoles.filter( (item) => item != role)
+			if (cleanActiveRole.length === 0) 
+				setActiveRoles([ROLE_CLASSIC.ALL])
+			else 
+				setActiveRoles(cleanActiveRole)
+		} 
+		// case 1 - adding role to active roles array
+		else {
+			console.log("PlayersContainer - [handlePressFilter] - added role=", role)
+			// removing ALL value if a different role has been pressed
+			const cleanActiveRole = activeRoles.filter( (item) => item != ROLE_CLASSIC.ALL)
+			if (cleanActiveRole.length > 0)
+				setActiveRoles([...cleanActiveRole, role])
+			else 
+				setActiveRoles([role])
+		}
+	}
+
 
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
@@ -127,7 +154,7 @@ function PlayersContainer() {
 				value={query}
 				onChange={(id, value) => {
 					setQuery(value)
-					setActiveRole("none")
+					setActiveRoles(["none"])
 				}}
 			/> 
 
@@ -141,14 +168,13 @@ function PlayersContainer() {
 					showsHorizontalScrollIndicator={false}
 				>
 					{
-						Object.entries(roles).map(([key, value]) => {
+						roles && Object.entries(roles).map(([key, value]) => {
 							return (
 								<Badge 
 									key={key}
-									onPress={() => setActiveRole(value)}
-									title={roles[value]}
-									active={isActive(value)}
-									activeColor={colors[key]}
+									onPress={() => handlePressFilter(key)}
+									title={value}
+									active={isActive(key)}
 								/>
 							)
 						})
@@ -159,7 +185,7 @@ function PlayersContainer() {
 			{/* Rendering list of players */}
 			<PlayerList 
 				players={players}
-				isClassic={league.type === "classic" ? true : false}
+				isClassic={isClassic}
 			/>
 
 		</View>

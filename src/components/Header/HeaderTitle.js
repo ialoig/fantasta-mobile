@@ -18,9 +18,9 @@ function HeaderTitle({ children }) {
 		case routes.SUPPORT:
 			return I18n.translate("support")
 		case routes.FEEDBACK:
-			return I18n.translate("leave_feedback")
+			return I18n.translate("feedback")
 		case routes.CONTACTUS:
-			return I18n.translate("contact_us")
+			return I18n.translate("contact")
 		case routes.ACCOUNT_DETAILS:
 			return I18n.translate("account_details")
 		case routes.EMAIL_SETTINGS:
@@ -33,10 +33,6 @@ function HeaderTitle({ children }) {
 			return I18n.translate("delete_account")
 		case routes.LANGUAGE:
 			return I18n.translate("language")
-		case routes.FEEDBACK:
-			return I18n.translate("feedback")
-		case routes.CONTACTUS:
-			return I18n.translate("contact")
 		case routes.COMPLETE_REGISTER:
 			return I18n.translate("complete_register")
 		case routes.HOME:
