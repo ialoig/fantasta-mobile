@@ -5,12 +5,12 @@ import { Error } from "./error"
 const feedBack = ( text ) =>
 {
 	console.log("POST /support - Feedback, ", text )
-    return send( text, 'Feedback' )
+	return send( text, "Feedback" )
 }
 
 const contact = ( text ) => {
 	console.log("POST /support - Contact Us, ", text )
-    return send( text, 'Contact Us' )
+	return send( text, "Contact Us" )
 }
 
 const send = async ( text, subject ) =>
@@ -20,10 +20,10 @@ const send = async ( text, subject ) =>
 		return Promise.reject()
 	}
 
-    try {
+	try {
 		let response = await axios.post("/support", { text, subject }, {})
 
-        return Promise.resolve()
+		return Promise.resolve()
 	}
 	catch (error) {
 		Error.handleError(error, true)
@@ -33,6 +33,6 @@ const send = async ( text, subject ) =>
 
 
 export const Support = {
-    contact,
+	contact,
 	feedBack
 }

@@ -23,12 +23,14 @@ function PlayerList({ players, isClassic }) {
 					<PlayerCard
 						type="small"
 						name={player.item.name}
-						role={isClassic ? player.item.roleClassic: player.item.roleMantra}
+						isClassic={isClassic}
+						roles={isClassic ?  [...player.item.roleClassic] : player.item.roleMantra}
 						team={player.item.team}
 						quotation={player.item.initialPrice}
 						onPress={() => 
 							navigate(routes.PLAYER_DETAILS, {
-								id: player.item.id
+								id: player.item.id,
+								isClassic: isClassic
 							})}
 					/>
 				}

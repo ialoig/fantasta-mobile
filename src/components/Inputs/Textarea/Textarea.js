@@ -1,7 +1,6 @@
 
 import React from "react"
 import { Text, TextInput, View } from "react-native"
-
 import { inputStyle, textStyles } from "../../../styles"
 import styles from "./styles"
 
@@ -14,7 +13,7 @@ const Textarea = (props) => {
 				style={[textStyles.body, inputStyle.inputForm, props.hasError ? inputStyle.hasError : null]}
 				ref={(ref)=> { props.onRef(ref) }}
 				keyboardType='default'
-				autoCorrect={false}
+				autoCorrect={false} 
 				multiline={true}
 				numberOfLines={props.lines}
 			/>
