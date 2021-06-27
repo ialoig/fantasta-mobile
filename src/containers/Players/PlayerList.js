@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { FlatList, Text, View } from "react-native"
 import { PlayerCard } from "../../components"
 import routes from "../../navigation/routesNames"
@@ -13,12 +13,23 @@ function PlayerList({ players, isClassic }) {
 	//navigation route
 	const { navigate }  = useNavigation()
 
+	const ref = useRef(null)
+
+	useEffect(() => {
+		if (ref.current) {
+			ref.current.scrollToIndex({ animated: true, index: 0 })
+		}
+	}, [players])
 
 	return (
 		<View style={styles.list}>
+			{
+				players &&
 			<FlatList 
+				ref={ref}
 				data={players}
 				keyExtractor={player => player.id.toString()}
+				initialScrollIndex={0}
 				renderItem={(player) => 
 					<PlayerCard
 						type="small"
@@ -34,6 +45,7 @@ function PlayerList({ players, isClassic }) {
 							})}
 					/>
 				}
+				
 				ListEmptyComponent={() => { 
 					return (
 						<Text style={textStyles.description}>
@@ -42,6 +54,7 @@ function PlayerList({ players, isClassic }) {
 				}}
 				showsVerticalScrollIndicator={false}
 			/>
+			}
 		</View>
 	)
 }

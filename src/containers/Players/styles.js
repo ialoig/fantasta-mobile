@@ -20,9 +20,6 @@ export default StyleSheet.create({
 		paddingBottom: 0,
 		paddingTop: 20
 	},
-	scrollContent: {
-		// width: 600
-	},
 	statistics: {
 		alignItems: "center",
 		flexDirection: "row",

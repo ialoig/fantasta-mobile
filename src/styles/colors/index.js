@@ -15,6 +15,6 @@ export default {
 	textPlaceholder: "#9fa5c0",
 	greenDisabled: "#8ee5bb",
 	successGreenBg: "#f2fffb",
-	//blueDarkShadow: "#314163"
+	greenDarkShadow: "#2E907D",
 	blueDarkShadow: "#3e5481" //shadow disabled
 }

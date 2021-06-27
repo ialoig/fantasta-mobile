@@ -4,7 +4,6 @@ import { Badge, Header, InputText } from "../../components"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import { Leagues, Players } from "../../services"
 import { commonStyle } from "../../styles"
-import colors from "../../styles/colors"
 import PlayerList from "./PlayerList"
 import styles from "./styles"
 
@@ -182,12 +181,11 @@ function PlayersContainer() {
 				</ScrollView>
 			</View>
 
-			{/* Rendering list of players */}
+			{/* Rendering list of players */ }
 			<PlayerList 
 				players={players}
 				isClassic={isClassic}
 			/>
-
 		</View>
 	)
 }
