@@ -10,14 +10,13 @@ const StatsCard = ({ type, values, descriptions }) => {
 
 	const renderStat = (value, index) => {
 		return (
-			<>
-				{(index > 0) && <Icon name="separator" horizontal={false} />}
-	
-				<View style={style.stat} key={index}>
-					<Text style={text.statValue}>{value}</Text>
-					<Text style={text.statDescription}>{descriptions[index]}</Text>
+			<View style={style.stat} key={index}>
+				<View style={style.separator} >
+					{ (index > 0) && <Icon name="separator" horizontal={false} /> }
 				</View>
-			</>
+				<Text style={text.statValue}>{value}</Text>
+				<Text style={text.statDescription}>{descriptions[index]}</Text>
+			</View>
 		)
 	}
 

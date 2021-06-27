@@ -34,11 +34,14 @@ export const style = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "center"
 	},
+	separator: {
+		flex: 1,
+	},
 	small: {
 	},
 	stat: {
-		alignItems: "center",
-		flex: 1
+		flex: 1,
+		justifyContent: "center",
 	}
 })
 
