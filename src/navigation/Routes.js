@@ -66,7 +66,7 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.FORGOT_PASSWORD}
 					component={ForgotPassword}
-					options={getScreenConfig(false, "login", true)} />
+					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
 					name={routes.FORGOT_PASSWORD_CONFIRMATION}
 					component={ForgotPasswordConfirmation}

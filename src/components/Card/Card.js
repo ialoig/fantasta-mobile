@@ -1,15 +1,15 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { Text, TouchableOpacity, View } from "react-native"
+import { Pressable, Text, View } from "react-native"
 import { commonStyle, textStyles } from "../../styles"
 import Icon from "../Icon/Icon"
 
 import { style, text } from "./styles"
 
-const Card = ({ title, description, type, icon, arrow, onPress, ...props }) => {
+function Card({ title, description, type, icon, arrow, onPress, ...props }) {
 
 	return (
-		<TouchableOpacity onPress={onPress} style={[style.card, style[type]]}>
+		<Pressable onPress={onPress} style={[style.card, style[type]]}>
 			{ icon &&
 				<View style={style.paddingIcon}>
 					<Icon name={icon} {...props}/>
@@ -26,7 +26,7 @@ const Card = ({ title, description, type, icon, arrow, onPress, ...props }) => {
 					<Icon name="forward" />
 				</View>
 			}
-		</TouchableOpacity>
+		</Pressable>
 	)
 }
 
