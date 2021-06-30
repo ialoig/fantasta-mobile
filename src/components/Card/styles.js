@@ -12,7 +12,6 @@ export const style = StyleSheet.create({
 		backgroundColor: colors.greyLight,
 		borderRadius: 24,
 		flex: 1,
-		//justifyContent: "center",
 		marginTop: 12,
 	},
 	default: {

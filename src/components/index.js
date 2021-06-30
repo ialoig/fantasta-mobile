@@ -18,3 +18,5 @@ export { default as Badge } from "./Badge/Badge"
 export { default as PlayerCard } from "./PlayerCard/PlayerCard"
 
 export { default as StatsCard } from "./StatsCard/StatsCard"
+
+export { default as TouchableScale } from "./TouchableScale/TouchableScale"

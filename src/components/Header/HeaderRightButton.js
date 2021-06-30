@@ -6,15 +6,17 @@ import IconButton from "../IconButton/IconButton"
 
 function HeaderRightButton ({ type, ...props }) {
 
-	const { navigate } = useNavigation()
+	const { navigate, goBack } = useNavigation()
 	
 
 	const handlePress = () => {
+		if (type === undefined)
+			type = "back"
 		switch(type) {
 		case "account":
 			return navigate(routes.ACCOUNTNAVIGATOR)
 		default:
-			return
+			return goBack()
 		}
 	}
 

@@ -23,7 +23,7 @@ export const button = StyleSheet.create({
 		width: dynamicWidth(327)
 	},
 	primary: {
-		backgroundColor: colors.primary,
+		backgroundColor: colors.primary
 	},
 	secondary: {
 		backgroundColor: colors.white,

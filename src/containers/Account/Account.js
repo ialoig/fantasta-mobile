@@ -65,8 +65,8 @@ function Account () {
 			<Button
 				title={I18n.translate("logout")}
 				onPress={logout}
-				type='primary'
-				size='large'
+				type={"primary"}
+				size={"large"}
 			/>
 			<Text style={[styles.version, textStyles.description]}>
 				{"App version: " + Costants.manifest.version}

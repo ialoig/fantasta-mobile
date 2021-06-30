@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { TouchableOpacity } from "react-native"
 import Icon from "../Icon/Icon"
+import TouchableScale from "../TouchableScale/TouchableScale"
 import { style } from "./styles"
 
 /**
@@ -11,12 +11,12 @@ import { style } from "./styles"
 const IconButton = ({ type, icon, onPress, ...props }) => {
 
 	return (
-		<TouchableOpacity onPress={onPress} style={[style.container, style[type]]}>
+		<TouchableScale onPress={onPress} style={[style.container, style[type]]}>
 			{ 
 				icon && 
 				<Icon name={type} {...props} />
 			}
-		</TouchableOpacity>
+		</TouchableScale>
 	)
 }
 
