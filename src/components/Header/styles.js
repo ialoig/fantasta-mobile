@@ -6,9 +6,9 @@ import { deviceScreenWidth, getHeaderHeight } from "../../utils/deviceUtils"
 
 export const style = StyleSheet.create({
 	content: {
+		alignItems: "center",
 		flex: 1,
 		flexDirection: "row",
-		alignItems: "center",
 		justifyContent: "center",
 		marginHorizontal: deviceScreenWidth * 0.04
 	},
