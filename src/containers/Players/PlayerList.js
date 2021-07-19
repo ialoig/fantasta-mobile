@@ -2,13 +2,16 @@ import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, { useEffect, useRef } from "react"
-import { FlatList, Text, View } from "react-native"
+import { Animated, FlatList, Text, View } from "react-native"
 import { PlayerCard } from "../../components"
 import routes from "../../navigation/routesNames"
 import { textStyles } from "../../styles"
 import styles from "./styles"
 
-function PlayerList({ players, isClassic }) {
+const FlatListAnimated = Animated.createAnimatedComponent(FlatList)
+
+
+function PlayerList({ players, isClassic, onScroll }) {
 
 	//navigation route
 	const { navigate }  = useNavigation()
@@ -25,11 +28,13 @@ function PlayerList({ players, isClassic }) {
 		<View style={styles.list}>
 			{
 				players &&
-			<FlatList 
+			<FlatListAnimated 
 				ref={ref}
+				onScroll={onScroll}
 				data={players}
 				keyExtractor={player => player.id.toString()}
 				initialScrollIndex={0}
+				scrollEventThrottle={16}
 				renderItem={(player) => 
 					<PlayerCard
 						type="small"
@@ -45,7 +50,6 @@ function PlayerList({ players, isClassic }) {
 							})}
 					/>
 				}
-				
 				ListEmptyComponent={() => { 
 					return (
 						<Text style={textStyles.description}>
@@ -61,7 +65,8 @@ function PlayerList({ players, isClassic }) {
 
 PlayerList.propTypes = {
 	players: PropTypes.array,
-	isClassic: PropTypes.bool
+	isClassic: PropTypes.bool,
+	onScroll: PropTypes.object
 }
 
 export default PlayerList

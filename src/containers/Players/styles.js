@@ -6,7 +6,6 @@ import { deviceScreenHeight, deviceScreenWidth } from "../../utils/deviceUtils"
 export default StyleSheet.create({
 	badges: {
 		flexDirection: "row",
-		justifyContent: "center",
 		paddingTop: 8,
 	},
 	container: {
@@ -16,7 +15,6 @@ export default StyleSheet.create({
 		paddingHorizontal: deviceScreenWidth * 0.06
 	},
 	list: {
-		flex: 1,
 		paddingBottom: 0,
 		paddingTop: 20
 	},

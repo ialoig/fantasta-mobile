@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from "react"
-import { ScrollView, View } from "react-native"
+import React, { useEffect, useRef, useState } from "react"
+import { Animated, ScrollView, View } from "react-native"
+import { Extrapolate } from "react-native-reanimated"
 import { Badge, Header, InputText } from "../../components"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import { Leagues, Players } from "../../services"
 import { commonStyle } from "../../styles"
+import { getHeaderHeight } from "../../utils/deviceUtils"
+import { dynamicHeight } from "../../utils/pixelResolver"
 import PlayerList from "./PlayerList"
 import styles from "./styles"
 
+const INPUT_HEIGHT = dynamicHeight(327, 56)
+const BADGE_HEIGHT = 32
+const HEADER_HEIGHT = getHeaderHeight()
+const HEADER_SNAP = HEADER_HEIGHT + INPUT_HEIGHT + BADGE_HEIGHT
 
 function PlayersContainer() {
 
@@ -19,10 +26,16 @@ function PlayersContainer() {
 	//query is the text searched by user
 	const [query, setQuery] = useState("")
 
+
 	const [roles, setRoles] = useState(ROLE_CLASSIC)
 	const [league, setLeague] = useState(Leagues.GetActiveLeague())
 	const [isClassic, setIsClassic] = useState(true)
 
+	const { Value, event } = Animated
+
+	const scrollY = useRef(new Value(0)).current
+
+	
 	useEffect( () => {
 		console.log("PlayersContainer - [useEffect] - activeRoles=", activeRoles)
 
@@ -142,50 +155,86 @@ function PlayersContainer() {
 	}
 
 
+	const handleScroll = event(
+		[
+			{ 
+				nativeEvent: { 
+					contentOffset: { 
+						y: scrollY 
+					} 
+				} 
+			}
+		],
+		{ useNativeDriver: true }
+	)
+
+	const translateY = scrollY.interpolate({
+		inputRange: [0, HEADER_SNAP],
+		outputRange: [0, -(HEADER_HEIGHT - BADGE_HEIGHT)],
+		extrapolate: Extrapolate.CLAMP
+	})
+
+
+	const imageOpacity = scrollY.interpolate({
+		inputRange: [0, HEADER_HEIGHT + BADGE_HEIGHT],
+		outputRange: [1, 0],
+		extrapolate: Extrapolate.CLAMP
+	})
+
+	// https://eveningkid.medium.com/animated-and-react-native-scrollviews-de701f1b1ce5
+	// https://medium.com/swlh/making-a-collapsible-sticky-header-animations-with-react-native-6ad7763875c3
+	// https://stackoverflow.com/questions/65072596/react-native-trying-to-hide-search-bar-on-scroll
+	// https://blog.expo.io/implementation-complex-animation-in-react-native-by-example-search-bar-with-tab-view-and-collapsing-68bb43be2dcb
+
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
 			<Header title="players" />
 
-			<InputText 
-				id="search"
-				label="Search"
-				placeholder="Search"
-				value={query}
-				onChange={(id, value) => {
-					setQuery(value)
-					setActiveRoles(["none"])
-				}}
-			/> 
+			<Animated.View style={{ transform: [{ translateY }]}}>
+				<Animated.View style={{ opacity: imageOpacity }}>
+					<InputText 
+						id="search"
+						label="Search"
+						placeholder="Search"
+						value={query}
+						onChange={(id, value) => {
+							setQuery(value)
+							setActiveRoles(["none"])
+						}}
+					/> 
+				</Animated.View>
 
 
-			{/* itearating through the roles to get filters */}
-			<View style={styles.badges}>
-				<ScrollView 
-					contentContainerStyle={[styles.scrollContent]}
-					bounces
-					horizontal
-					showsHorizontalScrollIndicator={false}
-				>
-					{
-						roles && Object.entries(roles).map(([key, value]) => {
-							return (
-								<Badge 
-									key={key}
-									onPress={() => handlePressFilter(key)}
-									title={value}
-									active={isActive(key)}
-								/>
-							)
-						})
-					}
-				</ScrollView>
-			</View>
+				{/* itearating through the roles to get filters */}
+				<Animated.View style={styles.badges}>
+					<ScrollView 
+						bounces
+						horizontal
+						showsHorizontalScrollIndicator={false}
+					>
+						{
+							roles && Object.entries(roles).map(([key, value]) => {
+								return (
+									<Badge 
+										key={key}
+										onPress={() => handlePressFilter(key)}
+										title={value}
+										active={isActive(key)}
+									/>
+								)
+							})
+						}
+					</ScrollView>
+				</Animated.View>
 
-			{/* Rendering list of players */ }
-			<PlayerList 
-				players={players}
-				isClassic={isClassic}
-			/>
+				{/* Rendering list of players */ }
+				<PlayerList 
+					players={players}
+					isClassic={isClassic}
+					onScroll={handleScroll}
+				/>
+			</Animated.View>
+
 		</View>
 	)
 }
