@@ -11,7 +11,7 @@ import styles from "./styles"
 const FlatListAnimated = Animated.createAnimatedComponent(FlatList)
 
 
-function PlayerList({ players, isClassic, onScroll }) {
+function PlayerList({ players, isClassic, onScroll, snapSize, translateY }) {
 
 	//navigation route
 	const { navigate }  = useNavigation()
@@ -20,12 +20,44 @@ function PlayerList({ players, isClassic, onScroll }) {
 
 	useEffect(() => {
 		if (ref.current) {
-			ref.current.scrollToIndex({ animated: true, index: 0 })
+			ref.current.scrollToIndex(
+				{ 
+					index: 0,
+					animated: true
+				})
 		}
 	}, [players])
 
+
+	//snap header view to a value when scroll goes up or down, 
+	//avoiding to show search button when scroll stops in middle values of scrollY 
+	//snaps values are:
+	//0 : starting position
+	//-68: final position when search button is not shown
+	const handleSnap = ({ nativeEvent }) => {
+		const offsetY = nativeEvent.contentOffset.y
+		const absValue = Math.abs(translateY.current)
+		if (absValue >0 && absValue < snapSize) {
+			//when scroll goes up and exceeds half of the search button size
+			if (absValue >= (snapSize / 2)) {
+				ref.current.scrollToOffset({
+					offset: offsetY + (snapSize),
+					animated: true
+				})
+			} 
+			//starting condition
+			else {
+				ref.current.scrollToOffset({
+					offset: 0,
+					animated: true
+				})
+			}
+		}
+	}
+
+
 	return (
-		<View style={styles.list}>
+		<Animated.View style={styles.list}>
 			{
 				players &&
 			<FlatListAnimated 
@@ -35,6 +67,7 @@ function PlayerList({ players, isClassic, onScroll }) {
 				keyExtractor={player => player.id.toString()}
 				initialScrollIndex={0}
 				scrollEventThrottle={16}
+				onScrollEndDrag={handleSnap}
 				renderItem={(player) => 
 					<PlayerCard
 						type="small"
@@ -59,14 +92,16 @@ function PlayerList({ players, isClassic, onScroll }) {
 				showsVerticalScrollIndicator={false}
 			/>
 			}
-		</View>
+		</Animated.View>
 	)
 }
 
 PlayerList.propTypes = {
 	players: PropTypes.array,
 	isClassic: PropTypes.bool,
-	onScroll: PropTypes.object
+	onScroll: PropTypes.object,
+	snapSize: PropTypes.number,
+	translateY: PropTypes.object
 }
 
 export default PlayerList
