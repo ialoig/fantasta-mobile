@@ -13,7 +13,7 @@ import styles from "./styles"
 const INPUT_HEIGHT = dynamicHeight(327, 56)
 const BADGE_HEIGHT = 32
 const HEADER_HEIGHT = getHeaderHeight()
-const HEADER_SNAP = HEADER_HEIGHT + INPUT_HEIGHT + BADGE_HEIGHT
+const FILTER_HEIGHT = INPUT_HEIGHT + BADGE_HEIGHT + HEADER_HEIGHT // total height of filter view
 
 function PlayersContainer() {
 
@@ -43,10 +43,6 @@ function PlayersContainer() {
 		setLeague(apiLeague)
 		setRoles(league.type === "classic" ? ROLE_CLASSIC : ROLE_MANTRA)
 		setIsClassic(league.type === "classic" ? true : false)
-
-		// console.log("PlayersContainer - [useEffect] - players=", players)
-		// console.log("PlayersContainer - [useEffect] - roles=", roles)
-		// console.log("PlayersContainer - [useEffect] - league=", league)
 
 		if (activeRoles.includes(ROLE_CLASSIC.ALL)) {
 			defaultList()
@@ -168,8 +164,9 @@ function PlayersContainer() {
 		{ useNativeDriver: true }
 	)
 
+	//interpolation between 
 	const translateY = scrollY.interpolate({
-		inputRange: [0, HEADER_SNAP],
+		inputRange: [0, FILTER_HEIGHT],
 		outputRange: [0, -(HEADER_HEIGHT - BADGE_HEIGHT)],
 		extrapolate: Extrapolate.CLAMP
 	})
@@ -180,6 +177,14 @@ function PlayersContainer() {
 		outputRange: [1, 0],
 		extrapolate: Extrapolate.CLAMP
 	})
+
+
+	const translateYNumber = useRef()
+
+	translateY.addListener(({ value }) => {
+		translateYNumber.current = value
+	})
+
 
 	// https://eveningkid.medium.com/animated-and-react-native-scrollviews-de701f1b1ce5
 	// https://medium.com/swlh/making-a-collapsible-sticky-header-animations-with-react-native-6ad7763875c3
@@ -232,6 +237,8 @@ function PlayersContainer() {
 					players={players}
 					isClassic={isClassic}
 					onScroll={handleScroll}
+					snapSize={(HEADER_HEIGHT - BADGE_HEIGHT)}
+					translateY={translateYNumber}
 				/>
 			</Animated.View>
 
