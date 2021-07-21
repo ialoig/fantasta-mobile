@@ -1,10 +1,18 @@
-
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import React from "react"
-import { FlatList, Text, View } from "react-native"
+import React, { useRef } from "react"
+import { Text, View } from "react-native"
+import { FlatList, PanGestureHandler } from "react-native-gesture-handler"
+import Animated, { 
+	useAnimatedGestureHandler, 
+	useAnimatedStyle, 
+	useSharedValue, 
+	withSpring } from "react-native-reanimated"
+import { clamp, snapPoint } from "react-native-redash"
 import { Card } from "../../components"
 import { textStyles } from "../../styles"
+import { deviceHeight } from "../../utils/deviceUtils"
+import { dynamicHeight } from "../../utils/pixelResolver"
 import styles from "./styles"
 
 const League = ( item, onPress ) => (
@@ -20,47 +28,88 @@ const League = ( item, onPress ) => (
 )
 
 
-	
-const Home = (props) => {
+const maxHeight = deviceHeight
+const minHeight = dynamicHeight(375, 463) //leagues height
+const snapPoints = [-(maxHeight - minHeight), 0]
+
+function Home(props) {
+
+	//shared value to store allt the scroll Y values
+	const translateY = useSharedValue(0)
+	const flatRef = useRef(null)
+
+	const panGestureEvent = useAnimatedGestureHandler({
+		onStart: (event, ctx) => {
+			ctx.y = translateY.value 
+		},
+		onActive: (event, ctx) => {
+			// translate Y value will be the current scroll Y value (event.translationY) plus the 
+			// the scroll Y value that was stored with the previous pan gesture
+			// clamp is needed to don't go over lower or upper values
+			translateY.value = clamp(event.translationY + ctx.y, snapPoints[0], snapPoints[1])
+		},
+		onEnd: (event) => {
+			const dest = snapPoint(translateY.value, event.velocityY, snapPoints)
+			translateY.value = withSpring(dest)
+		}
+	})
+
+
+	const transformSyle = useAnimatedStyle( () => {
+		return {
+			transform: [{ translateY: translateY.value }]
+		}
+	})
+
 	return (
 		<View style={styles.container}>
-			
-			{ /** crea/join */}
-			<View style={styles.buttons}>
-				<Card
-					onPress={props.crea}
-					title={I18n.translate("create")}
-					description=""
-					type='square'
-					arrow={false}
-					icon={"create_league"}
-				/>
-				<Card
-					onPress={props.join}
-					title={I18n.translate("join")}
-					description=""
-					type='square'
-					arrow={false}
-					icon={"join_league"}
-				/>
-			</View>
 
-			{ /** leagues */}
-			<View style={styles.list}>
-				<Text style={textStyles.h1}>{I18n.translate("yourLeagues")}</Text>
-				<FlatList
-					data={props.leagues}
-					ListEmptyComponent={() => { 
-						return (
-							<Text style={[textStyles.description, styles.description]}>
-								{I18n.translate("noLeaguesFound")}
-							</Text>) 
-					}}
-					renderItem={item => League(item.item, () => props.joinLeague( item.item ) )}
-					keyExtractor={item => item._id}
-					showsVerticalScrollIndicator={false}
-				/>
-			</View>
+			<PanGestureHandler 
+				onGestureEvent={panGestureEvent}
+				waitFor={flatRef}
+			>
+				<Animated.View style={[transformSyle, styles.leagueContainer]} >
+			
+					{ /** crea/join */}
+					<View style={styles.buttons}>
+						<Card
+							onPress={props.crea}
+							title={I18n.translate("create")}
+							description=""
+							type='square'
+							arrow={false}
+							icon={"create_league"}
+						/>
+						<Card
+							onPress={props.join}
+							title={I18n.translate("join")}
+							description=""
+							type='square'
+							arrow={false}
+							icon={"join_league"}
+						/>
+					</View>
+					<View style={styles.separator} />
+
+					{ /** leagues */}
+					<Text style={textStyles.h1}>{I18n.translate("yourLeagues")}</Text>
+					<View style={styles.list}>
+						<FlatList
+							ref={flatRef}
+							data={props.leagues}
+							ListEmptyComponent={() => { 
+								return (
+									<Text style={[textStyles.description, styles.description]}>
+										{I18n.translate("noLeaguesFound")}
+									</Text>) 
+							}}
+							renderItem={item => League(item.item, () => props.joinLeague( item.item ) )}
+							keyExtractor={item => item._id}
+							showsVerticalScrollIndicator={false}
+						/>
+					</View>
+				</Animated.View>
+			</PanGestureHandler>
 		</View>
 	)
 }

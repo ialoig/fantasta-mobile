@@ -2,25 +2,39 @@
 import { StyleSheet } from "react-native"
 import colors from "../../styles/colors"
 import { deviceScreenWidth } from "../../utils/deviceUtils"
+import { dynamicHeight } from "../../utils/pixelResolver"
 
 export default StyleSheet.create({
 	buttons: {
+		alignItems: "center",
+		// backgroundColor: colors.por,
 		flexDirection: "row",
 		justifyContent: "space-between",
-		paddingHorizontal: deviceScreenWidth * 0.06,
+		paddingVertical: 8
 	},
 	container: {
 		...StyleSheet.absoluteFillObject,
-		backgroundColor: colors.background
+		backgroundColor: colors.background,
+		paddingHorizontal: deviceScreenWidth * 0.06,
 	},
 	description: {
 		color: colors.text,
 		paddingTop: 10
 	},
+	leagueContainer: {
+		// backgroundColor: colors.att,
+		flex: 1
+	},
 	list: {
-		flex: 1,
-		paddingBottom: 0,
-		paddingHorizontal: deviceScreenWidth * 0.06,
-		paddingTop: 20
+		// backgroundColor: colors.por,
+		marginBottom: 80,
+	},
+	separator: {
+		alignSelf: "center",
+		backgroundColor: colors.grey,
+		borderRadius: 8,
+		height: 4,
+		marginVertical: 4,
+		width: dynamicHeight(375, 120)
 	}
 })
