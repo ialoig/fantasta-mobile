@@ -1,10 +1,19 @@
+import { useNavigation } from "@react-navigation/native"
 import React, { useEffect, useRef, useState } from "react"
-import { Animated, ScrollView, View } from "react-native"
-import { Extrapolate } from "react-native-reanimated"
+import { View } from "react-native"
+import { ScrollView } from "react-native-gesture-handler"
+import Animated, { 
+	Extrapolate,
+	interpolate,
+	useAnimatedScrollHandler, 
+	useAnimatedStyle, 
+	useSharedValue,
+} from "react-native-reanimated"
 import { Badge, Header, InputText } from "../../components"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import { Leagues, Players } from "../../services"
 import { commonStyle } from "../../styles"
+import { snap } from "../../utils/animationUtils"
 import { getHeaderHeight } from "../../utils/deviceUtils"
 import { dynamicHeight } from "../../utils/pixelResolver"
 import PlayerList from "./PlayerList"
@@ -14,6 +23,8 @@ const INPUT_HEIGHT = dynamicHeight(327, 56)
 const BADGE_HEIGHT = 32
 const HEADER_HEIGHT = getHeaderHeight()
 const FILTER_HEIGHT = INPUT_HEIGHT + BADGE_HEIGHT + HEADER_HEIGHT // total height of filter view
+
+const snapPoints = [FILTER_HEIGHT, 0]
 
 function PlayersContainer() {
 
@@ -31,10 +42,6 @@ function PlayersContainer() {
 	const [league, setLeague] = useState(Leagues.GetActiveLeague())
 	const [isClassic, setIsClassic] = useState(true)
 
-	const { Value, event } = Animated
-
-	const scrollY = useRef(new Value(0)).current
-
 	
 	useEffect( () => {
 		console.log("PlayersContainer - [useEffect] - activeRoles=", activeRoles)
@@ -49,12 +56,15 @@ function PlayersContainer() {
 		} else if (activeRoles.includes("none") && query != "") {
 			handleSearch(query)
 		} 
+		else if (activeRoles.includes("none") && !query) {
+			//setting role to default
+			setActiveRoles([ROLE_CLASSIC.ALL])
+		}
 		else {
 			filterByRole(activeRoles)
 		}
 
-	}, [activeRoles, query, roles])
-
+	}, [activeRoles, query])
 
 
 	const defaultList = () => {
@@ -133,7 +143,7 @@ function PlayersContainer() {
 		else if (activeRoles.includes(role)) {
 			console.log("PlayersContainer - [handlePressFilter] - removing role=", role)
 			const cleanActiveRole = activeRoles.filter( (item) => item != role)
-			if (cleanActiveRole.length === 0) 
+			if (cleanActiveRole.length === 0)
 				setActiveRoles([ROLE_CLASSIC.ALL])
 			else 
 				setActiveRoles(cleanActiveRole)
@@ -141,62 +151,81 @@ function PlayersContainer() {
 		// case 1 - adding role to active roles array
 		else {
 			console.log("PlayersContainer - [handlePressFilter] - added role=", role)
-			// removing ALL value if a different role has been pressed
-			const cleanActiveRole = activeRoles.filter( (item) => item != ROLE_CLASSIC.ALL)
+			// removing ALL and "none" value if a different role has been pressed
+			const cleanActiveRole = activeRoles.filter( (item) => item != ROLE_CLASSIC.ALL && item != "none")
 			if (cleanActiveRole.length > 0)
 				setActiveRoles([...cleanActiveRole, role])
 			else 
 				setActiveRoles([role])
 		}
+
+		
+		if (flatRef.current && players) {
+			flatRef.current.scrollToIndex(
+				{ 
+					index: 0,
+					animated: true,
+				})
+		}
 	}
 
+	//shared value to store allt the scroll Y values
+	const translateY = useSharedValue(0)
+	const flatRef = useRef(null)
 
-	const handleScroll = event(
-		[
-			{ 
-				nativeEvent: { 
-					contentOffset: { 
-						y: scrollY 
-					} 
-				} 
-			}
-		],
-		{ useNativeDriver: true }
-	)
-
-	//interpolation between 
-	const translateY = scrollY.interpolate({
-		inputRange: [0, FILTER_HEIGHT],
-		outputRange: [0, -(HEADER_HEIGHT - BADGE_HEIGHT)],
-		extrapolate: Extrapolate.CLAMP
+	const scrollHandler = useAnimatedScrollHandler({
+		onScroll: (event) => {
+			translateY.value = event.contentOffset.y
+		}
 	})
 
+	const handleEndDrag = ({ nativeEvent }) => {
+		const { contentOffset, velocity } = nativeEvent
+		const snapValue = snap(contentOffset.y, velocity.y, snapPoints[0], snapPoints[1])
 
-	const imageOpacity = scrollY.interpolate({
-		inputRange: [0, HEADER_HEIGHT + BADGE_HEIGHT],
-		outputRange: [1, 0],
-		extrapolate: Extrapolate.CLAMP
+		if (contentOffset.y < snapPoints[0] && contentOffset.y >= snapPoints[1] ) {
+			flatRef.current.scrollToOffset({ offset: snapValue })
+		}
+	}
+
+	const transformSyle = useAnimatedStyle( () => {
+		let transformValue = interpolate(translateY.value, 
+			[0, FILTER_HEIGHT],
+			[0, -(HEADER_HEIGHT - BADGE_HEIGHT)],
+			Extrapolate.CLAMP 
+		)
+
+		return {
+			transform: [
+				{ 
+					translateY: transformValue
+				}
+			]
+		}
 	})
 
-
-	const translateYNumber = useRef()
-
-	translateY.addListener(({ value }) => {
-		translateYNumber.current = value
+	const opacitySyle = useAnimatedStyle( () => {
+		const opacityValue = interpolate(translateY.value, 
+			[0, HEADER_HEIGHT + BADGE_HEIGHT],
+			[1, 0],
+			Extrapolate.CLAMP 
+		)
+		return {
+			opacity: opacityValue
+		}
 	})
 
 
 	// https://eveningkid.medium.com/animated-and-react-native-scrollviews-de701f1b1ce5
 	// https://medium.com/swlh/making-a-collapsible-sticky-header-animations-with-react-native-6ad7763875c3
-	// https://stackoverflow.com/questions/65072596/react-native-trying-to-hide-search-bar-on-scroll
 	// https://blog.expo.io/implementation-complex-animation-in-react-native-by-example-search-bar-with-tab-view-and-collapsing-68bb43be2dcb
 
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
 			<Header title="players" />
 
-			<Animated.View style={{ transform: [{ translateY }]}}>
-				<Animated.View style={{ opacity: imageOpacity }}>
+			<Animated.View style={[styles.playerContainer, transformSyle]}>
+				<Animated.View style={opacitySyle}>
 					<InputText 
 						id="search"
 						label="Search"
@@ -236,12 +265,11 @@ function PlayersContainer() {
 				<PlayerList 
 					players={players}
 					isClassic={isClassic}
-					onScroll={handleScroll}
-					snapSize={(HEADER_HEIGHT - BADGE_HEIGHT)}
-					translateY={translateYNumber}
+					onScroll={scrollHandler}
+					onScrollEnd={handleEndDrag}
+					ref={flatRef}
 				/>
 			</Animated.View>
-
 		</View>
 	)
 }

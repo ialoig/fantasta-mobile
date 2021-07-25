@@ -15,8 +15,14 @@ export default StyleSheet.create({
 		paddingHorizontal: deviceScreenWidth * 0.06
 	},
 	list: {
+		// backgroundColor: colors.att,
+		// flexGrow: 1,
 		paddingBottom: 0,
 		paddingTop: 20
+	},
+	playerContainer: {
+		// backgroundColor: colors.por,
+		flex: 1,
 	},
 	statistics: {
 		alignItems: "center",
