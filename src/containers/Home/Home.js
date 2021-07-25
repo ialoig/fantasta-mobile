@@ -8,9 +8,9 @@ import Animated, {
 	useAnimatedStyle, 
 	useSharedValue, 
 	withSpring } from "react-native-reanimated"
-import { clamp, snapPoint } from "react-native-redash"
 import { Card } from "../../components"
 import { textStyles } from "../../styles"
+import { clamp, snap } from "../../utils/animationUtils"
 import { deviceHeight } from "../../utils/deviceUtils"
 import { dynamicHeight } from "../../utils/pixelResolver"
 import styles from "./styles"
@@ -36,6 +36,7 @@ function Home(props) {
 
 	//shared value to store allt the scroll Y values
 	const translateY = useSharedValue(0)
+	//ref for FlatList component
 	const flatRef = useRef(null)
 
 	const panGestureEvent = useAnimatedGestureHandler({
@@ -49,8 +50,8 @@ function Home(props) {
 			translateY.value = clamp(event.translationY + ctx.y, snapPoints[0], snapPoints[1])
 		},
 		onEnd: (event) => {
-			const dest = snapPoint(translateY.value, event.velocityY, snapPoints)
-			translateY.value = withSpring(dest)
+			const snapValue = snap(translateY.value, event.velocityY, snapPoints[0], snapPoints[1])
+			translateY.value = withSpring(snapValue)
 		}
 	})
 
