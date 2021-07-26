@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/native"
 import React, { useEffect, useRef, useState } from "react"
 import { View } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
@@ -9,7 +8,7 @@ import Animated, {
 	useAnimatedStyle, 
 	useSharedValue,
 } from "react-native-reanimated"
-import { Badge, Header, InputText } from "../../components"
+import { Badge, Header, SearchInput } from "../../components"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import { Leagues, Players } from "../../services"
 import { commonStyle } from "../../styles"
@@ -19,7 +18,7 @@ import { dynamicHeight } from "../../utils/pixelResolver"
 import PlayerList from "./PlayerList"
 import styles from "./styles"
 
-const INPUT_HEIGHT = dynamicHeight(327, 56)
+const INPUT_HEIGHT = dynamicHeight(327, 48)
 const BADGE_HEIGHT = 32
 const HEADER_HEIGHT = getHeaderHeight()
 const FILTER_HEIGHT = INPUT_HEIGHT + BADGE_HEIGHT + HEADER_HEIGHT // total height of filter view
@@ -37,6 +36,11 @@ function PlayersContainer() {
 	//query is the text searched by user
 	const [query, setQuery] = useState("")
 
+	//shared value to store all the scroll Y values
+	const translateY = useSharedValue(0)
+	//define when search box should be visibile or not
+	const [hidden, setHidden] = useState(true)
+	const flatRef = useRef(null)
 
 	const [roles, setRoles] = useState(ROLE_CLASSIC)
 	const [league, setLeague] = useState(Leagues.GetActiveLeague())
@@ -169,10 +173,6 @@ function PlayersContainer() {
 		}
 	}
 
-	//shared value to store allt the scroll Y values
-	const translateY = useSharedValue(0)
-	const flatRef = useRef(null)
-
 	const scrollHandler = useAnimatedScrollHandler({
 		onScroll: (event) => {
 			translateY.value = event.contentOffset.y
@@ -186,6 +186,9 @@ function PlayersContainer() {
 		if (contentOffset.y < snapPoints[0] && contentOffset.y >= snapPoints[1] ) {
 			flatRef.current.scrollToOffset({ offset: snapValue })
 		}
+		//when search input is not visibile must be also not editable, 
+		//otherwise tap input will be active if user click on not visible area
+		setHidden(snapValue === 0 ? true : false)
 	}
 
 	const transformSyle = useAnimatedStyle( () => {
@@ -210,11 +213,12 @@ function PlayersContainer() {
 			[1, 0],
 			Extrapolate.CLAMP 
 		)
+		
 		return {
 			opacity: opacityValue
 		}
 	})
-
+	
 
 	// https://eveningkid.medium.com/animated-and-react-native-scrollviews-de701f1b1ce5
 	// https://medium.com/swlh/making-a-collapsible-sticky-header-animations-with-react-native-6ad7763875c3
@@ -225,8 +229,8 @@ function PlayersContainer() {
 			<Header title="players" />
 
 			<Animated.View style={[styles.playerContainer, transformSyle]}>
-				<Animated.View style={opacitySyle}>
-					<InputText 
+				<Animated.View style={opacitySyle} >
+					<SearchInput 
 						id="search"
 						label="Search"
 						placeholder="Search"
@@ -235,6 +239,7 @@ function PlayersContainer() {
 							setQuery(value)
 							setActiveRoles(["none"])
 						}}
+						editable={hidden}
 					/> 
 				</Animated.View>
 
@@ -263,11 +268,11 @@ function PlayersContainer() {
 
 				{/* Rendering list of players */ }
 				<PlayerList 
+					ref={flatRef}
 					players={players}
 					isClassic={isClassic}
 					onScroll={scrollHandler}
 					onScrollEnd={handleEndDrag}
-					ref={flatRef}
 				/>
 			</Animated.View>
 		</View>
