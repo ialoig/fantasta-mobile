@@ -2,7 +2,8 @@ import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React from "react"
-import { FlatList, Text } from "react-native"
+import { Text } from "react-native"
+import { FlatList } from "react-native-gesture-handler"
 import Animated from "react-native-reanimated"
 import { PlayerCard } from "../../components"
 import routes from "../../navigation/routesNames"
@@ -16,7 +17,6 @@ const PlayerList = React.forwardRef(({ players, isClassic, onScroll, onScrollEnd
 
 	//navigation route
 	const { navigate }  = useNavigation()
-
 
 	return (
 		<Animated.View style={styles.list}>
