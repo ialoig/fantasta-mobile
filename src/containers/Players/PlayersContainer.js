@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
 import { View } from "react-native"
-import { ScrollView } from "react-native-gesture-handler"
 import Animated, { 
 	Extrapolate,
 	interpolate,
@@ -8,7 +7,7 @@ import Animated, {
 	useAnimatedStyle, 
 	useSharedValue,
 } from "react-native-reanimated"
-import { Badge, Header, SearchInput } from "../../components"
+import { Header } from "../../components"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import { Leagues, Players } from "../../services"
 import { commonStyle } from "../../styles"
@@ -16,6 +15,8 @@ import { snap } from "../../utils/animationUtils"
 import { getHeaderHeight } from "../../utils/deviceUtils"
 import { dynamicHeight } from "../../utils/pixelResolver"
 import PlayerList from "./PlayerList"
+import RolesFilter from "./RolesFilter"
+import SearchBox from "./SearchBox"
 import styles from "./styles"
 
 const INPUT_HEIGHT = dynamicHeight(327, 48)
@@ -173,6 +174,13 @@ function PlayersContainer() {
 		}
 	}
 
+
+	const handleChangeQuery = (value) => {
+		setQuery(value)
+		setActiveRoles(["none"])
+	}
+
+
 	const scrollHandler = useAnimatedScrollHandler({
 		onScroll: (event) => {
 			translateY.value = event.contentOffset.y
@@ -230,41 +238,19 @@ function PlayersContainer() {
 
 			<Animated.View style={[styles.playerContainer, transformSyle]}>
 				<Animated.View style={opacitySyle} >
-					<SearchInput 
-						id="search"
-						label="Search"
-						placeholder="Search"
-						value={query}
-						onChange={(id, value) => {
-							setQuery(value)
-							setActiveRoles(["none"])
-						}}
-						editable={hidden}
-					/> 
+					<SearchBox 
+						query={query}
+						changeQuery={handleChangeQuery}
+						isEditable={hidden}
+					/>
 				</Animated.View>
 
-
-				{/* itearating through the roles to get filters */}
-				<Animated.View style={styles.badges}>
-					<ScrollView 
-						bounces
-						horizontal
-						showsHorizontalScrollIndicator={false}
-					>
-						{
-							roles && Object.entries(roles).map(([key, value]) => {
-								return (
-									<Badge 
-										key={key}
-										onPress={() => handlePressFilter(key)}
-										title={value}
-										active={isActive(key)}
-									/>
-								)
-							})
-						}
-					</ScrollView>
-				</Animated.View>
+				{/* Roles filter buttons */}
+				<RolesFilter 
+					roles={roles}
+					onPress={handlePressFilter}
+					isActive={isActive}
+				/>
 
 				{/* Rendering list of players */ }
 				<PlayerList 
