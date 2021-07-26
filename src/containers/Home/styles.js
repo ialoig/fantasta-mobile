@@ -7,7 +7,6 @@ import { dynamicHeight } from "../../utils/pixelResolver"
 export default StyleSheet.create({
 	buttons: {
 		alignItems: "center",
-		// backgroundColor: colors.por,
 		flexDirection: "row",
 		justifyContent: "space-between",
 		paddingVertical: 8
@@ -22,11 +21,9 @@ export default StyleSheet.create({
 		paddingTop: 10
 	},
 	leagueContainer: {
-		// backgroundColor: colors.att,
 		flex: 1
 	},
 	list: {
-		// backgroundColor: colors.por,
 		marginBottom: 80,
 	},
 	separator: {
@@ -35,6 +32,6 @@ export default StyleSheet.create({
 		borderRadius: 8,
 		height: 4,
 		marginVertical: 4,
-		width: dynamicHeight(375, 120)
+		width: dynamicHeight(375, 64)
 	}
 })
