@@ -20,11 +20,8 @@ export default StyleSheet.create({
 		color: colors.text,
 		paddingTop: 10
 	},
-	leagueContainer: {
-		flex: 1
-	},
 	list: {
-		marginBottom: 80,
+		paddingBottom: 80
 	},
 	separator: {
 		alignSelf: "center",

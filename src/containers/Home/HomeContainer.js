@@ -19,7 +19,8 @@ export class HomeContainer extends React.Component {
 			"focus",
 			() => {
 				this.mounted && this.setState({
-					leagues: Leagues.GetLeagues().sort((a, b) => a.name > b.name ? 1 : -1)
+					//ordered by creation date, last created on first position
+					leagues: Leagues.GetLeagues().sort((a, b) => a.createdAt > b.createdAt ? -1 : 1) 
 				})
 			}
 		)

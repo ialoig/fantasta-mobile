@@ -15,17 +15,20 @@ import { deviceHeight } from "../../utils/deviceUtils"
 import { dynamicHeight } from "../../utils/pixelResolver"
 import styles from "./styles"
 
-const League = ( item, onPress ) => (
-	<Card
-		key={item._id}
-		onPress={onPress}
-		title={item.name}
-		description={item.team.name}
-		type='small'
-		arrow={true}
-		icon={"league"}
-	/>
-)
+const League = ( item, onPress ) => {
+
+	return (
+		<Card
+			key={item._id}
+			onPress={onPress}
+			title={item.name}
+			description={item.team.name}
+			type='small'
+			arrow={true}
+			icon={"league"}
+		/>
+	)
+}
 
 
 const maxHeight = deviceHeight
@@ -68,9 +71,10 @@ function Home(props) {
 			<PanGestureHandler 
 				onGestureEvent={panGestureEvent}
 				waitFor={flatRef}
+				shouldCancelWhenOutside
 			>
-				<Animated.View style={[transformSyle, styles.leagueContainer]} >
-			
+
+				<Animated.View style={transformSyle}>
 					{ /** crea/join */}
 					<View style={styles.buttons}>
 						<Card
@@ -91,24 +95,22 @@ function Home(props) {
 						/>
 					</View>
 					<View style={styles.separator} />
-
 					{ /** leagues */}
 					<Text style={textStyles.h1}>{I18n.translate("yourLeagues")}</Text>
-					<View style={styles.list}>
-						<FlatList
-							ref={flatRef}
-							data={props.leagues}
-							ListEmptyComponent={() => { 
-								return (
-									<Text style={[textStyles.description, styles.description]}>
-										{I18n.translate("noLeaguesFound")}
-									</Text>) 
-							}}
-							renderItem={item => League(item.item, () => props.joinLeague( item.item ) )}
-							keyExtractor={item => item._id}
-							showsVerticalScrollIndicator={false}
-						/>
-					</View>
+					<FlatList
+						ref={flatRef}
+						data={props.leagues}
+						ListEmptyComponent={() => { 
+							return (
+								<Text style={[textStyles.description, styles.description]}>
+									{I18n.translate("noLeaguesFound")}
+								</Text>) 
+						}}
+						renderItem={item => League(item.item, () => props.joinLeague( item.item ) )}
+						keyExtractor={item => item._id}
+						showsVerticalScrollIndicator={false}
+						contentContainerStyle={styles.list}
+					/>
 				</Animated.View>
 			</PanGestureHandler>
 		</View>
