@@ -1,6 +1,7 @@
 
 import { StyleSheet } from "react-native"
 import { deviceScreenHeight, deviceScreenWidth, getHeaderHeight } from "../utils/deviceUtils"
+import { dynamicHeight } from "../utils/pixelResolver"
 import colors from "./colors"
 
 export default StyleSheet.create({
@@ -43,4 +44,12 @@ export default StyleSheet.create({
 	paddingHeader: {
 		paddingTop: getHeaderHeight()
 	},
+	separator: {
+		alignSelf: "center",
+		backgroundColor: colors.grey,
+		borderRadius: 8,
+		height: 4,
+		marginVertical: 4,
+		width: dynamicHeight(375, 64)
+	}
 })

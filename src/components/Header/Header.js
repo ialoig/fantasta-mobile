@@ -28,7 +28,13 @@ function Header (props) {
 				{
 					leftButton && 
 					<View style={style.left}>
-						<IconButton onPress={onPressLeft} icon type={iconTypeLeft}/>
+						<IconButton 
+							onPress={onPressLeft} 
+							icon 
+							type={iconTypeLeft}
+							width={35} 
+							height={35} 
+						/>
 					</View>
 				
 				}
@@ -40,7 +46,13 @@ function Header (props) {
 				{
 					rightButton && 
 					<View style={style.right}>
-						<IconButton onPress={onPressRight} icon type={iconTypeRight}/>
+						<IconButton 
+							onPress={onPressRight} 
+							icon 
+							type={iconTypeRight}
+							width={35} 
+							height={35} 
+						/>
 					</View>
 				}
 			</View>

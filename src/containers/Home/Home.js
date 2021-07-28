@@ -9,7 +9,7 @@ import Animated, {
 	useSharedValue, 
 	withSpring } from "react-native-reanimated"
 import { Card } from "../../components"
-import { textStyles } from "../../styles"
+import { commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
 import { deviceHeight } from "../../utils/deviceUtils"
 import { dynamicHeight } from "../../utils/pixelResolver"
@@ -94,7 +94,7 @@ function Home(props) {
 							icon={"join_league"}
 						/>
 					</View>
-					<View style={styles.separator} />
+					<View style={commonStyle.separator} />
 					{ /** leagues */}
 					<Text style={textStyles.h1}>{I18n.translate("yourLeagues")}</Text>
 					<FlatList

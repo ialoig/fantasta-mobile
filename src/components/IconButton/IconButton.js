@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react"
-import Icon from "../Icon/Icon"
+import Icon, { IconType } from "../Icon/Icon"
 import TouchableScale from "../TouchableScale/TouchableScale"
 import { style } from "./styles"
 
@@ -22,7 +22,7 @@ const IconButton = ({ type, icon, onPress, ...props }) => {
 
 
 IconButton.propTypes = {
-	type: PropTypes.string,
+	type: PropTypes.oneOf([...Object.keys(IconType)]),
 	icon: PropTypes.bool,
 	onPress: PropTypes.func
 }
