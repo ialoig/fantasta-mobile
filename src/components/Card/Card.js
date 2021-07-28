@@ -34,7 +34,7 @@ function Card({ title, description, type, icon, arrow, onPress, ...props }) {
 Card.propTypes = {
 	title: PropTypes.string.isRequired,
 	description: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	type: PropTypes.string.isRequired,
+	type: PropTypes.oneOf(["default", "small", "medium", "large", "square"]).isRequired,
 	icon: PropTypes.string,
 	arrow: PropTypes.bool,
 	onPress: PropTypes.func

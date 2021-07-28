@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native"
 import React, { useEffect, useRef, useState } from "react"
 import { View } from "react-native"
 import Animated, { 
@@ -46,6 +47,8 @@ function PlayersContainer() {
 	const [roles, setRoles] = useState(ROLE_CLASSIC)
 	const [league, setLeague] = useState(Leagues.GetActiveLeague())
 	const [isClassic, setIsClassic] = useState(true)
+	//navigation route
+	const { goBack }  = useNavigation()
 
 	
 	useEffect( () => {
@@ -234,7 +237,12 @@ function PlayersContainer() {
 
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
-			<Header title="players" />
+			<Header 
+				title="players" 
+				leftButton
+				iconTypeLeft="back"
+				onPressLeft={() => goBack() }
+			/>
 
 			<Animated.View style={[styles.playerContainer, transformSyle]}>
 				<Animated.View style={opacitySyle} >

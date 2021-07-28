@@ -21,7 +21,7 @@ import TeamIcon from "./svg/TeamIcon"
 import TeamsTabIcon from "./svg/TeamsTabIcon"
 
 
-const IconType = {
+export const IconType = {
 	account: AccountIcon,
 	back: BackIcon,
 	confirm: ConfirmIcon,

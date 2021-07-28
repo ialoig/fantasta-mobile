@@ -22,13 +22,5 @@ export default StyleSheet.create({
 	},
 	list: {
 		paddingBottom: 80
-	},
-	separator: {
-		alignSelf: "center",
-		backgroundColor: colors.grey,
-		borderRadius: 8,
-		height: 4,
-		marginVertical: 4,
-		width: dynamicHeight(375, 64)
 	}
 })
