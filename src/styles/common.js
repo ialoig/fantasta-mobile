@@ -1,7 +1,7 @@
 
 import { StyleSheet } from "react-native"
 import { deviceScreenHeight, deviceScreenWidth, getHeaderHeight } from "../utils/deviceUtils"
-import { dynamicHeight } from "../utils/pixelResolver"
+import { dynamicHeight, dynamicWidth } from "../utils/pixelResolver"
 import colors from "./colors"
 
 export default StyleSheet.create({
@@ -48,8 +48,8 @@ export default StyleSheet.create({
 		alignSelf: "center",
 		backgroundColor: colors.grey,
 		borderRadius: 8,
-		height: 4,
+		height: dynamicHeight(327, 4),
 		marginVertical: 4,
-		width: dynamicHeight(375, 64)
+		width: dynamicWidth(64)
 	}
 })
