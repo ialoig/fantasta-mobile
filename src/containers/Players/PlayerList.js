@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React from "react"
-import { Text } from "react-native"
+import { Text, View } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
 import Animated from "react-native-reanimated"
 import { PlayerCard } from "../../components"
@@ -18,8 +18,26 @@ const PlayerList = React.forwardRef(({ players, isClassic, onScroll, onScrollEnd
 	//navigation route
 	const { navigate }  = useNavigation()
 
+
+	const renderItem = ({ item }) => 
+		(					
+			<PlayerCard
+				type="small"
+				name={item.name}
+				isClassic={isClassic}
+				roles={isClassic ?  [...item.roleClassic] : item.roleMantra}
+				team={item.team}
+				quotation={item.initialPrice}
+				onPress={() => 
+					navigate(routes.PLAYER_DETAILS, {
+						id: item.id,
+						isClassic: isClassic
+					})}
+			/>
+		)
+
 	return (
-		<Animated.View style={styles.list}>
+		<View style={styles.list}>
 			{
 				players &&
 			<AnimatedFlatList
@@ -30,21 +48,7 @@ const PlayerList = React.forwardRef(({ players, isClassic, onScroll, onScrollEnd
 				scrollEventThrottle={16} //fire onScroll event each 16ms
 				onScroll={onScroll}
 				onMomentumScrollEnd={onScrollEnd}
-				renderItem={(player) => 
-					<PlayerCard
-						type="small"
-						name={player.item.name}
-						isClassic={isClassic}
-						roles={isClassic ?  [...player.item.roleClassic] : player.item.roleMantra}
-						team={player.item.team}
-						quotation={player.item.initialPrice}
-						onPress={() => 
-							navigate(routes.PLAYER_DETAILS, {
-								id: player.item.id,
-								isClassic: isClassic
-							})}
-					/>
-				}
+				renderItem={renderItem}
 				ListEmptyComponent={() => { 
 					return (
 						<Text style={textStyles.description}>
@@ -52,9 +56,15 @@ const PlayerList = React.forwardRef(({ players, isClassic, onScroll, onScrollEnd
 						</Text>) 
 				}}
 				showsVerticalScrollIndicator={false}
+				getItemLayout={(data, index) => (
+					{ 
+						length: 80, 
+						offset: 80 * index, index
+					}
+				)}
 			/>
 			}
-		</Animated.View>
+		</View>
 	)
 })
 PlayerList.displayName = "PlayerList"

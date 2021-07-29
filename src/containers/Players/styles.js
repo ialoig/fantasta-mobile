@@ -15,7 +15,7 @@ export default StyleSheet.create({
 		paddingHorizontal: deviceScreenWidth * 0.06
 	},
 	list: {
-		paddingBottom: 0,
+		paddingBottom: 120,
 		paddingTop: 20
 	},
 	playerContainer: {

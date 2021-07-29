@@ -1,5 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react"
+import { StyleSheet, View } from "react-native"
 import AttRoleIcon from "../svg/roles/AttRoleIcon"
 import CenRoleIcon from "../svg/roles/CenRoleIcon"
 import DifRoleIcon from "../svg/roles/DifRoleIcon"
@@ -29,7 +30,9 @@ function PlayerRoleIcon({ role, ...props }) {
 	const RoleIconComponent = RoleIcon[role] || EmptyIcon
 
 	return (
-		<RoleIconComponent {...props} />
+		<View style={style.icon}>
+			<RoleIconComponent {...props} />
+		</View>
 	)
 }
 
@@ -42,4 +45,10 @@ PlayerRoleIcon.defaultProps = {
 }
 
 export default PlayerRoleIcon
+
+export const style = StyleSheet.create({
+	icon: {
+		padding: 8
+	},
+})
 
