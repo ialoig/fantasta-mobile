@@ -7,13 +7,11 @@ export const size = StyleSheet.create({
 	large: {
 		height: dynamicHeight(327, 160),
 		paddingHorizontal: getWidth(20),
-		paddingVertical: getWidth(20),
 		width: dynamicWidth(327)
 	},
 	small: {
 		height: dynamicHeight(327, 80),
 		paddingHorizontal: getWidth(20),
-		paddingVertical: getWidth(20),
 		width: dynamicWidth(327),
 	},
 })
@@ -39,14 +37,13 @@ export const style = StyleSheet.create({
 		flexDirection: "row",
 	},
 	playerInfo: {
-		paddingLeft: 12,
-		paddingRight: 12
+		justifyContent: "center"
 	},
 	separator: {
 		alignItems: "center"
 	},
 	small: {
-		alignContent: "center",
+		alignItems: "center",
 		flexDirection: "row",
 		justifyContent: "space-between"
 	}
