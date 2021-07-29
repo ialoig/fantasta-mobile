@@ -3,20 +3,17 @@ import React from "react"
 import { Pressable, Text, View } from "react-native"
 import { commonStyle, textStyles } from "../../styles"
 import Icon from "../Icon/Icon"
-
-import { style, text } from "./styles"
+import { size, style } from "./styles"
 
 function Card({ title, description, type, icon, arrow, onPress, ...props }) {
 
 	return (
-		<Pressable onPress={onPress} style={[style.card, style[type]]}>
+		<Pressable onPress={onPress} style={[style.card, size[type], style[type]]}>
 			{ icon &&
-				<View style={style.paddingIcon}>
-					<Icon name={icon} {...props}/>
-				</View>
+				<Icon name={icon} {...props}/>
 			}
 
-			<View style={text[type]}>
+			<View >
 				<Text style={textStyles.title}>{title}</Text>
 				{description ? <Text style={textStyles.description}>{description}</Text> : null}
 			</View>

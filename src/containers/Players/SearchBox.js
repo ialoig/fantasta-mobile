@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { SearchInput } from "../../components"
 
-function SearchBox({ query, changeQuery, isEditable }) {
+function SearchBox({ query, changeQuery }) {
 	return (
 		<SearchInput 
 			id="search"
@@ -12,7 +12,6 @@ function SearchBox({ query, changeQuery, isEditable }) {
 			onChange={(id, value) => {
 				changeQuery(value)
 			}}
-			editable={isEditable}
 		/> 
 	)
 }
@@ -20,12 +19,10 @@ function SearchBox({ query, changeQuery, isEditable }) {
 SearchBox.propTypes = {
 	query: PropTypes.string.isRequired,
 	changeQuery: PropTypes.func,
-	isEditable: PropTypes.bool
 }
 
 SearchBox.defaultProps = {
 	query: "",
-	isEditable: true
 }
 
 export default SearchBox

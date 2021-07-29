@@ -1,6 +1,7 @@
 import { TransitionPresets } from "@react-navigation/stack"
 import React from "react"
 import { Keyboard } from "react-native"
+import { IconButton } from "../components"
 import EmptyButtonPlaceHolder from "../components/Header/EmptyButtonPlaceHolder"
 import HeaderRightButton from "../components/Header/HeaderRightButton"
 import HeaderTitle from "../components/Header/HeaderTitle"
@@ -110,8 +111,13 @@ export const headerNORightConfig = {
  */
 export const headerBackConfig = {
 	// eslint-disable-next-line react/display-name
-	headerBackImage: () => <Icon name="back" />,
-	headerBackTitleVisible: false,
+	headerLeft: (props) => 
+		<IconButton {...props}
+			icon 
+			type={"back"}
+			width={35} 
+			height={35} 
+		/>,
 	headerLeftContainerStyle: {
 		paddingLeft: deviceScreenWidth * 0.04
 	},

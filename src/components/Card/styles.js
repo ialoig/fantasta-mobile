@@ -3,84 +3,67 @@ import colors from "../../styles/colors"
 import { dynamicHeight, dynamicWidth, getWidth } from "../../utils/pixelResolver"
 
 
+export const size = StyleSheet.create({
+	default: {
+		height: dynamicHeight(327, 180),
+		marginHorizontal: 0,
+		width: dynamicWidth(327),
+	},
+	large: {
+		height: dynamicHeight(327, 160),
+		paddingHorizontal: getWidth(20),
+		paddingVertical: getWidth(20),
+		width: dynamicWidth(327),
+	},
+	medium: {
+		height: dynamicHeight(327, 120),
+		paddingHorizontal: getWidth(20),
+		paddingVertical: getWidth(20),
+		width: dynamicWidth(327)
+	},
+	small: {
+		height: dynamicHeight(327, 80),
+		paddingHorizontal: getWidth(20),
+		paddingVertical: getWidth(20),
+		width: dynamicWidth(327),
+	},
+	square: {
+		height: dynamicHeight(140, 140),
+		width: dynamicWidth(140),
+	},
+})
+
+
 export const style = StyleSheet.create({
 	arrow: {
 		alignItems: "flex-end"
 	},
 	card: {
-		alignItems: "center",
+		...StyleSheet.absoluteFillObject,
 		backgroundColor: colors.greyLight,
 		borderRadius: 24,
-		flex: 1,
-		marginVertical: 4,
+		marginTop: 12,
+		position: "relative",
 	},
-	default: {
-		justifyContent: "center",
-		marginHorizontal: 0,
-		maxHeight: dynamicHeight(327, 180),
-		maxWidth: dynamicWidth(327)
-	},
-	large: {
-		justifyContent: "center",
-		marginHorizontal: 0,
-		maxHeight: dynamicHeight(327, 160),
-		maxWidth: dynamicWidth(327),
-	},
-	medium: {
-		flexDirection: "row",
-		marginHorizontal: 0,
-		maxHeight: dynamicHeight(327, 120),
-		maxWidth: dynamicWidth(327),
-		paddingHorizontal: getWidth(20),
-		paddingVertical: getWidth(20)
-	},
-	paddingIcon: {
-		padding: 8
-	},
-	small: {
-		flexDirection: "row",
-		marginHorizontal: 0,
-		maxHeight: dynamicHeight(327, 80),
-		maxWidth: dynamicWidth(327),
-		paddingHorizontal: getWidth(20),
-		paddingVertical: getWidth(20)
-	},
-	square: {
-		height: dynamicHeight(140, 140),
-		justifyContent: "center",
-		maxWidth: dynamicWidth(140),
-	}
-})
-
-
-export const image = StyleSheet.create({
-	default: {
-        
-	},
-	large: {
-        
-	},
-	medium: {
-        
-	},
-	small: {
-		paddingRight: 12
-	}
-})
-
-
-
-export const text = StyleSheet.create({
 	default: {
 		alignItems: "center",
-		paddingTop: 12
+		justifyContent: "center",
 	},
 	large: {
 		alignItems: "center",
-		paddingTop: 12
+		justifyContent: "center"
+	},
+	medium: {
+		alignItems: "center",
+		flexDirection: "row",
+	},
+	small: {
+		alignItems: "center",
+		flexDirection: "row",
+		justifyContent: "flex-start",
 	},
 	square: {
 		alignItems: "center",
-		paddingTop: 12
+		justifyContent: "center"
 	}
 })

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import { COLORS } from "../../styles"
+import colors from "../../styles/colors"
 import { dynamicHeight, dynamicWidth, getWidth } from "../../utils/pixelResolver"
 
 
@@ -26,7 +26,7 @@ export const style = StyleSheet.create({
 	},
 	card: {
 		...StyleSheet.absoluteFillObject,
-		backgroundColor: COLORS.greyLight,
+		backgroundColor: colors.greyLight,
 		borderRadius: 24,
 		marginTop: 12,
 		position: "relative",

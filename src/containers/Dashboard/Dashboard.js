@@ -7,27 +7,39 @@ import { Text, View } from "react-native"
 import { PanGestureHandler } from "react-native-gesture-handler"
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import { Card, Header } from "../../components"
+import { ROLE_CLASSIC } from "../../constants"
 import routes from "../../navigation/routesNames"
-import { Leagues } from "../../services"
+import { Leagues, Players } from "../../services"
 import { commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
 import { deviceHeight } from "../../utils/deviceUtils"
 import { dynamicHeight } from "../../utils/pixelResolver"
+import PlayerList from "../Players/PlayerList"
+import RolesFilter from "../Players/RolesFilter"
 import styles from "./styles"
 
 
 const maxHeight = deviceHeight
 const minHeight = dynamicHeight(375, 450) //leagues height
-const snapPoints = [-(maxHeight - minHeight), 0]
+const snapPoints = [-(maxHeight - 330), 0]
+
 function Dashboard(props) {
 
 	const { navigate, goBack } = useNavigation()
 	const [league, setLeague] = useState(Leagues.GetActiveLeague())
 	const [team, setTeam] = useState([])
+	const [players, setPlayers] = useState(null)
 
 	useEffect(() => {
 		const apiLeague = Leagues.GetActiveLeague()
 		const team = Object.values(apiLeague.teams)[0]
+
+
+		//get players from api
+		const apiPlayers = Players.GetPlayers()
+		let players = Object.values(apiPlayers).slice(0, 50)
+		setPlayers(players)
+
 		setTeam(team)
 		setLeague(apiLeague)
 	}, [])
@@ -40,12 +52,13 @@ function Dashboard(props) {
 
 	const panGestureEvent = useAnimatedGestureHandler({
 		onStart: (event, ctx) => {
-			ctx.y = translateY.value 
+			ctx.y = translateY.value
 		},
 		onActive: (event, ctx) => {
-		// translate Y value will be the current scroll Y value (event.translationY) plus the 
-		// the scroll Y value that was stored with the previous pan gesture
-		// clamp is needed to don't go over lower or upper values
+			// translate Y value will be the current scroll Y value (event.translationY) plus the 
+			// the scroll Y value that was stored with the previous pan gesture
+			// clamp is needed to don't go over lower or upper values
+			console.log("translateY=", translateY.value)
 			translateY.value = clamp(event.translationY + ctx.y, snapPoints[0], snapPoints[1])
 		},
 		onEnd: (event) => {
@@ -65,15 +78,6 @@ function Dashboard(props) {
 
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
-			<Header 
-				title="dashboard" 
-				leftButton
-				iconTypeLeft="back"
-				onPressLeft={ () => goBack() }
-				rightButton
-				iconTypeRight="account"
-				onPressRight={ () => { navigate(routes.ACCOUNTNAVIGATOR) } }
-			/>
 
 			<PanGestureHandler 
 				onGestureEvent={panGestureEvent}
@@ -97,9 +101,38 @@ function Dashboard(props) {
 					/>
 					
 					<View style={commonStyle.separator} />
+
 					<Text style={textStyles.h1}>{I18n.translate("team")}</Text>
+					<View>
+						{/* Roles filter buttons */}
+						<RolesFilter 
+							roles={ROLE_CLASSIC}
+							onPress={() => {console.log("onPress")}}
+							isActive={() => {console.log("onPress")}}
+						/>
+
+						{/* Rendering list of players */ }
+						<PlayerList 
+							ref={flatRef}
+							players={players}
+							isClassic={true}
+							onScroll={() => {console.log("onScroll")}}
+							onScrollEnd={() => {console.log("onScrollEnd")}}
+						/>
+					</View>
 				</Animated.View>
 			</PanGestureHandler>
+
+			{/* it is defined as latest component cause it must be over the others */}
+			<Header 
+				title="dashboard" 
+				leftButton
+				iconTypeLeft="back"
+				onPressLeft={ () => goBack() }
+				rightButton
+				iconTypeRight="account"
+				onPressRight={ () => { navigate(routes.ACCOUNTNAVIGATOR) } }
+			/>
 		</View>
 	)
 }

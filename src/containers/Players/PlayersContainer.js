@@ -21,7 +21,7 @@ import SearchBox from "./SearchBox"
 import styles from "./styles"
 
 const INPUT_HEIGHT = dynamicHeight(327, 48)
-const BADGE_HEIGHT = 32
+const BADGE_HEIGHT = 40
 const HEADER_HEIGHT = getHeaderHeight()
 const FILTER_HEIGHT = INPUT_HEIGHT + BADGE_HEIGHT + HEADER_HEIGHT // total height of filter view
 
@@ -40,8 +40,6 @@ function PlayersContainer() {
 
 	//shared value to store all the scroll Y values
 	const translateY = useSharedValue(0)
-	//define when search box should be visibile or not
-	const [hidden, setHidden] = useState(true)
 	const flatRef = useRef(null)
 
 	const [roles, setRoles] = useState(ROLE_CLASSIC)
@@ -197,9 +195,6 @@ function PlayersContainer() {
 		if (contentOffset.y < snapPoints[0] && contentOffset.y >= snapPoints[1] ) {
 			flatRef.current.scrollToOffset({ offset: snapValue })
 		}
-		//when search input is not visibile must be also not editable, 
-		//otherwise tap input will be active if user click on not visible area
-		setHidden(snapValue === 0 ? true : false)
 	}
 
 	const transformSyle = useAnimatedStyle( () => {
@@ -220,7 +215,7 @@ function PlayersContainer() {
 
 	const opacitySyle = useAnimatedStyle( () => {
 		const opacityValue = interpolate(translateY.value, 
-			[0, HEADER_HEIGHT + BADGE_HEIGHT],
+			[0, HEADER_HEIGHT],
 			[1, 0],
 			Extrapolate.CLAMP 
 		)
@@ -237,19 +232,12 @@ function PlayersContainer() {
 
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
-			<Header 
-				title="players" 
-				leftButton
-				iconTypeLeft="back"
-				onPressLeft={() => goBack() }
-			/>
 
 			<Animated.View style={[styles.playerContainer, transformSyle]}>
 				<Animated.View style={opacitySyle} >
 					<SearchBox 
 						query={query}
 						changeQuery={handleChangeQuery}
-						isEditable={hidden}
 					/>
 				</Animated.View>
 
@@ -269,6 +257,14 @@ function PlayersContainer() {
 					onScrollEnd={handleEndDrag}
 				/>
 			</Animated.View>
+
+			{/* it is defined as latest component cause it must be over the others */}
+			<Header 
+				title="players" 
+				leftButton
+				iconTypeLeft="back"
+				onPressLeft={() => goBack() }
+			/>
 		</View>
 	)
 }
