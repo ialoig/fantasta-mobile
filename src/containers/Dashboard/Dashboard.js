@@ -7,6 +7,7 @@ import { Text, View } from "react-native"
 import { PanGestureHandler } from "react-native-gesture-handler"
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import { Card, Header } from "../../components"
+import DonutChart from "../../components/Chart/DonutChart"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import routes from "../../navigation/routesNames"
 import { Leagues, Players } from "../../services"
@@ -319,12 +320,15 @@ function Dashboard(props) {
 						icon={"league"}
 					/>
 					<Text style={textStyles.h1}>{I18n.translate("budget")}</Text>
-					<Card
+					{/* <Card
 						key={"budget"}
 						title={"budget"}
 						description={team.name}
 						type={"large"}
-					/>
+					/> */}
+					<View style={styles.chart}>
+						<DonutChart />
+					</View>
 
 					
 					<View style={commonStyle.separator} />
@@ -334,8 +338,8 @@ function Dashboard(props) {
 					{/* Roles filter buttons */}
 					<RolesFilter 
 						roles={league.type === "classic" ? ROLE_CLASSIC : ROLE_MANTRA}
-						onPress={() => {console.log("onPress")}}
-						isActive={() => {console.log("onPress")}}
+						onPress={() => {}}
+						isActive={() => {}}
 					/>
 
 					{/* Rendering list of players */ }
@@ -344,8 +348,6 @@ function Dashboard(props) {
 							ref={flatRef}
 							players={players}
 							isClassic={true}
-							onScroll={() => {}}
-							onScrollEnd={() => {}}
 						/>
 					</View>
 				</Animated.View>
