@@ -28,7 +28,7 @@ export const size = StyleSheet.create({
 		width: dynamicWidth(327),
 	},
 	square: {
-		height: dynamicHeight(140, 140),
+		height: dynamicHeight(327, 140),
 		width: dynamicWidth(140),
 	},
 })

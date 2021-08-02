@@ -2,7 +2,6 @@
 import { StyleSheet } from "react-native"
 import colors from "../../styles/colors"
 import { deviceScreenWidth } from "../../utils/deviceUtils"
-import { dynamicHeight } from "../../utils/pixelResolver"
 
 export default StyleSheet.create({
 	buttons: {

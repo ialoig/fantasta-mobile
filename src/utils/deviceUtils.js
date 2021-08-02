@@ -37,3 +37,10 @@ const isIphoneXor11 = () => {
         (dim.height === 812 || dim.width === 812 || dim.height === 896 || dim.width === 896)
 	) 
 }
+
+
+export const getMaxHeader = () => {
+	const MAX_HEIGHT = deviceScreenHeight
+	const DELTA = (1 + Math.sqrt(5)) / 2
+	return MAX_HEIGHT * (1 - 1 / DELTA) 
+}
