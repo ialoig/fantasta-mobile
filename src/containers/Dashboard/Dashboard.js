@@ -7,22 +7,21 @@ import { Text, View } from "react-native"
 import { PanGestureHandler } from "react-native-gesture-handler"
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import { Card, Header } from "../../components"
-import DonutChart from "../../components/Chart/DonutChart"
+import PieChart from "../../components/Chart/PieChart"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import routes from "../../navigation/routesNames"
 import { Leagues, Players } from "../../services"
 import { commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
-import { deviceHeight } from "../../utils/deviceUtils"
-import { dynamicHeight } from "../../utils/pixelResolver"
+import { getHeaderHeight, getMaxHeader } from "../../utils/deviceUtils"
 import PlayerList from "../Players/PlayerList"
 import RolesFilter from "../Players/RolesFilter"
 import styles from "./styles"
 
-
-const maxHeight = deviceHeight
-const minHeight = dynamicHeight(375, 450) //leagues height
-const snapPoints = [-(maxHeight - 330), 0]
+const MAX_HEADER = getMaxHeader()
+const HEADER_HEIGHT = getHeaderHeight()
+const END_TOP = MAX_HEADER + HEADER_HEIGHT
+const snapPoints = [-END_TOP, 0]
 
 
 const playersFakeData = [
@@ -287,6 +286,7 @@ function Dashboard(props) {
 			// clamp is needed to don't go over lower or upper values
 			// console.log("translateY=", translateY.value)
 			translateY.value = clamp(event.translationY + ctx.y, snapPoints[0], snapPoints[1])
+			console.log(translateY.value, snapPoints[0])
 		},
 		onEnd: (event) => {
 			const snapValue = snap(translateY.value, event.velocityY, snapPoints[0], snapPoints[1])
@@ -320,17 +320,11 @@ function Dashboard(props) {
 						icon={"league"}
 					/>
 					<Text style={textStyles.h1}>{I18n.translate("budget")}</Text>
-					{/* <Card
-						key={"budget"}
-						title={"budget"}
-						description={team.name}
-						type={"large"}
-					/> */}
+
 					<View style={styles.chart}>
-						<DonutChart />
+						<PieChart />
 					</View>
 
-					
 					<View style={commonStyle.separator} />
 
 					<Text style={textStyles.h1}>{I18n.translate("team")}</Text>

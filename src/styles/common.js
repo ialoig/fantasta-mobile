@@ -45,11 +45,13 @@ export default StyleSheet.create({
 		paddingTop: getHeaderHeight()
 	},
 	separator: {
+		...StyleSheet.absoluteFillObject,
 		alignSelf: "center",
 		backgroundColor: colors.grey,
 		borderRadius: 8,
 		height: dynamicHeight(327, 4),
-		marginVertical: 4,
+		marginTop: 12,
+		position: "relative",
 		width: dynamicWidth(64)
 	}
 })
