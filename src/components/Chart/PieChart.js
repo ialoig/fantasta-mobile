@@ -2,6 +2,7 @@ import * as d3 from "d3-shape"
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { StyleSheet, View } from "react-native"
+import Animated, { Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming } from "react-native-reanimated"
 import Svg, { G } from "react-native-svg"
 import colors from "../../styles/colors"
 import AnimatedSection from "./AnimatedSection"
@@ -24,8 +25,9 @@ import AnimatedSection from "./AnimatedSection"
 function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc }) {
 	
 	const halfCircle = radius + strokeWidth
+	const diameter = (radius + strokeWidth) * 2
 	const innerRadius = radius - strokeWidth
-	const viewBox = [0, 0, halfCircle * 2, halfCircle * 2 ]
+	const viewBox = [0, 0, diameter, diameter ]
 
 	//define pie chart values
 	const [pie, setPie] = useState([])
@@ -105,6 +107,22 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 		return values
 	}
 
+
+	const AnimatedG = Animated.createAnimatedComponent(G)
+	const rotation = useSharedValue(0)
+
+	rotation.value = withDelay(500, withTiming(0.5, {
+		duration: 800,
+		easing: Easing.bezier(0.34, 1.56, 0.64, 1) //https://easings.net
+	}))
+
+	const r = useAnimatedProps(() => ({
+		transform: [
+			{ 
+				rotate: rotation.value
+			}
+		]
+	}))
 	
 
 	// https://github.com/wcandillon/can-it-be-done-in-react-native/tree/master/reanimated-2/src/StrokeAnimation
@@ -117,7 +135,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 				viewBox={viewBox}
 				fill="none"
 			>
-				<G x={halfCircle} y={halfCircle}>
+				<AnimatedG x={halfCircle} y={halfCircle} animatedProps={r}>
 					{
 						pie && pie.map((item, index) => {
 							const { value, color } = item.data
@@ -132,12 +150,14 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 									strokeWidth={strokeWidth}
 									color={color}
 									value={value}
+									startAngle={item.startAngle}
 									endAngle={item.endAngle}
+									name={item.data.role}
 								/>
 							)
 						})
 					}
-				</G>
+				</AnimatedG>
 			</Svg>
 		</View>
 	)
