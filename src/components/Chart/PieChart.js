@@ -2,10 +2,9 @@ import * as d3 from "d3-shape"
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { StyleSheet, View } from "react-native"
-import Animated, { Easing, useAnimatedProps, useAnimatedStyle, useSharedValue, withDelay, withSpring, withTiming } from "react-native-reanimated"
 import Svg, { G } from "react-native-svg"
 import colors from "../../styles/colors"
-import AnimatedSection from "./AnimatedSection"
+import AnimatedArc from "./AnimatedArc"
 
 /**
  *  references:
@@ -28,11 +27,9 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 	const diameter = (radius + strokeWidth) * 2
 	const innerRadius = radius - strokeWidth
 	const viewBox = [0, 0, diameter, diameter ]
-
+	
 	//define pie chart values
 	const [pie, setPie] = useState([])
-	//define path to SVG
-	const [arcs, setArcs] = useState([])
 
 	useEffect(() => {
 		if (budgetSpent && maxValue) {
@@ -52,21 +49,6 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 				.value( (d) => d.value)(values)
 			console.log("pie=", pie)
 			setPie(pie)
-		
-			//arc definition to define the correct path to draw in SVG
-			const arcs = pie.map( (item) => {
-				console.log("item =", item.data.role, item.value, item.startAngle)
-				const arc = d3
-					.arc()
-					.outerRadius(radius) //radius of the pie
-					.innerRadius(innerRadius) //to create a donut or a pie
-					.padAngle(0.15) // angles between sections
-					.cornerRadius(0.5)(item)
-				console.log("arc =", arc)
-				return arc
-			})
-			setArcs(arcs)
-			console.log("arcs=", arcs)
 		}
 	}
 
@@ -108,22 +90,6 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 	}
 
 
-	const AnimatedG = Animated.createAnimatedComponent(G)
-	const rotation = useSharedValue(0)
-
-	rotation.value = withDelay(500, withTiming(0.5, {
-		duration: 800,
-		easing: Easing.bezier(0.34, 1.56, 0.64, 1) //https://easings.net
-	}))
-
-	const r = useAnimatedProps(() => ({
-		transform: [
-			{ 
-				rotate: rotation.value
-			}
-		]
-	}))
-	
 
 	// https://github.com/wcandillon/can-it-be-done-in-react-native/tree/master/reanimated-2/src/StrokeAnimation
 	// https://github.com/wcandillon/can-it-be-done-in-react-native/blob/master/bonuses/circular-progress/components/CircularProgress2.tsx
@@ -135,29 +101,26 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 				viewBox={viewBox}
 				fill="none"
 			>
-				<AnimatedG x={halfCircle} y={halfCircle} animatedProps={r}>
+				<G x={halfCircle} y={halfCircle} >
 					{
 						pie && pie.map((item, index) => {
 							const { value, color } = item.data
 							if (value === 0)
 								return null
 
-
 							return (
-								<AnimatedSection 
+								<AnimatedArc 
 									key={index}
-									d={arcs[index]}
+									pie={item}
+									radius={radius}
+									innerRadius={innerRadius}
 									strokeWidth={strokeWidth}
 									color={color}
-									value={value}
-									startAngle={item.startAngle}
-									endAngle={item.endAngle}
-									name={item.data.role}
 								/>
 							)
 						})
 					}
-				</AnimatedG>
+				</G>
 			</Svg>
 		</View>
 	)
