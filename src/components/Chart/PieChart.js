@@ -1,10 +1,20 @@
 import * as d3 from "d3-shape"
+import { values } from "lodash"
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
+import { 
+	Easing, 
+	useDerivedValue, 
+	useSharedValue, 
+	withTiming } from "react-native-reanimated"
+import { ReText } from "react-native-redash"
 import Svg, { G } from "react-native-svg"
 import colors from "../../styles/colors"
+import { animateTextValue } from "../../utils/animationUtils"
+import { deviceScreenWidth } from "../../utils/deviceUtils"
 import AnimatedArc from "./AnimatedArc"
+import ChartInfo from "./ChartInfo"
 
 /**
  *  references:
@@ -21,7 +31,13 @@ import AnimatedArc from "./AnimatedArc"
  * @param {calculateAsPerc} number define if the value passed by the data must be calculate as percentage
  * @returns a PieChart
  */
+
+const MAX_WIDTH = (deviceScreenWidth / 2) /** half screen */ - (deviceScreenWidth * 0.06) /** padding screen */
+
 function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc }) {
+
+	//check if radius passed by props is within the max size calculated
+	radius = radius >= (MAX_WIDTH / 2) ? (MAX_WIDTH / 2) : radius 
 	
 	const halfCircle = radius + strokeWidth
 	const diameter = (radius + strokeWidth) * 2
@@ -30,24 +46,30 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 	
 	//define pie chart values
 	const [pie, setPie] = useState([])
+	const [values, setValues] = useState([])
+
+	//sum of values passed by props as budget spent per roles
+	const [totalSpent, setTotalSpent] = useState(0)
+
+	const progressTotSpent = useSharedValue(0)
 
 	useEffect(() => {
+		console.log("MAX_WIDTH=", MAX_WIDTH, "radius=", radius)
+
 		if (budgetSpent && maxValue) {
 			chart()
 		}
-	}, [budgetSpent])
+	}, [budgetSpent, maxValue])
 
 
 
 	const chart = () => {
-		const values = getValues()
+		const values = calculateValues()
 		if (values) {
-			console.log("values=", values)
 		
 			//create pie chart with percentages values
 			const pie = d3.pie()
 				.value( (d) => d.value)(values)
-			console.log("pie=", pie)
 			setPie(pie)
 		}
 	}
@@ -57,11 +79,14 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 	// values : percentage value to show in chart
 	// color : color of the section
 	// role: role which the value is related to 
-	const getValues = () => {
+	const calculateValues = () => {
 		//calculate totale spent as a sum of the values passed as props
-		const totaleSpent = budgetSpent.reduce(
+		const totalSpent = budgetSpent.reduce(
 			(accumulator, currentValue) =>  accumulator + currentValue.value, 0)
-		if (totaleSpent > maxValue) {
+		console.log("totalSpent=", totalSpent)
+		setTotalSpent(totalSpent)
+
+		if (totalSpent > maxValue) {
 			console.error("Error while calculating total spent! Total spent cannot be bigger than Max Value")
 			return null
 		}
@@ -77,7 +102,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 			}
 		})
 		//add the remaining value not spent to the array of values
-		const remainingBudget = (maxValue - totaleSpent) <= 0 ? 0 : (maxValue - totaleSpent)
+		const remainingBudget = (maxValue - totalSpent) <= 0 ? 0 : (maxValue - totalSpent)
 		if (remainingBudget > 0) {
 			const percRemaining = 100 * remainingBudget / maxValue
 			values.push({
@@ -86,43 +111,100 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, calculateAsPerc 
 				value: calculateAsPerc ? percRemaining : remainingBudget
 			})
 		}
+		console.log("getValues - values=", values)
+		setValues(values)
 		return values
 	}
 
 
+	//define spent value to render as progress animatable value 
+	const animatedText = animateTextValue(totalSpent)
+
+
+
+	const style = StyleSheet.create({
+		chart: {
+			alignItems: "center",
+			flex: 1,
+			justifyContent: "center",
+			width: MAX_WIDTH
+		},
+		description: {
+			color: colors.text,
+			fontFamily: "PoppinsSemiBold",
+			fontSize: radius / 6,
+			fontStyle: "normal",
+			fontWeight: "normal",
+			height: radius / 4,
+			letterSpacing: 0.75,
+		},
+		info: {
+			...StyleSheet.absoluteFillObject,
+			alignItems: "center",
+			justifyContent: "center",
+		},
+		text: {
+			color: colors.text,
+			fontFamily: "PoppinsSemiBold",
+			fontSize: radius / 3,
+			fontStyle: "normal",
+			fontWeight: "normal",
+			height: radius / 2,
+			justifyContent: "flex-end",
+			letterSpacing: 0.75
+		}
+	})
+
+
+	
 
 	// https://github.com/wcandillon/can-it-be-done-in-react-native/tree/master/reanimated-2/src/StrokeAnimation
 	// https://github.com/wcandillon/can-it-be-done-in-react-native/blob/master/bonuses/circular-progress/components/CircularProgress2.tsx
 	return (
-		<View style={style.chart}>
-			<Svg 
-				width={radius * 2}
-				height={radius * 2}
-				viewBox={viewBox}
-				fill="none"
-			>
-				<G x={halfCircle} y={halfCircle} >
-					{
-						pie && pie.map((item, index) => {
-							const { value, color } = item.data
-							if (value === 0)
-								return null
+		<>
+			<View style={style.chart}>
+				<Svg 
+					width={radius * 2}
+					height={radius * 2}
+					viewBox={viewBox}
+					fill="none"
+				>
+					<G x={halfCircle} y={halfCircle} >
+						{
+							pie && pie.map((item, index) => {
+								const { value, color } = item.data
+								if (value === 0)
+									return null
 
-							return (
-								<AnimatedArc 
-									key={index}
-									pie={item}
-									radius={radius}
-									innerRadius={innerRadius}
-									strokeWidth={strokeWidth}
-									color={color}
-								/>
-							)
-						})
-					}
-				</G>
-			</Svg>
-		</View>
+								return (
+									<AnimatedArc 
+										key={index}
+										pie={item}
+										radius={radius}
+										innerRadius={innerRadius}
+										strokeWidth={strokeWidth}
+										color={color}
+									/>
+								)
+							})
+						}
+					</G>
+				</Svg>
+				<View style={style.info}>
+					<ReText 
+						style={style.text}
+						text={animatedText}
+					/>
+					<Text style={style.description}>spent</Text>
+				</View>	
+			</View>
+
+
+			{/* CHART LEGEND */}
+			<ChartInfo 
+				values={values}
+			/>
+		</>
 	)
 }
 
@@ -135,7 +217,7 @@ PieChart.propTypes = {
 }
 
 PieChart.defaultProps = {
-	radius: 70,
+	radius: 100,
 	strokeWidth: 10,
 	maxValue: 500,
 	budgetSpent: [
@@ -149,12 +231,5 @@ PieChart.defaultProps = {
 
 export default PieChart
 
-
-export const style = StyleSheet.create({
-	chart: {
-		padding: 8,
-		position: "absolute"
-	}
-})
 
 

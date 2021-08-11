@@ -7,6 +7,7 @@ import { Text, View } from "react-native"
 import { PanGestureHandler } from "react-native-gesture-handler"
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import { Card, Header } from "../../components"
+import ChartInfo from "../../components/Chart/ChartInfo"
 import PieChart from "../../components/Chart/PieChart"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import routes from "../../navigation/routesNames"
@@ -322,7 +323,10 @@ function Dashboard(props) {
 					<Text style={textStyles.h1}>{I18n.translate("budget")}</Text>
 
 					<View style={styles.chart}>
-						<PieChart />
+						<PieChart 
+							maxValue={league.budget}
+							// budgetSpent={} //TODO: TO BE CALCULATED
+						/>
 					</View>
 
 					<View style={commonStyle.separator} />

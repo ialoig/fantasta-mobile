@@ -16,20 +16,20 @@ const AnimatedPath = Animated.createAnimatedComponent(Path)
 
 function AnimatedArc({ pie, radius, innerRadius, strokeWidth, color }) {
 
-	const progress = useSharedValue(0)
 	const rotate = useSharedValue(0)
 
 	const [arc, setArc] = useState()
 
 	useEffect(() => {
-		progress.value = withTiming(1, {
-			duration: 1000,
-			easing: Easing.ease //https://easings.net
-		})
 		getArc()
 		
 	}, [])
 	
+
+	rotate.value = withTiming(1, {
+		duration: 1500,
+		easing: Easing.inOut(Easing.quad) //https://easings.net
+	})
 
 	const animatedProps = useAnimatedProps(() => {
 		let interpolationR = interpolate(rotate.value, 
@@ -60,15 +60,11 @@ function AnimatedArc({ pie, radius, innerRadius, strokeWidth, color }) {
 			.cornerRadius(0.5)(pie)
 		setArc(arc)
 
-		console.log("getArc - arc =", arc)
 		return arc
 	}
 
 
-	rotate.value = withTiming(1, {
-		duration: 1500,
-		easing: Easing.inOut(Easing.quad) //https://easings.net
-	})
+
 
 
 	return (
