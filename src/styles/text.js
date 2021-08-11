@@ -43,7 +43,7 @@ export default StyleSheet.create({
 	graphTitle: {
 		color: colors.text,
 		fontFamily: "PoppinsMedium",
-		fontSize: 10,
+		fontSize: 14,
 		fontStyle: "normal",
 		fontWeight: "500",
 		letterSpacing: 0

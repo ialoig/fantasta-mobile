@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+import { Easing, useDerivedValue, useSharedValue, withTiming } from "react-native-reanimated"
 
 /**
  * @summary define a value between the upper and lower bound
@@ -29,4 +31,30 @@ export const snap = (value, velocity, checkOne, checkTwo) => {
 		checkOne : 
 		checkTwo
 	return getCloser
+}
+
+
+/**
+ * TODO : check parallel calls
+ * 
+ * @param {toValue} number the value animation should stops 
+ * @returns 
+ */
+export const animateTextValue = (toValue) => {
+	"worklet"
+	const progress = useSharedValue(0)
+
+	useEffect(() => {
+		// console.log("toValue =", toValue)
+		progress.value = withTiming(toValue, {
+			duration: 800,
+			easing: Easing.linear //https://easings.net
+		})
+	}, [toValue])
+
+
+	return useDerivedValue( () => {
+		// console.log("progress.value=", Math.round(progress.value))
+		return Math.round(progress.value) + "%"
+	}, [toValue])
 }
