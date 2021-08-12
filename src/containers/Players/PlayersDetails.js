@@ -22,12 +22,12 @@ function PlayersDetails() {
 	const [playerStats, setPlayerStats] = useState(Players.GetStatisticsByPlayerID(playerID))
 
 	useEffect(() => {
-		console.log("[PlayersDetails] - [useEffect] - playerID=", playerID)
+		console.log("[PlayersDetails - useEffect] - playerID=", playerID)
 		const playerFound = Players.GetPlayersByID(playerID)
-		console.log("[PlayersDetails] - [useEffect] - playerFound=", playerFound)
+		console.log("[PlayersDetails - useEffect] - playerFound=", playerFound)
 		setPlayer(playerFound)
 		const statsFound = Players.GetStatisticsByPlayerID(playerID)
-		console.log("[PlayersDetails] - [useEffect] - statsFound=", statsFound)
+		console.log("[PlayersDetails - useEffect] - statsFound=", statsFound)
 		setPlayerStats(statsFound)
 	}, [playerID])
 

@@ -5,12 +5,12 @@ import { deviceScreenHeight, deviceScreenWidth } from "../../utils/deviceUtils"
 import { dynamicHeight, dynamicWidth } from "../../utils/pixelResolver"
 
 export default StyleSheet.create({
-	chart: {
+	budgetCard: {
 		...StyleSheet.absoluteFillObject,
 		alignContent: "center",
 		backgroundColor: colors.greyLight,
 		borderRadius: 24,
-		height: dynamicHeight(327, 180),
+		height: dynamicHeight(327, 200),
 		justifyContent: "center",
 		marginHorizontal: 0,
 		marginTop: 12,

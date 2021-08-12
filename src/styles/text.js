@@ -30,6 +30,21 @@ export default StyleSheet.create({
 		letterSpacing: 0.75,
 		//lineHeight: 20
 	},
+	chartTitle: {
+		color: colors.text,
+		fontFamily: "PoppinsMedium",
+		fontSize: 14,
+		fontStyle: "normal",
+		fontWeight: "500",
+	},
+	chartValue: {
+		color: colors.text,
+		fontFamily: "PoppinsSemiBold",
+		fontSize: 20,
+		fontStyle: "normal",
+		fontWeight: "500",
+		letterSpacing: 0
+	},
 	description: {
 		color: colors.textPlaceholder,
 		fontFamily: "PoppinsRegular",
@@ -39,14 +54,6 @@ export default StyleSheet.create({
 		letterSpacing: 0.75,
 		lineHeight: 15,
 		marginTop: 4
-	},
-	graphTitle: {
-		color: colors.text,
-		fontFamily: "PoppinsMedium",
-		fontSize: 14,
-		fontStyle: "normal",
-		fontWeight: "500",
-		letterSpacing: 0
 	},
 	h1: {
 		color: colors.text,

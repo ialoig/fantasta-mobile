@@ -50,7 +50,7 @@ function PlayersContainer() {
 
 	
 	useEffect( () => {
-		console.log("PlayersContainer - [useEffect] - activeRoles=", activeRoles)
+		console.log("[PlayersContainer - useEffect] - activeRoles=", activeRoles)
 
 		const apiLeague =  Leagues.GetActiveLeague()
 		setLeague(apiLeague)
@@ -87,7 +87,7 @@ function PlayersContainer() {
 
 	const sortList = (players) => {
 		const size = players.length
-		console.log("PlayersContainer - [sortList] - n. players =", size)
+		console.log("[PlayersContainer - sortList] - n. players =", size)
 		let sortedList = players.sort(highPriceToLow)
 		
 		setPlayers(sortedList)
@@ -108,7 +108,7 @@ function PlayersContainer() {
 			return false
 		})
 		const size = filteredList.length
-		console.log("PlayersContainer - [filterByRole] - role= "+roles+", n. players=", size)
+		console.log("[PlayersContainer - filterByRole] - role= "+roles+", n. players=", size)
 		setQuery("")
 		setPlayers(filteredList)
 	}
@@ -129,7 +129,7 @@ function PlayersContainer() {
 
 	const handleSearch = (text) => {
 		const query = text.toLowerCase()
-		console.log("PlayersContainer - [handleSearch] - query=", query)
+		console.log("[PlayersContainer - handleSearch] - query=", query)
 		const results = allPlayers.filter((player) => {
 			const { name, team } = player
 			if (name.toLowerCase().includes(query) || team.toLowerCase().includes(query)) {
@@ -147,7 +147,7 @@ function PlayersContainer() {
 		}
 		// case 0 - removing role: means that filter button has been pressed twice
 		else if (activeRoles.includes(role)) {
-			console.log("PlayersContainer - [handlePressFilter] - removing role=", role)
+			console.log("[PlayersContainer - handlePressFilter] - removing role=", role)
 			const cleanActiveRole = activeRoles.filter( (item) => item != role)
 			if (cleanActiveRole.length === 0)
 				setActiveRoles([ROLE_CLASSIC.ALL])
@@ -156,7 +156,7 @@ function PlayersContainer() {
 		} 
 		// case 1 - adding role to active roles array
 		else {
-			console.log("PlayersContainer - [handlePressFilter] - added role=", role)
+			console.log("[PlayersContainer - handlePressFilter] - added role=", role)
 			// removing ALL and "none" value if a different role has been pressed
 			const cleanActiveRole = activeRoles.filter( (item) => item != ROLE_CLASSIC.ALL && item != "none")
 			if (cleanActiveRole.length > 0)
@@ -166,7 +166,7 @@ function PlayersContainer() {
 		}
 
 		
-		if (flatRef.current && players) {
+		if (flatRef.current && players && players.length > 0) {
 			flatRef.current.scrollToIndex(
 				{ 
 					index: 0,

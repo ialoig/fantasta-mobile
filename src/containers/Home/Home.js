@@ -50,12 +50,10 @@ function Home(props) {
 			// the scroll Y value that was stored with the previous pan gesture
 			// clamp is needed to don't go over lower or upper values
 			translateY.value = clamp(event.translationY + ctx.y, snapPoints[0], snapPoints[1])
-			console.log(translateY.value)
 		},
 		onEnd: (event) => {
 			const snapValue = snap(translateY.value, event.velocityY, snapPoints[0], snapPoints[1])
 			translateY.value = withSpring(snapValue)
-			console.log(translateY.value, END_TOP)
 		}
 	})
 

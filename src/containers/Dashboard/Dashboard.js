@@ -7,6 +7,7 @@ import { Text, View } from "react-native"
 import { PanGestureHandler } from "react-native-gesture-handler"
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import { Card, Header } from "../../components"
+import ChartSummary from "../../components/Chart/ChartSummary"
 import PieChart from "../../components/Chart/PieChart"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import routes from "../../navigation/routesNames"
@@ -250,7 +251,7 @@ function Dashboard(props) {
 	const { navigate, goBack } = useNavigation()
 	const [league, setLeague] = useState(Leagues.GetActiveLeague())
 	const [team, setTeam] = useState([])
-	const [players, setPlayers] = useState(null)
+	const [players, setPlayers] = useState([])
 
 	//shared value to store allt the scroll Y values
 	const translateY = useSharedValue(0)
@@ -262,8 +263,8 @@ function Dashboard(props) {
 		const team = Object.values(apiLeague.teams)[0]
 
 		//get players from api
-		const apiPlayers = Players.GetPlayers()
-		let allPlayers = Object.values(apiPlayers).slice(0, 50)
+		// const apiPlayers = Players.GetPlayers()
+		// let allPlayers = Object.values(apiPlayers).slice(0, 50)
 
 		const players = team.footballPlayers
 		// setPlayers(players)
@@ -271,8 +272,8 @@ function Dashboard(props) {
 
 		setTeam(team)
 		setLeague(apiLeague)
-		console.log("[useEffect - Dashboard] - league", league)
-		console.log("[useEffect - Dashboard] - team size=", playersFakeData.length)
+		console.log("[Dashboard - useEffect] - league", league)
+		console.log("[Dashboard - useEffect] - players size=", players.length)
 	}, [])
 
 
@@ -286,7 +287,6 @@ function Dashboard(props) {
 			// clamp is needed to don't go over lower or upper values
 			// console.log("[panGestureEvent - Dashboard] - translateY=", translateY.value)
 			translateY.value = clamp(event.translationY + ctx.y, snapPoints[0], snapPoints[1])
-			console.log(translateY.value, snapPoints[0])
 		},
 		onEnd: (event) => {
 			const snapValue = snap(translateY.value, event.velocityY, snapPoints[0], snapPoints[1])
@@ -301,13 +301,26 @@ function Dashboard(props) {
 		}
 	})
 
-	//TODO: must be calculated from league.footballPlayers values
+	//TODO: must be calculated from team.footballPlayers values
 	const budgetSpent = [
 		{ role: "por", value: 80 },
 		{ role: "dif", value: 50 },
 		{ role: "cen", value: 100 },
 		{ role: "att", value: 100 },
 	]
+
+
+	const totalSpent = () => {
+		//calculate totale spent as a sum of the values of budgetSpent
+		const totalSpent = budgetSpent?.reduce(
+			(accumulator, currentValue) =>  accumulator + currentValue.value, 0)
+		totalSpent === undefined ? 0 : totalSpent
+		return totalSpent
+	}
+
+	const totalRemaining = league.budget - totalSpent()
+
+	const maxPlayers = league.goalkeepers + league.defenders + league.midfielders + league.strikers
 
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
@@ -328,10 +341,16 @@ function Dashboard(props) {
 					<Text style={textStyles.h1}>{I18n.translate("budget")}</Text>
 
 					{/* CHART SECTION */}
-					<View style={styles.chart}>
+					<View style={styles.budgetCard}>
 						<PieChart 
 							maxValue={league.budget}
+							totalSpent={totalSpent()}
 							budgetSpent={budgetSpent} //TODO: TO BE CALCULATED
+						/>
+						<ChartSummary 
+							balance={totalRemaining}
+							teamPlayers={players.length}
+							maxPlayers={maxPlayers}
 						/>
 					</View>
 
