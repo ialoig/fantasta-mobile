@@ -21,15 +21,16 @@ function AnimatedArc({ pie, radius, innerRadius, strokeWidth, color }) {
 	const [arc, setArc] = useState()
 
 	useEffect(() => {
+		rotate.value = 0
 		getArc()
-		
-	}, [])
+	}, [pie])
 	
 
 	rotate.value = withTiming(1, {
 		duration: 1500,
 		easing: Easing.inOut(Easing.quad) //https://easings.net
 	})
+
 
 	const animatedProps = useAnimatedProps(() => {
 		let interpolationR = interpolate(rotate.value, 
@@ -49,7 +50,6 @@ function AnimatedArc({ pie, radius, innerRadius, strokeWidth, color }) {
 	
 
 	const getArc = () => {
-		
 		const arc = d3
 			.arc()
 			.outerRadius(radius) //radius of the pie
@@ -62,10 +62,6 @@ function AnimatedArc({ pie, radius, innerRadius, strokeWidth, color }) {
 
 		return arc
 	}
-
-
-
-
 
 	return (
 		<AnimatedPath 
