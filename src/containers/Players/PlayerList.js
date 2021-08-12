@@ -18,7 +18,6 @@ const PlayerList = React.forwardRef(({ players, isClassic, onScroll, onScrollEnd
 	//navigation route
 	const { navigate }  = useNavigation()
 
-
 	const renderItem = ({ item }) => 
 		(					
 			<PlayerCard

@@ -1,11 +1,9 @@
 import PropTypes from "prop-types"
-import React, { useEffect } from "react"
+import React from "react"
 import { StyleSheet, Text, View } from "react-native"
-import { Easing, useDerivedValue, useSharedValue, withTiming } from "react-native-reanimated"
 import { ReText } from "react-native-redash"
 import { textStyles } from "../../styles"
-import colors from "../../styles/colors"
-import { animatedTextValue, animateTextValue } from "../../utils/animationUtils"
+import { animateTextValue } from "../../utils/animationUtils"
 import { deviceScreenWidth } from "../../utils/deviceUtils"
 import { dynamicHeight, dynamicWidth } from "../../utils/pixelResolver"
 
@@ -13,10 +11,9 @@ import { dynamicHeight, dynamicWidth } from "../../utils/pixelResolver"
 
 const MAX_WIDTH = (deviceScreenWidth / 2) /** half screen */ - (deviceScreenWidth * 0.06) /** padding screen */
 
+function ChartLegend({ values }) {
 
-function ChartInfo({ values }) {
 
-	
 	const colorLine = (color) => {
 		return <View style={[style.colorLine, { backgroundColor: color }]}></View>
 	}
@@ -27,20 +24,12 @@ function ChartInfo({ values }) {
 			{
 				values && values.map((item, index) => {
 
-					console.log("item=", item)
-					// if (index != 0)
-					// 	return null
-
 					return (
 						<View key={index} style={style.info}>
-							{
-								colorLine(item.color)
-							}
+							{ colorLine(item.color) }
 							<View style={style.roleLegend}>
 								<Text style={textStyles.graphTitle}>{item.role.toUpperCase()}</Text>
-								<ChartRoleInfo 
-									percentage={item.value}
-								/>
+								<ChartValueLegend value={item.value} />
 							</View>
 						</View>
 					)
@@ -50,18 +39,18 @@ function ChartInfo({ values }) {
 	)
 }
 
-ChartInfo.propTypes = {
+ChartLegend.propTypes = {
 	values: PropTypes.array
 }
 
-export default ChartInfo
+export default ChartLegend
 
 export const style = StyleSheet.create({
 	colorLine: {
 		borderRadius: 8,
 		height: dynamicHeight(327, 5),
 		margin: 8,
-		width: dynamicWidth(20),
+		width: dynamicWidth(24),
 	},
 	container: {
 		...StyleSheet.absoluteFillObject,
@@ -78,25 +67,25 @@ export const style = StyleSheet.create({
 		alignItems: "center",
 		// backgroundColor: colors.greenDarkShadow,
 		flexDirection: "row",
-		// height: dynamicHeight(327, 20),
-		justifyContent: "flex-start",
-		paddingBottom: 8,
-		paddingLeft: 24,
+		paddingLeft: 8,
+		paddingVertical: 2,
 		position: "relative",
 		width: MAX_WIDTH
 	},
 	roleLegend: {
+		alignItems: "center",
 		// backgroundColor: colors.white,
 		flex: 1,
 		flexDirection: "row",
 		justifyContent: "space-between",
-		paddingHorizontal: 16
+		paddingHorizontal: 24
 	}
 })
 
-function ChartRoleInfo({ percentage }) {
 
-	const animatedValue = animateTextValue(percentage)
+function ChartValueLegend({ value }) {
+
+	const animatedValue = animateTextValue(value, " %")
 
 	return (
 		<ReText 
@@ -106,7 +95,7 @@ function ChartRoleInfo({ percentage }) {
 	)
 }
 
-ChartRoleInfo.propTypes = {
-	percentage: PropTypes.number.isRequired
+ChartValueLegend.propTypes = {
+	value: PropTypes.number.isRequired
 }
 

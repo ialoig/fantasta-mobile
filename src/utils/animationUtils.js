@@ -10,7 +10,7 @@ import { Easing, useDerivedValue, useSharedValue, withTiming } from "react-nativ
  * @returns 
  */
 export const clamp = (value, lowerBound, upperBound) => {
-	"worklet"
+	"worklet" //https://docs.swmansion.com/react-native-reanimated/docs/next/worklets/
 	return Math.min(Math.max(lowerBound, value), upperBound)
 }
 
@@ -25,7 +25,7 @@ export const clamp = (value, lowerBound, upperBound) => {
  * @returns 
  */
 export const snap = (value, velocity, checkOne, checkTwo) => {
-	"worklet"
+	"worklet" //https://docs.swmansion.com/react-native-reanimated/docs/next/worklets/
 	const point = value + 0.5 * velocity
 	const getCloser = Math.abs(point - checkOne) < Math.abs(point - checkTwo) ? 
 		checkOne : 
@@ -35,26 +35,22 @@ export const snap = (value, velocity, checkOne, checkTwo) => {
 
 
 /**
- * TODO : check parallel calls
  * 
- * @param {toValue} number the value animation should stops 
+ * @param {toValue} number the value where animation should stops 
+ * @param {addText} string concatenate text to the value 
  * @returns 
  */
-export const animateTextValue = (toValue) => {
-	"worklet"
+export const animateTextValue = (toValue, addText) => {
 	const progress = useSharedValue(0)
+	
+	progress.value = withTiming(toValue, {
+		duration: 800,
+		easing: Easing.linear //https://easings.net
+	})
 
-	useEffect(() => {
-		// console.log("toValue =", toValue)
-		progress.value = withTiming(toValue, {
-			duration: 800,
-			easing: Easing.linear //https://easings.net
-		})
-	}, [toValue])
-
+	addText = addText ? addText : ""
 
 	return useDerivedValue( () => {
-		// console.log("progress.value=", Math.round(progress.value))
-		return Math.round(progress.value) + "%"
+		return Math.round(progress.value) + addText
 	}, [toValue])
 }

@@ -7,7 +7,6 @@ import { Text, View } from "react-native"
 import { PanGestureHandler } from "react-native-gesture-handler"
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import { Card, Header } from "../../components"
-import ChartInfo from "../../components/Chart/ChartInfo"
 import PieChart from "../../components/Chart/PieChart"
 import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
 import routes from "../../navigation/routesNames"
@@ -253,6 +252,11 @@ function Dashboard(props) {
 	const [team, setTeam] = useState([])
 	const [players, setPlayers] = useState(null)
 
+	//shared value to store allt the scroll Y values
+	const translateY = useSharedValue(0)
+	//ref for FlatList component
+	const flatRef = useRef(null)
+
 	useEffect(() => {
 		const apiLeague = Leagues.GetActiveLeague()
 		const team = Object.values(apiLeague.teams)[0]
@@ -267,15 +271,10 @@ function Dashboard(props) {
 
 		setTeam(team)
 		setLeague(apiLeague)
-		console.log("league", league)
-		console.log("team size=", playersFakeData.length)
+		console.log("[useEffect - Dashboard] - league", league)
+		console.log("[useEffect - Dashboard] - team size=", playersFakeData.length)
 	}, [])
 
-
-	//shared value to store allt the scroll Y values
-	const translateY = useSharedValue(0)
-	//ref for FlatList component
-	const flatRef = useRef(null)
 
 	const panGestureEvent = useAnimatedGestureHandler({
 		onStart: (event, ctx) => {
@@ -285,7 +284,7 @@ function Dashboard(props) {
 			// translate Y value will be the current scroll Y value (event.translationY) plus the 
 			// the scroll Y value that was stored with the previous pan gesture
 			// clamp is needed to don't go over lower or upper values
-			// console.log("translateY=", translateY.value)
+			// console.log("[panGestureEvent - Dashboard] - translateY=", translateY.value)
 			translateY.value = clamp(event.translationY + ctx.y, snapPoints[0], snapPoints[1])
 			console.log(translateY.value, snapPoints[0])
 		},
@@ -302,7 +301,13 @@ function Dashboard(props) {
 		}
 	})
 
-
+	//TODO: must be calculated from league.footballPlayers values
+	const budgetSpent = [
+		{ role: "por", value: 80 },
+		{ role: "dif", value: 50 },
+		{ role: "cen", value: 100 },
+		{ role: "att", value: 100 },
+	]
 
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
@@ -322,24 +327,26 @@ function Dashboard(props) {
 					/>
 					<Text style={textStyles.h1}>{I18n.translate("budget")}</Text>
 
+					{/* CHART SECTION */}
 					<View style={styles.chart}>
 						<PieChart 
 							maxValue={league.budget}
-							// budgetSpent={} //TODO: TO BE CALCULATED
+							budgetSpent={budgetSpent} //TODO: TO BE CALCULATED
 						/>
 					</View>
 
+
 					<View style={commonStyle.separator} />
 
-					<Text style={textStyles.h1}>{I18n.translate("team")}</Text>
-					
+
+					{/* PLAYER LIST SECTION */}
+					<Text style={textStyles.h1}>{I18n.translate("team")}</Text>					
 					{/* Roles filter buttons */}
 					<RolesFilter 
 						roles={league.type === "classic" ? ROLE_CLASSIC : ROLE_MANTRA}
 						onPress={() => {}}
 						isActive={() => {}}
 					/>
-
 					{/* Rendering list of players */ }
 					<View style={styles.team}>
 						<PlayerList 
