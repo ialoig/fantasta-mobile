@@ -1,11 +1,10 @@
 import PropTypes from "prop-types"
 import React from "react"
 import { StyleSheet, Text, View } from "react-native"
-import { ReText } from "react-native-redash"
 import { textStyles } from "../../styles"
-import { animateTextValue } from "../../utils/animationUtils"
 import { deviceScreenWidth } from "../../utils/deviceUtils"
 import { dynamicHeight, dynamicWidth } from "../../utils/pixelResolver"
+import AnimatedText from "./AnimatedText"
 
 
 
@@ -28,8 +27,8 @@ function ChartLegend({ values }) {
 						<View key={index} style={style.info}>
 							{ colorLine(item.color) }
 							<View style={style.roleLegend}>
-								<Text style={textStyles.graphTitle}>{item.role.toUpperCase()}</Text>
-								<ChartValueLegend value={item.value} />
+								<Text style={textStyles.chartTitle}>{item.role.toUpperCase()}</Text>
+								<AnimatedText style={textStyles.chartTitle} value={item.value} addText={" %"} />
 							</View>
 						</View>
 					)
@@ -56,7 +55,6 @@ export const style = StyleSheet.create({
 		...StyleSheet.absoluteFillObject,
 		alignContent: "center",
 		alignItems: "center",
-		// backgroundColor: colors.greenDisabled,
 		flex: 1,
 		justifyContent: "center",
 		left: MAX_WIDTH,
@@ -65,7 +63,6 @@ export const style = StyleSheet.create({
 	info: {
 		...StyleSheet.absoluteFillObject,
 		alignItems: "center",
-		// backgroundColor: colors.greenDarkShadow,
 		flexDirection: "row",
 		paddingLeft: 8,
 		paddingVertical: 2,
@@ -74,7 +71,6 @@ export const style = StyleSheet.create({
 	},
 	roleLegend: {
 		alignItems: "center",
-		// backgroundColor: colors.white,
 		flex: 1,
 		flexDirection: "row",
 		justifyContent: "space-between",
@@ -83,19 +79,4 @@ export const style = StyleSheet.create({
 })
 
 
-function ChartValueLegend({ value }) {
-
-	const animatedValue = animateTextValue(value, " %")
-
-	return (
-		<ReText 
-			style={textStyles.graphTitle} 
-			text={animatedValue}
-		/>
-	)
-}
-
-ChartValueLegend.propTypes = {
-	value: PropTypes.number.isRequired
-}
 

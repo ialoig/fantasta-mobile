@@ -1,40 +1,40 @@
 import PropTypes from "prop-types"
-import React, { useEffect, useRef } from "react"
-import { Animated } from "react-native"
+import React from "react"
+import { Text } from "react-native"
+import Animated, { 
+	Easing, 
+	useAnimatedStyle, 
+	useSharedValue, 
+	withTiming } from "react-native-reanimated"
 import { inputStyle, textStyles } from "../../styles"
 
+const AnimatedText = Animated.createAnimatedComponent(Text)
 function ErrorHandler({ error, hasError }) {
 
-	const fadeAnim = useRef(new Animated.Value(0)).current
+	const opacityValue = useSharedValue(0)
 
-	//when component is mounted check if there is an error ...
-	//... if yes opacity is set to 1 trough animation ...
-	//... if not opacity is set to 0 (aka not visible)
-	useEffect( () => {
+	const opacityStyle = useAnimatedStyle( () => {
 		if (hasError) {
-			Animated.timing(fadeAnim, {
-				toValue: 1,
+			opacityValue.value = withTiming(1, {
 				duration: 400,
-				useNativeDriver: true
-			}).start()
+				easing: Easing.ease
+			})
 		} else {
-			Animated.timing(fadeAnim, {
-				toValue: 0,
+			opacityValue.value = withTiming(0, {
 				duration: 400,
-				useNativeDriver: true
-			}).start()
+				easing: Easing.ease
+			})
+		}
+
+		return {
+			opacity: opacityValue.value
 		}
 	})
 
-
 	return (
-		<Animated.Text style={[textStyles.description, inputStyle.inputError, 
-			{
-				opacity: fadeAnim
-			}
-		]}>
+		<AnimatedText style={[textStyles.description, inputStyle.inputError, opacityStyle]}>
 			{error}
-		</Animated.Text>
+		</AnimatedText>
 	)
 }
 
