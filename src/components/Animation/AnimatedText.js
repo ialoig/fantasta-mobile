@@ -19,7 +19,7 @@ function AnimatedText({ value, addText, style }) {
 AnimatedText.propTypes = {
 	value: PropTypes.number.isRequired,
 	addText: PropTypes.string,
-	style: PropTypes.object
+	style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]) 
 }
 
 export default AnimatedText

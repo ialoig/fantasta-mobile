@@ -2,12 +2,8 @@ import PropTypes from "prop-types"
 import React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { textStyles } from "../../styles"
-import { deviceScreenWidth } from "../../utils/deviceUtils"
-import AnimatedText from "./AnimatedText"
-
-
-const MAX_WIDTH = (deviceScreenWidth / 2) /** half screen */ - (deviceScreenWidth * 0.06) /** padding screen */
-
+import AnimatedText from "../Animation/AnimatedText"
+import { MAX_WIDTH } from "./ChartUtils"
 
 function ChartSummary({ balance, teamPlayers, maxPlayers }) {
 	return (

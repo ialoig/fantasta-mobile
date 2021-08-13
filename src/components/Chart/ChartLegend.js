@@ -2,13 +2,10 @@ import PropTypes from "prop-types"
 import React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { textStyles } from "../../styles"
-import { deviceScreenWidth } from "../../utils/deviceUtils"
 import { dynamicHeight, dynamicWidth } from "../../utils/pixelResolver"
-import AnimatedText from "./AnimatedText"
+import AnimatedText from "../Animation/AnimatedText"
+import { MAX_WIDTH } from "./ChartUtils"
 
-
-
-const MAX_WIDTH = (deviceScreenWidth / 2) /** half screen */ - (deviceScreenWidth * 0.06) /** padding screen */
 
 function ChartLegend({ values }) {
 
