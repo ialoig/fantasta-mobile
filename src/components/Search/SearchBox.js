@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { SearchInput } from "../../components"
+import { SearchInput } from ".."
 
 function SearchBox({ query, changeQuery }) {
 	return (

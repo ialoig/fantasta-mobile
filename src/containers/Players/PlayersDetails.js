@@ -1,13 +1,13 @@
 import { useRoute } from "@react-navigation/native"
 import I18n from "i18n-js"
 import React, { useEffect, useState } from "react"
-import { Text, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 import { PlayerCard, StatsCard } from "../../components"
 import Icon from "../../components/Icon/Icon"
 import { Players } from "../../services"
-import { textStyles } from "../../styles"
-import styles from "./styles"
+import { colors, textStyles } from "../../styles"
+import { deviceScreenHeight, deviceScreenWidth } from "../../utils/deviceUtils"
 
 function PlayersDetails() {
 
@@ -125,3 +125,16 @@ function PlayersDetails() {
 
 export default PlayersDetails
 
+const styles = StyleSheet.create({
+	container: {
+		...StyleSheet.absoluteFillObject,
+		backgroundColor: colors.background,
+		paddingBottom: deviceScreenHeight * 0.01,
+		paddingHorizontal: deviceScreenWidth * 0.06
+	},
+	statistics: {
+		alignItems: "center",
+		flexDirection: "row",
+		justifyContent: "space-between"
+	}
+})
