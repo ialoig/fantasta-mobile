@@ -3,7 +3,6 @@ import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
 
 import { CreateContainer } from "../containers/Create/CreateContainer"
-import { DashboardContainer } from "../containers/Dashboard/DashboardContainer"
 import ForgotPassword from "../containers/ForgotPassword/ForgotPassword"
 import ForgotPasswordConfirmation from "../containers/ForgotPassword/ForgotPasswordConfirmation"
 import { GetStartedContainer } from "../containers/GetStarted/GetStartedContainer"

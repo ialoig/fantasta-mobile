@@ -1,5 +1,5 @@
 
-export { default as COLORS } from "./colors"
+export { default as colors } from "./colors"
 
 export { default as inputStyle } from "./inputs"
 export { default as textStyles } from "./text"
