@@ -6,7 +6,7 @@ import { DashboardContainer } from "../containers/Dashboard/DashboardContainer"
 import Market from "../containers/Market/Market"
 import PlayersContainer from "../containers/Players/PlayersContainer"
 import Team from "../containers/Team/Team"
-import { COLORS } from "../styles"
+import { colors } from "../styles"
 import { bottomTabShadow, bottomTabStyle } from "./bottomTabNavigatorConfig"
 import routes from "./routesNames"
 
@@ -36,8 +36,8 @@ function BottomTabNavigator() {
 					tabBarIcon: ({ focused }) => {
 						return <Icon
 							name="dashboard_tab" 
-							primary={focused ? COLORS.primary : COLORS.grey} 
-							secondary={focused ? COLORS.secondary : COLORS.white} />
+							primary={focused ? colors.primary : colors.grey} 
+							secondary={focused ? colors.secondary : colors.white} />
 					}
 				}}
 			/>
@@ -49,8 +49,8 @@ function BottomTabNavigator() {
 					tabBarIcon: ({ focused }) => {
 						return <Icon
 							name="teams_tab" 
-							primary={focused ? COLORS.primary : COLORS.grey} 
-							secondary={focused ? COLORS.secondary : COLORS.white} />
+							primary={focused ? colors.primary : colors.grey} 
+							secondary={focused ? colors.secondary : colors.white} />
 					}
 				}}
 			/>
@@ -62,8 +62,8 @@ function BottomTabNavigator() {
 					tabBarIcon: ({ focused }) => {
 						return <Icon
 							name="market_tab" 
-							primary={focused ? COLORS.primary : COLORS.grey} 
-							secondary={focused ? COLORS.secondary : COLORS.white} />
+							primary={focused ? colors.primary : colors.grey} 
+							secondary={focused ? colors.secondary : colors.white} />
 					}
 				}}
 			/>
@@ -75,8 +75,8 @@ function BottomTabNavigator() {
 					tabBarIcon: ({ focused }) => {
 						return <Icon
 							name="players_tab" 
-							primary={focused ? COLORS.primary : COLORS.grey} 
-							secondary={focused ? COLORS.secondary : COLORS.white} />
+							primary={focused ? colors.primary : colors.grey} 
+							secondary={focused ? colors.secondary : colors.white} />
 					}
 				}}
 			/>

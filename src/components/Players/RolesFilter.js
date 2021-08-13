@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { ScrollView } from "react-native-gesture-handler"
 import Animated from "react-native-reanimated"
-import { Badge } from "../../components"
+import { Badge } from ".."
 import styles from "./styles"
 
 

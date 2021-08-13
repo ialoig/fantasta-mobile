@@ -1,7 +1,6 @@
 
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
-import PropTypes from "prop-types"
 import React, { useEffect, useRef, useState } from "react"
 import { Text, View } from "react-native"
 import { PanGestureHandler } from "react-native-gesture-handler"
@@ -9,14 +8,12 @@ import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, 
 import { Card, Header } from "../../components"
 import ChartSummary from "../../components/Chart/ChartSummary"
 import PieChart from "../../components/Chart/PieChart"
-import { ROLE_CLASSIC, ROLE_MANTRA } from "../../constants"
+import PlayersComp from "../../components/Players/PlayersComp"
 import routes from "../../navigation/routesNames"
-import { Leagues, Players } from "../../services"
+import { Leagues } from "../../services"
 import { commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
 import { getHeaderHeight, getMaxHeader } from "../../utils/deviceUtils"
-import PlayerList from "../Players/PlayerList"
-import RolesFilter from "../Players/RolesFilter"
 import styles from "./styles"
 
 const MAX_HEADER = getMaxHeader()
@@ -246,7 +243,7 @@ const playersFakeData = [
 	}
 ]
 
-function Dashboard(props) {
+function Dashboard() {
 
 	const { navigate, goBack } = useNavigation()
 	const [league, setLeague] = useState(Leagues.GetActiveLeague())
@@ -300,6 +297,7 @@ function Dashboard(props) {
 			transform: [{ translateY: translateY.value }]
 		}
 	})
+
 
 	//TODO: must be calculated from team.footballPlayers values
 	const budgetSpent = [
@@ -360,20 +358,12 @@ function Dashboard(props) {
 
 					{/* PLAYER LIST SECTION */}
 					<Text style={textStyles.h1}>{I18n.translate("team")}</Text>					
-					{/* Roles filter buttons */}
-					<RolesFilter 
-						roles={league.type === "classic" ? ROLE_CLASSIC : ROLE_MANTRA}
-						onPress={() => {}}
-						isActive={() => {}}
+					<PlayersComp 
+						players={players}
+						searchBoxShown={false}
+						searchBoxSticky={true}
 					/>
-					{/* Rendering list of players */ }
-					<View style={styles.team}>
-						<PlayerList 
-							ref={flatRef}
-							players={players}
-							isClassic={true}
-						/>
-					</View>
+					
 				</Animated.View>
 			</PanGestureHandler>
 
