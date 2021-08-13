@@ -5,10 +5,10 @@ import { StyleSheet, Text, View } from "react-native"
 import Svg, { G } from "react-native-svg"
 import { textStyles } from "../../styles"
 import colors from "../../styles/colors"
-import { deviceScreenWidth } from "../../utils/deviceUtils"
+import AnimatedText from "../Animation/AnimatedText"
 import AnimatedArc from "./AnimatedArc"
-import AnimatedText from "./AnimatedText"
 import ChartLegend from "./ChartLegend"
+import { MAX_WIDTH } from "./ChartUtils"
 
 /**
  *  references:
@@ -22,11 +22,10 @@ import ChartLegend from "./ChartLegend"
  * @param {strokeWidth} number is the size width of the chart 
  * @param {maxValue} number represent the max value of the chart
  * @param {budgetSpent} object data value to be represented
+ * @param {totalSpent} number sum of values calculated from budgetSpent
  * @param {calculateAsPerc} number define if the value passed by the data must be calculate as percentage
  * @returns a PieChart
  */
-
-const MAX_WIDTH = (deviceScreenWidth / 2) /** half screen */ - (deviceScreenWidth * 0.06) /** padding screen */
 
 function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calculateAsPerc }) {
 
@@ -111,36 +110,13 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 		setValues(values)
 	}
 
-
-	const style = StyleSheet.create({
-		chart: {
-			alignItems: "center",
-			flex: 1,
-			justifyContent: "center",
-			width: MAX_WIDTH
-		},
-		info: {
-			...StyleSheet.absoluteFillObject,
-			alignItems: "center",
-			justifyContent: "center",
-		},
-		text: {
-			color: colors.text,
-			fontFamily: "PoppinsSemiBold",
-			fontSize: radius / 3,
-			fontStyle: "normal",
-			fontWeight: "normal",
-			height: radius / 2,
-			justifyContent: "flex-end",
-			letterSpacing: 0.75
-		}
-	})
+	const animatedTextStyle = 
+	{
+		fontSize: radius / 3,
+		height: radius / 2,
+	}
 
 
-	
-
-	// https://github.com/wcandillon/can-it-be-done-in-react-native/tree/master/reanimated-2/src/StrokeAnimation
-	// https://github.com/wcandillon/can-it-be-done-in-react-native/blob/master/bonuses/circular-progress/components/CircularProgress2.tsx
 	return (
 		<>
 			<View style={style.chart}>
@@ -160,7 +136,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 								return (
 									<AnimatedArc 
 										key={index}
-										pie={item}
+										value={item}
 										radius={radius}
 										innerRadius={innerRadius}
 										strokeWidth={strokeWidth}
@@ -172,7 +148,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 					</G>
 				</Svg>
 				<View style={style.info}>
-					<AnimatedText value={totalSpent} style={style.text}/>
+					<AnimatedText value={totalSpent} style={[style.text, animatedTextStyle]}/>
 					<Text style={textStyles.chartTitle}>spent</Text>
 				</View>	
 
@@ -190,6 +166,7 @@ PieChart.propTypes = {
 	strokeWidth: PropTypes.number.isRequired,
 	maxValue: PropTypes.number.isRequired,
 	budgetSpent: PropTypes.array,
+	totalSpent: PropTypes.number.isRequired,
 	calculateAsPerc: PropTypes.bool
 }
 
@@ -203,6 +180,7 @@ PieChart.defaultProps = {
 		{ role: "cen", value: 0 },
 		{ role: "att", value: 0 },
 	],
+	totalSpent: 0,
 	calculateAsPerc: true
 }
 
@@ -210,3 +188,24 @@ export default PieChart
 
 
 
+const style = StyleSheet.create({
+	chart: {
+		alignItems: "center",
+		flex: 1,
+		justifyContent: "center",
+		width: MAX_WIDTH
+	},
+	info: {
+		...StyleSheet.absoluteFillObject,
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	text: {
+		color: colors.text,
+		fontFamily: "PoppinsSemiBold",
+		fontStyle: "normal",
+		fontWeight: "normal",
+		justifyContent: "flex-end",
+		letterSpacing: 0.75
+	}
+})

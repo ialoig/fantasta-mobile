@@ -14,7 +14,7 @@ import { Path } from "react-native-svg"
 // https://github.com/callstack/reanimated-arc
 const AnimatedPath = Animated.createAnimatedComponent(Path)
 
-function AnimatedArc({ pie, radius, innerRadius, strokeWidth, color }) {
+function AnimatedArc({ value, radius, innerRadius, strokeWidth, color }) {
 
 	const rotate = useSharedValue(0)
 
@@ -23,7 +23,7 @@ function AnimatedArc({ pie, radius, innerRadius, strokeWidth, color }) {
 	useEffect(() => {
 		rotate.value = 0
 		getArc()
-	}, [pie])
+	}, [value])
 	
 
 	rotate.value = withTiming(1, {
@@ -52,12 +52,12 @@ function AnimatedArc({ pie, radius, innerRadius, strokeWidth, color }) {
 	const getArc = () => {
 		const arc = d3
 			.arc()
-			.outerRadius(radius) //radius of the pie
-			.innerRadius(innerRadius) //to create a donut or a pie
+			.outerRadius(radius) //radius of the value
+			.innerRadius(innerRadius) //to create a donut or a value
 			.padAngle(0.15) // angles between sections
-			.startAngle(pie.startAngle)
-			.endAngle(pie.endAngle)
-			.cornerRadius(0.5)(pie)
+			.startAngle(value.startAngle)
+			.endAngle(value.endAngle)
+			.cornerRadius(0.5)(value)
 		setArc(arc)
 
 		return arc
@@ -75,7 +75,7 @@ function AnimatedArc({ pie, radius, innerRadius, strokeWidth, color }) {
 }
 
 AnimatedArc.propTypes = {
-	pie: PropTypes.object.isRequired,
+	value: PropTypes.object.isRequired,
 	radius: PropTypes.number.isRequired,
 	innerRadius: PropTypes.number.isRequired,
 	strokeWidth: PropTypes.number.isRequired,
