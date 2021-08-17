@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
-import colors from "../../styles/colors"
-import { dynamicHeight, dynamicWidth, getWidth } from "../../utils/pixelResolver"
+import colors from "../../../styles/colors"
+import { dynamicHeight, dynamicWidth, getWidth } from "../../../utils/pixelResolver"
 
 
 export const size = StyleSheet.create({

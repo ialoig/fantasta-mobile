@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react"
 import { View } from "react-native"
 import { Header } from "../../components"
 import PlayersComp from "../../components/Players/PlayersComp"
-import styles from "../../components/Players/styles"
 import { Players } from "../../services"
 import { commonStyle } from "../../styles"
+import styles from "./styles"
 
 
 function PlayersContainer() {

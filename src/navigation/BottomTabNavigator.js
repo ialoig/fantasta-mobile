@@ -2,7 +2,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import React from "react"
 import Icon from "../components/Icon/Icon"
-import { DashboardContainer } from "../containers/Dashboard/DashboardContainer"
+import Dashboard from "../containers/Dashboard/Dashboard"
 import Market from "../containers/Market/Market"
 import PlayersContainer from "../containers/Players/PlayersContainer"
 import Team from "../containers/Team/Team"
@@ -30,7 +30,7 @@ function BottomTabNavigator() {
 		>
 			<Tab.Screen 
 				name={routes.DASHBOARD}
-				component={DashboardContainer}
+				component={Dashboard}
 				options={{ 
 					// eslint-disable-next-line react/display-name
 					tabBarIcon: ({ focused }) => {
