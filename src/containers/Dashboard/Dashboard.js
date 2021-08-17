@@ -10,7 +10,7 @@ import ChartSummary from "../../components/Chart/ChartSummary"
 import PieChart from "../../components/Chart/PieChart"
 import PlayersComp from "../../components/Players/PlayersComp"
 import routes from "../../navigation/routesNames"
-import { Leagues } from "../../services"
+import { Leagues, Players, User } from "../../services"
 import { commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
 import { getHeaderHeight, getMaxHeader } from "../../utils/deviceUtils"
@@ -21,227 +21,6 @@ const HEADER_HEIGHT = getHeaderHeight()
 const END_TOP = MAX_HEADER + HEADER_HEIGHT
 const snapPoints = [-END_TOP, 0]
 
-
-const playersFakeData = [
-	{
-		"actualPrice": 17,
-		"id": 250,
-		"initialPrice": 17,
-		"name": "HANDANOVIC",
-		"roleClassic": "P",
-		"roleMantra": [
-			"Por",
-		],
-		"team": "Inter",
-	},
-	{
-		"actualPrice": 15,
-		"id": 4307,
-		"initialPrice": 15,
-		"name": "ROMERO",
-		"roleClassic": "D",
-		"roleMantra": [
-			"Dc",
-		],
-		"team": "Atalanta",
-	},
-	{
-		"actualPrice": 15,
-		"id": 798,
-		"initialPrice": 15,
-		"name": "SKRINIAR",
-		"roleClassic": "D",
-		"roleMantra": [
-			"Dc",
-		],
-		"team": "Inter",
-	},
-	{
-		"actualPrice": 21,
-		"id": 4292,
-		"initialPrice": 21,
-		"name": "HERNANDEZ T.",
-		"roleClassic": "D",
-		"roleMantra": [
-			"Ds",
-			"E",
-		],
-		"team": "Milan",
-	},
-	{
-		"actualPrice": 14,
-		"id": 4237,
-		"initialPrice": 14,
-		"name": "DANILO",
-		"roleClassic": "D",
-		"roleMantra": [
-			"Dd",
-			"Ds",
-			"E",
-		],
-		"team": "Juventus",
-	},
-	{
-		"actualPrice": 14,
-		"id": 581,
-		"initialPrice": 14,
-		"name": "FARAONI",
-		"roleClassic": "D",
-		"roleMantra": [
-			"Dd",
-			"E",
-		],
-		"team": "Verona",
-	},
-	{
-		"actualPrice": 18,
-		"id": 697,
-		"initialPrice": 18,
-		"name": "CUADRADO",
-		"roleClassic": "D",
-		"roleMantra": [
-			"Dd",
-			"E",
-		],
-		"team": "Juventus",
-	},
-	{
-		"actualPrice": 27,
-		"id": 1850,
-		"initialPrice": 27,
-		"name": "KESSIE'",
-		"roleClassic": "C",
-		"roleMantra": [
-			"M",
-			"C",
-		],
-		"team": "Milan",
-	},
-	{
-		"actualPrice": 16,
-		"id": 827,
-		"initialPrice": 16,
-		"name": "LOCATELLI",
-		"roleClassic": "C",
-		"roleMantra": [
-			"M",
-			"C",
-		],
-		"team": "Sassuolo",
-	},
-	{
-		"actualPrice": 15,
-		"id": 788,
-		"initialPrice": 15,
-		"name": "FREULER",
-		"roleClassic": "C",
-		"roleMantra": [
-			"C",
-		],
-		"team": "Atalanta",
-	},
-	{
-		"actualPrice": 18,
-		"id": 2077,
-		"initialPrice": 18,
-		"name": "PASALIC",
-		"roleClassic": "C",
-		"roleMantra": [
-			"C",
-			"T",
-		],
-		"team": "Atalanta",
-	},
-	{
-		"actualPrice": 25,
-		"id": 2085,
-		"initialPrice": 25,
-		"name": "LUIS ALBERTO",
-		"roleClassic": "C",
-		"roleMantra": [
-			"T",
-		],
-		"team": "Lazio",
-	},
-	{
-		"actualPrice": 31,
-		"id": 531,
-		"initialPrice": 31,
-		"name": "BERARDI",
-		"roleClassic": "A",
-		"roleMantra": [
-			"A",
-		],
-		"team": "Sassuolo",
-	},
-	{
-		"actualPrice": 32,
-		"id": 409,
-		"initialPrice": 32,
-		"name": "INSIGNE",
-		"roleClassic": "A",
-		"roleMantra": [
-			"A",
-		],
-		"team": "Napoli",
-	},
-	{
-		"actualPrice": 19,
-		"id": 2766,
-		"initialPrice": 19,
-		"name": "ZANIOLO",
-		"roleClassic": "C",
-		"roleMantra": [
-			"W",
-			"T",
-		],
-		"team": "Roma",
-	},	  
-	{
-		"actualPrice": 25,
-		"id": 410,
-		"initialPrice": 25,
-		"name": "MERTENS",
-		"roleClassic": "A",
-		"roleMantra": [
-			"A",
-		],
-		"team": "Napoli",
-	},
-	{
-		"actualPrice": 25,
-		"id": 309,
-		"initialPrice": 25,
-		"name": "DYBALA",
-		"roleClassic": "A",
-		"roleMantra": [
-			"A",
-		],
-		"team": "Juventus",
-	},
-	{
-		"actualPrice": 44,
-		"id": 2531,
-		"initialPrice": 44,
-		"name": "LUKAKU",
-		"roleClassic": "A",
-		"roleMantra": [
-			"Pc",
-		],
-		"team": "Inter",
-	},
-	{
-		"actualPrice": 44,
-		"id": 2610,
-		"initialPrice": 44,
-		"name": "RONALDO",
-		"roleClassic": "A",
-		"roleMantra": [
-			"Pc",
-		],
-		"team": "Juventus",
-	}
-]
 
 function Dashboard() {
 
@@ -257,21 +36,50 @@ function Dashboard() {
 
 	useEffect(() => {
 		const apiLeague = Leagues.GetActiveLeague()
-		const team = Object.values(apiLeague.teams)[0]
+		const myTeam = Leagues.GetMyTeam(User.Get().username)
+
+		getRandomPlayers()
 
 		//get players from api
-		// const apiPlayers = Players.GetPlayers()
-		// let allPlayers = Object.values(apiPlayers).slice(0, 50)
+		// const apiPlayers = Object.values(Players.GetPlayers())
 
-		const players = team.footballPlayers
+		// const players = team.footballPlayers
 		// setPlayers(players)
-		setPlayers(playersFakeData) //TODO: just for debug, replace with the correct one (line above)
 
-		setTeam(team)
+		setTeam(myTeam)
 		setLeague(apiLeague)
 		console.log("[Dashboard - useEffect] - league", league)
-		console.log("[Dashboard - useEffect] - players size=", players.length)
+		// console.log("[Dashboard - useEffect] - players size=", players.length)
 	}, [])
+
+
+	//TODO: to be deleted after calculation of players from team object
+	const randomNumberFromRange = (min, max) => {
+		return Math.round(Math.random() * (max-min+1) + min )
+	}
+
+	//TODO: just for debug, replace with the correct players calculated from team object (ie. team.footballPlayers)
+	const getRandomPlayers = () => {
+		//get players from api
+		const apiPlayers = Object.values(Players.GetPlayers())
+		
+		const size = apiPlayers.length
+		console.log("[Dashboard - useEffect] - size", size)
+		const players = []
+		const indexes = []
+		for (let i = 0; i<randomNumberFromRange(10, 25); i++) {
+			const random = Math.random()
+			const randomIndex = Math.round(random * size)
+			if (indexes.find(item => item === randomIndex)) {
+				continue
+			} else {
+				indexes.push(randomIndex)
+			}
+			
+			players.push(apiPlayers[randomIndex])
+		}
+		setPlayers(players)
+	}
 
 
 	const panGestureEvent = useAnimatedGestureHandler({
@@ -301,10 +109,10 @@ function Dashboard() {
 
 	//TODO: must be calculated from team.footballPlayers values
 	const budgetSpent = [
-		{ role: "por", value: 80 },
-		{ role: "dif", value: 50 },
-		{ role: "cen", value: 100 },
-		{ role: "att", value: 100 },
+		{ role: "por", value: randomNumberFromRange(10, 40) },
+		{ role: "dif", value: randomNumberFromRange(40, 60) },
+		{ role: "cen", value: randomNumberFromRange(90, 150) },
+		{ role: "att", value: randomNumberFromRange(150, 250) },
 	]
 
 

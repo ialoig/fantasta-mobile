@@ -22,6 +22,11 @@ const GetActiveLeague = () => {
 	return ACTIVE_LEAGUE
 }
 
+const GetMyTeam = (username) => {
+	const teams = ACTIVE_LEAGUE.teams
+	return teams.find(item => item.user.name === username)
+}
+
 const Create = async ( settings ) =>
 {
 	try
@@ -76,6 +81,7 @@ export const Leagues = {
 	GetLeagues,
 	SetActiveLeague,
 	GetActiveLeague,
+	GetMyTeam,
 	Create,
 	Join
 }
