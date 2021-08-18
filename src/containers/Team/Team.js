@@ -12,8 +12,8 @@ function Team(props) {
 
 	const { goBack } = useNavigation()
 
-	const [teams, setTeams] = useState(null)
-	const [league, setLeague] = useState(null)
+	const [teams, setTeams] = useState()
+	const [league, setLeague] = useState()
 
 	useEffect(() => {
 		
@@ -25,7 +25,6 @@ function Team(props) {
 		setTeams(teams)
 		
 	}, [])
-
 
 
 	
@@ -42,7 +41,7 @@ function Team(props) {
 
 			{/* it is defined as latest component cause it must be over the others */}
 			<Header 
-				title="team" 
+				title="teams" 
 				leftButton
 				iconTypeLeft="back"
 				onPressLeft={() => goBack() }

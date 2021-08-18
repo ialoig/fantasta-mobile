@@ -1,38 +1,20 @@
 
 import { useNavigation } from "@react-navigation/native"
-import I18n from "i18n-js"
-import React, { useEffect, useRef, useState } from "react"
-import { Text, View } from "react-native"
-import { PanGestureHandler } from "react-native-gesture-handler"
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
-import { Card, Header } from "../../components"
-import ChartSummary from "../../components/Chart/ChartSummary"
-import PieChart from "../../components/Chart/PieChart"
-import PlayersComp from "../../components/Players/PlayersComp"
+import React, { useEffect, useState } from "react"
+import { Header } from "../../components"
 import routes from "../../navigation/routesNames"
 import { Leagues, Players, User } from "../../services"
-import { commonStyle, textStyles } from "../../styles"
-import { clamp, snap } from "../../utils/animationUtils"
-import { getHeaderHeight, getMaxHeader } from "../../utils/deviceUtils"
-import styles from "./styles"
-
-const MAX_HEADER = getMaxHeader()
-const HEADER_HEIGHT = getHeaderHeight()
-const END_TOP = MAX_HEADER + HEADER_HEIGHT
-const snapPoints = [-END_TOP, 0]
+import { commonStyle } from "../../styles"
+import TeamDetails from "../Team/TeamDetails"
 
 
 function Dashboard() {
 
 	const { navigate, goBack } = useNavigation()
 	const [league, setLeague] = useState(Leagues.GetActiveLeague())
-	const [team, setTeam] = useState([])
+	const [team, setTeam] = useState(Leagues.GetMyTeam(User.Get().username))
 	const [players, setPlayers] = useState([])
 
-	//shared value to store allt the scroll Y values
-	const translateY = useSharedValue(0)
-	//ref for FlatList component
-	const flatRef = useRef(null)
 
 	useEffect(() => {
 		const apiLeague = Leagues.GetActiveLeague()
@@ -48,8 +30,7 @@ function Dashboard() {
 
 		setTeam(myTeam)
 		setLeague(apiLeague)
-		console.log("[Dashboard - useEffect] - league", league)
-		// console.log("[Dashboard - useEffect] - players size=", players.length)
+		console.log("[Dashboard - useEffect] - league=", league.name)
 	}, [])
 
 
@@ -64,7 +45,7 @@ function Dashboard() {
 		const apiPlayers = Object.values(Players.GetPlayers())
 		
 		const size = apiPlayers.length
-		console.log("[Dashboard - useEffect] - size", size)
+		console.log("[Dashboard - getRandomPlayers] - size", size)
 		const players = []
 		const indexes = []
 		for (let i = 0; i<randomNumberFromRange(10, 25); i++) {
@@ -82,98 +63,12 @@ function Dashboard() {
 	}
 
 
-	const panGestureEvent = useAnimatedGestureHandler({
-		onStart: (event, ctx) => {
-			ctx.y = translateY.value
-		},
-		onActive: (event, ctx) => {
-			// translate Y value will be the current scroll Y value (event.translationY) plus the 
-			// the scroll Y value that was stored with the previous pan gesture
-			// clamp is needed to don't go over lower or upper values
-			// console.log("[panGestureEvent - Dashboard] - translateY=", translateY.value)
-			translateY.value = clamp(event.translationY + ctx.y, snapPoints[0], snapPoints[1])
-		},
-		onEnd: (event) => {
-			const snapValue = snap(translateY.value, event.velocityY, snapPoints[0], snapPoints[1])
-			translateY.value = withSpring(snapValue)
-		}
-	})
-
-
-	const transformSyle = useAnimatedStyle( () => {
-		return {
-			transform: [{ translateY: translateY.value }]
-		}
-	})
-
-
-	//TODO: must be calculated from team.footballPlayers values
-	const budgetSpent = [
-		{ role: "por", value: randomNumberFromRange(10, 40) },
-		{ role: "dif", value: randomNumberFromRange(40, 60) },
-		{ role: "cen", value: randomNumberFromRange(90, 150) },
-		{ role: "att", value: randomNumberFromRange(150, 250) },
-	]
-
-
-	const totalSpent = () => {
-		//calculate totale spent as a sum of the values of budgetSpent
-		const totalSpent = budgetSpent?.reduce(
-			(accumulator, currentValue) =>  accumulator + currentValue.value, 0)
-		totalSpent === undefined ? 0 : totalSpent
-		return totalSpent
-	}
-
-	const totalRemaining = league.budget - totalSpent()
-
-	const maxPlayers = league.goalkeepers + league.defenders + league.midfielders + league.strikers
-
 	return (
-		<View style={[styles.container, commonStyle.paddingHeader]}>
-
-			<PanGestureHandler 
-				onGestureEvent={panGestureEvent}
-				waitFor={flatRef}
-				shouldCancelWhenOutside
-			>
-				<Animated.View style={transformSyle}>
-					<Card
-						key={league._id}
-						title={league.name}
-						description={team.name}
-						type={"small"}
-						icon={"league"}
-					/>
-					<Text style={textStyles.h1}>{I18n.translate("budget")}</Text>
-
-					{/* CHART SECTION */}
-					<View style={styles.budgetCard}>
-						<PieChart 
-							maxValue={league.budget}
-							totalSpent={totalSpent()}
-							budgetSpent={budgetSpent} //TODO: TO BE CALCULATED
-						/>
-						<ChartSummary 
-							balance={totalRemaining}
-							teamPlayers={players.length}
-							maxPlayers={maxPlayers}
-						/>
-					</View>
-
-
-					<View style={commonStyle.separator} />
-
-
-					{/* PLAYER LIST SECTION */}
-					<Text style={textStyles.h1}>{I18n.translate("team")}</Text>					
-					<PlayersComp 
-						players={players}
-						searchBoxShown={false}
-						searchBoxSticky={true}
-					/>
-					
-				</Animated.View>
-			</PanGestureHandler>
+		<>
+			<TeamDetails 
+				teamID={team._id}
+				style={commonStyle.paddingHeader}
+			/>
 
 			{/* it is defined as latest component cause it must be over the others */}
 			<Header 
@@ -185,7 +80,7 @@ function Dashboard() {
 				iconTypeRight="account"
 				onPressRight={ () => { navigate(routes.ACCOUNTNAVIGATOR) } }
 			/>
-		</View>
+		</>
 	)
 }
 

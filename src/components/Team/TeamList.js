@@ -1,8 +1,9 @@
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { FlatList, Text, View } from "react-native"
+import routes from "../../navigation/routesNames"
 import { Players } from "../../services"
 import { textStyles } from "../../styles"
 import TeamCard from "../Card/TeamCard/TeamCard"
@@ -13,13 +14,6 @@ const TeamList = React.forwardRef(({ teams, league, onScroll, onScrollEnd }, ref
 
 	//navigation route
 	const { navigate }  = useNavigation()
-
-
-	useEffect(() => {
-		
-		
-	}, [])
-
 
 
 	//TODO: to be deleted after calculation of players from team object
@@ -85,7 +79,10 @@ const TeamList = React.forwardRef(({ teams, league, onScroll, onScrollEnd }, ref
 				budget={item.budget}
 				countsPerRole={countsPerRole}
 				maxPerRole={maxPerRole}
-				onPress={() => console.log("pressed")}
+				onPress={() => 
+					navigate(routes.TEAM_DETAILS, {
+						teamID: item._id,
+					})}
 			/>
 		)
 	}
@@ -94,29 +91,29 @@ const TeamList = React.forwardRef(({ teams, league, onScroll, onScrollEnd }, ref
 		<View style={styles.list}>
 			{
 				teams &&
-			<FlatList
-				ref={ref}
-				data={teams}
-				keyExtractor={team => team._id}
-				initialScrollIndex={0}
-				scrollEventThrottle={16} //fire onScroll event each 16ms
-				onScroll={onScroll}
-				onMomentumScrollEnd={onScrollEnd}
-				renderItem={renderItem}
-				ListEmptyComponent={() => { 
-					return (
-						<Text style={textStyles.description}>
-							{I18n.translate("noTeamsFound")}
-						</Text>) 
-				}}
-				showsVerticalScrollIndicator={false}
-				getItemLayout={(data, index) => (
-					{ 
-						length: 80, 
-						offset: 80 * index, index
-					}
-				)}
-			/>
+					<FlatList
+						ref={ref}
+						data={teams}
+						keyExtractor={team => team._id}
+						initialScrollIndex={0}
+						scrollEventThrottle={16} //fire onScroll event each 16ms
+						onScroll={onScroll}
+						onMomentumScrollEnd={onScrollEnd}
+						renderItem={renderItem}
+						ListEmptyComponent={() => { 
+							return (
+								<Text style={textStyles.description}>
+									{I18n.translate("noTeamsFound")}
+								</Text>) 
+						}}
+						showsVerticalScrollIndicator={false}
+						getItemLayout={(data, index) => (
+							{ 
+								length: 80, 
+								offset: 80 * index, index
+							}
+						)}
+					/>
 			}
 		</View>
 	)
