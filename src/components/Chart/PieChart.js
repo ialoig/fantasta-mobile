@@ -43,25 +43,24 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 
 
 	useEffect(() => {
-		console.log("[PieChart - useEffect] - MAX_WIDTH=", MAX_WIDTH, "radius=", radius)
-		console.log("[PieChart - useEffect] - budgetSpent=", budgetSpent)
-
-		if (budgetSpent && maxValue) {
-			chart()
-		}
-	}, [budgetSpent])
+		console.log("[PieChart - useEffect] - creating chart with budgetSpent=", budgetSpent)
+		// if (budgetSpent && maxValue) {
+		
+		chart()
+		// }
+	}, [budgetSpent, maxValue])
 
 
 
 	const chart = () => {
-		calculateValues()
-
+		const values = calculateValues()
+		console.log("[PieChart - chart] - Pie creating with values=", values)
 		if (values && values.length > 0) {
-			console.log("[PieChart - chart] - values=", values)
 			//create pie chart with percentages values
 			const pie = d3.pie()
 				.value( (d) => d.value)(values)
 			setPie(pie)
+			console.log("[PieChart - chart] - Pie created with values")
 		}
 	}
 
@@ -83,24 +82,23 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 				}
 			]
 			setValues(values)
-			return null
+			return values
 		}
 		
 		//calculate values as percentage
 		let values = budgetSpent.map((item, index) => {
-			const percSpent = 100 * item.value / maxValue
-			console.log("[PieChart - calculateValues] - [", index, "]", item.role, percSpent, "%")
+			const percSpent = Math.round(100 * item.value / maxValue)
+			console.log("[PieChart - calculateValues] - [", index, "]", item.role, ",", percSpent, "%")
 			return {
 				role: item.role,
 				color: colors[item.role] === undefined ? colors.grey : colors[item.role],
 				value: calculateAsPerc ? percSpent : item.value
 			}
 		})
-		console.log("[PieChart - calculateValues] - budgetSpent=", budgetSpent)
 		//add the remaining value not spent to the array of values
 		const remainingBudget = (maxValue - totalSpent) <= 0 ? 0 : (maxValue - totalSpent)
 		if (remainingBudget > 0) {
-			const percRemaining = 100 * remainingBudget / maxValue
+			const percRemaining = Math.round(100 * remainingBudget / maxValue)
 			values.push({
 				role: "rest",
 				color: colors.grey,
@@ -108,6 +106,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 			})
 		}
 		setValues(values)
+		return values
 	}
 
 	const animatedTextStyle = 

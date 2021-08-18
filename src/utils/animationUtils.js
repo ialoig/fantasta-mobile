@@ -44,7 +44,7 @@ export const animateTextValue = (toValue, addText) => {
 	const progress = useSharedValue(0)
 	
 	progress.value = withTiming(toValue, {
-		duration: 800,
+		duration: 1000,
 		easing: Easing.linear //https://easings.net
 	})
 

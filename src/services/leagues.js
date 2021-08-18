@@ -27,6 +27,11 @@ const GetMyTeam = (username) => {
 	return teams.find(item => item.user.name === username)
 }
 
+const GetTeamByID = (id) => {
+	const teams = ACTIVE_LEAGUE.teams
+	return teams.find(item => item._id === id)
+}
+
 const Create = async ( settings ) =>
 {
 	try
@@ -82,6 +87,7 @@ export const Leagues = {
 	SetActiveLeague,
 	GetActiveLeague,
 	GetMyTeam,
+	GetTeamByID,
 	Create,
 	Join
 }
