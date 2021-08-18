@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 import { Text, View } from "react-native"
-import Icon from "../Icon/Icon"
+import Icon from "../../Icon/Icon"
 import { size, style, text } from "./styles"
 
 const statsCardType = ["small", "large", "four"]

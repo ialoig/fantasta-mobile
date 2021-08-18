@@ -44,7 +44,7 @@ export class JoinLeagueContainer extends React.Component {
 		else {
 			try {
 				await Leagues.Join("", this.state[FIELDS_ID.leagueNameId], this.state[FIELDS_ID.passwordId], this.state[FIELDS_ID.teamnameId])
-				this.props.navigation.navigate(routes.DASHBOARD)
+				this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
 			}
 			catch (error) {/*error handling done in Leagues.Join*/}
 		}

@@ -17,6 +17,7 @@ import ResetPassword from "../containers/ResetPassword/ResetPassword"
 import ResetPasswordConfirmation from "../containers/ResetPassword/ResetPasswordConfirmation"
 import ResetPasswordError from "../containers/ResetPassword/ResetPasswordError"
 import { SplashScreenContainer } from "../containers/SplashScreen/SplashScreenContainer"
+import TeamDetails from "../containers/Team/TeamDetails"
 import AccountNavigator from "./AccountNavigator"
 import BottomTabNavigator from "./BottomTabNavigator"
 import { defaultScreenOptions, getScreenConfig, noHeaderScreenConfig } from "./routesConfig"
@@ -97,6 +98,10 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.PLAYER_DETAILS}
 					component={PlayersDetails}
+					options={getScreenConfig(true, false, true)}/>
+				<AppStack.Screen
+					name={routes.TEAM_DETAILS}
+					component={TeamDetails}
 					options={getScreenConfig(true, false, true)}/>
 			</AppStack.Navigator>
 		</NavigationContainer>
