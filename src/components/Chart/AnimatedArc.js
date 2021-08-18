@@ -27,7 +27,7 @@ function AnimatedArc({ value, radius, innerRadius, strokeWidth, color }) {
 	
 
 	rotate.value = withTiming(1, {
-		duration: 1500,
+		duration: 1400,
 		easing: Easing.inOut(Easing.quad) //https://easings.net
 	})
 

@@ -50,7 +50,8 @@ const ModalRoutes = {
 	LANGUAGE: "Language",
 	FEEDBACK: "Feedback",
 	CONTACTUS: "ContactUs",
-	PLAYER_DETAILS: "PlayerDetails"
+	PLAYER_DETAILS: "PlayerDetails",
+	TEAM_DETAILS: "TeamDetails"
 }
 
 const routes = {

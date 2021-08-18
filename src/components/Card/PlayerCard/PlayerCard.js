@@ -3,9 +3,9 @@ import { isNil } from "lodash"
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { Pressable, Text, View } from "react-native"
-import { ROLE_CLASSIC } from "../../constants"
-import { textStyles } from "../../styles"
-import Icon from "../Icon/Icon"
+import { ROLE_CLASSIC } from "../../../constants"
+import { textStyles } from "../../../styles"
+import Icon from "../../Icon/Icon"
 import { size, style } from "./styles"
 
 
