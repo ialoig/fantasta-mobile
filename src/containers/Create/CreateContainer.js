@@ -60,15 +60,15 @@ export class CreateContainer extends React.Component {
 			return false
 		}
 		if (!this.state.settings[FIELDS_ID.passwordId]) {
-			Error.showAlert("field_error", "missing_password")
+			Error.showAlert("field_error", "missing_password") // todo: no alert but show message
 			return false
 		}
 		if (this.state.settings[FIELDS_ID.participantsId] < 2) {
-			Error.showAlert("field_error", "participants_error")
+			Error.showAlert("field_error", "participants_error") // todo: no alert but show message
 			return false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
-			Error.showAlert("field_error", "defenders_error")
+			Error.showAlert("field_error", "defenders_error") // todo: no alert but show message
 			return false
 		}
 		return true
@@ -76,27 +76,27 @@ export class CreateContainer extends React.Component {
 
 	validate_teamSettings() {
 		if (this.state.settings[FIELDS_ID.goalskeepersId] < 1) {
-			Error.showAlert("field_error", "goalskeepers_error")
+			Error.showAlert("field_error", "goalskeepers_error") // todo: no alert but show message
 			return false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
-			Error.showAlert("field_error", "defenders_error")
+			Error.showAlert("field_error", "defenders_error") // todo: no alert but show message
 			return false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.midfieldersId] < 3) {
-			Error.showAlert("field_error", "midfielders_error")
+			Error.showAlert("field_error", "midfielders_error") // todo: no alert but show message
 			return false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.strikersId] < 1) {
-			Error.showAlert("field_error", "forwarders_error")
+			Error.showAlert("field_error", "forwarders_error") // todo: no alert but show message
 			return false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] + this.state.settings[FIELDS_ID.midfieldersId] + this.state.settings[FIELDS_ID.strikersId] < 10) {
-			Error.showAlert("field_error", "players_error") // todo: maybe a better error?
+			Error.showAlert("field_error", "players_error") // todo: maybe a better error?  // todo: no alert but show message
 			return false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA && this.state.settings[FIELDS_ID.playersId] < 10) {
-			Error.showAlert("field_error", "players_error")
+			Error.showAlert("field_error", "players_error") // todo: no alert but show message
 			return false
 		}
 		return true
@@ -104,7 +104,7 @@ export class CreateContainer extends React.Component {
 
 	validate_auctionSettings() { 
 		if (this.state.settings[FIELDS_ID.countdownId] < 3) {
-			Error.showAlert("field_error", "countdown_error")
+			Error.showAlert("field_error", "countdown_error") // todo: no alert but show message
 			return false
 		}
 		return true
@@ -112,7 +112,7 @@ export class CreateContainer extends React.Component {
 
 	validate_createTeam() { 
 		if (!this.state.settings[FIELDS_ID.teamnameId]) {
-			Error.showAlert("field_error", "missing_team_name")
+			Error.showAlert("field_error", "missing_team_name") // todo: no alert but show message
 			return false
 		}
 		return true
