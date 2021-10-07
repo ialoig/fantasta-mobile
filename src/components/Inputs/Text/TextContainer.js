@@ -7,64 +7,67 @@ import Text from "./Text"
 
 export default class TextContainer extends React.Component {
 
-	constructor (props) {
+	constructor(props) {
 		super(props)
 
 		this.state = {
-			value: props.value!==undefined && props.value!==null ? props.value : "",
-			error: "",
+			value: props.value !== undefined && props.value !== null ? props.value : "",
+			error: props.error,
 			valid: true,
 			changed: false,
 			touched: false,
-			focused: false,
+			focused: false
 		}
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		this.checkValidity()
 	}
 
-	componentDidUpdate ( oldProps, oldState ) {
-		if ( oldProps.value!=this.props.value && this.props.value!=this.state.value ) {
+	componentDidUpdate(oldProps, oldState) {
+		if (oldProps.value != this.props.value && this.props.value != this.state.value) {
 
 			this.setState({
-				value: this.props.value!==undefined && this.props.value!==null ? this.props.value : ""
+				value: this.props.value !== undefined && this.props.value !== null ? this.props.value : ""
 			})
 		}
 	}
 
-	onChangeText ( text ) {
+	onChangeText(text) {
 		this.setState({
 			changed: true,
 			value: text
-		}, ()=>{ this.checkValidity() })
+		}, () => { this.checkValidity() })
 
-		this.props.onChange && this.props.onChange( this.props.id, text, this.state.valid )
+		this.props.onChange && this.props.onChange(this.props.id, text, this.state.valid)
 	}
 
-	onBlur ( e ) {
+	onBlur(e) {
 		this.setState({
 			focused: false,
 		})
 
-		this.props.onBlur && this.props.onBlur( this.props.id, this.state.value, this.state.valid )
+		this.props.onBlur && this.props.onBlur(this.props.id, this.state.value, this.state.valid)
 	}
 
-	onFocus (e) {
+	onFocus(e) {
 		this.setState({
 			touched: true,
 			focused: true
 		})
 
-		this.props.onFocus && this.props.onFocus( this.props.id, this.state.value, this.state.valid )
+		this.props.onFocus && this.props.onFocus(this.props.id, this.state.value, this.state.valid)
 	}
 
-	checkValidity () {
+	checkValidity() {
+
+		// error enforced by the parent
+		if (this.props.error != "") { return }
 
 		let errors = this.props.errors || {}
 
-		let ret = checkValidity( "text", this.state.value, errors, this.props )
-        
+		let ret = checkValidity("text", this.state.value, errors, this.props)
+
 		this.setState({
 			valid: ret.valid,
 			error: ret.error
@@ -75,22 +78,22 @@ export default class TextContainer extends React.Component {
 
 		const {
 			id,
-			label="",
-			placeholder="",
-			autoCapitalize="none",
-			clearButtonMode="while-editing",
-			textContentType="none",
-			showError=false,
-			hideError=false,
-			required=false,
-			editable=true,
-			selectTextOnFocus=false,
-			minLength=0,
-			maxLength=100
+			label = "",
+			placeholder = "",
+			autoCapitalize = "none",
+			clearButtonMode = "while-editing",
+			textContentType = "none",
+			showError = false,
+			hideError = false,
+			required = false,
+			editable = true,
+			selectTextOnFocus = false,
+			minLength = 0,
+			maxLength = 100
 		} = this.props
 
-		let valid = this.state.valid && ( _.isBoolean(this.props.valid) ? this.props.valid : true )
-		let hasError = !valid && ( this.state.touched && !this.state.focused || showError ) && !hideError
+		let valid = this.state.valid && (_.isBoolean(this.props.valid) ? this.props.valid : true)
+		let hasError = this.props.error != "" || (!valid && (this.state.touched && !this.state.focused || showError) && !hideError)
 
 		return (
 			<Text
@@ -99,20 +102,17 @@ export default class TextContainer extends React.Component {
 				label={label}
 				value={this.state.value}
 				placeholder={placeholder}
-				onRef={ ref => this.ref = ref }
-
+				onRef={ref => this.ref = ref}
 				autoCapitalize={autoCapitalize}
 				clearButtonMode={clearButtonMode}
 				textContentType={textContentType}
-
-				error={this.state.error}
+				error={this.props.error}
 				hasError={hasError}
 				required={required}
 				editable={editable}
 				selectTextOnFocus={selectTextOnFocus}
 				minLength={minLength}
 				maxLength={maxLength}
-
 				onChangeText={this.onChangeText.bind(this)}
 				onBlur={this.onBlur.bind(this)}
 				onFocus={this.onFocus.bind(this)}

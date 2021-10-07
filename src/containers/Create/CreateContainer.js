@@ -38,6 +38,18 @@ export class CreateContainer extends React.Component {
 				[FIELDS_ID.auctiontypeId]: AUCTION_TYPE.RANDOM,
 				[FIELDS_ID.startpriceId]: STARTING_PRICE.NONE,
 				[FIELDS_ID.teamnameId]: ""
+			},
+			errors: {
+				[FIELDS_ID.leagueNameId]: "",
+				[FIELDS_ID.passwordId]: "",
+				[FIELDS_ID.participantsId]: "",
+				[FIELDS_ID.goalskeepersId]: "",
+				[FIELDS_ID.defendersId]: "",
+				[FIELDS_ID.midfieldersId]: "",
+				[FIELDS_ID.strikersId]: "",
+				[FIELDS_ID.playersId]: "",
+				[FIELDS_ID.countdownId]: "",
+				[FIELDS_ID.teamnameId]: ""
 			}
 		}
 	}
@@ -55,88 +67,127 @@ export class CreateContainer extends React.Component {
 	}
 
 	validate_createLeague() {
+		let validFields = true
+		let new_errors = {
+			[FIELDS_ID.leagueNameId]: "",
+			[FIELDS_ID.passwordId]: "",
+			[FIELDS_ID.participantsId]: ""
+		}
 		if (!this.state.settings[FIELDS_ID.leagueNameId]) {
-			Error.showAlert("field_error", "missing_league_name") // todo: no alert but show message
-			return false
+			new_errors[FIELDS_ID.leagueNameId] = "missing_league_name"
+			validFields = false
 		}
 		if (!this.state.settings[FIELDS_ID.passwordId]) {
-			Error.showAlert("field_error", "missing_password") // todo: no alert but show message
-			return false
+			new_errors[FIELDS_ID.passwordId] = "missing_password"
+			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.participantsId] < 2) {
-			Error.showAlert("field_error", "participants_error") // todo: no alert but show message
-			return false
+			new_errors[FIELDS_ID.participantsId] = "participants_error"
+			validFields = false
 		}
-		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
-			Error.showAlert("field_error", "defenders_error") // todo: no alert but show message
-			return false
-		}
-		return true
+
+		this.setState({
+			errors: Object.assign({}, this.state.errors, new_errors)
+		})
+
+		console.log(`new_errors: ${JSON.stringify(new_errors, null, 2)}`)
+		return validFields
 	}
 
 	validate_teamSettings() {
+		let validFields = true
+		let new_errors = {
+			[FIELDS_ID.goalskeepersId]: "",
+			[FIELDS_ID.defendersId]: "",
+			[FIELDS_ID.midfieldersId]: "",
+			[FIELDS_ID.strikersId]: "",
+			[FIELDS_ID.playersId]: ""
+		}
 		if (this.state.settings[FIELDS_ID.goalskeepersId] < 1) {
-			Error.showAlert("field_error", "goalskeepers_error") // todo: no alert but show message
-			return false
+			new_errors[FIELDS_ID.goalskeepersId] = "goalskeepers_error"
+			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
-			Error.showAlert("field_error", "defenders_error") // todo: no alert but show message
-			return false
+			new_errors[FIELDS_ID.defendersId] = "defenders_error"
+			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.midfieldersId] < 3) {
-			Error.showAlert("field_error", "midfielders_error") // todo: no alert but show message
-			return false
+			new_errors[FIELDS_ID.midfieldersId] = "midfielders_error"
+			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.strikersId] < 1) {
-			Error.showAlert("field_error", "forwarders_error") // todo: no alert but show message
-			return false
+			new_errors[FIELDS_ID.strikersId] = "forwarders_error"
+			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] + this.state.settings[FIELDS_ID.midfieldersId] + this.state.settings[FIELDS_ID.strikersId] < 10) {
-			Error.showAlert("field_error", "players_error") // todo: maybe a better error?  // todo: no alert but show message
-			return false
+			new_errors[FIELDS_ID.strikersId] = "players_error"
+			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA && this.state.settings[FIELDS_ID.playersId] < 10) {
-			Error.showAlert("field_error", "players_error") // todo: no alert but show message
-			return false
+			new_errors[FIELDS_ID.playersId] = "players_error"
+			validFields = false
 		}
-		return true
-	 }
 
-	validate_auctionSettings() { 
-		if (this.state.settings[FIELDS_ID.countdownId] < 3) {
-			Error.showAlert("field_error", "countdown_error") // todo: no alert but show message
-			return false
-		}
-		return true
+		this.setState({
+			errors: Object.assign({}, this.state.errors, new_errors)
+		})
+
+		console.log(`new_errors: ${JSON.stringify(new_errors, null, 2)}`)
+		return validFields
 	}
 
-	validate_createTeam() { 
-		if (!this.state.settings[FIELDS_ID.teamnameId]) {
-			Error.showAlert("field_error", "missing_team_name") // todo: no alert but show message
-			return false
+	validate_auctionSettings() {
+		let validFields = true
+		let new_errors = {
+			[FIELDS_ID.countdownId]: ""
 		}
-		return true
+
+		if (this.state.settings[FIELDS_ID.countdownId] < 3) {
+			new_errors[FIELDS_ID.countdownId] = "countdown_error"
+			validFields = false
+		}
+
+		this.setState({
+			errors: Object.assign({}, this.state.errors, new_errors)
+		})
+
+		console.log(`new_errors: ${JSON.stringify(new_errors, null, 2)}`)
+		return validFields
+	}
+
+	validate_createTeam() {
+		let validFields = true
+		let new_errors = {
+			[FIELDS_ID.teamnameId]: ""
+		}
+		if (!this.state.settings[FIELDS_ID.teamnameId]) {
+			new_errors[FIELDS_ID.teamnameId] = "missing_team_name"
+			validFields = false
+		}
+
+		this.setState({
+			errors: Object.assign({}, this.state.errors, new_errors)
+		})
+
+		console.log(`new_errors: ${JSON.stringify(new_errors, null, 2)}`)
+		return validFields
+
 	}
 
 	validate_page(page_index) {
-		let validate_page_result = true
+		console.log(`validate_page(page_index=${page_index})`)
 		switch (page_index) {
-			case 0:
-				return this.validate_createLeague()
-			case 1:
-				return this.validate_teamSettings()
-			case 2:
-				return this.validate_auctionSettings()
-			case 3:
-				return this.validate_createTeam()
+			case 0: return this.validate_createLeague()
+			case 1: return this.validate_teamSettings()
+			case 2: return this.validate_auctionSettings()
+			case 3: return this.validate_createTeam()
 			default:
-				console.log(`page_index: ${page_index}. No validation defined for page "${pages[page_index].title}"`)
+				console.log(`No validation defined for page with index "${page_index}"`)
 		}
-		return validate_page_result
 	}
 
 	async onDone() {
-		if (this.validate_page(pages.length - 1)){
+		if (this.validate_page(pages.length - 1)) {
 			try {
 				await Leagues.Create(this.state.settings)
 				this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
@@ -167,9 +218,10 @@ export class CreateContainer extends React.Component {
 				startingPrice={STARTING_PRICE}
 				pages={pages}
 				validate_page={this.validate_page.bind(this)}
-				settings={this.state.settings}
 				onChange={this.onChange.bind(this)}
 				onDone={this.onDone.bind(this)}
+				settings={this.state.settings}
+				errors={this.state.errors}
 			/>
 		)
 	}

@@ -24,6 +24,7 @@ const TeamSettings = (props) => {
 							step={1}
 							min={3}
 							onChange={value => props.onChange(props.defendersId, value)}
+							error={props.errors[props.leagueNameId]}
 						/>
 						<NumberInc
 							label={I18n.translate("nMidfielders")}
@@ -31,6 +32,7 @@ const TeamSettings = (props) => {
 							step={1}
 							min={3}
 							onChange={value => props.onChange(props.midfieldersId, value)}
+							error={props.errors[props.leagueNameId]}
 						/>
 						<NumberInc
 							label={I18n.translate("nStrikers")}
@@ -38,6 +40,7 @@ const TeamSettings = (props) => {
 							step={1}
 							min={1}
 							onChange={value => props.onChange(props.strikersId, value)}
+							error={props.errors[props.leagueNameId]}
 						/>
 					</View> : null
 			}
@@ -55,7 +58,7 @@ const TeamSettings = (props) => {
 				label={I18n.translate("startingBudget")}
 				value={props.settings[props.budgetId]}
 				step={10}
-				min={11} // todo: mi fa scendere fino a 10 anche se poi manda 11
+				min={11}
 				onChange={value => props.onChange(props.budgetId, value)}
 			/>
 		</View>
