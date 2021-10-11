@@ -93,13 +93,13 @@ function PlayersDetails() {
 							playerStats.pg,
 							player.roleClassic === "P" ? playerStats.gs : playerStats.gf,
 							playerStats.ass,
-							player.roleClassic === "P" ? playerStats.rp : playerStats.asf
+							player.roleClassic === "P" ? playerStats.rp : playerStats["r+"]
 						]}
 						descriptions={[
 							I18n.translate("partite_giocate"),
 							player.roleClassic === "P" ? I18n.translate("goal_subiti") : I18n.translate("goal"),
 							I18n.translate("assist"),
-							player.roleClassic === "P" ? I18n.translate("rigori_parati") : I18n.translate("assist_fermo")
+							player.roleClassic === "P" ? I18n.translate("rigori_parati") : I18n.translate("rigori_segnati")
 						]}/>
 				</View>
 
