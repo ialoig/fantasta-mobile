@@ -12,7 +12,7 @@ const StatsCard = ({ type, values, descriptions }) => {
 		return (
 			<View style={style.stat} key={index}>
 				<View style={style.separator} >
-					{ (index > 0) && <Icon name="separator" horizontal={false} /> }
+					{ (index > 0) && (value != null) && <Icon name="separator" horizontal={false} /> }
 				</View>
 				<Text style={text.statValue}>{value}</Text>
 				<Text style={text.statDescription}>{descriptions[index]}</Text>

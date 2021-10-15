@@ -27,8 +27,8 @@ export class LoginContainer extends React.Component {
 
 	async login() {
 
-		const email = this.state[FIELDS_ID.emailId] || ""
-		const pw = this.state[FIELDS_ID.passwordId] || ""
+		const email = this.state[FIELDS_ID.emailId] || "user07@email.com"
+		const pw = this.state[FIELDS_ID.passwordId] || "user07"
 
 		if (email && pw && Validator.isEmail(email) && Validator.isStrongPassword(pw, PASSWORD_OPT)) {
 			try {
