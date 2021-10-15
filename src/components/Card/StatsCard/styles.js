@@ -26,7 +26,7 @@ export const style = StyleSheet.create({
 		backgroundColor: colors.greyLight,
 		borderRadius: 24,
 		marginTop: 12,
-		position: "relative",
+		position: "relative"
 	},
 	large: {
 		alignItems: "center",
@@ -39,8 +39,9 @@ export const style = StyleSheet.create({
 	small: {
 	},
 	stat: {
+		alignContent: "center",
 		flex: 1,
-		justifyContent: "center",
+		justifyContent: "center"
 	}
 })
 
