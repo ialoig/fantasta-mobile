@@ -12,7 +12,7 @@ export default class TextContainer extends React.Component {
 
 		this.state = {
 			value: props.value !== undefined && props.value !== null ? props.value : "",
-			error: props.error,
+			error: "",
 			valid: true,
 			changed: false,
 			touched: false,
@@ -61,9 +61,6 @@ export default class TextContainer extends React.Component {
 
 	checkValidity() {
 
-		// error enforced by the parent
-		if (this.props.error != "") { return }
-
 		let errors = this.props.errors || {}
 
 		let ret = checkValidity("text", this.state.value, errors, this.props)
@@ -93,7 +90,7 @@ export default class TextContainer extends React.Component {
 		} = this.props
 
 		let valid = this.state.valid && (_.isBoolean(this.props.valid) ? this.props.valid : true)
-		let hasError = this.props.error != "" || (!valid && (this.state.touched && !this.state.focused || showError) && !hideError)
+		let hasError = (!valid && (this.state.touched && !this.state.focused || showError) && !hideError)
 
 		return (
 			<Text
@@ -106,7 +103,7 @@ export default class TextContainer extends React.Component {
 				autoCapitalize={autoCapitalize}
 				clearButtonMode={clearButtonMode}
 				textContentType={textContentType}
-				error={this.props.error}
+				error={this.state.error}
 				hasError={hasError}
 				required={required}
 				editable={editable}

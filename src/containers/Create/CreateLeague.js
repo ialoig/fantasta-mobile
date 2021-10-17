@@ -1,12 +1,17 @@
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React from "react"
-import FIELDS_ID from "../../constants"
 import { View } from "react-native"
 import { InputText, NumberInc, Radio } from "../../components"
 import { commonStyle } from "../../styles"
+import PopupModal from "../../components/Popup/PopupModal"
 
 const CreateLeague = (props) => {
+
+	console.log(`[CreateLeague]: popupShow=${props.popupShow}`)
+	console.log(`[CreateLeague]: popupTitle=${props.popupTitle}`)
+	console.log(`[CreateLeague]: popupMessages=${props.popupMessages}`)
+
 	return (
 		<View style={commonStyle.flex}>
 			<InputText
@@ -14,14 +19,12 @@ const CreateLeague = (props) => {
 				label={I18n.translate("leagueName")}
 				placeholder={I18n.translate("leagueName")}
 				onChange={props.onChange}
-				error={props.errors[props.leagueNameId]}
 			/>
 			<InputText
 				id={props.passwordId}
 				label={I18n.translate("password")}
 				placeholder={I18n.translate("password")}
 				onChange={props.onChange}
-				error={props.errors[props.passwordId]}
 			/>
 			<NumberInc
 				label={I18n.translate("nParticipants")}
@@ -29,7 +32,6 @@ const CreateLeague = (props) => {
 				step={1}
 				min={2}
 				onChange={value => props.onChange( props.participantsId, value )}
-				error={props.errors[props.participantsId]}
 			/>
 			<Radio 
 				label={I18n.translate("tipology")}
@@ -40,6 +42,7 @@ const CreateLeague = (props) => {
 				]}
 				onChange={value => props.onChange( props.tipologyId, value )}
 			/>
+			<PopupModal popupShow={props.popupShow} popupTitle={props.popupTitle} popupMessages={props.popupMessages} popupClosedCallback={props.popupClosedCallback}/>
 		</View>
 	)
 }

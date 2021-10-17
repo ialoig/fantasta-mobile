@@ -2,12 +2,14 @@ import PropTypes from "prop-types"
 import React from "react"
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
 import routes from "../../navigation/routesNames"
-import { Error, Leagues } from "../../services"
+import Leagues from "../../services"
 import AuctionSettings from "./AuctionSettings"
 import Create from "./Create"
 import CreateLeague from "./CreateLeague"
 import CreateTeam from "./CreateTeam"
 import TeamSettings from "./TeamSettings"
+import View from "react-native"
+import PopupModal from "../../components/Popup/PopupModal"
 
 const pages = [
 	{ key: "1", component: CreateLeague, title: "createLeague", description: "" },
@@ -39,18 +41,9 @@ export class CreateContainer extends React.Component {
 				[FIELDS_ID.startpriceId]: STARTING_PRICE.NONE,
 				[FIELDS_ID.teamnameId]: ""
 			},
-			errors: {
-				[FIELDS_ID.leagueNameId]: "",
-				[FIELDS_ID.passwordId]: "",
-				[FIELDS_ID.participantsId]: "",
-				[FIELDS_ID.goalskeepersId]: "",
-				[FIELDS_ID.defendersId]: "",
-				[FIELDS_ID.midfieldersId]: "",
-				[FIELDS_ID.strikersId]: "",
-				[FIELDS_ID.playersId]: "",
-				[FIELDS_ID.countdownId]: "",
-				[FIELDS_ID.teamnameId]: ""
-			}
+			popupShow: false,
+			popupTitle: "Input error",
+			popupMessages: []
 		}
 	}
 
@@ -62,132 +55,139 @@ export class CreateContainer extends React.Component {
 		}
 
 		this.setState({
-			settings: Object.assign({}, this.state.settings, settings)
+			settings: Object.assign({}, this.state.settings, settings),
+			popupShow: false,
+			popupMessages: []
 		})
 	}
 
-	validate_createLeague() {
+	// called from PopupModal.js once the popup is closed.
+	// The popup state is following the props (see PopupModal.js -> useEffect) therefore we need to change the state from outside to make changes
+	popupClosedCallback() {
+		this.setState({
+			popupShow: false,
+			popupMessages: []
+		})
+	}
+
+	validateCreateLeaguePage() {
 		let validFields = true
-		let new_errors = {
-			[FIELDS_ID.leagueNameId]: "",
-			[FIELDS_ID.passwordId]: "",
-			[FIELDS_ID.participantsId]: ""
-		}
+		let errors = []
 		if (!this.state.settings[FIELDS_ID.leagueNameId]) {
-			new_errors[FIELDS_ID.leagueNameId] = "missing_league_name"
+			errors.push("missing_league_name")
 			validFields = false
 		}
 		if (!this.state.settings[FIELDS_ID.passwordId]) {
-			new_errors[FIELDS_ID.passwordId] = "missing_password"
+			errors.push("missing_password")
 			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.participantsId] < 2) {
-			new_errors[FIELDS_ID.participantsId] = "participants_error"
+			errors.push("participants_error")
 			validFields = false
 		}
 
 		this.setState({
-			errors: Object.assign({}, this.state.errors, new_errors)
+			popupShow: !validFields,
+			popupMessages: errors
 		})
 
-		console.log(`new_errors: ${JSON.stringify(new_errors, null, 2)}`)
+		console.log(`[CreateContainer] errors: ${errors}`)
 		return validFields
 	}
 
-	validate_teamSettings() {
+	validateTeamSettingsPage() {
 		let validFields = true
-		let new_errors = {
-			[FIELDS_ID.goalskeepersId]: "",
-			[FIELDS_ID.defendersId]: "",
-			[FIELDS_ID.midfieldersId]: "",
-			[FIELDS_ID.strikersId]: "",
-			[FIELDS_ID.playersId]: ""
-		}
+		let errors = []
 		if (this.state.settings[FIELDS_ID.goalskeepersId] < 1) {
-			new_errors[FIELDS_ID.goalskeepersId] = "goalskeepers_error"
+			errors.push("goalskeepers_error")
 			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
-			new_errors[FIELDS_ID.defendersId] = "defenders_error"
+			errors.push("defenders_error")
 			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.midfieldersId] < 3) {
-			new_errors[FIELDS_ID.midfieldersId] = "midfielders_error"
+			errors.push("midfielders_error")
 			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.strikersId] < 1) {
-			new_errors[FIELDS_ID.strikersId] = "forwarders_error"
+			errors.push("forwarders_error")
 			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] + this.state.settings[FIELDS_ID.midfieldersId] + this.state.settings[FIELDS_ID.strikersId] < 10) {
-			new_errors[FIELDS_ID.strikersId] = "players_error"
+			errors.push("players_error")
 			validFields = false
 		}
 		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA && this.state.settings[FIELDS_ID.playersId] < 10) {
-			new_errors[FIELDS_ID.playersId] = "players_error"
+			errors.push("players_error")
 			validFields = false
 		}
 
 		this.setState({
-			errors: Object.assign({}, this.state.errors, new_errors)
+			popupShow: !validFields,
+			popupMessages: errors
 		})
 
-		console.log(`new_errors: ${JSON.stringify(new_errors, null, 2)}`)
+		console.log(`[CreateContainer] errors: ${errors}`)
 		return validFields
 	}
 
-	validate_auctionSettings() {
+	validateAuctionSettingsPage() {
 		let validFields = true
-		let new_errors = {
-			[FIELDS_ID.countdownId]: ""
-		}
+		let errors = []
 
 		if (this.state.settings[FIELDS_ID.countdownId] < 3) {
-			new_errors[FIELDS_ID.countdownId] = "countdown_error"
+			errors.push("countdown_error")
 			validFields = false
 		}
 
 		this.setState({
-			errors: Object.assign({}, this.state.errors, new_errors)
+			popupShow: !validFields,
+			popupMessages: errors
 		})
 
-		console.log(`new_errors: ${JSON.stringify(new_errors, null, 2)}`)
+		console.log(`[CreateContainer] errors: ${errors}`)
 		return validFields
 	}
 
-	validate_createTeam() {
+	validateCreateTeamPage() {
 		let validFields = true
-		let new_errors = {
-			[FIELDS_ID.teamnameId]: ""
-		}
+		let errors = []
 		if (!this.state.settings[FIELDS_ID.teamnameId]) {
-			new_errors[FIELDS_ID.teamnameId] = "missing_team_name"
+			errors.push("missing_team_name")
 			validFields = false
 		}
 
 		this.setState({
-			errors: Object.assign({}, this.state.errors, new_errors)
+			popupShow: !validFields,
+			popupMessages: errors
 		})
 
-		console.log(`new_errors: ${JSON.stringify(new_errors, null, 2)}`)
+		console.log(`[CreateContainer] errors: ${errors}`)
 		return validFields
 
 	}
 
-	validate_page(page_index) {
-		console.log(`validate_page(page_index=${page_index})`)
+	// Used to decide whether is possible to change slide (see Create.js -> onSlideChange)
+	validatePage(page_index) {
+		console.log(`[CreateContainer] validatePage(page_index=${page_index})`)
+
+		this.setState({
+			popupShow: false,
+			popupMessages: ""
+		})
 		switch (page_index) {
-			case 0: return this.validate_createLeague()
-			case 1: return this.validate_teamSettings()
-			case 2: return this.validate_auctionSettings()
-			case 3: return this.validate_createTeam()
+			case 0: return this.validateCreateLeaguePage()
+			case 1: return this.validateTeamSettingsPage()
+			case 2: return this.validateAuctionSettingsPage()
+			case 3: return this.validateCreateTeamPage()
 			default:
-				console.log(`No validation defined for page with index "${page_index}"`)
+				console.log(`[CreateContainer] No validation defined for page with index "${page_index}"`)
 		}
 	}
 
 	async onDone() {
-		if (this.validate_page(pages.length - 1)) {
+		if (this.validatePage(pages.length - 1)) {
 			try {
 				await Leagues.Create(this.state.settings)
 				this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
@@ -198,31 +198,34 @@ export class CreateContainer extends React.Component {
 
 	render() {
 		return (
-			<Create
-				leagueNameId={FIELDS_ID.leagueNameId}
-				passwordId={FIELDS_ID.passwordId}
-				participantsId={FIELDS_ID.participantsId}
-				tipologyId={FIELDS_ID.tipologyId}
-				goalskeepersId={FIELDS_ID.goalskeepersId}
-				defendersId={FIELDS_ID.defendersId}
-				midfieldersId={FIELDS_ID.midfieldersId}
-				strikersId={FIELDS_ID.strikersId}
-				playersId={FIELDS_ID.playersId}
-				budgetId={FIELDS_ID.budgetId}
-				countdownId={FIELDS_ID.countdownId}
-				auctiontypeId={FIELDS_ID.auctiontypeId}
-				startpriceId={FIELDS_ID.startpriceId}
-				teamnameId={FIELDS_ID.teamnameId}
-				tipology={TIPOLOGY}
-				auctionType={AUCTION_TYPE}
-				startingPrice={STARTING_PRICE}
-				pages={pages}
-				validate_page={this.validate_page.bind(this)}
-				onChange={this.onChange.bind(this)}
-				onDone={this.onDone.bind(this)}
-				settings={this.state.settings}
-				errors={this.state.errors}
-			/>
+				<Create
+					leagueNameId={FIELDS_ID.leagueNameId}
+					passwordId={FIELDS_ID.passwordId}
+					participantsId={FIELDS_ID.participantsId}
+					tipologyId={FIELDS_ID.tipologyId}
+					goalskeepersId={FIELDS_ID.goalskeepersId}
+					defendersId={FIELDS_ID.defendersId}
+					midfieldersId={FIELDS_ID.midfieldersId}
+					strikersId={FIELDS_ID.strikersId}
+					playersId={FIELDS_ID.playersId}
+					budgetId={FIELDS_ID.budgetId}
+					countdownId={FIELDS_ID.countdownId}
+					auctiontypeId={FIELDS_ID.auctiontypeId}
+					startpriceId={FIELDS_ID.startpriceId}
+					teamnameId={FIELDS_ID.teamnameId}
+					tipology={TIPOLOGY}
+					auctionType={AUCTION_TYPE}
+					startingPrice={STARTING_PRICE}
+					pages={pages}
+					validatePage={this.validatePage.bind(this)}
+					onChange={this.onChange.bind(this)}
+					onDone={this.onDone.bind(this)}
+					settings={this.state.settings}
+					popupShow={this.state.popupShow}
+					popupTitle={this.state.popupTitle}
+					popupMessages={this.state.popupMessages}
+					popupClosedCallback={this.popupClosedCallback.bind(this)}
+				/>
 		)
 	}
 }

@@ -12,7 +12,6 @@ const CreateTeam = (props) => {
 				label={I18n.translate("teamName")}
 				placeholder={I18n.translate("teamName")}
 				onChange={props.onChange}
-				error={props.errors[props.teamnameId]}
 			/>
 		</View>
 	)
