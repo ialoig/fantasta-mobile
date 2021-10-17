@@ -47,7 +47,7 @@ const Create = (props) => {
 		const swipingBack = lastIndex > index
 
 		if (swipingNext) {
-			if (props.validate_page(lastIndex) == false) {
+			if (props.validatePage(lastIndex) == false) {
 				slider.goToSlide(lastIndex)
 			}
 		}
@@ -66,6 +66,7 @@ const Create = (props) => {
 			renderNextButton={renderNextButton}
 			renderDoneButton={renderDoneButton}
 			onSlideChange={onSlideChange}
+			popupClosedCallback={props.popupClosedCallback}
 			ref={(ref) => (slider = ref)}
 		/>
 	)

@@ -24,7 +24,6 @@ const TeamSettings = (props) => {
 							step={1}
 							min={3}
 							onChange={value => props.onChange(props.defendersId, value)}
-							error={props.errors[props.leagueNameId]}
 						/>
 						<NumberInc
 							label={I18n.translate("nMidfielders")}
@@ -32,7 +31,6 @@ const TeamSettings = (props) => {
 							step={1}
 							min={3}
 							onChange={value => props.onChange(props.midfieldersId, value)}
-							error={props.errors[props.leagueNameId]}
 						/>
 						<NumberInc
 							label={I18n.translate("nStrikers")}
@@ -40,7 +38,6 @@ const TeamSettings = (props) => {
 							step={1}
 							min={1}
 							onChange={value => props.onChange(props.strikersId, value)}
-							error={props.errors[props.leagueNameId]}
 						/>
 					</View> : null
 			}
