@@ -14,7 +14,7 @@ function Market(props) {
 	return (
 		<View style={commonStyle.container}>
 			
-			{/* it is defined as latest component cause it must be over the others */}
+			{/* it has been defined as last component because it have to be seen over the others */}
 			<Header 
 				title="market" 
 				leftButton

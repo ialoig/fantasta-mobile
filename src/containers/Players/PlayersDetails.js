@@ -92,25 +92,14 @@ function PlayersDetails() {
 						values={[
 							playerStats.pg,
 							player.roleClassic === "P" ? playerStats.gs : playerStats.gf,
-							playerStats.ass
+							playerStats.ass,
+							player.roleClassic === "P" ? playerStats.rp : playerStats["r+"] + "/" + playerStats.rc,
 						]}
 						descriptions={[
 							I18n.translate("partite_giocate"),
 							player.roleClassic === "P" ? I18n.translate("goal_subiti") : I18n.translate("goal"),
-							I18n.translate("assist")
-						]}/>
-				</View>
-
-				<View style={styles.statistics}>
-					<StatsCard 
-						type="large"
-						values={[
-							player.roleClassic === "P" ? playerStats.rp : playerStats["r+"],
-							playerStats["r-"]
-						]}
-						descriptions={[
-							player.roleClassic === "P" ? I18n.translate("rigori_parati") : I18n.translate("rigori_segnati"),
-							I18n.translate("rigori_sbagliati")
+							I18n.translate("assist"),
+							player.roleClassic === "P" ? I18n.translate("rigori_parati") : I18n.translate("rigori"),
 						]}/>
 				</View>
 
