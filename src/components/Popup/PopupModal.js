@@ -3,6 +3,8 @@ import { Button, Text, View, StyleSheet } from "react-native";
 import Modal from "react-native-modal"
 import I18n from "i18n-js"
 import colors from "../../styles/colors"
+import { textStyles } from "../../styles"
+import Icon from "../Icon/Icon"
 
 function PopupModal(props) {
 
@@ -49,33 +51,70 @@ function PopupModal(props) {
       backdropTransitionInTiming={600}
       backdropTransitionOutTiming={600}
     >
-      <View style={styles.content}>
+      <View style={styles.titleContainer}>
+        <View style={styles.image}>
+          <Icon name={"error"} width={40} height={40} />
+        </View>
         <Text style={styles.title}>{title}</Text>
+      </View>
+
+      <View style={styles.messageContainer}>
         <Text style={styles.message}>{extractMessage()}</Text>
+      </View>
+
+      <View style={styles.footerContainer}>
         <Button onPress={closePopup} title="Close" />
       </View>
-    </Modal>
+
+    </Modal >
   );
 }
 
 const styles = StyleSheet.create({
-  content: {
+  titleContainer: {
+    backgroundColor: colors.errorRed,
+    flexDirection: 'row',
+    alignContent: 'stretch',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    padding: 10,
+    // borderColor: "black", // TODO: remove me
+    // borderWidth: 1        // TODO: remove me
+  },
+  messageContainer: {
     backgroundColor: colors.primary,
-    padding: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
+    alignItems: 'center',   // centered vertically
+    flexDirection: 'column',
+    alignContent: 'center',
+    padding: 10,
+    // borderColor: "black", // TODO: remove me
+    // borderWidth: 1        // TODO: remove me
+  },
+  footerContainer: {
+    backgroundColor: colors.primary,
+    padding: 10,
+    alignItems: 'center', // centered vertically
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+    // borderColor: "black", // TODO: remove me
+    // borderWidth: 1,        // TODO: remove me
+  },
+
+  image: {
+    alignItems: "flex-end",
+    paddingRight: 5,
+    flex: 2
   },
   title: {
-    fontSize: 20,
-    marginBottom: 12,
-    color: "red"
+    fontSize: 30,
+    paddingLeft: 5,
+    color: colors.secondary,
+    flex: 3
   },
   message: {
     fontSize: 20,
     marginBottom: 12,
-    color: "yellow"
+    color: colors.secondary
   },
 });
 
