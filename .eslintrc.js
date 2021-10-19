@@ -38,10 +38,6 @@ module.exports = {
 			"warn",
 			"double"
 		],
-		"linebreak-style": [
-			"error",
-			"unix"
-		],
 		semi: [
 			"error",
 			"never"
