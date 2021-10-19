@@ -1,3 +1,4 @@
+import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React from "react"
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
@@ -8,8 +9,6 @@ import Create from "./Create"
 import CreateLeague from "./CreateLeague"
 import CreateTeam from "./CreateTeam"
 import TeamSettings from "./TeamSettings"
-import View from "react-native"
-import PopupModal from "../../components/Popup/PopupModal"
 
 const pages = [
 	{ key: "1", component: CreateLeague, title: "createLeague", description: "" },
@@ -42,7 +41,7 @@ export class CreateContainer extends React.Component {
 				[FIELDS_ID.teamnameId]: ""
 			},
 			popupShow: false,
-			popupTitle: "Input error",
+			popupTitle: I18n.translate("field_error"),
 			popupMessages: []
 		}
 	}
@@ -91,7 +90,6 @@ export class CreateContainer extends React.Component {
 			popupMessages: errors
 		})
 
-		console.log(`[CreateContainer] errors: ${errors}`)
 		return validFields
 	}
 
@@ -128,7 +126,6 @@ export class CreateContainer extends React.Component {
 			popupMessages: errors
 		})
 
-		console.log(`[CreateContainer] errors: ${errors}`)
 		return validFields
 	}
 
@@ -146,7 +143,6 @@ export class CreateContainer extends React.Component {
 			popupMessages: errors
 		})
 
-		console.log(`[CreateContainer] errors: ${errors}`)
 		return validFields
 	}
 
@@ -163,26 +159,24 @@ export class CreateContainer extends React.Component {
 			popupMessages: errors
 		})
 
-		console.log(`[CreateContainer] errors: ${errors}`)
 		return validFields
 
 	}
 
 	// Used to decide whether is possible to change slide (see Create.js -> onSlideChange)
 	validatePage(page_index) {
-		console.log(`[CreateContainer] validatePage(page_index=${page_index})`)
 
 		this.setState({
 			popupShow: false,
 			popupMessages: ""
 		})
 		switch (page_index) {
-			case 0: return this.validateCreateLeaguePage()
-			case 1: return this.validateTeamSettingsPage()
-			case 2: return this.validateAuctionSettingsPage()
-			case 3: return this.validateCreateTeamPage()
-			default:
-				console.log(`[CreateContainer] No validation defined for page with index "${page_index}"`)
+		case 0: return this.validateCreateLeaguePage()
+		case 1: return this.validateTeamSettingsPage()
+		case 2: return this.validateAuctionSettingsPage()
+		case 3: return this.validateCreateTeamPage()
+		default:
+			console.error(`[CreateContainer] No validation defined for page with index "${page_index}"`)
 		}
 	}
 
@@ -198,34 +192,34 @@ export class CreateContainer extends React.Component {
 
 	render() {
 		return (
-				<Create
-					leagueNameId={FIELDS_ID.leagueNameId}
-					passwordId={FIELDS_ID.passwordId}
-					participantsId={FIELDS_ID.participantsId}
-					tipologyId={FIELDS_ID.tipologyId}
-					goalskeepersId={FIELDS_ID.goalskeepersId}
-					defendersId={FIELDS_ID.defendersId}
-					midfieldersId={FIELDS_ID.midfieldersId}
-					strikersId={FIELDS_ID.strikersId}
-					playersId={FIELDS_ID.playersId}
-					budgetId={FIELDS_ID.budgetId}
-					countdownId={FIELDS_ID.countdownId}
-					auctiontypeId={FIELDS_ID.auctiontypeId}
-					startpriceId={FIELDS_ID.startpriceId}
-					teamnameId={FIELDS_ID.teamnameId}
-					tipology={TIPOLOGY}
-					auctionType={AUCTION_TYPE}
-					startingPrice={STARTING_PRICE}
-					pages={pages}
-					validatePage={this.validatePage.bind(this)}
-					onChange={this.onChange.bind(this)}
-					onDone={this.onDone.bind(this)}
-					settings={this.state.settings}
-					popupShow={this.state.popupShow}
-					popupTitle={this.state.popupTitle}
-					popupMessages={this.state.popupMessages}
-					popupClosedCallback={this.popupClosedCallback.bind(this)}
-				/>
+			<Create
+				leagueNameId={FIELDS_ID.leagueNameId}
+				passwordId={FIELDS_ID.passwordId}
+				participantsId={FIELDS_ID.participantsId}
+				tipologyId={FIELDS_ID.tipologyId}
+				goalskeepersId={FIELDS_ID.goalskeepersId}
+				defendersId={FIELDS_ID.defendersId}
+				midfieldersId={FIELDS_ID.midfieldersId}
+				strikersId={FIELDS_ID.strikersId}
+				playersId={FIELDS_ID.playersId}
+				budgetId={FIELDS_ID.budgetId}
+				countdownId={FIELDS_ID.countdownId}
+				auctiontypeId={FIELDS_ID.auctiontypeId}
+				startpriceId={FIELDS_ID.startpriceId}
+				teamnameId={FIELDS_ID.teamnameId}
+				tipology={TIPOLOGY}
+				auctionType={AUCTION_TYPE}
+				startingPrice={STARTING_PRICE}
+				pages={pages}
+				validatePage={this.validatePage.bind(this)}
+				onChange={this.onChange.bind(this)}
+				onDone={this.onDone.bind(this)}
+				settings={this.state.settings}
+				popupShow={this.state.popupShow}
+				popupTitle={this.state.popupTitle}
+				popupMessages={this.state.popupMessages}
+				popupClosedCallback={this.popupClosedCallback.bind(this)}
+			/>
 		)
 	}
 }
