@@ -51,7 +51,7 @@ CreateLeague.propTypes = {
 	settings: PropTypes.object.isRequired,
 	onChange: PropTypes.func.isRequired,
 	popupClosedCallback: PropTypes.func,
-	popupMessages: PropTypes.string,
+	popupMessages: PropTypes.array,
 	popupShow: PropTypes.bool.isRequired,
 	popupTitle: PropTypes.string.isRequired
 }
