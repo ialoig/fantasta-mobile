@@ -1,121 +1,112 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Text, View, StyleSheet } from "react-native";
-import Modal from "react-native-modal"
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
+import React, { useEffect, useState } from "react"
+import { Button, StyleSheet, Text, View } from "react-native"
+import Modal from "react-native-modal"
 import colors from "../../styles/colors"
-import { textStyles } from "../../styles"
 import Icon from "../Icon/Icon"
+
 
 function PopupModal(props) {
 
-  const { popupShow, popupTitle, popupMessages } = props;
-  const [isModalVisible, setModalVisible] = useState(popupShow);
-  const [title, setPopupTitle] = useState(popupTitle);
-  const [message, setMessage] = useState(popupMessages);
+	const { popupShow, popupTitle, popupMessages } = props
+	const [isModalVisible, setModalVisible] = useState(popupShow)
+	const [title] = useState(popupTitle)
+	const [messages, setMessage] = useState(popupMessages)
 
-  // Use props as state. Any change in the props will be reflected in the state
-  useEffect(() => {
-    console.log(`useEffect called`)
-    setModalVisible(popupShow)
-    setMessage(popupMessages)
-  }, [popupShow, popupMessages])
+	// Use props as state. Any change in the props will be reflected in the state
+	useEffect(() => {
+		setModalVisible(popupShow)
+		setMessage(popupMessages)
+	}, [popupShow, popupMessages])
 
-  // Click outside the popup
-  const closePopup = () => {
-    console.log(`onBackdropPress called`)
-    props.popupClosedCallback()
-  }
+	// Click outside the popup
+	const closePopup = () => {
+		props.popupClosedCallback()
+	}
 
+	const extractMessage = () => {
+		return messages.map(message => I18n.translate(message)).join("\n")
+	}
 
-  console.log(`[PopupModal] popupShow: ${popupShow}`)
-  console.log(`[PopupModal] popupTitle: ${popupTitle}`)
-  console.log(`[PopupModal] popupMessages: ${popupMessages}`)
-  console.log(`[PopupModal] isModalVisible: ${isModalVisible}`)
-  console.log(`[PopupModal] message: ${message}`)
+	return (
+		<Modal
+			isVisible={isModalVisible}
+			backdropColor="gray"
+			backdropOpacity={0.5}
+			onBackButtonPress={closePopup}
+			onBackdropPress={closePopup}
+			animationIn="zoomInDown"
+			animationOut="zoomOutUp"
+			animationInTiming={600}
+			animationOutTiming={600}
+			backdropTransitionInTiming={600}
+			backdropTransitionOutTiming={600}
+		>
+			<View style={styles.titleContainer}>
+				<View style={styles.image}>
+					<Icon name={"error"} width={40} height={40} />
+				</View>
+				<Text style={styles.title}>{title}</Text>
+			</View>
 
-  const extractMessage = () => {
-    return popupMessages.map(message => I18n.translate(message)).join("\n")
-  }
+			<View style={styles.messageContainer}>
+				<Text style={styles.message}>{extractMessage()}</Text>
+			</View>
 
-  return (
-    <Modal
-      isVisible={isModalVisible}
-      backdropColor="gray"
-      backdropOpacity={0.5}
-      onBackButtonPress={closePopup}
-      onBackdropPress={closePopup}
-      animationIn="zoomInDown"
-      animationOut="zoomOutUp"
-      animationInTiming={600}
-      animationOutTiming={600}
-      backdropTransitionInTiming={600}
-      backdropTransitionOutTiming={600}
-    >
-      <View style={styles.titleContainer}>
-        <View style={styles.image}>
-          <Icon name={"error"} width={40} height={40} />
-        </View>
-        <Text style={styles.title}>{title}</Text>
-      </View>
+			<View style={styles.footerContainer}>
+				<Button color={colors.secondary} onPress={closePopup} title={I18n.translate("close")} />
+			</View>
 
-      <View style={styles.messageContainer}>
-        <Text style={styles.message}>{extractMessage()}</Text>
-      </View>
+		</Modal >
+	)
+}
 
-      <View style={styles.footerContainer}>
-        <Button onPress={closePopup} title="Close" />
-      </View>
-
-    </Modal >
-  );
+PopupModal.propTypes = {
+	popupClosedCallback: PropTypes.func,
+	popupMessages: PropTypes.string,
+	popupShow: PropTypes.bool.isRequired,
+	popupTitle: PropTypes.string.isRequired
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    backgroundColor: colors.errorRed,
-    flexDirection: 'row',
-    alignContent: 'stretch',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    padding: 10,
-    // borderColor: "black", // TODO: remove me
-    // borderWidth: 1        // TODO: remove me
-  },
-  messageContainer: {
-    backgroundColor: colors.primary,
-    alignItems: 'center',   // centered vertically
-    flexDirection: 'column',
-    alignContent: 'center',
-    padding: 10,
-    // borderColor: "black", // TODO: remove me
-    // borderWidth: 1        // TODO: remove me
-  },
-  footerContainer: {
-    backgroundColor: colors.primary,
-    padding: 10,
-    alignItems: 'center', // centered vertically
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    // borderColor: "black", // TODO: remove me
-    // borderWidth: 1,        // TODO: remove me
-  },
+	footerContainer: {
+		alignItems: "center", // centered vertically
+		backgroundColor: colors.primary,
+		borderBottomLeftRadius: 30,
+		borderBottomRightRadius: 30,
+		padding: 10
+	},
+	image: {
+		paddingRight: 5,
+	},
+	message: {
+		color: colors.secondary,
+		fontSize: 20
+	},
 
-  image: {
-    alignItems: "flex-end",
-    paddingRight: 5,
-    flex: 2
-  },
-  title: {
-    fontSize: 30,
-    paddingLeft: 5,
-    color: colors.secondary,
-    flex: 3
-  },
-  message: {
-    fontSize: 20,
-    marginBottom: 12,
-    color: colors.secondary
-  },
-});
+	messageContainer: {
+		alignContent: "center",
+		alignItems: "center",   // centered vertically
+		backgroundColor: colors.primary,
+		flexDirection: "column",
+		justifyContent: "center",
+		padding: 10
+	},
+	title: {
+		color: colors.secondary,
+		fontSize: 30,
+		paddingLeft: 5,
+	},
+
+	titleContainer: {
+		backgroundColor: colors.errorRed,
+		borderTopLeftRadius: 30,
+		borderTopRightRadius: 30,
+		flexDirection: "row",
+		justifyContent: "center",  // center horizontally
+		padding: 10
+	}
+})
 
 export default PopupModal

@@ -3,15 +3,10 @@ import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
 import { InputText, NumberInc, Radio } from "../../components"
-import { commonStyle } from "../../styles"
 import PopupModal from "../../components/Popup/PopupModal"
+import { commonStyle } from "../../styles"
 
 const CreateLeague = (props) => {
-
-	console.log(`[CreateLeague]: popupShow=${props.popupShow}`)
-	console.log(`[CreateLeague]: popupTitle=${props.popupTitle}`)
-	console.log(`[CreateLeague]: popupMessages=${props.popupMessages}`)
-
 	return (
 		<View style={commonStyle.flex}>
 			<InputText
@@ -54,7 +49,11 @@ CreateLeague.propTypes = {
 	tipology: PropTypes.object.isRequired,
 	tipologyId: PropTypes.string.isRequired,
 	settings: PropTypes.object.isRequired,
-	onChange: PropTypes.func.isRequired
+	onChange: PropTypes.func.isRequired,
+	popupClosedCallback: PropTypes.func,
+	popupMessages: PropTypes.string,
+	popupShow: PropTypes.bool.isRequired,
+	popupTitle: PropTypes.string.isRequired
 }
 
 export default CreateLeague

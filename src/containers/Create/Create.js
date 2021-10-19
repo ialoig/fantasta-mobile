@@ -53,7 +53,7 @@ const Create = (props) => {
 		}
 	}
 
-	var slider = AppIntroSlider;
+	var slider = AppIntroSlider
 
 	return (
 		<AppIntroSlider
