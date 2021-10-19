@@ -64,7 +64,7 @@ function PopupModal(props) {
 
 PopupModal.propTypes = {
 	popupClosedCallback: PropTypes.func,
-	popupMessages: PropTypes.string,
+	popupMessages: PropTypes.array,
 	popupShow: PropTypes.bool.isRequired,
 	popupTitle: PropTypes.string.isRequired
 }
