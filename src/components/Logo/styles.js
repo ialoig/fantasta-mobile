@@ -8,7 +8,7 @@ export default StyleSheet.create({
 		...StyleSheet.absoluteFillObject,
 		alignItems: "center",
 		justifyContent: "center",
-		paddingVertical: 24,
+		paddingVertical: 32,
 		position: "relative",
 	},
 	title:{

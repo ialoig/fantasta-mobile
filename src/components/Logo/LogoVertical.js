@@ -5,6 +5,7 @@ import Animated, { Easing,
 	useAnimatedStyle, 
 	useSharedValue, 
 	withRepeat, 
+	withSequence, 
 	withTiming } from "react-native-reanimated"
 import Svg, { Path, Rect } from "react-native-svg"
 import colors from "../../styles/colors"
@@ -12,17 +13,14 @@ import LogoTitle from "./LogoTitle"
 import styles from "./styles"
 
 
-const DEFAULT_SCALE = 0.95
 
 export const LogoVertical = ({ width, height, primary, secondary, ...props }) => {
 
-	const animScaleValue = useSharedValue(1)
+	const animScaleValue = useSharedValue(0.8)
 
-	animScaleValue.value = withRepeat(withTiming(DEFAULT_SCALE, {
-		duration: 1000,
-		easing: Easing.ease
-	})
-	, -1)
+	animScaleValue.value = 
+		withRepeat(withTiming(1, { duration: 1000, easing: Easing.inOut(Easing.ease) }), -1, true)
+	
 
  
 	const animStyle = useAnimatedStyle( () => {

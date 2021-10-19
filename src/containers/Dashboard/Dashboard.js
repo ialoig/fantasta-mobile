@@ -39,7 +39,7 @@ function Dashboard() {
 		return Math.round(Math.random() * (max-min+1) + min )
 	}
 
-	//TODO: just for debug, replace with the correct players calculated from team object (ie. team.footballPlayers)
+	//TODO: just for debug purpose. Replace it with the right players object calculated from team object (ie. team.footballPlayers)
 	const getRandomPlayers = () => {
 		//get players from api
 		const apiPlayers = Object.values(Players.GetPlayers())
@@ -70,7 +70,7 @@ function Dashboard() {
 				style={commonStyle.paddingHeader}
 			/>
 
-			{/* it is defined as latest component cause it must be over the others */}
+			{/* it has been defined as last component because it have to be seen over the others */}
 			<Header 
 				title="dashboard" 
 				leftButton
