@@ -117,7 +117,7 @@ export class CreateLeagueContainer extends React.Component {
 			}
 
 			case 3: {
-				const validation_result = validateCreateTeamPage(!this.state.settings[FIELDS_ID.teamnameId])
+				const validation_result = validateCreateTeamPage(this.state.settings[FIELDS_ID.teamnameId])
 				this.setState({
 					popupShow: !validation_result.isValid,
 					popupMessage: validation_result.errorMessage
