@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
 import { InputText, NumberInc, Radio } from "../../components"
-import PopupModal from "../../components/Popup/PopupModal"
+import PopupError from "../../components/Popup/PopupError"
 import { commonStyle } from "../../styles"
 
 const CreateLeague = (props) => {
@@ -37,7 +37,7 @@ const CreateLeague = (props) => {
 				]}
 				onChange={value => props.onChange( props.tipologyId, value )}
 			/>
-			<PopupModal popupShow={props.popupShow} popupTitle={props.popupTitle} popupMessages={props.popupMessages} popupClosedCallback={props.popupClosedCallback}/>
+			<PopupError popupShow={props.popupShow} popupTitle={props.popupTitle} popupMessage={props.popupMessage} popupClosedCallback={props.popupClosedCallback}/>
 		</View>
 	)
 }
