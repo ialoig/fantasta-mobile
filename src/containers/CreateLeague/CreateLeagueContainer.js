@@ -5,10 +5,11 @@ import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constan
 import routes from "../../navigation/routesNames"
 import Leagues from "../../services"
 import AuctionSettings from "./AuctionSettings"
-import Create from "./Create"
+import CreateLeagueSlider from "./CreateLeagueSlider"
 import CreateLeague from "./CreateLeague"
 import CreateTeam from "./CreateTeam"
 import TeamSettings from "./TeamSettings"
+import {validateCreateLeaguePage, validateTeamSettingsPage, validateAuctionSettingsPage, validateCreateTeamPage} from "../../utils/validation"
 
 const pages = [
 	{ key: "1", component: CreateLeague, title: "createLeague", description: "" },
@@ -17,7 +18,7 @@ const pages = [
 	{ key: "4", component: CreateTeam, title: "createTeam", description: "" }
 ]
 
-export class CreateContainer extends React.Component {
+export class CreateLeagueContainer extends React.Component {
 
 	constructor(props) {
 		super(props)
@@ -46,7 +47,7 @@ export class CreateContainer extends React.Component {
 		}
 	}
 
-	// called when changing any of the fields in the slide
+	// called when changing any of the fields in the slides
 	onChange(id, value) {
 
 		let settings = {
@@ -69,88 +70,6 @@ export class CreateContainer extends React.Component {
 		})
 	}
 
-	validateCreateLeaguePage() {
-		let ret = {
-			isValid: true,
-			errorMessage: ""
-		}
-
-		if (!this.state.settings[FIELDS_ID.leagueNameId]) {
-			ret.errorMessage = "missing_league_name"
-			ret.isValid = false
-		}
-		else if (!this.state.settings[FIELDS_ID.passwordId]) {
-			ret.errorMessage = "missing_password"
-			ret.isValid = false
-		}
-		else if (this.state.settings[FIELDS_ID.participantsId] < 2) {
-			ret.errorMessage = "participants_error"
-			ret.isValid = false
-		}
-		return ret
-	}
-
-	validateTeamSettingsPage() {
-		let ret = {
-			isValid: true,
-			errorMessage: ""
-		}
-
-		if (this.state.settings[FIELDS_ID.goalskeepersId] < 1) {
-			ret.errorMessage = "goalskeepers_error"
-			ret.isValid = false
-		}
-		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
-			ret.errorMessage = "defenders_error"
-			ret.isValid = false
-		}
-		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.midfieldersId] < 3) {
-			ret.errorMessage = "midfielders_error"
-			ret.isValid = false
-		}
-		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.strikersId] < 1) {
-			ret.errorMessage = "forwarders_error"
-			ret.isValid = false
-		}
-		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] + this.state.settings[FIELDS_ID.midfieldersId] + this.state.settings[FIELDS_ID.strikersId] < 10) {
-			ret.errorMessage = "players_error"
-			ret.isValid = false
-		}
-		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA && this.state.settings[FIELDS_ID.playersId] < 10) {
-			ret.errorMessage = "players_error"
-			ret.isValid = false
-		}
-		return ret
-
-	}
-
-	validateAuctionSettingsPage() {
-		let ret = {
-			isValid: true,
-			errorMessage: ""
-		}
-
-		if (this.state.settings[FIELDS_ID.countdownId] < 3) {
-			ret.errorMessage = "countdown_error"
-			ret.isValid = false
-		}		
-		return ret
-	}
-
-	validateCreateTeamPage() {
-		let ret = {
-			isValid: true,
-			errorMessage: ""
-		}
-
-		if (!this.state.settings[FIELDS_ID.teamnameId]) {
-			ret.errorMessage = "missing_team_name"
-			ret.isValid = false
-		}
-		return ret
-
-	}
-
 	// Used to decide whether is possible to change slide (see Create.js -> onSlideChange)
 	validatePage(page_index) {
 
@@ -160,7 +79,11 @@ export class CreateContainer extends React.Component {
 		})
 		switch (page_index) {
 			case 0: {
-				const validation_result = this.validateCreateLeaguePage()
+				const validation_result = validateCreateLeaguePage(
+					this.state.settings[FIELDS_ID.leagueNameId],
+					this.state.settings[FIELDS_ID.passwordId],
+					this.state.settings[FIELDS_ID.participantsId]
+					)
 				this.setState({
 					popupShow: !validation_result.isValid,
 					popupMessage: validation_result.errorMessage
@@ -169,7 +92,14 @@ export class CreateContainer extends React.Component {
 			}
 
 			case 1: {
-				const validation_result = this.validateTeamSettingsPage()
+				const validation_result = validateTeamSettingsPage(
+					this.state.settings[FIELDS_ID.goalskeepersId],
+					this.state.settings[FIELDS_ID.tipologyId],
+					this.state.settings[FIELDS_ID.defendersId],
+					this.state.settings[FIELDS_ID.midfieldersId],
+					this.state.settings[FIELDS_ID.strikersId],
+					this.state.settings[FIELDS_ID.playersId]
+				)
 				this.setState({
 					popupShow: !validation_result.isValid,
 					popupMessage: validation_result.errorMessage
@@ -178,7 +108,7 @@ export class CreateContainer extends React.Component {
 			}
 
 			case 2: {
-				const validation_result = this.validateAuctionSettingsPage()
+				const validation_result = validateAuctionSettingsPage(this.state.settings[FIELDS_ID.countdownId])
 				this.setState({
 					popupShow: !validation_result.isValid,
 					popupMessage: validation_result.errorMessage
@@ -187,7 +117,7 @@ export class CreateContainer extends React.Component {
 			}
 
 			case 3: {
-				const validation_result = this.validateCreateTeamPage()
+				const validation_result = validateCreateTeamPage(!this.state.settings[FIELDS_ID.teamnameId])
 				this.setState({
 					popupShow: !validation_result.isValid,
 					popupMessage: validation_result.errorMessage
@@ -196,7 +126,7 @@ export class CreateContainer extends React.Component {
 			}
 
 		default:
-			console.error(`[CreateContainer] No validation defined for page with index "${page_index}"`)
+			console.error(`[CreateLeagueContainer] No validation defined for page with index "${page_index}"`)
 		}
 	}
 
@@ -212,7 +142,7 @@ export class CreateContainer extends React.Component {
 
 	render() {
 		return (
-			<Create
+			<CreateLeagueSlider
 				leagueNameId={FIELDS_ID.leagueNameId}
 				passwordId={FIELDS_ID.passwordId}
 				participantsId={FIELDS_ID.participantsId}
@@ -245,6 +175,6 @@ export class CreateContainer extends React.Component {
 }
 
 
-CreateContainer.propTypes = {
+CreateLeagueContainer.propTypes = {
 	navigation: PropTypes.object.isRequired
 }

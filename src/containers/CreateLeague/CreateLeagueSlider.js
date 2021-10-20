@@ -7,7 +7,7 @@ import { button, text } from "../../components/Button/styles"
 import Header from "../../components/Header/Header"
 import { carouselSyle, commonStyle, textStyles } from "../../styles"
 
-const Create = (props) => {
+const CreateLeagueSlider = (props) => {
 
 	const renderNextButton = () => {
 		const type = "primary"
@@ -27,11 +27,8 @@ const Create = (props) => {
 		)
 	}
 
-	const Crea = ({ item, key }) => {
-
+	const _renderItem = ({ item, key }) => {
 		const Page = item.component
-
-
 		return (
 			<View style={[commonStyle.container, commonStyle.paddingHeader]}>
 				<Header title={item.title} />
@@ -57,7 +54,7 @@ const Create = (props) => {
 
 	return (
 		<AppIntroSlider
-			renderItem={Crea}
+			renderItem={_renderItem}
 			data={props.pages}
 			bottomButton
 			onDone={props.onDone}
@@ -73,9 +70,9 @@ const Create = (props) => {
 }
 
 
-Create.propTypes = {
+CreateLeagueSlider.propTypes = {
 	pages: PropTypes.array.isRequired,
 	onDone: PropTypes.func.isRequired
 }
 
-export default Create
+export default CreateLeagueSlider

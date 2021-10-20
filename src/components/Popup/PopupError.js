@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 	},
 	message: {
 		color: colors.secondary,
-		fontSize: 15
+		fontSize: 16
 	}
 })
 

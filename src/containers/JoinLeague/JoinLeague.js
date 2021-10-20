@@ -1,4 +1,5 @@
 import I18n from "i18n-js"
+import PopupError from "../../components/Popup/PopupError"
 import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
@@ -20,6 +21,7 @@ const JoinLeague = (props) => {
 				placeholder={I18n.translate("password")}
 				onChange={props.onChange}
 			/>
+			<PopupError popupShow={props.popupShow} popupTitle={props.popupTitle} popupMessage={props.popupMessage} popupClosedCallback={props.popupClosedCallback}/>
 		</View>
 	)
 }

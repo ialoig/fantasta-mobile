@@ -1,9 +1,9 @@
 import I18n from "i18n-js"
+import PopupError from "../../components/Popup/PopupError"
 import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
 import { InputText, NumberInc, Radio } from "../../components"
-import PopupError from "../../components/Popup/PopupError"
 import { commonStyle } from "../../styles"
 
 const CreateLeague = (props) => {

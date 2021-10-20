@@ -3,8 +3,8 @@ import PropTypes from "prop-types"
 import React from "react"
 import { Text, View } from "react-native"
 import AppIntroSlider from "react-native-app-intro-slider"
-import { Header } from "../../components"
 import { button, text } from "../../components/Button/styles"
+import { Header } from "../../components"
 import { carouselSyle, commonStyle, textStyles } from "../../styles"
 
 const JoinLeagueSlider = (props) => {
@@ -32,12 +32,25 @@ const JoinLeagueSlider = (props) => {
 		return (
 			<View style={[commonStyle.container, commonStyle.paddingHeader]}>
 				<Header title={item.title} />
-				<View style={[commonStyle.content, commonStyle.flex_start]}>
+				<View style={[commonStyle.content, commonStyle.flex_start]} key={key}>
 					<Page item={item} {...props} />
 				</View>
 			</View>
 		)
 	}
+
+	const onSlideChange = (index, lastIndex) => {
+		const swipingNext = lastIndex < index
+		const swipingBack = lastIndex > index
+
+		if (swipingNext) {
+			if (props.validatePage(lastIndex) == false) {
+				slider.goToSlide(lastIndex)
+			}
+		}
+	}
+
+	var slider = AppIntroSlider
 
 	return (
 		<AppIntroSlider
@@ -49,6 +62,9 @@ const JoinLeagueSlider = (props) => {
 			activeDotStyle={carouselSyle.activeDotStyle}
 			renderNextButton={renderNextButton}
 			renderDoneButton={renderDoneButton}
+			onSlideChange={onSlideChange}
+			popupClosedCallback={props.popupClosedCallback}
+			ref={(ref) => (slider = ref)}
 		/>
 	)
 }
