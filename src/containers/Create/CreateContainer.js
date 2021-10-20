@@ -42,7 +42,7 @@ export class CreateContainer extends React.Component {
 			},
 			popupShow: false,
 			popupTitle: I18n.translate("field_error"),
-			popupMessages: []
+			popupMessage: ""
 		}
 	}
 
@@ -56,110 +56,98 @@ export class CreateContainer extends React.Component {
 		this.setState({
 			settings: Object.assign({}, this.state.settings, settings),
 			popupShow: false,
-			popupMessages: []
+			popupMessage: ""
 		})
 	}
 
-	// called from PopupModal.js once the popup is closed.
-	// The popup state is following the props (see PopupModal.js -> useEffect) therefore we need to change the state from outside to make changes
+	// called from PopupError.js once the popup is closed.
+	// The popup state is following the props (see PopupError.js -> useEffect) therefore we need to change the state from outside to make changes
 	popupClosedCallback() {
 		this.setState({
 			popupShow: false,
-			popupMessages: []
+			popupMessage: ""
 		})
 	}
 
 	validateCreateLeaguePage() {
-		let validFields = true
-		let errors = []
+		let ret = {
+			isValid: true,
+			errorMessage: ""
+		}
+
 		if (!this.state.settings[FIELDS_ID.leagueNameId]) {
-			errors.push("missing_league_name")
-			validFields = false
+			ret.errorMessage = "missing_league_name"
+			ret.isValid = false
 		}
-		if (!this.state.settings[FIELDS_ID.passwordId]) {
-			errors.push("missing_password")
-			validFields = false
+		else if (!this.state.settings[FIELDS_ID.passwordId]) {
+			ret.errorMessage = "missing_password"
+			ret.isValid = false
 		}
-		if (this.state.settings[FIELDS_ID.participantsId] < 2) {
-			errors.push("participants_error")
-			validFields = false
+		else if (this.state.settings[FIELDS_ID.participantsId] < 2) {
+			ret.errorMessage = "participants_error"
+			ret.isValid = false
 		}
-
-		this.setState({
-			popupShow: !validFields,
-			popupMessages: errors
-		})
-
-		return validFields
+		return ret
 	}
 
 	validateTeamSettingsPage() {
-		let validFields = true
-		let errors = []
+		let ret = {
+			isValid: true,
+			errorMessage: ""
+		}
+
 		if (this.state.settings[FIELDS_ID.goalskeepersId] < 1) {
-			errors.push("goalskeepers_error")
-			validFields = false
+			ret.errorMessage = "goalskeepers_error"
+			ret.isValid = false
 		}
-		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
-			errors.push("defenders_error")
-			validFields = false
+		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
+			ret.errorMessage = "defenders_error"
+			ret.isValid = false
 		}
-		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.midfieldersId] < 3) {
-			errors.push("midfielders_error")
-			validFields = false
+		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.midfieldersId] < 3) {
+			ret.errorMessage = "midfielders_error"
+			ret.isValid = false
 		}
-		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.strikersId] < 1) {
-			errors.push("forwarders_error")
-			validFields = false
+		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.strikersId] < 1) {
+			ret.errorMessage = "forwarders_error"
+			ret.isValid = false
 		}
-		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] + this.state.settings[FIELDS_ID.midfieldersId] + this.state.settings[FIELDS_ID.strikersId] < 10) {
-			errors.push("players_error")
-			validFields = false
+		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] + this.state.settings[FIELDS_ID.midfieldersId] + this.state.settings[FIELDS_ID.strikersId] < 10) {
+			ret.errorMessage = "players_error"
+			ret.isValid = false
 		}
-		if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA && this.state.settings[FIELDS_ID.playersId] < 10) {
-			errors.push("players_error")
-			validFields = false
+		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA && this.state.settings[FIELDS_ID.playersId] < 10) {
+			ret.errorMessage = "players_error"
+			ret.isValid = false
 		}
+		return ret
 
-		this.setState({
-			popupShow: !validFields,
-			popupMessages: errors
-		})
-
-		return validFields
 	}
 
 	validateAuctionSettingsPage() {
-		let validFields = true
-		let errors = []
-
-		if (this.state.settings[FIELDS_ID.countdownId] < 3) {
-			errors.push("countdown_error")
-			validFields = false
+		let ret = {
+			isValid: true,
+			errorMessage: ""
 		}
 
-		this.setState({
-			popupShow: !validFields,
-			popupMessages: errors
-		})
-
-		return validFields
+		if (this.state.settings[FIELDS_ID.countdownId] < 3) {
+			ret.errorMessage = "countdown_error"
+			ret.isValid = false
+		}		
+		return ret
 	}
 
 	validateCreateTeamPage() {
-		let validFields = true
-		let errors = []
-		if (!this.state.settings[FIELDS_ID.teamnameId]) {
-			errors.push("missing_team_name")
-			validFields = false
+		let ret = {
+			isValid: true,
+			errorMessage: ""
 		}
 
-		this.setState({
-			popupShow: !validFields,
-			popupMessages: errors
-		})
-
-		return validFields
+		if (!this.state.settings[FIELDS_ID.teamnameId]) {
+			ret.errorMessage = "missing_team_name"
+			ret.isValid = false
+		}
+		return ret
 
 	}
 
@@ -168,13 +156,45 @@ export class CreateContainer extends React.Component {
 
 		this.setState({
 			popupShow: false,
-			popupMessages: ""
+			popupMessage: ""
 		})
 		switch (page_index) {
-		case 0: return this.validateCreateLeaguePage()
-		case 1: return this.validateTeamSettingsPage()
-		case 2: return this.validateAuctionSettingsPage()
-		case 3: return this.validateCreateTeamPage()
+			case 0: {
+				const validation_result = this.validateCreateLeaguePage()
+				this.setState({
+					popupShow: !validation_result.isValid,
+					popupMessage: validation_result.errorMessage
+				})
+				return validation_result.isValid				
+			}
+
+			case 1: {
+				const validation_result = this.validateTeamSettingsPage()
+				this.setState({
+					popupShow: !validation_result.isValid,
+					popupMessage: validation_result.errorMessage
+				})
+				return validation_result.isValid
+			}
+
+			case 2: {
+				const validation_result = this.validateAuctionSettingsPage()
+				this.setState({
+					popupShow: !validation_result.isValid,
+					popupMessage: validation_result.errorMessage
+				})
+				return validation_result.isValid
+			}
+
+			case 3: {
+				const validation_result = this.validateCreateTeamPage()
+				this.setState({
+					popupShow: !validation_result.isValid,
+					popupMessage: validation_result.errorMessage
+				})
+				return validation_result.isValid
+			}
+
 		default:
 			console.error(`[CreateContainer] No validation defined for page with index "${page_index}"`)
 		}
@@ -217,7 +237,7 @@ export class CreateContainer extends React.Component {
 				settings={this.state.settings}
 				popupShow={this.state.popupShow}
 				popupTitle={this.state.popupTitle}
-				popupMessages={this.state.popupMessages}
+				popupMessage={this.state.popupMessage}
 				popupClosedCallback={this.popupClosedCallback.bind(this)}
 			/>
 		)
