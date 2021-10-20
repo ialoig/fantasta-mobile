@@ -1,4 +1,4 @@
-import TIPOLOGY from "../constants"
+import { TIPOLOGY } from "../constants"
 
 export const validateCreateLeaguePage = (leagueName, password, numParticipants) => {
     let ret = {
