@@ -17,7 +17,7 @@ const Create = (props) => {
 			</View>
 		)
 	}
-    
+
 	const renderDoneButton = () => {
 		const type = "primary"
 		return (
@@ -26,9 +26,9 @@ const Create = (props) => {
 			</View>
 		)
 	}
-    
+
 	const Crea = ({ item, key }) => {
-    
+
 		const Page = item.component
 
 
@@ -42,6 +42,19 @@ const Create = (props) => {
 		)
 	}
 
+	const onSlideChange = (index, lastIndex) => {
+		const swipingNext = lastIndex < index
+		const swipingBack = lastIndex > index
+
+		if (swipingNext) {
+			if (props.validatePage(lastIndex) == false) {
+				slider.goToSlide(lastIndex)
+			}
+		}
+	}
+
+	var slider = AppIntroSlider
+
 	return (
 		<AppIntroSlider
 			renderItem={Crea}
@@ -52,6 +65,9 @@ const Create = (props) => {
 			activeDotStyle={carouselSyle.activeDotStyle}
 			renderNextButton={renderNextButton}
 			renderDoneButton={renderDoneButton}
+			onSlideChange={onSlideChange}
+			popupClosedCallback={props.popupClosedCallback}
+			ref={(ref) => (slider = ref)}
 		/>
 	)
 }

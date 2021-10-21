@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { View } from "react-native"
 import { InputText, NumberInc, Radio } from "../../components"
+import PopupError from "../../components/Popup/PopupError"
 import { commonStyle } from "../../styles"
 
 const CreateLeague = (props) => {
@@ -25,7 +26,7 @@ const CreateLeague = (props) => {
 				value={props.settings[props.participantsId]}
 				step={1}
 				min={2}
-				onChange={value => props.onChange( props.participantsId, value )} 
+				onChange={value => props.onChange( props.participantsId, value )}
 			/>
 			<Radio 
 				label={I18n.translate("tipology")}
@@ -34,8 +35,9 @@ const CreateLeague = (props) => {
 					{ label: I18n.translate(props.tipology.CLASSIC), value: props.tipology.CLASSIC },
 					{ label: I18n.translate(props.tipology.MANTRA), value: props.tipology.MANTRA }
 				]}
-				onChange={value => props.onChange( props.tipologyId, value )} 
+				onChange={value => props.onChange( props.tipologyId, value )}
 			/>
+			<PopupError popupShow={props.popupShow} popupTitle={props.popupTitle} popupMessage={props.popupMessage} popupClosedCallback={props.popupClosedCallback}/>
 		</View>
 	)
 }
@@ -47,7 +49,11 @@ CreateLeague.propTypes = {
 	tipology: PropTypes.object.isRequired,
 	tipologyId: PropTypes.string.isRequired,
 	settings: PropTypes.object.isRequired,
-	onChange: PropTypes.func.isRequired
+	onChange: PropTypes.func.isRequired,
+	popupClosedCallback: PropTypes.func,
+	popupMessages: PropTypes.array,
+	popupShow: PropTypes.bool.isRequired,
+	popupTitle: PropTypes.string.isRequired
 }
 
 export default CreateLeague
