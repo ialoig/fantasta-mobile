@@ -1,8 +1,9 @@
+import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React from "react"
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
 import routes from "../../navigation/routesNames"
-import { Error, Leagues } from "../../services"
+import Leagues from "../../services"
 import AuctionSettings from "./AuctionSettings"
 import Create from "./Create"
 import CreateLeague from "./CreateLeague"
@@ -38,10 +39,14 @@ export class CreateContainer extends React.Component {
 				[FIELDS_ID.auctiontypeId]: AUCTION_TYPE.RANDOM,
 				[FIELDS_ID.startpriceId]: STARTING_PRICE.NONE,
 				[FIELDS_ID.teamnameId]: ""
-			}
+			},
+			popupShow: false,
+			popupTitle: I18n.translate("field_error"),
+			popupMessage: ""
 		}
 	}
 
+	// called when changing any of the fields in the slide
 	onChange(id, value) {
 
 		let settings = {
@@ -49,45 +54,154 @@ export class CreateContainer extends React.Component {
 		}
 
 		this.setState({
-			settings: Object.assign({}, this.state.settings, settings)
+			settings: Object.assign({}, this.state.settings, settings),
+			popupShow: false,
+			popupMessage: ""
 		})
 	}
 
-	async onDone() {
+	// called from PopupError.js once the popup is closed.
+	// The popup state is following the props (see PopupError.js -> useEffect) therefore we need to change the state from outside to make changes
+	popupClosedCallback() {
+		this.setState({
+			popupShow: false,
+			popupMessage: ""
+		})
+	}
+
+	validateCreateLeaguePage() {
+		let ret = {
+			isValid: true,
+			errorMessage: ""
+		}
+
 		if (!this.state.settings[FIELDS_ID.leagueNameId]) {
-			Error.showAlert("field_error", "missing_league_name")
+			ret.errorMessage = "missing_league_name"
+			ret.isValid = false
 		}
 		else if (!this.state.settings[FIELDS_ID.passwordId]) {
-			Error.showAlert("field_error", "missing_password")
-		}
-		else if (!this.state.settings[FIELDS_ID.teamnameId]) {
-			Error.showAlert("field_error", "missing_team_name")
+			ret.errorMessage = "missing_password"
+			ret.isValid = false
 		}
 		else if (this.state.settings[FIELDS_ID.participantsId] < 2) {
-			Error.showAlert("field_error", "participants_error")
+			ret.errorMessage = "participants_error"
+			ret.isValid = false
 		}
-		else if (this.state.settings[FIELDS_ID.goalskeepersId] < 1) {
-			Error.showAlert("field_error", "goalskeepers_error")
+		return ret
+	}
+
+	validateTeamSettingsPage() {
+		let ret = {
+			isValid: true,
+			errorMessage: ""
+		}
+
+		if (this.state.settings[FIELDS_ID.goalskeepersId] < 1) {
+			ret.errorMessage = "goalskeepers_error"
+			ret.isValid = false
 		}
 		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] < 3) {
-			Error.showAlert("field_error", "defenders_error")
+			ret.errorMessage = "defenders_error"
+			ret.isValid = false
 		}
 		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.midfieldersId] < 3) {
-			Error.showAlert("field_error", "midfielders_error")
+			ret.errorMessage = "midfielders_error"
+			ret.isValid = false
 		}
 		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.strikersId] < 1) {
-			Error.showAlert("field_error", "forwarders_error")
+			ret.errorMessage = "forwarders_error"
+			ret.isValid = false
 		}
 		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && this.state.settings[FIELDS_ID.defendersId] + this.state.settings[FIELDS_ID.midfieldersId] + this.state.settings[FIELDS_ID.strikersId] < 10) {
-			Error.showAlert("field_error", "players_error") // todo: maybe a better error?
+			ret.errorMessage = "players_error"
+			ret.isValid = false
 		}
 		else if (this.state.settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA && this.state.settings[FIELDS_ID.playersId] < 10) {
-			Error.showAlert("field_error", "players_error")
+			ret.errorMessage = "players_error"
+			ret.isValid = false
 		}
-		else if (this.state.settings[FIELDS_ID.countdownId] < 3) {
-			Error.showAlert("field_error", "countdown_error")
+		return ret
+
+	}
+
+	validateAuctionSettingsPage() {
+		let ret = {
+			isValid: true,
+			errorMessage: ""
 		}
-		else {
+
+		if (this.state.settings[FIELDS_ID.countdownId] < 3) {
+			ret.errorMessage = "countdown_error"
+			ret.isValid = false
+		}		
+		return ret
+	}
+
+	validateCreateTeamPage() {
+		let ret = {
+			isValid: true,
+			errorMessage: ""
+		}
+
+		if (!this.state.settings[FIELDS_ID.teamnameId]) {
+			ret.errorMessage = "missing_team_name"
+			ret.isValid = false
+		}
+		return ret
+
+	}
+
+	// Used to decide whether is possible to change slide (see Create.js -> onSlideChange)
+	validatePage(page_index) {
+
+		this.setState({
+			popupShow: false,
+			popupMessage: ""
+		})
+		switch (page_index) {
+			case 0: {
+				const validation_result = this.validateCreateLeaguePage()
+				this.setState({
+					popupShow: !validation_result.isValid,
+					popupMessage: validation_result.errorMessage
+				})
+				return validation_result.isValid				
+			}
+
+			case 1: {
+				const validation_result = this.validateTeamSettingsPage()
+				this.setState({
+					popupShow: !validation_result.isValid,
+					popupMessage: validation_result.errorMessage
+				})
+				return validation_result.isValid
+			}
+
+			case 2: {
+				const validation_result = this.validateAuctionSettingsPage()
+				this.setState({
+					popupShow: !validation_result.isValid,
+					popupMessage: validation_result.errorMessage
+				})
+				return validation_result.isValid
+			}
+
+			case 3: {
+				const validation_result = this.validateCreateTeamPage()
+				this.setState({
+					popupShow: !validation_result.isValid,
+					popupMessage: validation_result.errorMessage
+				})
+				return validation_result.isValid
+			}
+
+		default:
+			console.error(`[CreateContainer] No validation defined for page with index "${page_index}"`)
+		}
+	}
+
+	async onDone() {
+		if (this.validatePage(pages.length - 1)) {
 			try {
 				await Leagues.Create(this.state.settings)
 				this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
@@ -117,9 +231,14 @@ export class CreateContainer extends React.Component {
 				auctionType={AUCTION_TYPE}
 				startingPrice={STARTING_PRICE}
 				pages={pages}
-				settings={this.state.settings}
+				validatePage={this.validatePage.bind(this)}
 				onChange={this.onChange.bind(this)}
 				onDone={this.onDone.bind(this)}
+				settings={this.state.settings}
+				popupShow={this.state.popupShow}
+				popupTitle={this.state.popupTitle}
+				popupMessage={this.state.popupMessage}
+				popupClosedCallback={this.popupClosedCallback.bind(this)}
 			/>
 		)
 	}

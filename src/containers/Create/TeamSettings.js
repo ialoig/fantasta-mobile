@@ -55,7 +55,7 @@ const TeamSettings = (props) => {
 				label={I18n.translate("startingBudget")}
 				value={props.settings[props.budgetId]}
 				step={10}
-				min={11} // todo: mi fa scendere fino a 10 anche se poi manda 11
+				min={11}
 				onChange={value => props.onChange(props.budgetId, value)}
 			/>
 		</View>
