@@ -2,12 +2,15 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
 
-import { CreateLeagueContainer } from "../containers/CreateLeague/CreateLeagueContainer"
+// import { CreateLeagueContainer, TeamSettings } from "../containers/CreateLeague"
+import CreateLeagueContainer from "../containers/CreateLeague/CreateLeagueContainer"
+import TeamSettings from "../containers/CreateLeague/TeamSettings"
+import AuctionSettings  from "../containers/CreateLeague/AuctionSettings"
 import ForgotPassword from "../containers/ForgotPassword/ForgotPassword"
 import ForgotPasswordConfirmation from "../containers/ForgotPassword/ForgotPasswordConfirmation"
 import { GetStartedContainer } from "../containers/GetStarted/GetStartedContainer"
 import { HomeContainer } from "../containers/Home/HomeContainer"
-import { JoinLeagueContainer } from "../containers/JoinLeague/JoinLeagueContainer"
+import JoinLeagueContainer from "../containers/JoinLeague/JoinLeagueContainer"
 import { LoginContainer } from "../containers/Login/LoginContainer"
 import PlayersDetails from "../containers/Players/PlayersDetails"
 import CompleteRegistratioConfirmation from "../containers/Register/CompleteRegistratioConfirmation"
@@ -82,11 +85,19 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.CREATE_LEAGUE}
 					component={CreateLeagueContainer}
-					options={noHeaderScreenConfig} />
+					options={getScreenConfig(false, false, true)} />
+				<AppStack.Screen
+					name={routes.CREATE_LEAGUE_TEAM_SETTINGS}
+					component={TeamSettings}
+					options={getScreenConfig(false, false, true)} />
+				<AppStack.Screen
+					name={routes.CREATE_LEAGUE_AUCTION_SETTINGS}
+					component={AuctionSettings}
+					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
 					name={routes.JOIN_LEAGUE}
 					component={JoinLeagueContainer}
-					options={noHeaderScreenConfig} />
+					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
 					name={routes.BOTTOMTABNAVIGATOR}
 					component={BottomTabNavigator}
@@ -98,11 +109,11 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.PLAYER_DETAILS}
 					component={PlayersDetails}
-					options={getScreenConfig(true, false, true)}/>
+					options={getScreenConfig(true, false, true)} />
 				<AppStack.Screen
 					name={routes.TEAM_DETAILS}
 					component={TeamDetails}
-					options={getScreenConfig(true, false, true)}/>
+					options={getScreenConfig(true, false, true)} />
 			</AppStack.Navigator>
 		</NavigationContainer>
 	)

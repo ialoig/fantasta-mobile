@@ -28,6 +28,8 @@ const RoutesName = {
 	DASHBOARD: "Dashboard",
 	JOIN_LEAGUE: "JoinLeague",
 	CREATE_LEAGUE: "CreateLeague",
+	CREATE_LEAGUE_TEAM_SETTINGS: "TeamSettings",
+	CREATE_LEAGUE_AUCTION_SETTINGS: "AuctionSettings",
 	ACCOUNT: "Account",
 	ACCOUNT_DETAILS: "AccountDetails",
 	SUPPORT: "Support",
