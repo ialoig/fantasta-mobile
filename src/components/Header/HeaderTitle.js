@@ -47,6 +47,8 @@ function HeaderTitle({ children }) {
 			return I18n.translate("team")
 		case routes.MARKET:
 			return I18n.translate("market")
+		case routes.MARKET_OPEN_AUCTION:
+			return I18n.translate("market")
 		case routes.PLAYERS:
 			return I18n.translate("players")
 		default:

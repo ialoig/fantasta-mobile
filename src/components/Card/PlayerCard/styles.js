@@ -4,6 +4,11 @@ import { dynamicHeight, dynamicWidth, getWidth } from "../../../utils/pixelResol
 
 
 export const size = StyleSheet.create({
+	auction: {
+		height: dynamicHeight(327, 160),
+		paddingHorizontal: getWidth(20),
+		width: dynamicWidth(327)
+	},
 	large: {
 		height: dynamicHeight(327, 160),
 		paddingHorizontal: getWidth(20),
@@ -22,6 +27,14 @@ export const style = StyleSheet.create({
 		flex: 1,
 		justifyContent: "center"
 	},
+	auction: {
+		alignItems: "center",
+	},
+	auction_price: {
+		alignItems: "flex-end",
+		flex: 1,
+		paddingRight: 12
+	},
 	card: {
 		...StyleSheet.absoluteFillObject,
 		backgroundColor: colors.greyLight,
@@ -35,9 +48,17 @@ export const style = StyleSheet.create({
 	},
 	player: {
 		flexDirection: "row",
+		justifyContent: "center"
 	},
 	playerInfo: {
 		justifyContent: "center"
+	},
+	player_initial_price: {
+		flex: 1,
+		paddingLeft: 12
+	},
+	player_price: {
+		flexDirection: "row",
 	},
 	separator: {
 		alignItems: "center"
