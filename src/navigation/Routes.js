@@ -9,6 +9,7 @@ import { GetStartedContainer } from "../containers/GetStarted/GetStartedContaine
 import { HomeContainer } from "../containers/Home/HomeContainer"
 import { JoinLeagueContainer } from "../containers/JoinLeague/JoinLeagueContainer"
 import { LoginContainer } from "../containers/Login/LoginContainer"
+import MarketOpenAuction from "../containers/Market/MarketOpenAuction"
 import PlayersDetails from "../containers/Players/PlayersDetails"
 import CompleteRegistratioConfirmation from "../containers/Register/CompleteRegistratioConfirmation"
 import CompleteRegistration from "../containers/Register/CompleteRegistration"
@@ -46,7 +47,7 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.COMPLETE_REGISTER}
 					component={CompleteRegistration}
-					options={getScreenConfig(false, false, false)} />
+					options={getScreenConfig(false, "", false)} />
 				<AppStack.Screen
 					name={routes.COMPLETE_REGISTER_CONFIRMATION}
 					component={CompleteRegistratioConfirmation}
@@ -66,7 +67,7 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.FORGOT_PASSWORD}
 					component={ForgotPassword}
-					options={getScreenConfig(false, false, true)} />
+					options={getScreenConfig(false, "", true)} />
 				<AppStack.Screen
 					name={routes.FORGOT_PASSWORD_CONFIRMATION}
 					component={ForgotPasswordConfirmation}
@@ -98,11 +99,15 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.PLAYER_DETAILS}
 					component={PlayersDetails}
-					options={getScreenConfig(true, false, true)}/>
+					options={getScreenConfig(true, "", true)}/>
 				<AppStack.Screen
 					name={routes.TEAM_DETAILS}
 					component={TeamDetails}
-					options={getScreenConfig(true, false, true)}/>
+					options={getScreenConfig(true, "", true)}/>
+				<AppStack.Screen
+					name={routes.MARKET_OPEN_AUCTION}
+					component={MarketOpenAuction}
+					options={getScreenConfig(false, "", false)}/>
 			</AppStack.Navigator>
 		</NavigationContainer>
 	)

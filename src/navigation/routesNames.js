@@ -34,6 +34,7 @@ const RoutesName = {
 	SETTINGS: "Settings",
 	TEAM: "Team",
 	MARKET: "Market",
+	MARKET_OPEN_AUCTION: "MarketOpenAuction",
 	PLAYERS: "Players"
 }
 

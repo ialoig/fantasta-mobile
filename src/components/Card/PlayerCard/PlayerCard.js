@@ -9,13 +9,14 @@ import Icon from "../../Icon/Icon"
 import { size, style } from "./styles"
 
 
-const playerCardType = ["default", "small", "large"]
+const playerCardType = ["default", "small", "large", "auction"]
 
 
 const PlayerCard = ({ type, isClassic, name, roles, team, quotation, onPress }) => {
 
 	const [playerInfo, setPlayerInfo] = useState("")
 	const [playerInfoPrice, setPlayerInfoPrice] = useState("")
+	const [playerAuctionPrice, setPlayerAuctionPrice] = useState("")
 
 	useEffect(() => {
 		//Classic roles
@@ -39,6 +40,10 @@ const PlayerCard = ({ type, isClassic, name, roles, team, quotation, onPress }) 
 		case "large":
 			!isNil(quotation) ? setPlayerInfoPrice(I18n.translate("initial_price")) : null
 			break
+		case "auction":
+			!isNil(quotation) ? setPlayerInfoPrice(I18n.translate("initial_price")) : null
+			setPlayerAuctionPrice(I18n.translate("auction_price"))
+			break
 		default:
 			break
 		}
@@ -55,6 +60,7 @@ const PlayerCard = ({ type, isClassic, name, roles, team, quotation, onPress }) 
 				</View>
 			</View>
 			
+			{/** style definition when card is Large */}
 			{
 				type === "large" && !isNil(quotation) &&
 				<View style={style.separator}>
@@ -66,6 +72,30 @@ const PlayerCard = ({ type, isClassic, name, roles, team, quotation, onPress }) 
 				</View>
 			}
 
+						
+			{/** style definition when card is Auction */}
+			{
+				type === "auction" && !isNil(quotation) &&
+				<View style={style.auction}>
+					<Icon name="separator" />
+					<View style={style.player_price}>
+						<View style={style.player_initial_price}>
+							<Text style={textStyles.h3}>{playerInfoPrice}</Text>
+							<Text style={textStyles.title}>{quotation}
+								<Text style={textStyles.buttonXSmall}>{" fm"}</Text>
+							</Text>
+						</View>
+						<View style={style.auction_price}>
+							<Text style={textStyles.h3}>{playerAuctionPrice}</Text>
+							<Text style={textStyles.title}>{quotation}
+								<Text style={textStyles.buttonXSmall}>{" fm"}</Text>
+							</Text>
+						</View>
+					</View>
+				</View>
+			}
+
+			{/** style definition when card is Small */}
 			{ 
 				type === "small" &&
 				<View style={style.arrow}>
