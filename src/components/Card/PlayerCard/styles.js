@@ -69,3 +69,11 @@ export const style = StyleSheet.create({
 		justifyContent: "space-between"
 	}
 })
+
+
+
+export const color = StyleSheet.create({
+	text: {
+		color: colors.textPlaceholder
+	}
+})
