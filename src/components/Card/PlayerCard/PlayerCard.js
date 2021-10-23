@@ -6,13 +6,13 @@ import { Pressable, Text, View } from "react-native"
 import { ROLE_CLASSIC } from "../../../constants"
 import { textStyles } from "../../../styles"
 import Icon from "../../Icon/Icon"
-import { size, style } from "./styles"
+import { color, size, style } from "./styles"
 
 
 const playerCardType = ["default", "small", "large", "auction"]
 
 
-const PlayerCard = ({ type, isClassic, name, roles, team, quotation, onPress }) => {
+const PlayerCard = ({ type, isClassic, name, roles, team, quotation, bid, onPress }) => {
 
 	const [playerInfo, setPlayerInfo] = useState("")
 	const [playerInfoPrice, setPlayerInfoPrice] = useState("")
@@ -42,7 +42,7 @@ const PlayerCard = ({ type, isClassic, name, roles, team, quotation, onPress }) 
 			break
 		case "auction":
 			!isNil(quotation) ? setPlayerInfoPrice(I18n.translate("initial_price")) : null
-			setPlayerAuctionPrice(I18n.translate("auction_price"))
+			!isNil(bid) ? setPlayerAuctionPrice(I18n.translate("auction_price")) : null
 			break
 		default:
 			break
@@ -81,14 +81,14 @@ const PlayerCard = ({ type, isClassic, name, roles, team, quotation, onPress }) 
 					<View style={style.player_price}>
 						<View style={style.player_initial_price}>
 							<Text style={textStyles.h3}>{playerInfoPrice}</Text>
-							<Text style={textStyles.title}>{quotation}
-								<Text style={textStyles.buttonXSmall}>{" fm"}</Text>
+							<Text style={[textStyles.title, color.text]}>{quotation}
+								<Text style={[textStyles.buttonXSmall, color.text]}>{" fm"}</Text>
 							</Text>
 						</View>
 						<View style={style.auction_price}>
 							<Text style={textStyles.h3}>{playerAuctionPrice}</Text>
-							<Text style={textStyles.title}>{quotation}
-								<Text style={textStyles.buttonXSmall}>{" fm"}</Text>
+							<Text style={[textStyles.title, color.text]}>{bid}
+								<Text style={[textStyles.buttonXSmall, color.text]}>{" fm"}</Text>
 							</Text>
 						</View>
 					</View>
@@ -112,6 +112,7 @@ PlayerCard.propTypes = {
 	roles: PropTypes.array.isRequired,
 	team: PropTypes.string.isRequired,
 	quotation: PropTypes.number,
+	bid: PropTypes.number,
 	type: PropTypes.oneOf([...Object.values(playerCardType)]).isRequired,
 	onPress: PropTypes.func
 }

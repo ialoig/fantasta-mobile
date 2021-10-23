@@ -5,8 +5,10 @@ import React, { useState } from "react"
 import { Text, View } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 import { PlayerCard } from "../../components"
+import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
+import Countdown from "../../components/Countdown/Countdown"
 import { Players } from "../../services"
-import { colors, textStyles } from "../../styles"
+import { textStyles } from "../../styles"
 import styles from "./styles"
 
 function MarketOpenAuction() {
@@ -29,16 +31,10 @@ function MarketOpenAuction() {
 					<Text style={textStyles.h2}>
 						{I18n.translate("auction_countdown")}
 					</Text>
-					<View style={styles.countdown}>
-						<Text style={[textStyles.title, styles.countdown_text]}>
-							{"00"}
-						</Text>
-					</View>
-					<View style={styles.countdown}>
-						<Text style={[textStyles.title, styles.countdown_text]}>
-							{"00"}
-						</Text>
-					</View>
+					<Countdown 
+						minutes={0}
+						seconds={10}
+					/>
 				</View>
 
 				<PlayerCard
@@ -48,6 +44,12 @@ function MarketOpenAuction() {
 					roles={isClassic ?  [...player.roleClassic] : player.roleMantra}
 					team={player.team}
 					quotation={player.initialPrice}
+					bid={0} //TODO: set current bid based on bids coming from auction
+				/>
+
+				<AuctionCard 
+					name={"aaa"}
+					budget={"150"}
 				/>
 			</ScrollView>
 		</View>

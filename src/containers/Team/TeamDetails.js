@@ -30,7 +30,7 @@ function TeamDetails({ teamID, style }) {
 	const { params } = useRoute()
 	//get team ID from route params
 	//TODO: check to be done: sometimes seems that teamID is null. 
-	//It returns an error on props-type validation cause is marked as required
+	//It returns an error on props-type validation because it's marked as required
 	teamID = params?.teamID ? params?.teamID : teamID
 
 	const [team, setTeam] = useState()
