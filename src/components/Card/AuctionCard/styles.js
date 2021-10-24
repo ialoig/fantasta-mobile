@@ -27,12 +27,13 @@ export const card =  StyleSheet.create({
 	card: {
 		...StyleSheet.absoluteFillObject,
 		backgroundColor: colors.greyLight,
-		borderRadius: 16,
+		borderRadius: 18,
 		marginTop: 12,
 		position: "relative",
 	},
+	// eslint-disable-next-line react-native/no-color-literals
 	highlight: {
-		borderColor: "rgba(31, 204, 121, 0.4)",
+		borderColor: "rgba(31, 204, 121, 0.5)",
 		borderWidth: 3,
 	},
 	small: {

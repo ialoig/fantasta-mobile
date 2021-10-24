@@ -23,6 +23,15 @@ const FILTER_HEIGHT = INPUT_HEIGHT + BADGE_HEIGHT + HEADER_HEIGHT // total heigh
 
 const snapPoints = [FILTER_HEIGHT, 0]
 
+/**
+ * 
+ * Render a list of objects with a search box on top of the view, which disappear when list is scrolled.
+ * 
+ * @param {players} array list of object
+ * @param {searchBoxShown} boolean define if search box must be shown
+ * @param {searchBoxSticky} boolean define is search box must be fixed on top
+ * @returns 
+ */
 function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 
 	//define list of filterdPlayers to show
