@@ -9,6 +9,7 @@ import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 import Countdown from "../../components/Countdown/Countdown"
 import { Players } from "../../services"
 import { textStyles } from "../../styles"
+import AuctionBidList from "./AuctionBidList"
 import styles from "./styles"
 
 function MarketOpenAuction() {
@@ -22,6 +23,23 @@ function MarketOpenAuction() {
 	//player object found by ID passed by props
 	const [player, setPlayer] = useState(Players.GetPlayersByID(playerID))
 
+	const bids = [
+		{
+			id: 1,
+			name: "Team A",
+			bid: "20"
+		},
+		{
+			id: 2,
+			name: "Team B",
+			bid: "40"
+		},
+		{
+			id: 3,
+			name: "Team C",
+			bid: "30"
+		},
+	]
 
 	return (
 		<View style={styles.container}>
@@ -47,10 +65,10 @@ function MarketOpenAuction() {
 					bid={0} //TODO: set current bid based on bids coming from auction
 				/>
 
-				<AuctionCard 
-					name={"aaa"}
-					budget={"150"}
+				<AuctionBidList 
+					bids={bids}
 				/>
+
 			</ScrollView>
 		</View>
 	)

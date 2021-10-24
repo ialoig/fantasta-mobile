@@ -5,7 +5,7 @@ import { textStyles } from "../../../styles"
 import Icon from "../../Icon/Icon"
 import styles, { card, size } from "./styles"
 
-function AuctionCard({ name, budget }) {
+function AuctionCard({ name, bid }) {
 	return (
         
 		<View style={[card.card, size.card, card.small, card.highlight, card.highlightActive]}>
@@ -17,7 +17,7 @@ function AuctionCard({ name, budget }) {
 			<View style={styles.info}>
 				<View style={styles.infoTeam}>
 					<Text style={textStyles.h3}>{name}</Text>
-					<Text style={textStyles.description}>{budget} fm</Text>
+					<Text style={textStyles.description}>{bid} fm</Text>
 				</View>
 			</View>
 		</View>
@@ -26,7 +26,7 @@ function AuctionCard({ name, budget }) {
 
 AuctionCard.propTypes = {
 	name: PropTypes.string.isRequired,
-	budget: PropTypes.string.isRequired
+	bid: PropTypes.string.isRequired
 }
 
 export default AuctionCard
