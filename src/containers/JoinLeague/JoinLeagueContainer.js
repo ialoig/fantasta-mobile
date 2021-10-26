@@ -7,8 +7,9 @@ import React, { useState } from "react"
 import { FIELDS_ID } from "../../constants"
 import { InputText, Button, PopupError } from "../../components"
 import routes from "../../navigation/routesNames"
-import Leagues from "../../services"
-import { commonStyle, textStyles } from "../../styles"
+import { Leagues } from "../../services"
+import { commonStyle } from "../../styles"
+import { validateJoinLeaguePage } from "../../utils/validation"
 
 function JoinLeagueContainer() {
 
@@ -41,35 +42,23 @@ function JoinLeagueContainer() {
 		setPopupMessage("")
 	}
 
-	function validateJoinLeaguePage() {
-		let isValid = true
-		let errorMessage = ""
-
-		if (!settings[FIELDS_ID.leagueNameId]) {
-			errorMessage = "missing_league_name"
-			isValid = false
-		}
-		else if (!settings[FIELDS_ID.passwordId]) {
-			errorMessage = "missing_password"
-			isValid = false
-		}
-		else if (!settings[FIELDS_ID.teamnameId]) {
-			errorMessage = "missing_team_name"
-			isValid = false
-		}
-		setPopupShow(!isValid)
-		setPopupMessage(errorMessage)
-		return isValid
-	}
-
 	async function buttonOnPress() {
-		if (validateJoinLeaguePage()) {
+
+		const errorMessage = validateJoinLeaguePage(settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
+		if (errorMessage) {
+			setPopupShow(true)
+			setPopupMessage(errorMessage)
+		}
+		else{
 			try {
 				await Leagues.Join("", settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
 				navigate(routes.BOTTOMTABNAVIGATOR)
 				// TODO: should clean the navigation stack. A further back should point to the Dashboard
 			}
-			catch (error) { console.error(`[JoinLeagueContainer]: ${error}`) } // error handling done in Leagues.Join
+			catch (error) {
+				console.error(`[JoinLeagueContainer]: ${error}`)
+				// error handling done in Leagues.Create. TODO: fix it
+			}
 		}
 	}
 
