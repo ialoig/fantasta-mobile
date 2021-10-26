@@ -11,7 +11,7 @@ import { Leagues } from "../../services"
 import { commonStyle } from "../../styles"
 import { validateJoinLeaguePage } from "../../utils/validation"
 
-function JoinLeagueContainer() {
+function JoinLeague() {
 
 	const { navigate } = useNavigation()
 
@@ -56,7 +56,7 @@ function JoinLeagueContainer() {
 				// TODO: should clean the navigation stack. A further back should point to the Dashboard
 			}
 			catch (error) {
-				console.error(`[JoinLeagueContainer]: ${error}`)
+				console.error(`[JoinLeague]: ${error}`)
 				// error handling done in Leagues.Create. TODO: fix it
 			}
 		}
@@ -102,6 +102,6 @@ function JoinLeagueContainer() {
 }
 
 
-JoinLeagueContainer.propTypes = {}
+JoinLeague.propTypes = {}
 
-export default JoinLeagueContainer
+export default JoinLeague

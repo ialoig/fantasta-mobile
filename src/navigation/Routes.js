@@ -7,7 +7,7 @@ import ForgotPassword from "../containers/ForgotPassword/ForgotPassword"
 import ForgotPasswordConfirmation from "../containers/ForgotPassword/ForgotPasswordConfirmation"
 import { GetStartedContainer } from "../containers/GetStarted/GetStartedContainer"
 import { HomeContainer } from "../containers/Home/HomeContainer"
-import JoinLeagueContainer from "../containers/JoinLeague/JoinLeagueContainer"
+import JoinLeague from "../containers/JoinLeague/JoinLeague"
 import { LoginContainer } from "../containers/Login/LoginContainer"
 import PlayersDetails from "../containers/Players/PlayersDetails"
 import CompleteRegistratioConfirmation from "../containers/Register/CompleteRegistratioConfirmation"
@@ -97,7 +97,7 @@ export default function Routes() {
 					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
 					name={routes.JOIN_LEAGUE}
-					component={JoinLeagueContainer}
+					component={JoinLeague}
 					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
 					name={routes.BOTTOMTABNAVIGATOR}
