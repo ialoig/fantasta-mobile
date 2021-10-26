@@ -132,20 +132,12 @@ function TeamSettings() {
 
 TeamSettings.propTypes = {
 
-	// leagueNameId: PropTypes.string.isRequired,
-	// passwordId: PropTypes.string.isRequired,
-	// participantsId: PropTypes.number.isRequired,
-	// tipologyId: PropTypes.object.isRequired,
-	// goalskeepersId: PropTypes.string.isRequired,
-	// defendersId: PropTypes.string.isRequired,
-	// midfieldersId: PropTypes.string.isRequired,
-	// strikersId: PropTypes.string.isRequired,
-	// budgetId: PropTypes.string.isRequired,
-	// playersId: PropTypes.string.isRequired,
-	// tipology: PropTypes.object.isRequired,
-	// tipologyId: PropTypes.string.isRequired,
-	// settings: PropTypes.object.isRequired,
-	// onChange: PropTypes.func.isRequired
+	// settings: PropTypes.shape({
+	// 	[FIELDS_ID.leagueNameId]: PropTypes.string.isRequired,
+	// 	[FIELDS_ID.passwordId]: PropTypes.string.isRequired,
+	// 	[FIELDS_ID.participantsId]: PropTypes.number.isRequired,
+	// 	[FIELDS_ID.tipologyId]: PropTypes.string.isRequired
+	//   })
 }
 
 export default TeamSettings

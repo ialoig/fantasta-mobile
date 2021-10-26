@@ -47,7 +47,14 @@ function CreateLeague() {
 			setPopupMessage(errorMessage)
 		}
 		else{
-			navigate(routes.CREATE_LEAGUE_TEAM_SETTINGS, settings)
+			let sett = {
+				// [FIELDS_ID.leagueNameId]: "",
+				// [FIELDS_ID.passwordId]: "",
+				// [FIELDS_ID.participantsId]: 8,
+				// [FIELDS_ID.tipologyId]: TIPOLOGY.CLASSIC
+			}
+			navigate(routes.CREATE_LEAGUE_TEAM_SETTINGS, sett)
+			// navigate(routes.CREATE_LEAGUE_TEAM_SETTINGS, settings)
 		}
 	}
 
