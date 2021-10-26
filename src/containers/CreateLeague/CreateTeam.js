@@ -1,4 +1,4 @@
-import { useNavigation, useNavigationState } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import { useRoute } from "@react-navigation/native"
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import I18n from "i18n-js"
@@ -16,9 +16,6 @@ import { validateCreateTeamPage } from "../../utils/validation"
 function CreateTeam() {
 
 	const { navigate } = useNavigation()
-	const state = useNavigationState(state => state);
-
-
 	const { params } = useRoute()
 
 	const [settings, setSettings] = useState(
@@ -93,22 +90,6 @@ function CreateTeam() {
 }
 
 
-CreateTeam.propTypes = {
-
-	// leagueNameId: PropTypes.string.isRequired,
-	// passwordId: PropTypes.string.isRequired,
-	// participantsId: PropTypes.number.isRequired,
-	// tipologyId: PropTypes.object.isRequired,
-	// goalskeepersId: PropTypes.string.isRequired,
-	// defendersId: PropTypes.string.isRequired,
-	// midfieldersId: PropTypes.string.isRequired,
-	// strikersId: PropTypes.string.isRequired,
-	// budgetId: PropTypes.string.isRequired,
-	// playersId: PropTypes.string.isRequired,
-	// tipology: PropTypes.object.isRequired,
-	// tipologyId: PropTypes.string.isRequired,
-	// settings: PropTypes.object.isRequired,
-	// onChange: PropTypes.func.isRequired
-}
+CreateTeam.propTypes = {}
 
 export default CreateTeam

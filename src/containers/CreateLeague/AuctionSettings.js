@@ -101,15 +101,7 @@ function AuctionSettings() {
 	)
 }
 
-AuctionSettings.propTypes = {
-	// auctionType: PropTypes.object.isRequired,
-	// auctiontypeId: PropTypes.string.isRequired,
-	// countdownId: PropTypes.string.isRequired,
-	// startingPrice: PropTypes.object.isRequired,
-	// startpriceId: PropTypes.string.isRequired,
-	// settings: PropTypes.object.isRequired,
-	// onChange: PropTypes.func.isRequired
-}
+AuctionSettings.propTypes = {}
 
 
 export default AuctionSettings
