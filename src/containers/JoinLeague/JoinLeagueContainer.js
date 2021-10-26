@@ -41,7 +41,7 @@ function JoinLeagueContainer() {
 		setPopupMessage("")
 	}
 
-	function validateJoinLeaguePage(leagueName, password, teamname) {
+	function validateJoinLeaguePage() {
 		let isValid = true
 		let errorMessage = ""
 
@@ -65,8 +65,9 @@ function JoinLeagueContainer() {
 	async function buttonOnPress() {
 		if (validateJoinLeaguePage()) {
 			try {
-				await Leagues.Join("", this.state.settings[FIELDS_ID.leagueNameId], this.state.settings[FIELDS_ID.passwordId], this.state.settings[FIELDS_ID.teamnameId])
-				this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR) // TODO: what is this? it should bring me to the joined League
+				await Leagues.Join("", settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
+				navigate(routes.BOTTOMTABNAVIGATOR)
+				// TODO: should clean the navigation stack. A further back should point to the Dashboard
 			}
 			catch (error) { console.error(`[JoinLeagueContainer]: ${error}`) } // error handling done in Leagues.Join
 		}

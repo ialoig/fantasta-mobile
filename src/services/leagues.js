@@ -37,12 +37,16 @@ const Create = async ( settings ) =>
 	console.log(`settings: ${JSON.stringify(settings, null, 2)}`)
 	try
 	{
+		console.log("0000000000000000000000000000000000000000")
+		console.log(`settings: ${JSON.stringify(settings, null, 2)}`)
+
 		let response = await axios.post("/league/create", settings, {})
 
 		console.log(`response: ${response}`)
 		console.log(`response: ${JSON.stringify(response, null, 2)}`)
+		console.log("1111111111111111111111111111111111111111")
         
-		LEAGUES = response.user.leagues || []
+		SetActiveLeague(response.league)
 		Auction.Init( response.league, response.team )
 
 		return Promise.resolve()
@@ -69,7 +73,7 @@ const Join = async ( id="", name="", password="", teamname="" ) =>
 			}
 
 			let response = await axios.put("/league/join", data, {})
-			ACTIVE_LEAGUE = response.league || []
+			SetActiveLeague(response.league)
 			Auction.Init( response.league, response.team )
 			return Promise.resolve()
 		}

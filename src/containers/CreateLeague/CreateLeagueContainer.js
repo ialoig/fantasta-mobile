@@ -69,13 +69,7 @@ function CreateLeagueContainer() {
 
 	async function buttonOnPress() {
 		if (validateCreateLeaguePage()) {
-			// try {
-			console.log(`[CreateLeagueContainer]: Next Button`)
 			navigate(routes.CREATE_LEAGUE_TEAM_SETTINGS, settings)
-			// await Leagues.Create(this.state.settings)
-			// this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
-			// }
-			// catch (error) { /* error handling done in Leagues.Create */ }
 		}
 	}
 

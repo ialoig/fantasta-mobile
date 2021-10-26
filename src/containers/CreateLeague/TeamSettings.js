@@ -19,7 +19,7 @@ function TeamSettings() {
 
 	const [settings, setSettings] = useState(
 		{
-			...params,
+			...params, // from CreateLeagueContainer.js
 			[FIELDS_ID.goalskeepersId]: 3,
 			[FIELDS_ID.defendersId]: 8,
 			[FIELDS_ID.midfieldersId]: 8,
@@ -84,13 +84,7 @@ function TeamSettings() {
 
 	async function buttonOnPress() {
 		if (validateTeamSettingsPage()) {
-			// try {
-			console.log(`[TeamSettings]: Next Button`)
 			navigate(routes.CREATE_LEAGUE_AUCTION_SETTINGS, settings)
-			// await Leagues.Create(this.state.settings)
-			// this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
-			// }
-			// catch (error) { /* error handling done in Leagues.Create */ }
 		}
 	}
 
