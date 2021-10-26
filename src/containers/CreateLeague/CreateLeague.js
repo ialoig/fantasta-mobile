@@ -10,7 +10,7 @@ import routes from "../../navigation/routesNames"
 import { validateCreateLeaguePage } from "../../utils/validation"
 import { commonStyle, textStyles } from "../../styles"
 
-function CreateLeagueContainer() {
+function CreateLeague() {
 
 	const { navigate } = useNavigation()
 
@@ -99,6 +99,6 @@ function CreateLeagueContainer() {
 	)
 }
 
-CreateLeagueContainer.propTypes = {}
+CreateLeague.propTypes = {}
 
-export default CreateLeagueContainer
+export default CreateLeague
