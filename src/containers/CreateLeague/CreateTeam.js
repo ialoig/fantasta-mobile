@@ -8,9 +8,10 @@ import React, { useState } from "react"
 import { View } from "react-native"
 import { commonStyle } from "../../styles"
 
-import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
-import { InputText, Button, PopupError, NumberInc, Radio } from "../../components"
+import { FIELDS_ID } from "../../constants"
+import { InputText, Button, PopupError } from "../../components"
 import routes from "../../navigation/routesNames"
+import { validateCreateTeamPage } from "../../utils/validation"
 
 function CreateTeam() {
 
@@ -45,31 +46,22 @@ function CreateTeam() {
 		setPopupMessage("")
 	}
 
-
-	function validateCreateTeamPage() {
-		let isValid = true
-		let errorMessage = ""
-
-		if (!settings[FIELDS_ID.teamnameId]) {
-			errorMessage = "missing_team_name"
-			isValid = false
-		}
-
-		setPopupShow(!isValid)
-		setPopupMessage(errorMessage)
-		return isValid
-	}
-
 	async function buttonOnPress() {
-		if (validateCreateTeamPage()) {
+		const errorMessage = validateCreateTeamPage(settings[FIELDS_ID.teamnameId])
+		if (errorMessage) {
+			setPopupShow(true)
+			setPopupMessage(errorMessage)
+		}
+		else{
 			try {
-				//await Leagues.Create(settings)
+				await Leagues.Create(settings)
 				console.log(`navigation: ${JSON.stringify(state, null, 2)}`)
-				navigate(routes.BOTTOMTABNAVIGATOR) // TODO: what is this? it should bring me to the joined League
+				navigate(routes.BOTTOMTABNAVIGATOR)
+				// TODO: should clean the navigation stack. A further back should point to the Dashboard
 			}
 			catch (error) {
 				console.log(`[CreateTeam] error ${error}`)
-				/* error handling done in Leagues.Create */
+				// error handling done in Leagues.Create. TODO: fix it
 			}
 		}
 	}
@@ -77,12 +69,12 @@ function CreateTeam() {
 	return (
 		<View style={commonStyle.container}>
 			<View style={commonStyle.content}>
-				{/* <PopupError
+				<PopupError
 					popupShow={popupShow}
 					popupTitle={popupTitle}
 					popupMessage={popupMessage}
 					popupClosedCallback={popupClosedCallback}
-				/> */}
+				/>
 				<InputText
 					id={FIELDS_ID.teamnameId}
 					label={I18n.translate("teamName")}

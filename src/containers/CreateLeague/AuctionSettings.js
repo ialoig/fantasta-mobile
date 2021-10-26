@@ -7,9 +7,10 @@ import React, { useState } from "react"
 import { View } from "react-native"
 import { commonStyle } from "../../styles"
 
-import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
-import { InputText, Button, PopupError, NumberInc, Radio } from "../../components"
+import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE } from "../../constants"
+import {  Button, PopupError, NumberInc, Radio } from "../../components"
 import routes from "../../navigation/routesNames"
+import { validateAuctionSettingsPage } from "../../utils/validation"
 
 function AuctionSettings() {
 	const { navigate } = useNavigation()
@@ -43,21 +44,13 @@ function AuctionSettings() {
 		setPopupMessage("")
 	}
 
-	function validateAuctionSettingsPage() {
-		let isValid = true
-		let errorMessage = ""
-
-		if (settings[FIELDS_ID.countdownId] < 3) {
-			errorMessage = "countdown_error"
-			isValid = false
-		}
-		setPopupShow(!isValid)
-		setPopupMessage(errorMessage)
-		return isValid
-	}
-
 	async function buttonOnPress() {
-		if (validateAuctionSettingsPage()) {
+		const errorMessage = validateAuctionSettingsPage(settings[FIELDS_ID.countdownId])
+		if (errorMessage) {
+			setPopupShow(true)
+			setPopupMessage(errorMessage)
+		}
+		else{
 			navigate(routes.CREATE_TEAM, settings)
 		}
 	}

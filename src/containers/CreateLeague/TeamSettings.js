@@ -7,9 +7,10 @@ import React, { useState } from "react"
 import { View } from "react-native"
 import { commonStyle } from "../../styles"
 
-import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
-import { InputText, Button, PopupError, NumberInc, Radio } from "../../components"
+import { FIELDS_ID, TIPOLOGY } from "../../constants"
+import { Button, PopupError, NumberInc } from "../../components"
 import routes from "../../navigation/routesNames"
+import { validateTeamSettingsPage } from "../../utils/validation"
 
 function TeamSettings() {
 
@@ -47,43 +48,13 @@ function TeamSettings() {
 		setPopupMessage("")
 	}
 
-
-	function validateTeamSettingsPage() {
-		let isValid = true
-		let errorMessage = ""
-	
-		if (settings[FIELDS_ID.goalskeepersId] < 1) {
-			errorMessage = "goalskeepers_error"
-			isValid = false
-		}
-		else if (settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && settings[FIELDS_ID.defendersId] < 3) {
-			errorMessage = "defenders_error"
-			isValid = false
-		}
-		else if (settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && settings[FIELDS_ID.midfieldersId] < 3) {
-			errorMessage = "midfielders_error"
-			isValid = false
-		}
-		else if (settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && settings[FIELDS_ID.strikersId] < 1) {
-			errorMessage = "forwarders_error"
-			isValid = false
-		}
-		else if (settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC && settings[FIELDS_ID.defendersId] + settings[FIELDS_ID.midfieldersId] + settings[FIELDS_ID.strikersId] < 10) {
-			errorMessage = "players_error"
-			isValid = false
-		}
-		else if (settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA && settings[FIELDS_ID.playersId] < 10) {
-			errorMessage = "players_error"
-			isValid = false
-		}
-		setPopupShow(!isValid)
-		setPopupMessage(errorMessage)
-		return isValid
-	
-	}
-
 	async function buttonOnPress() {
-		if (validateTeamSettingsPage()) {
+		const errorMessage = validateTeamSettingsPage(settings[FIELDS_ID.goalskeepersId], settings[FIELDS_ID.defendersId], settings[FIELDS_ID.midfieldersId], settings[FIELDS_ID.strikersId], settings[FIELDS_ID.tipologyId], settings[FIELDS_ID.playersId])
+		if (errorMessage) {
+			setPopupShow(true)
+			setPopupMessage(errorMessage)
+		}
+		else{
 			navigate(routes.CREATE_LEAGUE_AUCTION_SETTINGS, settings)
 		}
 	}

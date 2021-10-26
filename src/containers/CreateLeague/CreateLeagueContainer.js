@@ -4,16 +4,10 @@ import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
-import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
+import { FIELDS_ID, TIPOLOGY } from "../../constants"
 import { InputText, Button, PopupError, NumberInc, Radio } from "../../components"
 import routes from "../../navigation/routesNames"
-import { Leagues } from "../../services"
-// import AuctionSettings from "./AuctionSettings"
-// import CreateLeagueSlider from "./CreateLeagueSlider"
-// import CreateLeague from "./CreateLeague"
-// import CreateTeam from "./CreateTeam"
-// import TeamSettings from "./TeamSettings"
-import { validateCreateLeaguePage, validateTeamSettingsPage, validateAuctionSettingsPage, validateCreateTeamPage } from "../../utils/validation"
+import { validateCreateLeaguePage } from "../../utils/validation"
 import { commonStyle, textStyles } from "../../styles"
 
 function CreateLeagueContainer() {
@@ -46,36 +40,20 @@ function CreateLeagueContainer() {
 		setPopupMessage("")
 	}
 
-	function validateCreateLeaguePage() {
-		let isValid = true
-		let errorMessage = ""
-
-		if (!settings[FIELDS_ID.leagueNameId]) {
-			errorMessage = "missing_league_name"
-			isValid = false
-		}
-		else if (!settings[FIELDS_ID.passwordId]) {
-			errorMessage = "missing_password"
-			isValid = false
-		}
-		else if (settings[FIELDS_ID.participantsId] < 2) {
-			errorMessage = "participants_error"
-			isValid = false
-		}
-		setPopupShow(!isValid)
-		setPopupMessage(errorMessage)
-		return isValid
-	}
-
 	async function buttonOnPress() {
-		if (validateCreateLeaguePage()) {
+		const errorMessage = validateCreateLeaguePage(settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.participantsId])
+		if (errorMessage) {
+			setPopupShow(true)
+			setPopupMessage(errorMessage)
+		}
+		else{
 			navigate(routes.CREATE_LEAGUE_TEAM_SETTINGS, settings)
 		}
 	}
 
 	return (
-		<View style={commonStyle.container}>
-			<View style={commonStyle.content}>
+		 <View style={commonStyle.container}>
+		 	<View style={commonStyle.content}>
 				<PopupError
 					popupShow={popupShow}
 					popupTitle={popupTitle}
