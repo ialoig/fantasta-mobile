@@ -1,7 +1,8 @@
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation, useNavigationState } from "@react-navigation/native"
 import { useRoute } from "@react-navigation/native"
 import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import I18n from "i18n-js"
+import { Leagues } from "../../services"
 import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
@@ -11,17 +12,18 @@ import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constan
 import { InputText, Button, PopupError, NumberInc, Radio } from "../../components"
 import routes from "../../navigation/routesNames"
 
-function AuctionSettings() {
+function CreateTeam() {
+
 	const { navigate } = useNavigation()
+	const state = useNavigationState(state => state);
+
 
 	const { params } = useRoute()
 
 	const [settings, setSettings] = useState(
 		{
-			...params, // from TeamSettings.js
-			[FIELDS_ID.countdownId]: 60,
-			[FIELDS_ID.auctiontypeId]: AUCTION_TYPE.RANDOM,
-			[FIELDS_ID.startpriceId]: STARTING_PRICE.NONE
+			...params, // from AuctionSettings.js
+			[FIELDS_ID.teamnameId]: ""
 		}
 	)
 	const [popupShow, setPopupShow] = useState(false)
@@ -43,62 +45,52 @@ function AuctionSettings() {
 		setPopupMessage("")
 	}
 
-	function validateAuctionSettingsPage() {
+
+	function validateCreateTeamPage() {
 		let isValid = true
 		let errorMessage = ""
 
-		if (settings[FIELDS_ID.countdownId] < 3) {
-			errorMessage = "countdown_error"
+		if (!settings[FIELDS_ID.teamnameId]) {
+			errorMessage = "missing_team_name"
 			isValid = false
 		}
+
 		setPopupShow(!isValid)
 		setPopupMessage(errorMessage)
 		return isValid
 	}
 
 	async function buttonOnPress() {
-		if (validateAuctionSettingsPage()) {
-			navigate(routes.CREATE_TEAM, settings)
+		if (validateCreateTeamPage()) {
+			try {
+				//await Leagues.Create(settings)
+				console.log(`navigation: ${JSON.stringify(state, null, 2)}`)
+				navigate(routes.BOTTOMTABNAVIGATOR) // TODO: what is this? it should bring me to the joined League
+			}
+			catch (error) {
+				console.log(`[CreateTeam] error ${error}`)
+				/* error handling done in Leagues.Create */
+			}
 		}
 	}
 
 	return (
 		<View style={commonStyle.container}>
 			<View style={commonStyle.content}>
-				<PopupError
+				{/* <PopupError
 					popupShow={popupShow}
 					popupTitle={popupTitle}
 					popupMessage={popupMessage}
 					popupClosedCallback={popupClosedCallback}
-				/>
-				<NumberInc
-					label={I18n.translate("countdown")}
-					value={settings[FIELDS_ID.countdownId]}
-					step={1}
-					min={3}
-					onChange={value => onChange(FIELDS_ID.countdownId, value)}
-				/>
-				<Radio
-					label={I18n.translate("auctionTipology")}
-					value={settings[FIELDS_ID.auctiontypeId]}
-					items={[
-						{ label: I18n.translate(AUCTION_TYPE.RANDOM), value: AUCTION_TYPE.RANDOM },
-						{ label: I18n.translate(AUCTION_TYPE.CALL), value: AUCTION_TYPE.CALL },
-						{ label: I18n.translate(AUCTION_TYPE.ALPHABETIC), value: AUCTION_TYPE.ALPHABETIC }
-					]}
-					onChange={value => onChange(FIELDS_ID.auctiontypeId, value)}
-				/>
-				<Radio
-					label={I18n.translate("startingPrice")}
-					value={settings[FIELDS_ID.startpriceId]}
-					items={[
-						{ label: I18n.translate("zero"), value: STARTING_PRICE.NONE },
-						{ label: I18n.translate("listPrice"), value: STARTING_PRICE.LIST }
-					]}
-					onChange={value => onChange(FIELDS_ID.startpriceId, value)}
+				/> */}
+				<InputText
+					id={FIELDS_ID.teamnameId}
+					label={I18n.translate("teamName")}
+					placeholder={I18n.translate("teamName")}
+					onChange={onChange}
 				/>
 				<Button
-					title={I18n.translate("next")}
+					title={I18n.translate("create")}
 					onPress={buttonOnPress}
 					type='primary'
 					size='large'
@@ -108,15 +100,23 @@ function AuctionSettings() {
 	)
 }
 
-AuctionSettings.propTypes = {
-	// auctionType: PropTypes.object.isRequired,
-	// auctiontypeId: PropTypes.string.isRequired,
-	// countdownId: PropTypes.string.isRequired,
-	// startingPrice: PropTypes.object.isRequired,
-	// startpriceId: PropTypes.string.isRequired,
+
+CreateTeam.propTypes = {
+
+	// leagueNameId: PropTypes.string.isRequired,
+	// passwordId: PropTypes.string.isRequired,
+	// participantsId: PropTypes.number.isRequired,
+	// tipologyId: PropTypes.object.isRequired,
+	// goalskeepersId: PropTypes.string.isRequired,
+	// defendersId: PropTypes.string.isRequired,
+	// midfieldersId: PropTypes.string.isRequired,
+	// strikersId: PropTypes.string.isRequired,
+	// budgetId: PropTypes.string.isRequired,
+	// playersId: PropTypes.string.isRequired,
+	// tipology: PropTypes.object.isRequired,
+	// tipologyId: PropTypes.string.isRequired,
 	// settings: PropTypes.object.isRequired,
 	// onChange: PropTypes.func.isRequired
 }
 
-
-export default AuctionSettings
+export default CreateTeam
