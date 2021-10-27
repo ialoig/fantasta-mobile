@@ -4,37 +4,43 @@ import { Text, View } from "react-native"
 import { textStyles } from "../../styles"
 import styles from "./styles"
 
-function Countdown({ minutes, seconds, onFinish }) {
+function Countdown({ minutes, seconds, restart }) {
 
 	const [timerInSeconds, setTimerInSeconds] = useState(0)
 
 	useEffect( () => {
+
 		getTimerInSeconds()
+
 		let interval = setInterval( () => {
-			setTimerInSeconds(prevSeconds => {
-				if (prevSeconds <= 1) {
+			setTimerInSeconds(prevTime => {
+				if (prevTime <= 1) {
 					clearInterval(interval)
-					onFinish
 				}
-				return prevSeconds - 1
+				return prevTime - 1
 			})
 		}, 1000)
+
 		//cleanup the interval on complete
+		//if we unmount the component before clearInterval is called, there is a memory leak because 
+		//the interval is set when we start and the timer is not stopped.
 		return () => clearInterval(interval)
-	}, [])
+
+	}, [restart])
+
 
 
 	/** calculate timer in seconds based on minutes and seconds passed by props */
 	const getTimerInSeconds = () => {
-		let timerInSeconds = 0
+		let tempTimerInSeconds = 0
 		if (minutes && minutes >0) {
-			timerInSeconds = minutes * 60
+			tempTimerInSeconds = minutes * 60
 		}
 		if (seconds && seconds >0) {
-			timerInSeconds += seconds
+			tempTimerInSeconds += seconds
 		}
-		console.log("[Timer - getTimerInSeconds] - ", timerInSeconds)			
-		setTimerInSeconds(timerInSeconds)
+		console.log("[Countdown] - getTimerInSeconds:", tempTimerInSeconds)			
+		setTimerInSeconds(tempTimerInSeconds)
 	}
 
 	/**
@@ -85,7 +91,7 @@ function Countdown({ minutes, seconds, onFinish }) {
 Countdown.propTypes = {
 	minutes: PropTypes.number.isRequired,
 	seconds: PropTypes.number.isRequired,
-	onFinish: PropTypes.func
+	restart: PropTypes.number
 }
 
 Countdown.defaultProps = {
@@ -94,4 +100,3 @@ Countdown.defaultProps = {
 }
 
 export default Countdown
-
