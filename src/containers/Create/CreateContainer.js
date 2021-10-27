@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE, TIPOLOGY } from "../../constants"
 import routes from "../../navigation/routesNames"
-import Leagues from "../../services"
+import { Leagues } from "../../services"
 import AuctionSettings from "./AuctionSettings"
 import Create from "./Create"
 import CreateLeague from "./CreateLeague"
@@ -159,41 +159,41 @@ export class CreateContainer extends React.Component {
 			popupMessage: ""
 		})
 		switch (page_index) {
-			case 0: {
-				const validation_result = this.validateCreateLeaguePage()
-				this.setState({
-					popupShow: !validation_result.isValid,
-					popupMessage: validation_result.errorMessage
-				})
-				return validation_result.isValid				
-			}
+		case 0: {
+			const validation_result = this.validateCreateLeaguePage()
+			this.setState({
+				popupShow: !validation_result.isValid,
+				popupMessage: validation_result.errorMessage
+			})
+			return validation_result.isValid				
+		}
 
-			case 1: {
-				const validation_result = this.validateTeamSettingsPage()
-				this.setState({
-					popupShow: !validation_result.isValid,
-					popupMessage: validation_result.errorMessage
-				})
-				return validation_result.isValid
-			}
+		case 1: {
+			const validation_result = this.validateTeamSettingsPage()
+			this.setState({
+				popupShow: !validation_result.isValid,
+				popupMessage: validation_result.errorMessage
+			})
+			return validation_result.isValid
+		}
 
-			case 2: {
-				const validation_result = this.validateAuctionSettingsPage()
-				this.setState({
-					popupShow: !validation_result.isValid,
-					popupMessage: validation_result.errorMessage
-				})
-				return validation_result.isValid
-			}
+		case 2: {
+			const validation_result = this.validateAuctionSettingsPage()
+			this.setState({
+				popupShow: !validation_result.isValid,
+				popupMessage: validation_result.errorMessage
+			})
+			return validation_result.isValid
+		}
 
-			case 3: {
-				const validation_result = this.validateCreateTeamPage()
-				this.setState({
-					popupShow: !validation_result.isValid,
-					popupMessage: validation_result.errorMessage
-				})
-				return validation_result.isValid
-			}
+		case 3: {
+			const validation_result = this.validateCreateTeamPage()
+			this.setState({
+				popupShow: !validation_result.isValid,
+				popupMessage: validation_result.errorMessage
+			})
+			return validation_result.isValid
+		}
 
 		default:
 			console.error(`[CreateContainer] No validation defined for page with index "${page_index}"`)

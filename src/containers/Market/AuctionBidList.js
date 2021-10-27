@@ -1,16 +1,15 @@
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
-import { FlatList } from "react-native-gesture-handler"
-import { useSharedValue } from "react-native-reanimated"
+import { ScrollView } from "react-native"
 import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 
 function AuctionBidList({ bids }) {
 
-	const [sortedBids, setSortedBids] = useState()	//shared value to store all the scroll Y values
+	const [listOfBids, setListOfBids] = useState([])
 
 	useEffect(() => {
 		let sortedBids = orderByHighestBid()
-		setSortedBids(sortedBids)
+		setListOfBids(sortedBids)
 	}, [bids])
 
 
@@ -19,21 +18,20 @@ function AuctionBidList({ bids }) {
 	}
 
 
-	const renderItem = ({ item }) => {
-		return (
-			<AuctionCard 
-				name={item.name}
-				bid={item.bid}
-			/>
-		)
-	}
-
 	return (
-		<FlatList
-			data={sortedBids}
-			keyExtractor={bid => bid.id}
-			renderItem={renderItem}
-		/>
+		<ScrollView>
+			{
+				listOfBids.map( item => {
+					return (
+						<AuctionCard 
+							key={item.id}
+							name={item.name}
+							bid={item.bid}
+						/>
+					)
+				})
+			}
+		</ScrollView>
 	)
 }
 

@@ -39,12 +39,13 @@ const Create = async ( settings ) =>
 		let response = await axios.post("/league/create", settings, {})
         
 		LEAGUES = response.user.leagues || []
+		SetActiveLeague(response.league)
 		Auction.Init( response.league, response.team )
-
 		return Promise.resolve()
 	}
 	catch (error)
 	{
+		console.log("[Create] - error: ", error)
 		Error.handleError(error, true)
 		return Promise.reject(error)
 	}
@@ -64,7 +65,7 @@ const Join = async ( id="", name="", password="", teamname="" ) =>
 			}
 
 			let response = await axios.put("/league/join", data, {})
-			ACTIVE_LEAGUE = response.league || []
+			SetActiveLeague(response.league)
 			Auction.Init( response.league, response.team )
 			return Promise.resolve()
 		}
