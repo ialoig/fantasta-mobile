@@ -8,9 +8,10 @@ import { View } from "react-native"
 import { commonStyle } from "../../styles"
 
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE } from "../../constants"
-import {  Button, PopupError, NumberInc, Radio } from "../../components"
+import { Button, PopupError, NumberInc, Radio } from "../../components"
 import routes from "../../navigation/routesNames"
 import { validateAuctionSettingsPage } from "../../utils/validation"
+import styles from "./styles"
 
 function AuctionSettings() {
 	const { navigate } = useNavigation()
@@ -50,53 +51,51 @@ function AuctionSettings() {
 			setPopupShow(true)
 			setPopupMessage(errorMessage)
 		}
-		else{
+		else {
 			navigate(routes.CREATE_TEAM, settings)
 		}
 	}
 
 	return (
-		<View style={commonStyle.container}>
-			<View style={commonStyle.content}>
-				<PopupError
-					popupShow={popupShow}
-					popupTitle={popupTitle}
-					popupMessage={popupMessage}
-					popupClosedCallback={popupClosedCallback}
-				/>
-				<NumberInc
-					label={I18n.translate("countdown")}
-					value={settings[FIELDS_ID.countdownId]}
-					step={1}
-					min={3}
-					onChange={value => onChange(FIELDS_ID.countdownId, value)}
-				/>
-				<Radio
-					label={I18n.translate("auctionTipology")}
-					value={settings[FIELDS_ID.auctiontypeId]}
-					items={[
-						{ label: I18n.translate(AUCTION_TYPE.RANDOM), value: AUCTION_TYPE.RANDOM },
-						{ label: I18n.translate(AUCTION_TYPE.CALL), value: AUCTION_TYPE.CALL },
-						{ label: I18n.translate(AUCTION_TYPE.ALPHABETIC), value: AUCTION_TYPE.ALPHABETIC }
-					]}
-					onChange={value => onChange(FIELDS_ID.auctiontypeId, value)}
-				/>
-				<Radio
-					label={I18n.translate("startingPrice")}
-					value={settings[FIELDS_ID.startpriceId]}
-					items={[
-						{ label: I18n.translate("zero"), value: STARTING_PRICE.NONE },
-						{ label: I18n.translate("listPrice"), value: STARTING_PRICE.LIST }
-					]}
-					onChange={value => onChange(FIELDS_ID.startpriceId, value)}
-				/>
-				<Button
-					title={I18n.translate("next")}
-					onPress={buttonOnPress}
-					type='primary'
-					size='large'
-				/>
-			</View>
+		<View style={styles.container}>
+			<PopupError
+				popupShow={popupShow}
+				popupTitle={popupTitle}
+				popupMessage={popupMessage}
+				popupClosedCallback={popupClosedCallback}
+			/>
+			<NumberInc
+				label={I18n.translate("countdown")}
+				value={settings[FIELDS_ID.countdownId]}
+				step={1}
+				min={3}
+				onChange={value => onChange(FIELDS_ID.countdownId, value)}
+			/>
+			<Radio
+				label={I18n.translate("auctionTipology")}
+				value={settings[FIELDS_ID.auctiontypeId]}
+				items={[
+					{ label: I18n.translate(AUCTION_TYPE.RANDOM), value: AUCTION_TYPE.RANDOM },
+					{ label: I18n.translate(AUCTION_TYPE.CALL), value: AUCTION_TYPE.CALL },
+					{ label: I18n.translate(AUCTION_TYPE.ALPHABETIC), value: AUCTION_TYPE.ALPHABETIC }
+				]}
+				onChange={value => onChange(FIELDS_ID.auctiontypeId, value)}
+			/>
+			<Radio
+				label={I18n.translate("startingPrice")}
+				value={settings[FIELDS_ID.startpriceId]}
+				items={[
+					{ label: I18n.translate("zero"), value: STARTING_PRICE.NONE },
+					{ label: I18n.translate("listPrice"), value: STARTING_PRICE.LIST }
+				]}
+				onChange={value => onChange(FIELDS_ID.startpriceId, value)}
+			/>
+			<Button
+				title={I18n.translate("next")}
+				onPress={buttonOnPress}
+				type='primary'
+				size='large'
+			/>
 		</View>
 	)
 }

@@ -12,6 +12,7 @@ import { FIELDS_ID } from "../../constants"
 import { InputText, Button, PopupError } from "../../components"
 import routes from "../../navigation/routesNames"
 import { validateCreateTeamPage } from "../../utils/validation"
+import styles from "./styles"
 
 function CreateTeam() {
 
@@ -49,7 +50,7 @@ function CreateTeam() {
 			setPopupShow(true)
 			setPopupMessage(errorMessage)
 		}
-		else{
+		else {
 			try {
 				await Leagues.Create(settings)
 				console.log(`navigation: ${JSON.stringify(state, null, 2)}`)
@@ -64,27 +65,25 @@ function CreateTeam() {
 	}
 
 	return (
-		<View style={commonStyle.container}>
-			<View style={commonStyle.content}>
-				<PopupError
-					popupShow={popupShow}
-					popupTitle={popupTitle}
-					popupMessage={popupMessage}
-					popupClosedCallback={popupClosedCallback}
-				/>
-				<InputText
-					id={FIELDS_ID.teamnameId}
-					label={I18n.translate("teamName")}
-					placeholder={I18n.translate("teamName")}
-					onChange={onChange}
-				/>
-				<Button
-					title={I18n.translate("create")}
-					onPress={buttonOnPress}
-					type='primary'
-					size='large'
-				/>
-			</View>
+		<View style={styles.container}>
+			<PopupError
+				popupShow={popupShow}
+				popupTitle={popupTitle}
+				popupMessage={popupMessage}
+				popupClosedCallback={popupClosedCallback}
+			/>
+			<InputText
+				id={FIELDS_ID.teamnameId}
+				label={I18n.translate("teamName")}
+				placeholder={I18n.translate("teamName")}
+				onChange={onChange}
+			/>
+			<Button
+				title={I18n.translate("create")}
+				onPress={buttonOnPress}
+				type='primary'
+				size='large'
+			/>
 		</View>
 	)
 }

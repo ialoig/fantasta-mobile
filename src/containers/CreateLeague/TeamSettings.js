@@ -11,6 +11,7 @@ import { FIELDS_ID, TIPOLOGY } from "../../constants"
 import { Button, PopupError, NumberInc } from "../../components"
 import routes from "../../navigation/routesNames"
 import { validateTeamSettingsPage } from "../../utils/validation"
+import styles from "./styles"
 
 function TeamSettings() {
 
@@ -54,77 +55,75 @@ function TeamSettings() {
 			setPopupShow(true)
 			setPopupMessage(errorMessage)
 		}
-		else{
+		else {
 			navigate(routes.CREATE_LEAGUE_AUCTION_SETTINGS, settings)
 		}
 	}
 
 	return (
-		<View style={commonStyle.container}>
-			<View style={commonStyle.content}>
-				<PopupError
-					popupShow={popupShow}
-					popupTitle={popupTitle}
-					popupMessage={popupMessage}
-					popupClosedCallback={popupClosedCallback}
-				/>
-				<NumberInc
-					label={I18n.translate("nGoalkeepers")}
-					value={settings[FIELDS_ID.goalskeepersId]}
-					step={1}
-					min={1}
-					onChange={value => onChange(FIELDS_ID.goalskeepersId, value)}
-				/>
-				{
-					settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC ?
-						<View>
-							<NumberInc
-								label={I18n.translate("nDefenders")}
-								value={settings[FIELDS_ID.defendersId]}
-								step={1}
-								min={3}
-								onChange={value => onChange(FIELDS_ID.defendersId, value)}
-							/>
-							<NumberInc
-								label={I18n.translate("nMidfielders")}
-								value={settings[FIELDS_ID.midfieldersId]}
-								step={1}
-								min={3}
-								onChange={value => onChange(FIELDS_ID.midfieldersId, value)}
-							/>
-							<NumberInc
-								label={I18n.translate("nStrikers")}
-								value={settings[FIELDS_ID.strikersId]}
-								step={1}
-								min={1}
-								onChange={value => onChange(FIELDS_ID.strikersId, value)}
-							/>
-						</View> : null
-				}
-				{
-					settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA ?
+		<View style={styles.container}>
+			<PopupError
+				popupShow={popupShow}
+				popupTitle={popupTitle}
+				popupMessage={popupMessage}
+				popupClosedCallback={popupClosedCallback}
+			/>
+			<NumberInc
+				label={I18n.translate("nGoalkeepers")}
+				value={settings[FIELDS_ID.goalskeepersId]}
+				step={1}
+				min={1}
+				onChange={value => onChange(FIELDS_ID.goalskeepersId, value)}
+			/>
+			{
+				settings[FIELDS_ID.tipologyId] == TIPOLOGY.CLASSIC ?
+					<View>
 						<NumberInc
-							label={I18n.translate("nPlayers")}
-							value={settings[FIELDS_ID.playersId]}
+							label={I18n.translate("nDefenders")}
+							value={settings[FIELDS_ID.defendersId]}
 							step={1}
-							min={10}
-							onChange={value => onChange(FIELDS_ID.playersId, value)}
-						/> : null
-				}
-				<NumberInc
-					label={I18n.translate("startingBudget")}
-					value={settings[FIELDS_ID.budgetId]}
-					step={10}
-					min={11}
-					onChange={value => onChange(FIELDS_ID.budgetId, value)}
-				/>
-				<Button
-					title={I18n.translate("next")}
-					onPress={buttonOnPress}
-					type='primary'
-					size='large'
-				/>
-			</View>
+							min={3}
+							onChange={value => onChange(FIELDS_ID.defendersId, value)}
+						/>
+						<NumberInc
+							label={I18n.translate("nMidfielders")}
+							value={settings[FIELDS_ID.midfieldersId]}
+							step={1}
+							min={3}
+							onChange={value => onChange(FIELDS_ID.midfieldersId, value)}
+						/>
+						<NumberInc
+							label={I18n.translate("nStrikers")}
+							value={settings[FIELDS_ID.strikersId]}
+							step={1}
+							min={1}
+							onChange={value => onChange(FIELDS_ID.strikersId, value)}
+						/>
+					</View> : null
+			}
+			{
+				settings[FIELDS_ID.tipologyId] == TIPOLOGY.MANTRA ?
+					<NumberInc
+						label={I18n.translate("nPlayers")}
+						value={settings[FIELDS_ID.playersId]}
+						step={1}
+						min={10}
+						onChange={value => onChange(FIELDS_ID.playersId, value)}
+					/> : null
+			}
+			<NumberInc
+				label={I18n.translate("startingBudget")}
+				value={settings[FIELDS_ID.budgetId]}
+				step={10}
+				min={11}
+				onChange={value => onChange(FIELDS_ID.budgetId, value)}
+			/>
+			<Button
+				title={I18n.translate("next")}
+				onPress={buttonOnPress}
+				type='primary'
+				size='large'
+			/>
 		</View>
 	)
 }
