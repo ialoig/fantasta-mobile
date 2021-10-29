@@ -1,16 +1,40 @@
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useEffect } from "react"
 import { Text, View } from "react-native"
-import Animated from "react-native-reanimated"
+import Animated, { 
+	useAnimatedStyle,
+	useSharedValue,
+	withSequence,
+	withTiming } from "react-native-reanimated"
 import { textStyles } from "../../../styles"
 import Icon from "../../Icon/Icon"
 import styles, { card, size } from "./styles"
 
-function AuctionCard({ name, bid }) {
+function AuctionCard({ name, bid, hasChanged, topBid }) {
+
+	const isChanged = useSharedValue()
+
+	useEffect(() => {
+		console.log("[AuctionCard] - useEffect - hasChanged:", hasChanged)
+		isChanged.value = hasChanged
+
+	}, [hasChanged])
+
+	const animStyle = useAnimatedStyle( () => {
+		return {
+			opacity: isChanged.value ? 
+				withSequence(
+					withTiming(0, { duration: 100 }),
+					withTiming(1, { duration: 500 }),
+				) : 1,
+		}
+	})
+
+
 	return (
         
 		<Animated.View 
-			style={[card.card, size.card, card.small, card.highlight, card.highlightActive]}
+			style={[card.card, size.card, card.small, topBid ? card.highlight : null, animStyle]}
 		>
 			<Icon 
 				name="league"

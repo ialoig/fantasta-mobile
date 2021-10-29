@@ -1,11 +1,9 @@
 import { useRoute } from "@react-navigation/core"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import React, { useEffect, useState } from "react"
+import React, {  useEffect, useState } from "react"
 import { Text, View } from "react-native"
-import { ScrollView } from "react-native-gesture-handler"
 import { PlayerCard } from "../../components"
-import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 import Countdown from "../../components/Countdown/Countdown"
 import { Players } from "../../services"
 import { textStyles } from "../../styles"
@@ -22,24 +20,63 @@ function MarketOpenAuction() {
 	const isClassic = params?.isClassic
 	//player object found by ID passed by props
 	const [player, setPlayer] = useState(Players.GetPlayersByID(playerID))
+	const [bid, setBid] = useState()
+
+
+	useEffect(() => {
+		let interval = setInterval( () => {
+			getRandomBids()
+			
+		}, 2000)
+
+		return () => clearInterval(interval)
+
+	}, [])
+
 
 	const bids = [
 		{
-			id: 1,
-			name: "Team Pippo",
+			id: Math.random(),
+			name: "Team A",
 			bid: "100"
 		},
 		{
-			id: 2,
+			id: Math.random(),
 			name: "Team B",
-			bid: "20"
+			bid: "15"
 		},
 		{
-			id: 3,
+			id: Math.random(),
 			name: "Team C",
-			bid: "30"
+			bid: "35"
+		},
+		{
+			id: Math.random(),
+			name: "Team D",
+			bid: "201"
+		},
+		{
+			id: Math.random(),
+			name: "Team E",
+			bid: "8"
 		},
 	]
+
+
+	//TODO: to be deleted after bid implementation
+	const randomNumberFromRange = (min, max) => {
+		return Math.round(Math.random() * (max-min+1) + min )
+	}
+	
+	//TODO: just for debug purpose.
+	const getRandomBids = () => {
+		const randomIndex = randomNumberFromRange(0, 3)
+		console.log("[MarketOpenAuction - getRandomBids] - randomIndex", randomIndex)
+		const selectedBid = bids[randomIndex]
+		console.log("[MarketOpenAuction - getRandomBids] - selectedBid", selectedBid)
+		setBid(selectedBid)
+	}
+	
 
 	return (
 		<View style={styles.container}>
@@ -65,9 +102,11 @@ function MarketOpenAuction() {
 				bid={0} //TODO: set current bid based on bids coming from auction
 			/>
 
-			<AuctionBidList 
-				bids={bids}
-			/>
+			{
+				bid && <AuctionBidList
+					bid={bid}
+				/>
+			}
 
 		</View>
 	)
