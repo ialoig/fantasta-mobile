@@ -4,6 +4,13 @@ import { Text, View } from "react-native"
 import { textStyles } from "../../styles"
 import styles from "./styles"
 
+/**
+ * 
+ * @param {minutes} number - define how many minutes countdown should be
+ * @param {seconds} number - define how many seconds countdown should be
+ * @param {restart} number - determine whether countdown should be restarted
+ * @returns 
+ */
 function Countdown({ minutes, seconds, restart }) {
 
 	const [timerInSeconds, setTimerInSeconds] = useState(0)
