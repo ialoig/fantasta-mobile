@@ -73,6 +73,9 @@ function MarketOpenAuction() {
 		const randomIndex = randomNumberFromRange(0, 3)
 		console.log("[MarketOpenAuction - getRandomBids] - randomIndex", randomIndex)
 		const selectedBid = bids[randomIndex]
+
+		const randomBid = randomNumberFromRange(1, 150)
+		selectedBid.bid = randomBid.toString()
 		console.log("[MarketOpenAuction - getRandomBids] - selectedBid", selectedBid)
 		setBid(selectedBid)
 	}

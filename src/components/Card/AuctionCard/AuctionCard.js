@@ -5,27 +5,27 @@ import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
 	withSequence,
+	withSpring,
 	withTiming } from "react-native-reanimated"
 import { textStyles } from "../../../styles"
 import Icon from "../../Icon/Icon"
 import styles, { card, size } from "./styles"
 
-function AuctionCard({ name, bid, hasChanged, topBid }) {
+function AuctionCard({ name, bid, isNewBid, topBid }) {
 
 	const isChanged = useSharedValue()
 
 	useEffect(() => {
-		console.log("[AuctionCard] - useEffect - hasChanged:", hasChanged)
-		isChanged.value = hasChanged
+		isChanged.value = isNewBid
 
-	}, [hasChanged])
+	}, [isNewBid])
 
 	const animStyle = useAnimatedStyle( () => {
 		return {
-			opacity: isChanged.value ? 
+			opacity: isNewBid ? 
 				withSequence(
-					withTiming(0, { duration: 100 }),
-					withTiming(1, { duration: 500 }),
+					withTiming(0, { duration: 50 }),
+					withTiming(1, { duration: 300 }),
 				) : 1,
 		}
 	})
@@ -34,8 +34,7 @@ function AuctionCard({ name, bid, hasChanged, topBid }) {
 	return (
         
 		<Animated.View 
-			style={[card.card, size.card, card.small, topBid ? card.highlight : null, animStyle]}
-		>
+			style={[card.card, size.card, card.small, topBid ? card.highlight : null, animStyle]} >
 			<Icon 
 				name="league"
 				height={30}
