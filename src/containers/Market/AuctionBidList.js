@@ -8,26 +8,24 @@ function AuctionBidList({ bid }) {
 	const [listOfBids, setListOfBids] = useState([])
 	const prevListOfBids = usePrevious(listOfBids)
 
-	useEffect(() => {
+	useEffect( () => {
 		setBid()
 	}, [bid])
 
 
 	const setBid = () => {
-		console.log("[AuctionBidList] - setBid - prevListOfBids : ", prevListOfBids)
 		let tempList = prevListOfBids ?  [...prevListOfBids] : []
 		console.log("[AuctionBidList] - setBid - tempList before: ", tempList)
-		const numOfBids = tempList.length ? tempList.length : 0
-		if (tempList.length < 3) {
-			const numOfEmptyBids = 3 - numOfBids
-			for (let i=0; i<=numOfEmptyBids; i++) {
-				const emptyBid = getEmptyBid()
-				tempList.push(emptyBid) // Add a bid to the end of the list
-			}
-		}
+		// const numOfBids = tempList.length ? tempList.length : 0
+		// if (tempList.length < 3) {
+		// 	const numOfEmptyBids = 3 - numOfBids
+		// 	for (let i=0; i<=numOfEmptyBids; i++) {
+		// 		const emptyBid = getEmptyBid()
+		// 		tempList.push(emptyBid) // Add a bid to the end of the list
+		// 	}
+		// }
 		tempList.unshift(bid) //Add a bid to the beginning of the list
 		tempList = tempList.slice(0, 3)
-		console.log("[AuctionBidList] - setBid - tempList after: ", tempList)
 		setListOfBids(tempList)
 	}
 
@@ -39,6 +37,18 @@ function AuctionBidList({ bid }) {
 		}
 	}
 
+	//check if it's a new bid coming from the same user or if it's just the same 
+	const isNewBid = (item) => {
+		let found = prevListOfBids.find( prevItem => {
+			return prevItem.name === item.name
+		})
+		if (found && found.bid === item.bid) {
+			console.log("[AuctionBidList] - found bid same team", found.name, found.bid)
+			console.log("[AuctionBidList] - isNewBid ? false ", item.name, item.bid)
+			return false
+		}
+		return true
+	}
 
 
 	return (
@@ -48,14 +58,13 @@ function AuctionBidList({ bid }) {
 					if (index >= 3) 
 						return
 
-					const found = prevListOfBids.find( item => item.bid)
 
 					return (
 						<AuctionCard 
 							key={Math.random()}
 							name={item.name}
 							bid={item.bid}
-							hasChanged={found != undefined}
+							isNewBid={isNewBid(item)}
 							topBid={index === 0}
 						/>
 					)
@@ -80,7 +89,6 @@ function usePrevious (value) {
 	const ref = useRef()
 
 	useEffect(() => {
-		console.log("[usePrevious] value:", value)
 		ref.current = value
 	}, [value])
 
