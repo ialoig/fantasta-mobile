@@ -45,8 +45,7 @@ function Countdown({ minutes, seconds, restart }) {
 		}
 		if (seconds && seconds >0) {
 			tempTimerInSeconds += seconds
-		}
-		console.log("[Countdown] - getTimerInSeconds:", tempTimerInSeconds)			
+		}		
 		setTimerInSeconds(tempTimerInSeconds)
 	}
 

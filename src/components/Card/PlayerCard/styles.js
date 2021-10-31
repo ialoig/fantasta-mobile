@@ -29,6 +29,7 @@ export const style = StyleSheet.create({
 	},
 	auction: {
 		alignItems: "center",
+		justifyContent: "center"
 	},
 	auction_price: {
 		alignItems: "flex-end",

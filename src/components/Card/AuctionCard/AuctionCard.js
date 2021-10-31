@@ -5,7 +5,6 @@ import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
 	withSequence,
-	withSpring,
 	withTiming } from "react-native-reanimated"
 import { textStyles } from "../../../styles"
 import Icon from "../../Icon/Icon"
@@ -52,7 +51,9 @@ function AuctionCard({ name, bid, isNewBid, topBid }) {
 
 AuctionCard.propTypes = {
 	name: PropTypes.string.isRequired,
-	bid: PropTypes.string.isRequired
+	bid: PropTypes.string.isRequired,
+	isNewBid: PropTypes.bool,
+	topBid: PropTypes.bool
 }
 
 export default AuctionCard
