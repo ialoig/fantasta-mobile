@@ -55,12 +55,16 @@ PopupError.propTypes = {
 }
 
 const styles = StyleSheet.create({
+	message: {
+		color: colors.secondary,
+		fontSize: 15
+	},
+
 	popup:{
-		justifyContent: 'flex-start',
+		justifyContent: "flex-start",
 		marginHorizontal: 30,
 		marginTop:3		
 	},
-
 	textContainer: {
 		alignItems: "flex-start",
 		backgroundColor: colors.errorRedBg,
@@ -79,10 +83,6 @@ const styles = StyleSheet.create({
 		fontStyle: "normal",
 		fontWeight: "normal",
 		letterSpacing: 0.75
-	},
-	message: {
-		color: colors.secondary,
-		fontSize: 15
 	}
 })
 

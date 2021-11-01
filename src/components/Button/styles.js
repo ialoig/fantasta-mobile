@@ -30,6 +30,7 @@ export const button = StyleSheet.create({
 	},
 	small: {
 		maxHeight: dynamicHeight(156, 56),
+		maxWidth: dynamicWidth(156),
 		minHeight: dynamicHeight(156, 56),
 		width: dynamicWidth(156)
 	}
