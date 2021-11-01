@@ -1,29 +1,28 @@
 import { useRoute } from "@react-navigation/core"
 import I18n from "i18n-js"
-import { clamp } from "lodash"
 import PropTypes from "prop-types"
 import React, {  useEffect, useState } from "react"
-import { Text, View } from "react-native"
+import { ScrollView, Text, View } from "react-native"
 import { PanGestureHandler } from "react-native-gesture-handler"
 import Animated, { 
 	useAnimatedGestureHandler, 
 	useAnimatedStyle, 
 	useSharedValue, 
 	withSpring } from "react-native-reanimated"
-import { Badge, PlayerCard } from "../../components"
+import { Badge, Button, NumberInc, PlayerCard } from "../../components"
 import Countdown from "../../components/Countdown/Countdown"
-import { style } from "../../components/Icon/svg/CreateLeagueIcon"
 import { Players } from "../../services"
-import { commonStyle, textStyles } from "../../styles"
-import { snap } from "../../utils/animationUtils"
-import { getHeaderHeight, getMaxHeader } from "../../utils/deviceUtils"
+import { colors, commonStyle, textStyles } from "../../styles"
+import { clamp, snap } from "../../utils/animationUtils"
+import { getHeaderHeight } from "../../utils/deviceUtils"
+import { dynamicHeight } from "../../utils/pixelResolver"
 import AuctionBidList from "./AuctionBidList"
 import styles from "./styles"
 
 
-const MAX_HEADER = getMaxHeader()
+const CARD_HEIGHT = dynamicHeight(327, 130)
 const HEADER_HEIGHT = getHeaderHeight()
-const END_TOP = MAX_HEADER + HEADER_HEIGHT
+const END_TOP = HEADER_HEIGHT + CARD_HEIGHT
 const snapPoints = [-END_TOP, 0]
 
 function MarketOpenAuction() {
@@ -37,7 +36,8 @@ function MarketOpenAuction() {
 	//player object found by ID passed by props
 	const [player, setPlayer] = useState(Players.GetPlayersByID(playerID))
 	const [bid, setBid] = useState()
-	const [bestBid, setBestBid] = useState()
+	const [bestBid, setBestBid] = useState(0)
+	const [sessionBid, setSessionBid] = useState(0)
 
 
 	const translateY = useSharedValue(0)
@@ -52,27 +52,27 @@ function MarketOpenAuction() {
 		{
 			id: Math.random(),
 			name: "Team A",
-			value: "100"
+			value: 100
 		},
 		{
 			id: Math.random(),
 			name: "Team B",
-			value: "15"
+			value: 15
 		},
 		{
 			id: Math.random(),
 			name: "Team C",
-			value: "35"
+			value: 35
 		},
 		{
 			id: Math.random(),
 			name: "Team D",
-			value: "201"
+			value: 201
 		},
 		{
 			id: Math.random(),
 			name: "Team E",
-			value: "8"
+			value: 8
 		},
 	]
 
@@ -104,10 +104,23 @@ function MarketOpenAuction() {
 		let newBestValue = randomNumberFromRange(localBestValue, 1000)
 		console.log("[MarketOpenAuction - getRandomBids] - new best value :", newBestValue)
 
-		selectedBid.value = newBestValue.toString()
+		selectedBid.value = newBestValue
 		setBestBid(selectedBid)
+		setSessionBid(selectedBid.value + 1)//session bid should be incremented by 1 
 		console.log("[MarketOpenAuction - getRandomBids] - selectedBid", selectedBid)
 		setBid(selectedBid)
+	}
+
+	const incrementSessionBid = (value) => {
+		setSessionBid(prevValue => {
+			return prevValue + value
+		})
+		console.log("[MarketOpenAuction - incrementBid] - setSessionBid", sessionBid)
+	}
+
+	const resetSessionBid = () => {
+		setSessionBid(bestBid.value + 1)
+		console.log("[MarketOpenAuction - incrementBid] - setSessionBid", sessionBid)
 	}
 
 	const transformSyle = useAnimatedStyle( () => {
@@ -119,85 +132,118 @@ function MarketOpenAuction() {
 	const panGestureEvent = useAnimatedGestureHandler({
 		onStart: (event, ctx) => {
 			ctx.y = translateY.value
-			console.log("panGestureEvent - onStart", translateY.value)
 		},
 		onActive: (event, ctx) => {
 			// translate Y value will be the current scroll Y value (event.translationY) plus the 
 			// the scroll Y value that was stored with the previous pan gesture
 			// clamp is needed to don't go over lower or upper values
-			console.log("panGestureEvent - onActive", translateY.value)
 			translateY.value = clamp(event.translationY + ctx.y, snapPoints[0], snapPoints[1])
 		},
 		onEnd: (event) => {
-			console.log("panGestureEvent - onEnd", translateY.value)
 			const snapValue = snap(translateY.value, event.velocityY, snapPoints[0], snapPoints[1])
 			translateY.value = withSpring(snapValue)
 		}
 	})
-	
+
 
 	return (
 		<View style={styles.container}>
-			{/* <PanGestureHandler 
+			<PanGestureHandler 
 				onGestureEvent={panGestureEvent}
-				// waitFor={flatRef}
 				shouldCancelWhenOutside
-			> */}
-			<View style={transformSyle}>
+			>
+				{/* <ScrollView> */}
+				<Animated.View style={transformSyle}>
 
-				<View style={styles.countdown_container}>
-					<Text style={textStyles.h2}>
-						{I18n.translate("auction_countdown")}
-					</Text>
-					<Countdown 
-						minutes={0}
-						seconds={10}
-						restart={Math.random()}
+					<View style={styles.countdown_container}>
+						<Text style={textStyles.h2}>
+							{I18n.translate("auction_countdown")}
+						</Text>
+						<Countdown 
+							minutes={0}
+							seconds={10}
+							restart={Math.random()}
+						/>
+					</View>
+
+					<PlayerCard
+						type="auction"
+						name={player.name}
+						isClassic={isClassic}
+						roles={isClassic ?  [...player.roleClassic] : player.roleMantra}
+						team={player.team}
+						quotation={player.initialPrice}
+						bid={bestBid.value ? bestBid.value : 0} //TODO: set current bid based on bids coming from auction
 					/>
-				</View>
 
-				<PlayerCard
-					type="auction"
-					name={player.name}
-					isClassic={isClassic}
-					roles={isClassic ?  [...player.roleClassic] : player.roleMantra}
-					team={player.team}
-					quotation={player.initialPrice}
-					bid={0} //TODO: set current bid based on bids coming from auction
-				/>
+					<View style={commonStyle.separator} />
 
-
-				{
-					bid && <AuctionBidList
-						bid={bid}
-					/>
-				}
+					<View style={styles.auctionBids}>
+						{
+							bid && <AuctionBidList
+								bid={bid}
+							/>
+						}
+					</View>
 				
-				<View style={commonStyle.separator} />
 
 
-				{/* buttons */}
-				<View style={styles.console} >
-					<Badge 
-						title={"CLEAR"}
-						onPress={() => console.log("pressed CLEAR")}
-					/>
-					<Badge 
-						title={"+1"}
-						onPress={() => console.log("pressed +1")}
-					/>
-					<Badge 
-						title={"+5"}
-						onPress={() => console.log("pressed +5")}
-					/>
-					<Badge 
-						title={"+10"}
-						onPress={() => console.log("pressed +10")}
-					/>
-				</View>
+					{/* buttons */}
+					<View style={styles.badge} >
+						<Badge 
+							title={"CLEAR"}
+							onPress={() => resetSessionBid()}
+							active={true}
+							activeColor={colors.errorRed}
+						/>
+						<Badge 
+							title={"+1"}
+							onPress={() => incrementSessionBid(1)}
+							active={true}
+							activeColor={colors.primary}
+						/>
+						<Badge 
+							title={"+5"}
+							onPress={() => incrementSessionBid(5)}
+							active={true}
+							activeColor={colors.primary}
+						/>
+						<Badge 
+							title={"+10"}
+							onPress={() => incrementSessionBid(10)}
+							active={true}
+							activeColor={colors.primary}
+						/>
+					</View>
+					<View>
+						<NumberInc
+							label={I18n.translate("your_bid")}
+							value={sessionBid}
+							step={1}
+							min={0}
+							onChange={(value) => setSessionBid(value)}
+						/>
+					</View>
+					<View style={styles.button}>
+						<Button 
+							title={I18n.translate("leave")}
+							size={"small"}
+							type={"secondary"}
+							border={true}
+							onPress={() => console.log("pressed Leave")}
+						/>
+						<Button 
+							title={"Bet " + sessionBid}
+							size={"small"}
+							type={"primary"}
+							onPress={() => console.log("pressed Bet")}
+						/>
+					</View>
 
-			</View>
-			{/* </PanGestureHandler> */}
+				</Animated.View>
+			</PanGestureHandler>
+
+			{/* </ScrollView> */}
 		</View>
 	)
 }

@@ -17,7 +17,7 @@ export default StyleSheet.create({
 
 export const size = StyleSheet.create({
 	card: {
-		height: dynamicHeight(327, 50),
+		height: dynamicHeight(327, 40),
 		paddingHorizontal: getWidth(20),
 		width: dynamicWidth(327)
 	},
@@ -28,8 +28,8 @@ export const card =  StyleSheet.create({
 		...StyleSheet.absoluteFillObject,
 		backgroundColor: colors.greyLight,
 		borderRadius: 18,
-		marginTop: 12,
-		position: "relative",
+		marginVertical: 4,
+		position: "relative"
 	},
 	// eslint-disable-next-line react-native/no-color-literals
 	highlight: {
@@ -38,7 +38,8 @@ export const card =  StyleSheet.create({
 	},
 	small: {
 		alignItems: "center",
+		alignSelf: "center",
 		flexDirection: "row",
-		justifyContent: "space-between"
+		justifyContent: "center"
 	}
 })

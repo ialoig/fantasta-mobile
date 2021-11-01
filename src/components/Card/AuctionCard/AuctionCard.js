@@ -51,7 +51,7 @@ function AuctionCard({ name, bid, isNewBid, topBid }) {
 
 AuctionCard.propTypes = {
 	name: PropTypes.string.isRequired,
-	bid: PropTypes.string.isRequired,
+	bid: PropTypes.number.isRequired,
 	isNewBid: PropTypes.bool,
 	topBid: PropTypes.bool
 }

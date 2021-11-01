@@ -1,9 +1,9 @@
 import PropTypes from "prop-types"
 import React from "react"
 import { Text } from "react-native"
-import { TouchableScale } from ".."
 import { textStyles } from "../../styles"
 import colors from "../../styles/colors"
+import TouchableScale from "../TouchableScale/TouchableScale"
 import { badge, text } from "./styles"
 
 

@@ -1,14 +1,28 @@
 import { StyleSheet } from "react-native"
 import { colors } from "../../styles"
 import { deviceScreenHeight, deviceScreenWidth } from "../../utils/deviceUtils"
+import { dynamicHeight } from "../../utils/pixelResolver"
 
 
 export default StyleSheet.create({
-	console: {
-		backgroundColor: colors.cen,
+	auctionBids: {
+		height: dynamicHeight(327, 150),
+		marginVertical: 4
+	},
+	badge: {
+		...StyleSheet.absoluteFillObject,
 		flexDirection: "row",
 		justifyContent: "space-between",
-		paddingVertical: 4
+		paddingBottom: 8,
+		paddingTop: 12,
+		position: "relative"
+	},
+	button: {
+		...StyleSheet.absoluteFillObject,
+		alignContent: "center",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		position: "relative"
 	},
 	container: {
 		...StyleSheet.absoluteFillObject,
