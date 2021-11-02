@@ -1,4 +1,4 @@
-import { TIPOLOGY } from "../constants"
+import { TIPOLOGY } from "../../constants"
 
 function errorEmptyValue(value){
     return !value

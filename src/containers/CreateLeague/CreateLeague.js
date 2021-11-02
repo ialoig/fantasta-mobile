@@ -1,5 +1,4 @@
 import { useNavigation } from "@react-navigation/native"
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, { useState } from "react"
@@ -7,7 +6,7 @@ import { View } from "react-native"
 import { FIELDS_ID, TIPOLOGY } from "../../constants"
 import { InputText, Button, PopupError, NumberInc, Radio } from "../../components"
 import routes from "../../navigation/routesNames"
-import { validateCreateLeaguePage } from "../../utils/validation"
+import { validateCreateLeaguePage } from "./validation"
 import styles from "./styles"
 
 function CreateLeague() {

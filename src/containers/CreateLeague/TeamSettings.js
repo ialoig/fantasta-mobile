@@ -1,16 +1,13 @@
 import { useNavigation } from "@react-navigation/native"
 import { useRoute } from "@react-navigation/native"
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
-import { commonStyle } from "../../styles"
-
 import { FIELDS_ID, TIPOLOGY } from "../../constants"
 import { Button, PopupError, NumberInc } from "../../components"
 import routes from "../../navigation/routesNames"
-import { validateTeamSettingsPage } from "../../utils/validation"
+import { validateTeamSettingsPage } from "./validation"
 import styles from "./styles"
 
 function TeamSettings() {

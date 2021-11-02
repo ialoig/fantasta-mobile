@@ -1,16 +1,13 @@
 import { useNavigation } from "@react-navigation/native"
 import { useRoute } from "@react-navigation/native"
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
-import { commonStyle } from "../../styles"
-
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE } from "../../constants"
 import { Button, PopupError, NumberInc, Radio } from "../../components"
 import routes from "../../navigation/routesNames"
-import { validateAuctionSettingsPage } from "../../utils/validation"
+import { validateAuctionSettingsPage } from "./validation"
 import styles from "./styles"
 
 function AuctionSettings() {
