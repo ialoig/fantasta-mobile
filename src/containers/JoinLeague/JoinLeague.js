@@ -9,7 +9,7 @@ import { InputText, Button, PopupError } from "../../components"
 import routes from "../../navigation/routesNames"
 import { Leagues } from "../../services"
 import { commonStyle } from "../../styles"
-import { validateJoinLeaguePage } from "../../utils/validation"
+import { validateJoinLeaguePage } from "../CreateLeague/validation"
 
 function JoinLeague() {
 

@@ -1,7 +1,6 @@
+import React from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-import React from "react"
-
 import { CreateLeague, TeamSettings, AuctionSettings, CreateTeam } from "../containers/CreateLeague"
 import ForgotPassword from "../containers/ForgotPassword/ForgotPassword"
 import ForgotPasswordConfirmation from "../containers/ForgotPassword/ForgotPasswordConfirmation"
