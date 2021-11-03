@@ -1,5 +1,4 @@
 import { useNavigation } from "@react-navigation/native"
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import { View } from "react-native"
@@ -11,7 +10,7 @@ import { Leagues } from "../../services"
 import { commonStyle } from "../../styles"
 import { validateJoinLeaguePage } from "../CreateLeague/validation"
 
-function JoinLeague() {
+function JoinLeague({ navigation }) {
 
 	const { navigate } = useNavigation()
 
@@ -49,27 +48,27 @@ function JoinLeague() {
 			setPopupShow(true)
 			setPopupMessage(errorMessage)
 		}
-		else{
-			try {
-				await Leagues.Join("", settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
-				navigate(routes.BOTTOMTABNAVIGATOR)
-				// TODO: should clean the navigation stack. A further back should point to the Dashboard
-			}
-			catch (error) {
-				console.error(`[JoinLeague]: ${error}`)
-				// error handling done in Leagues.Create. TODO: fix it
-			}
+		else {
+			await Leagues.Join("", settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
+			// clean the navigation stack. A further back will point to the Dashboard
+			navigation.reset({
+				index: 0,
+				routes: [
+					{ name: routes.HOME }
+				],
+			});
+			navigate(routes.BOTTOMTABNAVIGATOR)
 		}
 	}
 
 	return (
 		<View style={commonStyle.container}>
 			<View style={commonStyle.content}>
-				<PopupError 
-					popupShow={popupShow} 
-					popupTitle={popupTitle} 
-					popupMessage={popupMessage} 
-					popupClosedCallback={popupClosedCallback} 
+				<PopupError
+					popupShow={popupShow}
+					popupTitle={popupTitle}
+					popupMessage={popupMessage}
+					popupClosedCallback={popupClosedCallback}
 				/>
 				<InputText
 					id={FIELDS_ID.leagueNameId}
