@@ -34,17 +34,9 @@ const GetTeamByID = (id) => {
 
 const Create = async ( settings ) =>
 {
-	console.log(`settings: ${JSON.stringify(settings, null, 2)}`)
 	try
 	{
-		console.log("0000000000000000000000000000000000000000")
-		console.log(`settings: ${JSON.stringify(settings, null, 2)}`)
-
 		let response = await axios.post("/league/create", settings, {})
-
-		console.log(`response: ${response}`)
-		console.log(`response: ${JSON.stringify(response, null, 2)}`)
-		console.log("1111111111111111111111111111111111111111")
         
 		SetActiveLeague(response.league)
 		Auction.Init( response.league, response.team )
@@ -60,7 +52,6 @@ const Create = async ( settings ) =>
 
 const Join = async ( id="", name="", password="", teamname="" ) =>
 {
-	console.log(`Join function called with wrong parameters: id=${id}, name=${name}, password=${password}, teamname=${teamname}`)
 	if ( id || name && password && teamname )
 	{
 		try

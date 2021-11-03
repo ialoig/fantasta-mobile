@@ -11,9 +11,10 @@ import routes from "../../navigation/routesNames"
 import { validateCreateTeamPage } from "./validation"
 import styles from "./styles"
 
-function CreateTeam() {
+function CreateTeam({ navigation }) {
 
 	const { navigate } = useNavigation()
+
 	const { params } = useRoute()
 
 	const [settings, setSettings] = useState(
@@ -48,16 +49,15 @@ function CreateTeam() {
 			setPopupMessage(errorMessage)
 		}
 		else {
-			try {
-				await Leagues.Create(settings)
-				console.log(`navigation: ${JSON.stringify(state, null, 2)}`)
-				navigate(routes.BOTTOMTABNAVIGATOR)
-				// TODO: should clean the navigation stack. A further back should point to the Dashboard
-			}
-			catch (error) {
-				console.log(`[CreateTeam] error ${error}`)
-				// error handling done in Leagues.Create. TODO: fix it
-			}
+			await Leagues.Create(settings)
+			// clean the navigation stack. A further back will point to the Dashboard
+			navigation.reset({
+				index: 0,
+				routes: [
+					{ name: routes.HOME }
+				],
+			});
+			navigate(routes.BOTTOMTABNAVIGATOR)
 		}
 	}
 
