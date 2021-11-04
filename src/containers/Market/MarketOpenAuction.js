@@ -2,7 +2,7 @@ import { useRoute } from "@react-navigation/core"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, {  useEffect, useState } from "react"
-import { ScrollView, Text, View } from "react-native"
+import { Text, View } from "react-native"
 import { PanGestureHandler } from "react-native-gesture-handler"
 import Animated, { 
 	useAnimatedGestureHandler, 
@@ -15,6 +15,7 @@ import { Leagues, Players, User } from "../../services"
 import { colors, commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
 import { getHeaderHeight } from "../../utils/deviceUtils"
+import usePrevious from "../../utils/hooks"
 import { dynamicHeight } from "../../utils/pixelResolver"
 import AuctionBidList from "./AuctionBidList"
 import styles from "./styles"
@@ -36,9 +37,9 @@ function MarketOpenAuction() {
 	//player object found by ID passed by props
 	const [player, setPlayer] = useState(Players.GetPlayersByID(playerID))
 	const [team, setTeam] = useState(Leagues.GetMyTeam(User.Get().username))
-	const [bid, setBid] = useState()
-	const [bestBid, setBestBid] = useState(0)
-	const [sessionBid, setSessionBid] = useState(1)
+	const [bestBid, setBestBid] = useState()
+	const historyBid = usePrevious(bestBid)
+	const [sessionValue, setSessionValue] = useState(1)
 
 
 	const translateY = useSharedValue(0)
@@ -47,11 +48,14 @@ function MarketOpenAuction() {
 		const myTeam = Leagues.GetMyTeam(User.Get().username)
 		setTeam(myTeam)
 		
-		runAuction()
+		if (!bestBid) {
+			runAuction()
+		}
 		
 	}, [])
 
 
+	// TODO: remove after auction implementation
 	const bids = [
 		{
 			_id: 1,
@@ -82,60 +86,64 @@ function MarketOpenAuction() {
 
 
 	const runAuction = () => {
-		let count = 2
-		let interval = setInterval( () => {
-			getRandomBids()
-			if (--count === 0 )
-				clearInterval(interval)
-		}, 3000)
-		return () => clearInterval(interval)
+		setTimeout(() => {
+			const selectedBid = getRandomBids()
+			setBestBid(selectedBid)
+			setSessionValue(selectedBid.value + 1)//session bid should be incremented by 1 
+		}, 1000)
 	}
+
 
 	//TODO: to be deleted after bid implementation
 	const randomNumberFromRange = (min, max) => {
-		return Math.floor(Math.random() * (max-min+1) + min )
+		return Math.floor(Math.random() * (max - min + 1) + min )
 	}
 	
+
 	//TODO: just for debug purpose.
 	const getRandomBids = () => {
 		const randomIndex = randomNumberFromRange(0, 3)
 		const selectedBid = bids[randomIndex]
 		
 		let localBestValue = 1
-		if (bestBid) {
-			localBestValue = bestBid.value
+		console.log("[MarketOpenAuction - getRandomBids] - historyBid:", historyBid)
+		if (historyBid) {
+			console.log("[MarketOpenAuction - getRandomBids] - prev best value:", historyBid.value)
+			localBestValue = historyBid.value
 		}
 		let newBestValue = randomNumberFromRange(localBestValue, 500)
 
 		selectedBid.value = newBestValue
-		setBestBid(selectedBid)
-		setSessionBid(selectedBid.value + 1)//session bid should be incremented by 1 
-		console.log("[MarketOpenAuction - getRandomBids] - selectedBid", selectedBid)
-		setBid(selectedBid)
+		console.log("[MarketOpenAuction - getRandomBids] - selectedBid:", selectedBid)
+		return selectedBid
 	}
 
-	const incrementSessionBid = (value) => {
-		setSessionBid(prevValue => {
+
+	const incrementSessionValue = (value) => {
+		setSessionValue(prevValue => {
 			return prevValue + value
 		})
-		console.log("[MarketOpenAuction - incrementBid] - setSessionBid", sessionBid)
+		console.log("[MarketOpenAuction - incrementSessionValue] - setSessionValue:", sessionValue)
 	}
 
-	const resetSessionBid = () => {
-		setSessionBid(bestBid.value + 1)
-		console.log("[MarketOpenAuction - incrementBid] - setSessionBid", sessionBid)
+
+	const resetSessionValue = () => {
+		setSessionValue(bestBid.value + 1)
+		console.log("[MarketOpenAuction - resetSessionValue] - setSessionValue:", sessionValue)
 	}
+
 
 	const bet = () => {
-		console.log("[MarketOpenAuction - bet] - value", sessionBid)
+		console.log("[MarketOpenAuction - bet] - value:", sessionValue)
 		const localBid = {
 			_id: team._id,
 			name: team.name,
-			value: sessionBid
+			value: sessionValue
 		}
 		setBestBid(localBid)
-		setBid(localBid)
-		setSessionBid(sessionBid + 1)//session bid should be incremented by 1 
+		setSessionValue(sessionValue + 1)//session bid should be incremented by 1 
+		
+		runAuction()// TODO: remove after implementation of auction
 	}
 
 	
@@ -144,6 +152,7 @@ function MarketOpenAuction() {
 			transform: [{ translateY: translateY.value }]
 		}
 	})
+
 
 	const panGestureEvent = useAnimatedGestureHandler({
 		onStart: (event, ctx) => {
@@ -189,15 +198,15 @@ function MarketOpenAuction() {
 						roles={isClassic ?  [...player.roleClassic] : player.roleMantra}
 						team={player.team}
 						quotation={player.initialPrice}
-						bid={bestBid.value ? bestBid.value : 0} //TODO: set current bid based on bids coming from auction
+						bid={bestBid?.value ? bestBid.value : 0} //TODO: set current bid based on bids coming from auction
 					/>
 
 					<View style={commonStyle.separator} />
 
 					<View style={styles.auctionBids}>
 						{
-							bid && <AuctionBidList
-								bid={bid}
+							bestBid && <AuctionBidList
+								bid={bestBid}
 							/>
 						}
 					</View>
@@ -206,25 +215,25 @@ function MarketOpenAuction() {
 					<View style={styles.badge} >
 						<Badge 
 							title={"CLEAR"}
-							onPress={() => resetSessionBid()}
+							onPress={() => resetSessionValue()}
 							active={true}
 							activeColor={colors.errorRed}
 						/>
 						<Badge 
 							title={"+1"}
-							onPress={() => incrementSessionBid(1)}
+							onPress={() => incrementSessionValue(1)}
 							active={true}
 							activeColor={colors.primary}
 						/>
 						<Badge 
 							title={"+5"}
-							onPress={() => incrementSessionBid(5)}
+							onPress={() => incrementSessionValue(5)}
 							active={true}
 							activeColor={colors.primary}
 						/>
 						<Badge 
 							title={"+10"}
-							onPress={() => incrementSessionBid(10)}
+							onPress={() => incrementSessionValue(10)}
 							active={true}
 							activeColor={colors.primary}
 						/>
@@ -232,10 +241,10 @@ function MarketOpenAuction() {
 					<View>
 						<NumberInc
 							label={I18n.translate("your_bid")}
-							value={sessionBid}
+							value={sessionValue}
 							step={1}
 							min={0}
-							onChange={(value) => setSessionBid(value)}
+							onChange={(value) => setSessionValue(value)}
 						/>
 					</View>
 					<View style={styles.button}>
@@ -247,7 +256,7 @@ function MarketOpenAuction() {
 							onPress={() => console.log("pressed Leave")}
 						/>
 						<Button 
-							title={I18n.translate("bet") + " " + sessionBid}
+							title={I18n.translate("bet") + " " + sessionValue}
 							size={"small"}
 							type={"primary"}
 							onPress={() => bet()}

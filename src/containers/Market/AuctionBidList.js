@@ -10,7 +10,7 @@ function AuctionBidList({ bid }) {
 	const prevListOfBids = usePrevious(listOfBids)
 
 	useEffect( () => {
-		console.log("[AuctionBidList] - useEffect - bid from props: ", bid)
+		console.log("[AuctionBidList] - useEffect - bid from props:", bid)
 
 		setBid()
 	}, [bid])
@@ -18,10 +18,11 @@ function AuctionBidList({ bid }) {
 
 	const setBid = () => {
 		let tempList = prevListOfBids ?  [...prevListOfBids] : []
-		console.log("[AuctionBidList] - setBid - tempList before: ", tempList)
 
 		tempList.unshift(bid) //Add a bid to the beginning of the list
-		setListOfBids(tempList.slice(0, 3))
+		tempList = tempList.slice(0, 3)
+		console.log("[AuctionBidList] - setBid - new list:", tempList)
+		setListOfBids(tempList)
 	}
 
 
@@ -53,7 +54,7 @@ function AuctionBidList({ bid }) {
 							key={item._id + "" + Math.random()} // there might be same team but with different bid
 							name={item.name}
 							bid={item.value}
-							isNewBid={isNewBid(item)}
+							isNewBid={index === 0}
 							topBid={index === 0}
 						/>
 					)
