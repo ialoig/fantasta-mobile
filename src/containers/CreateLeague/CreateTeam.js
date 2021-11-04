@@ -1,15 +1,14 @@
-import { useNavigation } from "@react-navigation/native"
-import { useRoute } from "@react-navigation/native"
+import { useNavigation , useRoute } from "@react-navigation/native"
 import I18n from "i18n-js"
-import { Leagues } from "../../services"
 import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
+import { Button, InputText, PopupError } from "../../components"
 import { FIELDS_ID } from "../../constants"
-import { InputText, Button, PopupError } from "../../components"
 import routes from "../../navigation/routesNames"
-import { validateCreateTeamPage } from "./validation"
+import { Leagues } from "../../services"
 import styles from "./styles"
+import { validateCreateTeamPage } from "./validation"
 
 function CreateTeam({ navigation }) {
 
@@ -56,7 +55,7 @@ function CreateTeam({ navigation }) {
 				routes: [
 					{ name: routes.HOME }
 				],
-			});
+			})
 			navigate(routes.BOTTOMTABNAVIGATOR)
 		}
 	}
@@ -86,6 +85,11 @@ function CreateTeam({ navigation }) {
 }
 
 
-CreateTeam.propTypes = {}
+CreateTeam.propTypes = {
+	navigation: PropTypes.shape({
+		navigate: PropTypes.func.isRequired,
+		reset: PropTypes.func.isRequired,
+	}).isRequired
+}
 
 export default CreateTeam

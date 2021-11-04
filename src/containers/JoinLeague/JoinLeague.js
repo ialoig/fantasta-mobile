@@ -1,10 +1,10 @@
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import { View } from "react-native"
 import React, { useState } from "react"
+import { View } from "react-native"
+import { Button, InputText, PopupError } from "../../components"
 import { FIELDS_ID } from "../../constants"
-import { InputText, Button, PopupError } from "../../components"
 import routes from "../../navigation/routesNames"
 import { Leagues } from "../../services"
 import { commonStyle } from "../../styles"
@@ -56,7 +56,7 @@ function JoinLeague({ navigation }) {
 				routes: [
 					{ name: routes.HOME }
 				],
-			});
+			})
 			navigate(routes.BOTTOMTABNAVIGATOR)
 		}
 	}
@@ -100,7 +100,11 @@ function JoinLeague({ navigation }) {
 
 }
 
-
-JoinLeague.propTypes = {}
+JoinLeague.propTypes = {
+	navigation: PropTypes.shape({
+		navigate: PropTypes.func.isRequired,
+		reset: PropTypes.func.isRequired,
+	}).isRequired
+}
 
 export default JoinLeague

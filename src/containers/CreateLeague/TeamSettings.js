@@ -1,14 +1,12 @@
-import { useNavigation } from "@react-navigation/native"
-import { useRoute } from "@react-navigation/native"
+import { useNavigation , useRoute } from "@react-navigation/native"
 import I18n from "i18n-js"
-import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
+import { Button, NumberInc, PopupError } from "../../components"
 import { FIELDS_ID, TIPOLOGY } from "../../constants"
-import { Button, PopupError, NumberInc } from "../../components"
 import routes from "../../navigation/routesNames"
-import { validateTeamSettingsPage } from "./validation"
 import styles from "./styles"
+import { validateTeamSettingsPage } from "./validation"
 
 function TeamSettings() {
 
@@ -123,17 +121,6 @@ function TeamSettings() {
 			/>
 		</View>
 	)
-}
-
-
-TeamSettings.propTypes = {
-
-	// settings: PropTypes.shape({
-	// 	[FIELDS_ID.leagueNameId]: PropTypes.string.isRequired,
-	// 	[FIELDS_ID.passwordId]: PropTypes.string.isRequired,
-	// 	[FIELDS_ID.participantsId]: PropTypes.number.isRequired,
-	// 	[FIELDS_ID.tipologyId]: PropTypes.string.isRequired
-	//   })
 }
 
 export default TeamSettings
