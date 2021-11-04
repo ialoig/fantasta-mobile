@@ -26,6 +26,10 @@ export class HomeContainer extends React.Component {
 		)
 	}
 
+	componentWillUnmount() {
+		this.mounted = false
+	}
+
 	async joinLeague(item) {
 		if (item && item._id) {
 			await Leagues.Join(item._id)
