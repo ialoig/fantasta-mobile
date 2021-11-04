@@ -11,7 +11,7 @@ import Animated, {
 	withSpring } from "react-native-reanimated"
 import { Badge, Button, NumberInc, PlayerCard } from "../../components"
 import Countdown from "../../components/Countdown/Countdown"
-import { Players } from "../../services"
+import { Leagues, Players, User } from "../../services"
 import { colors, commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
 import { getHeaderHeight } from "../../utils/deviceUtils"
@@ -35,14 +35,18 @@ function MarketOpenAuction() {
 	const isClassic = params?.isClassic
 	//player object found by ID passed by props
 	const [player, setPlayer] = useState(Players.GetPlayersByID(playerID))
+	const [team, setTeam] = useState(Leagues.GetMyTeam(User.Get().username))
 	const [bid, setBid] = useState()
 	const [bestBid, setBestBid] = useState(0)
-	const [sessionBid, setSessionBid] = useState(0)
+	const [sessionBid, setSessionBid] = useState(1)
 
 
 	const translateY = useSharedValue(0)
 
 	useEffect(() => {
+		const myTeam = Leagues.GetMyTeam(User.Get().username)
+		setTeam(myTeam)
+		
 		runAuction()
 		
 	}, [])
@@ -50,27 +54,27 @@ function MarketOpenAuction() {
 
 	const bids = [
 		{
-			id: Math.random(),
+			_id: 1,
 			name: "Team A",
 			value: 100
 		},
 		{
-			id: Math.random(),
+			_id: 2,
 			name: "Team B",
 			value: 15
 		},
 		{
-			id: Math.random(),
+			_id: 3,
 			name: "Team C",
 			value: 35
 		},
 		{
-			id: Math.random(),
+			_id: 4,
 			name: "Team D",
 			value: 201
 		},
 		{
-			id: Math.random(),
+			_id: 5,
 			name: "Team E",
 			value: 8
 		},
@@ -78,12 +82,13 @@ function MarketOpenAuction() {
 
 
 	const runAuction = () => {
-		let count = 3
+		let count = 2
 		let interval = setInterval( () => {
 			getRandomBids()
 			if (--count === 0 )
 				clearInterval(interval)
-		}, 2000)
+		}, 3000)
+		return () => clearInterval(interval)
 	}
 
 	//TODO: to be deleted after bid implementation
@@ -100,9 +105,7 @@ function MarketOpenAuction() {
 		if (bestBid) {
 			localBestValue = bestBid.value
 		}
-		console.log("[MarketOpenAuction - getRandomBids] - best value:", localBestValue)
-		let newBestValue = randomNumberFromRange(localBestValue, 1000)
-		console.log("[MarketOpenAuction - getRandomBids] - new best value :", newBestValue)
+		let newBestValue = randomNumberFromRange(localBestValue, 500)
 
 		selectedBid.value = newBestValue
 		setBestBid(selectedBid)
@@ -123,6 +126,19 @@ function MarketOpenAuction() {
 		console.log("[MarketOpenAuction - incrementBid] - setSessionBid", sessionBid)
 	}
 
+	const bet = () => {
+		console.log("[MarketOpenAuction - bet] - value", sessionBid)
+		const localBid = {
+			_id: team._id,
+			name: team.name,
+			value: sessionBid
+		}
+		setBestBid(localBid)
+		setBid(localBid)
+		setSessionBid(sessionBid + 1)//session bid should be incremented by 1 
+	}
+
+	
 	const transformSyle = useAnimatedStyle( () => {
 		return {
 			transform: [{ translateY: translateY.value }]
@@ -185,8 +201,6 @@ function MarketOpenAuction() {
 							/>
 						}
 					</View>
-				
-
 
 					{/* buttons */}
 					<View style={styles.badge} >
@@ -233,10 +247,10 @@ function MarketOpenAuction() {
 							onPress={() => console.log("pressed Leave")}
 						/>
 						<Button 
-							title={"Bet " + sessionBid}
+							title={I18n.translate("bet") + " " + sessionBid}
 							size={"small"}
 							type={"primary"}
-							onPress={() => console.log("pressed Bet")}
+							onPress={() => bet()}
 						/>
 					</View>
 
