@@ -10,24 +10,27 @@ function AuctionBidList({ bid }) {
 	const prevListOfBids = usePrevious(listOfBids)
 
 	useEffect( () => {
+		console.log("[AuctionBidList] - useEffect - bid from props: ", bid)
+
 		setBid()
 	}, [bid])
 
 
 	const setBid = () => {
 		let tempList = prevListOfBids ?  [...prevListOfBids] : []
-		// console.log("[AuctionBidList] - setBid - tempList before: ", tempList)
+		console.log("[AuctionBidList] - setBid - tempList before: ", tempList)
 
 		tempList.unshift(bid) //Add a bid to the beginning of the list
-		tempList = tempList.slice(0, 3)
-		setListOfBids(tempList)
+		setListOfBids(tempList.slice(0, 3))
 	}
 
 
 	//check if it's a new bid coming from the same user or if it's just the same 
 	const isNewBid = (item) => {
+		console.log("[AuctionBidList] - isNewBid ?", item)
+
 		let found = prevListOfBids.find( prevItem => {
-			return prevItem.name === item.name
+			return prevItem._id === item._id
 		})
 		if (found && found.value === item.value) {
 			// console.log("[AuctionBidList] - found bid same team", found.name, found.value)
@@ -47,7 +50,7 @@ function AuctionBidList({ bid }) {
 
 					return (
 						<AuctionCard 
-							key={Math.random()}
+							key={item._id + "" + Math.random()} // there might be same team but with different bid
 							name={item.name}
 							bid={item.value}
 							isNewBid={isNewBid(item)}
