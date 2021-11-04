@@ -20,23 +20,16 @@ export class HomeContainer extends React.Component {
 			() => {
 				this.mounted && this.setState({
 					//ordered by creation date, last created on first position
-					leagues: Leagues.GetLeagues().sort((a, b) => a.createdAt > b.createdAt ? -1 : 1) 
+					leagues: Leagues.GetLeagues().sort((a, b) => a.createdAt > b.createdAt ? -1 : 1)
 				})
 			}
 		)
 	}
 
-	componentWillUnmount() {
-		this.mounted = false
-	}
-
 	async joinLeague(item) {
 		if (item && item._id) {
-			try {
-				await Leagues.Join(item._id)
-				this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
-			}
-			catch (error) {/*error handling done in Leagues.Join*/ }
+			await Leagues.Join(item._id)
+			this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
 		}
 	}
 
