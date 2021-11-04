@@ -54,22 +54,26 @@ PopupError.propTypes = {
 }
 
 const styles = StyleSheet.create({
+	message: {
+		color: colors.secondary,
+		fontSize: 16
+	},
+
 	popup:{
-		justifyContent: 'flex-start',
+		justifyContent: "flex-start",
 		marginHorizontal: 30,
 		marginTop:70
 	},
-
 	textContainer: {
 		alignItems: "flex-start",
 		backgroundColor: colors.errorRedBg,
+		borderColor: colors.errorRed,
 		borderRadius: 15,
+		borderWidth: 1,
 		flexDirection: "column",
 		justifyContent: "center",  // center horizontally
 		padding: 10,
-		paddingLeft: 30,
-		borderColor: colors.errorRed,
-		borderWidth: 1
+		paddingLeft: 30
 	},
 	title: {
 		color: colors.errorRed,
@@ -78,10 +82,6 @@ const styles = StyleSheet.create({
 		fontStyle: "normal",
 		fontWeight: "normal",
 		letterSpacing: 0.75
-	},
-	message: {
-		color: colors.secondary,
-		fontSize: 16
 	}
 })
 

@@ -1,14 +1,12 @@
-import { useNavigation } from "@react-navigation/native"
-import { useRoute } from "@react-navigation/native"
+import { useNavigation , useRoute } from "@react-navigation/native"
 import I18n from "i18n-js"
-import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
+import { Button, NumberInc, PopupError, Radio } from "../../components"
 import { AUCTION_TYPE, FIELDS_ID, STARTING_PRICE } from "../../constants"
-import { Button, PopupError, NumberInc, Radio } from "../../components"
 import routes from "../../navigation/routesNames"
-import { validateAuctionSettingsPage } from "./validation"
 import styles from "./styles"
+import { validateAuctionSettingsPage } from "./validation"
 
 function AuctionSettings() {
 	const { navigate } = useNavigation()
@@ -96,8 +94,5 @@ function AuctionSettings() {
 		</View>
 	)
 }
-
-AuctionSettings.propTypes = {}
-
 
 export default AuctionSettings

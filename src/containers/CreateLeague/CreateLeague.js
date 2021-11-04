@@ -1,13 +1,12 @@
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
-import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
+import { Button, InputText, NumberInc, PopupError, Radio } from "../../components"
 import { FIELDS_ID, TIPOLOGY } from "../../constants"
-import { InputText, Button, PopupError, NumberInc, Radio } from "../../components"
 import routes from "../../navigation/routesNames"
-import { validateCreateLeaguePage } from "./validation"
 import styles from "./styles"
+import { validateCreateLeaguePage } from "./validation"
 
 function CreateLeague() {
 
@@ -95,7 +94,5 @@ function CreateLeague() {
 		</View>
 	)
 }
-
-CreateLeague.propTypes = {}
 
 export default CreateLeague
