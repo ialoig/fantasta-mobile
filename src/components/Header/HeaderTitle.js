@@ -37,14 +37,14 @@ function HeaderTitle({ children }) {
 			return I18n.translate("complete_register")
 		case routes.HOME:
 			return I18n.translate("start_league")
-		case routes.CREATE_LEAGUE:
-			return I18n.translate("createLeague")
+		case routes.CREATE_LEAGUE_LEAGUE_SETTINGS:
+			return I18n.translate("leagueSettings")
 		case routes.CREATE_LEAGUE_TEAM_SETTINGS:
 			return I18n.translate("teamSettings")
 		case routes.CREATE_LEAGUE_AUCTION_SETTINGS:
 			return I18n.translate("auctionSettings")
-		case routes.CREATE_TEAM:
-			return I18n.translate("createTeam")
+		case routes.CREATE_LEAGUE:
+			return I18n.translate("createLeague")
 		case routes.JOIN_LEAGUE:
 			return I18n.translate("joinLeague")
 		case routes.DASHBOARD:

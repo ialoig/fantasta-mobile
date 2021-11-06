@@ -8,6 +8,7 @@ import { FIELDS_ID } from "../../constants"
 import routes from "../../navigation/routesNames"
 import { Leagues } from "../../services"
 import { commonStyle } from "../../styles"
+import styles from "../CreateLeague/styles"
 import { validateJoinLeaguePage } from "../CreateLeague/validation"
 
 function JoinLeague({ navigation }) {
@@ -62,39 +63,37 @@ function JoinLeague({ navigation }) {
 	}
 
 	return (
-		<View style={commonStyle.container}>
-			<View style={commonStyle.content}>
-				<PopupError
-					popupShow={popupShow}
-					popupTitle={popupTitle}
-					popupMessage={popupMessage}
-					popupClosedCallback={popupClosedCallback}
-				/>
-				<InputText
-					id={FIELDS_ID.leagueNameId}
-					label={I18n.translate("leagueName")}
-					placeholder={I18n.translate("leagueName")}
-					onChange={onChange}
-				/>
-				<InputText
-					id={FIELDS_ID.passwordId}
-					label={I18n.translate("password")}
-					placeholder={I18n.translate("password")}
-					onChange={onChange}
-				/>
-				<InputText
-					id={FIELDS_ID.teamnameId}
-					label={I18n.translate("teamName")}
-					placeholder={I18n.translate("teamName")}
-					onChange={onChange}
-				/>
-				<Button
-					title={I18n.translate("join")}
-					onPress={buttonOnPress}
-					type='primary'
-					size='large'
-				/>
-			</View>
+		<View style={styles.container}>
+			<PopupError
+				popupShow={popupShow}
+				popupTitle={popupTitle}
+				popupMessage={popupMessage}
+				popupClosedCallback={popupClosedCallback}
+			/>
+			<InputText
+				id={FIELDS_ID.leagueNameId}
+				label={I18n.translate("leagueName")}
+				placeholder={I18n.translate("leagueName")}
+				onChange={onChange}
+			/>
+			<InputText
+				id={FIELDS_ID.passwordId}
+				label={I18n.translate("password")}
+				placeholder={I18n.translate("password")}
+				onChange={onChange}
+			/>
+			<InputText
+				id={FIELDS_ID.teamnameId}
+				label={I18n.translate("teamName")}
+				placeholder={I18n.translate("teamName")}
+				onChange={onChange}
+			/>
+			<Button
+				title={I18n.translate("join")}
+				onPress={buttonOnPress}
+				type='primary'
+				size='large'
+			/>
 		</View>
 	)
 
