@@ -7,7 +7,6 @@ import { Button, InputText, PopupError } from "../../components"
 import { FIELDS_ID } from "../../constants"
 import routes from "../../navigation/routesNames"
 import { Leagues } from "../../services"
-import { commonStyle } from "../../styles"
 import styles from "../CreateLeague/styles"
 import { validateJoinLeaguePage } from "../CreateLeague/validation"
 
