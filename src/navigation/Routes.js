@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
-import { AuctionSettings, CreateLeague, CreateTeam, TeamSettings } from "../containers/CreateLeague"
+import { AuctionSettings, CreateLeague, LeagueSettings, TeamSettings } from "../containers/CreateLeague"
 import ForgotPassword from "../containers/ForgotPassword/ForgotPassword"
 import ForgotPasswordConfirmation from "../containers/ForgotPassword/ForgotPasswordConfirmation"
 import { GetStartedContainer } from "../containers/GetStarted/GetStartedContainer"
@@ -79,8 +79,8 @@ export default function Routes() {
 					component={HomeContainer}
 					options={getScreenConfig(false, "account", false)} />
 				<AppStack.Screen
-					name={routes.CREATE_LEAGUE}
-					component={CreateLeague}
+					name={routes.CREATE_LEAGUE_LEAGUE_SETTINGS}
+					component={LeagueSettings}
 					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
 					name={routes.CREATE_LEAGUE_TEAM_SETTINGS}
@@ -91,8 +91,8 @@ export default function Routes() {
 					component={AuctionSettings}
 					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
-					name={routes.CREATE_TEAM}
-					component={CreateTeam}
+					name={routes.CREATE_LEAGUE}
+					component={CreateLeague}
 					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
 					name={routes.JOIN_LEAGUE}

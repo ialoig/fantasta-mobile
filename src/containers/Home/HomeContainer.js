@@ -42,7 +42,7 @@ export class HomeContainer extends React.Component {
 			<Home
 				{...this.props}
 				leagues={this.state.leagues}
-				crea={() => this.props.navigation.navigate(routes.CREATE_LEAGUE)}
+				crea={() => this.props.navigation.navigate(routes.CREATE_LEAGUE_LEAGUE_SETTINGS)}
 				join={() => this.props.navigation.navigate(routes.JOIN_LEAGUE)}
 				account={() => this.props.navigation.navigate(routes.ACCOUNTNAVIGATOR)}
 				joinLeague={this.joinLeague.bind(this)}

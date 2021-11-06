@@ -1,24 +1,29 @@
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation , useRoute } from "@react-navigation/native"
 import I18n from "i18n-js"
+import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
-import { Button, InputText, NumberInc, PopupError, Radio } from "../../components"
-import { FIELDS_ID, TIPOLOGY } from "../../constants"
+import { Button, InputText, PopupError } from "../../components"
+import { FIELDS_ID } from "../../constants"
 import routes from "../../navigation/routesNames"
+import { Leagues } from "../../services"
 import styles from "./styles"
 import { validateCreateLeaguePage } from "./validation"
 
-function CreateLeague() {
+function CreateLeague({ navigation }) {
 
 	const { navigate } = useNavigation()
 
+	const { params } = useRoute()
+
 	const [settings, setSettings] = useState(
 		{
+			...params, // from AuctionSettings.js
 			[FIELDS_ID.leagueNameId]: "",
 			[FIELDS_ID.passwordId]: "",
-			[FIELDS_ID.participantsId]: 8,
-			[FIELDS_ID.tipologyId]: TIPOLOGY.CLASSIC
-		})
+			[FIELDS_ID.teamnameId]: ""
+		}
+	)
 	const [popupShow, setPopupShow] = useState(false)
 	const [popupTitle] = useState(I18n.translate("field_error"))
 	const [popupMessage, setPopupMessage] = useState("")
@@ -39,13 +44,21 @@ function CreateLeague() {
 	}
 
 	async function buttonOnPress() {
-		const errorMessage = validateCreateLeaguePage(settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.participantsId])
+		const errorMessage = validateCreateLeaguePage(settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
 		if (errorMessage) {
 			setPopupShow(true)
 			setPopupMessage(errorMessage)
 		}
 		else {
-			navigate(routes.CREATE_LEAGUE_TEAM_SETTINGS, settings)
+			await Leagues.Create(settings)
+			// clean the navigation stack. A further back will point to the Dashboard
+			navigation.reset({
+				index: 0,
+				routes: [
+					{ name: routes.HOME }
+				],
+			})
+			navigate(routes.BOTTOMTABNAVIGATOR)
 		}
 	}
 
@@ -69,30 +82,28 @@ function CreateLeague() {
 				placeholder={I18n.translate("password")}
 				onChange={onChange}
 			/>
-			<NumberInc
-				label={I18n.translate("nParticipants")}
-				value={settings[FIELDS_ID.participantsId]}
-				step={1}
-				min={2}
-				onChange={value => onChange(FIELDS_ID.participantsId, value)}
-			/>
-			<Radio
-				label={I18n.translate("tipology")}
-				value={settings[FIELDS_ID.tipologyId]}
-				items={[
-					{ label: I18n.translate(TIPOLOGY.CLASSIC), value: TIPOLOGY.CLASSIC },
-					{ label: I18n.translate(TIPOLOGY.MANTRA), value: TIPOLOGY.MANTRA }
-				]}
-				onChange={value => onChange(FIELDS_ID.tipologyId, value)}
+			<InputText
+				id={FIELDS_ID.teamnameId}
+				label={I18n.translate("teamName")}
+				placeholder={I18n.translate("teamName")}
+				onChange={onChange}
 			/>
 			<Button
-				title={I18n.translate("next")}
+				title={I18n.translate("create")}
 				onPress={buttonOnPress}
 				type='primary'
 				size='large'
 			/>
 		</View>
 	)
+}
+
+
+CreateLeague.propTypes = {
+	navigation: PropTypes.shape({
+		navigate: PropTypes.func.isRequired,
+		reset: PropTypes.func.isRequired,
+	}).isRequired
 }
 
 export default CreateLeague

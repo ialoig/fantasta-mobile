@@ -32,17 +32,10 @@ function errorCountdown(countdown){
 	return countdown < 3
 }
 
-export function validateCreateLeaguePage(leagueName, password, numParticipants){
+export function validateLeagueSettingsPage(numParticipants){
 	let error_message = ""
-	if(errorEmptyValue(leagueName))
-	{
-		error_message =  "missing_league_name"
-	}
-	else if(errorEmptyValue(password)){
-		error_message =  "missing_password"
-	}
-	else if(errorNumPartitipants(numParticipants)){
-		error_message =  "participants_error"
+	if(errorNumPartitipants(numParticipants)){
+		error_message = "participants_error"
 	}
 	return error_message
 }
@@ -73,31 +66,35 @@ export const validateTeamSettingsPage = (numGoalskeepers, numDefenders, numMidfi
 export const validateAuctionSettingsPage = (countdown) => {
 	let error_message = ""
 	if (errorCountdown(countdown)) {
-		error_message =  "countdown_error"
+		error_message = "countdown_error"
 	}		
 	return error_message
 }
 
-export const validateCreateTeamPage = (teamname) => {
+export const validateCreateLeaguePage = (leagueName, password, teamname) => {
 	let error_message = ""
-
-	if (errorEmptyValue(teamname)) {
-		error_message =  "missing_team_name"
+	if(errorEmptyValue(leagueName)){
+		error_message = "missing_league_name"
+	}
+	else if(errorEmptyValue(password)){
+		error_message = "missing_password"
+	}
+	else if(errorEmptyValue(teamname)) {
+		error_message = "missing_team_name"
 	}
 	return error_message
 }
 
 export const validateJoinLeaguePage = (leagueName, password, teamname) => {
 	let error_message = ""
-
-	if (errorEmptyValue(leagueName)) {
-		error_message =  "missing_league_name"
+	if(errorEmptyValue(leagueName)){
+		error_message = "missing_league_name"
 	}
-	else if (errorEmptyValue(password)) {
-		error_message =  "missing_password"
+	else if(errorEmptyValue(password)){
+		error_message = "missing_password"
 	}
-	else if (errorEmptyValue(teamname)) {
-		error_message =  "missing_team_name"
+	else if(errorEmptyValue(teamname)){
+		error_message = "missing_team_name"
 	}
 	return error_message
 }

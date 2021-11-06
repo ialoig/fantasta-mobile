@@ -16,7 +16,7 @@ function TeamSettings() {
 
 	const [settings, setSettings] = useState(
 		{
-			...params, // from CreateLeague.js
+			...params, // from LeagueSettings.js
 			[FIELDS_ID.goalskeepersId]: 3,
 			[FIELDS_ID.defendersId]: 8,
 			[FIELDS_ID.midfieldersId]: 8,

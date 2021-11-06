@@ -1,27 +1,22 @@
-import { useNavigation , useRoute } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
-import PropTypes from "prop-types"
 import React, { useState } from "react"
 import { View } from "react-native"
-import { Button, InputText, PopupError } from "../../components"
-import { FIELDS_ID } from "../../constants"
+import { Button, InputText, NumberInc, PopupError, Radio } from "../../components"
+import { FIELDS_ID, TIPOLOGY } from "../../constants"
 import routes from "../../navigation/routesNames"
-import { Leagues } from "../../services"
 import styles from "./styles"
-import { validateCreateTeamPage } from "./validation"
+import { validateLeagueSettingsPage } from "./validation"
 
-function CreateTeam({ navigation }) {
+function LeagueSettings() {
 
 	const { navigate } = useNavigation()
 
-	const { params } = useRoute()
-
 	const [settings, setSettings] = useState(
 		{
-			...params, // from AuctionSettings.js
-			[FIELDS_ID.teamnameId]: ""
-		}
-	)
+			[FIELDS_ID.participantsId]: 8,
+			[FIELDS_ID.tipologyId]: TIPOLOGY.CLASSIC
+		})
 	const [popupShow, setPopupShow] = useState(false)
 	const [popupTitle] = useState(I18n.translate("field_error"))
 	const [popupMessage, setPopupMessage] = useState("")
@@ -42,21 +37,13 @@ function CreateTeam({ navigation }) {
 	}
 
 	async function buttonOnPress() {
-		const errorMessage = validateCreateTeamPage(settings[FIELDS_ID.teamnameId])
+		const errorMessage = validateLeagueSettingsPage(settings[FIELDS_ID.participantsId])
 		if (errorMessage) {
 			setPopupShow(true)
 			setPopupMessage(errorMessage)
 		}
 		else {
-			await Leagues.Create(settings)
-			// clean the navigation stack. A further back will point to the Dashboard
-			navigation.reset({
-				index: 0,
-				routes: [
-					{ name: routes.HOME }
-				],
-			})
-			navigate(routes.BOTTOMTABNAVIGATOR)
+			navigate(routes.CREATE_LEAGUE_TEAM_SETTINGS, settings)
 		}
 	}
 
@@ -68,14 +55,24 @@ function CreateTeam({ navigation }) {
 				popupMessage={popupMessage}
 				popupClosedCallback={popupClosedCallback}
 			/>
-			<InputText
-				id={FIELDS_ID.teamnameId}
-				label={I18n.translate("teamName")}
-				placeholder={I18n.translate("teamName")}
-				onChange={onChange}
+			<NumberInc
+				label={I18n.translate("nParticipants")}
+				value={settings[FIELDS_ID.participantsId]}
+				step={1}
+				min={2}
+				onChange={value => onChange(FIELDS_ID.participantsId, value)}
+			/>
+			<Radio
+				label={I18n.translate("tipology")}
+				value={settings[FIELDS_ID.tipologyId]}
+				items={[
+					{ label: I18n.translate(TIPOLOGY.CLASSIC), value: TIPOLOGY.CLASSIC },
+					{ label: I18n.translate(TIPOLOGY.MANTRA), value: TIPOLOGY.MANTRA }
+				]}
+				onChange={value => onChange(FIELDS_ID.tipologyId, value)}
 			/>
 			<Button
-				title={I18n.translate("create")}
+				title={I18n.translate("next")}
 				onPress={buttonOnPress}
 				type='primary'
 				size='large'
@@ -84,12 +81,4 @@ function CreateTeam({ navigation }) {
 	)
 }
 
-
-CreateTeam.propTypes = {
-	navigation: PropTypes.shape({
-		navigate: PropTypes.func.isRequired,
-		reset: PropTypes.func.isRequired,
-	}).isRequired
-}
-
-export default CreateTeam
+export default LeagueSettings

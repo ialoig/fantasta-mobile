@@ -47,7 +47,7 @@ function AuctionSettings() {
 			setPopupMessage(errorMessage)
 		}
 		else {
-			navigate(routes.CREATE_TEAM, settings)
+			navigate(routes.CREATE_LEAGUE, settings)
 		}
 	}
 
