@@ -18,7 +18,6 @@ function PopupError(props) {
 		setMessage(popupMessage)
 	}, [popupShow, popupMessage])
 
-	// Click outside the popup
 	const closePopup = () => {
 		props.popupClosedCallback()
 	}
@@ -26,7 +25,7 @@ function PopupError(props) {
 	return (
 		<Modal
 			isVisible={isModalVisible}
-			backdropColor="transparent"
+			// backdropColor="transparent"
 			backdropOpacity={0.5}
 			onBackButtonPress={closePopup}
 			onBackdropPress={closePopup}
@@ -57,24 +56,24 @@ PopupError.propTypes = {
 const styles = StyleSheet.create({
 	message: {
 		color: colors.secondary,
-		fontSize: 15
+		fontSize: 16
 	},
 
 	popup:{
 		justifyContent: "flex-start",
 		marginHorizontal: 30,
-		marginTop:3		
+		marginTop:70
 	},
 	textContainer: {
 		alignItems: "flex-start",
 		backgroundColor: colors.errorRedBg,
+		borderColor: colors.errorRed,
 		borderRadius: 15,
+		borderWidth: 1,
 		flexDirection: "column",
 		justifyContent: "center",  // center horizontally
 		padding: 10,
-		paddingLeft: 30,
-		borderColor: colors.errorRed,
-		borderWidth: 1
+		paddingLeft: 30
 	},
 	title: {
 		color: colors.errorRed,
