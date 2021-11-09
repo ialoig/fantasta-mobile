@@ -16,3 +16,5 @@ export { default as Badge } from "./Badge/Badge"
 export { Card, PlayerCard, StatsCard, TeamCard } from "./Card"
 
 export { default as TouchableScale } from "./TouchableScale/TouchableScale"
+
+export { default as PopupError } from "./Popup/PopupError"

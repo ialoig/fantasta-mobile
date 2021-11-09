@@ -10,7 +10,7 @@ function HeaderTitle({ children }) {
 	//TODO: gl - valutare possibilita di scorrere una mappa con tutte le routes ed impostare il titolo 
 	//dell'header in maniera più furba
 	const title = (children) => {
-		switch(children) {
+		switch (children) {
 		case routes.ACCOUNT:
 			return I18n.translate("account")
 		case routes.SETTINGS:
@@ -39,6 +39,12 @@ function HeaderTitle({ children }) {
 			return I18n.translate("start_league")
 		case routes.CREATE_LEAGUE:
 			return I18n.translate("createLeague")
+		case routes.CREATE_LEAGUE_TEAM_SETTINGS:
+			return I18n.translate("teamSettings")
+		case routes.CREATE_LEAGUE_AUCTION_SETTINGS:
+			return I18n.translate("auctionSettings")
+		case routes.CREATE_TEAM:
+			return I18n.translate("createTeam")
 		case routes.JOIN_LEAGUE:
 			return I18n.translate("joinLeague")
 		case routes.DASHBOARD:

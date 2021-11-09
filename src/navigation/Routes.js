@@ -1,13 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import React from "react"
-
-import { CreateContainer } from "../containers/Create/CreateContainer"
+import { AuctionSettings, CreateLeague, CreateTeam, TeamSettings } from "../containers/CreateLeague"
 import ForgotPassword from "../containers/ForgotPassword/ForgotPassword"
 import ForgotPasswordConfirmation from "../containers/ForgotPassword/ForgotPasswordConfirmation"
 import { GetStartedContainer } from "../containers/GetStarted/GetStartedContainer"
 import { HomeContainer } from "../containers/Home/HomeContainer"
-import { JoinLeagueContainer } from "../containers/JoinLeague/JoinLeagueContainer"
+import JoinLeague from "../containers/JoinLeague/JoinLeague"
 import { LoginContainer } from "../containers/Login/LoginContainer"
 import MarketOpenAuction from "../containers/Market/MarketOpenAuction"
 import PlayersDetails from "../containers/Players/PlayersDetails"
@@ -82,12 +81,24 @@ export default function Routes() {
 					options={getScreenConfig(false, "account", false)} />
 				<AppStack.Screen
 					name={routes.CREATE_LEAGUE}
-					component={CreateContainer}
-					options={noHeaderScreenConfig} />
+					component={CreateLeague}
+					options={getScreenConfig(false, false, true)} />
+				<AppStack.Screen
+					name={routes.CREATE_LEAGUE_TEAM_SETTINGS}
+					component={TeamSettings}
+					options={getScreenConfig(false, false, true)} />
+				<AppStack.Screen
+					name={routes.CREATE_LEAGUE_AUCTION_SETTINGS}
+					component={AuctionSettings}
+					options={getScreenConfig(false, false, true)} />
+				<AppStack.Screen
+					name={routes.CREATE_TEAM}
+					component={CreateTeam}
+					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
 					name={routes.JOIN_LEAGUE}
-					component={JoinLeagueContainer}
-					options={noHeaderScreenConfig} />
+					component={JoinLeague}
+					options={getScreenConfig(false, false, true)} />
 				<AppStack.Screen
 					name={routes.BOTTOMTABNAVIGATOR}
 					component={BottomTabNavigator}
