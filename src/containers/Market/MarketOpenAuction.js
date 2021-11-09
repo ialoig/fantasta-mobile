@@ -1,4 +1,4 @@
-import { useRoute } from "@react-navigation/core"
+import { useNavigation, useRoute } from "@react-navigation/core"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, {  useEffect, useState } from "react"
@@ -28,7 +28,7 @@ const snapPoints = [-END_TOP, 0]
 
 function MarketOpenAuction() {
 
-
+	const { goBack } = useNavigation()
 	const { params } = useRoute()
 	//get player object from route params
 	const playerID = params?.id
@@ -119,6 +119,9 @@ function MarketOpenAuction() {
 	}
 
 
+	// TODO: ⚠️  when pressed, coundown is restarted. 
+	// Also auction bid list looks as a new bid has been sent (animation of the top bid).
+	// need an analysis after event service implementation
 	const incrementSessionValue = (value) => {
 		setSessionValue(prevValue => {
 			return prevValue + value
@@ -253,7 +256,7 @@ function MarketOpenAuction() {
 							size={"small"}
 							type={"secondary"}
 							border={true}
-							onPress={() => console.log("pressed Leave")}
+							onPress={() => goBack()}
 						/>
 						<Button 
 							title={I18n.translate("bet") + " " + sessionValue}
