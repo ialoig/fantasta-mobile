@@ -9,6 +9,7 @@ import { HomeContainer } from "../containers/Home/HomeContainer"
 import JoinLeague from "../containers/JoinLeague/JoinLeague"
 import { LoginContainer } from "../containers/Login/LoginContainer"
 import MarketOpenAuction from "../containers/Market/MarketOpenAuction"
+import MarketWaitingRoom from "../containers/Market/MarketWaitingRoom"
 import PlayersDetails from "../containers/Players/PlayersDetails"
 import CompleteRegistratioConfirmation from "../containers/Register/CompleteRegistratioConfirmation"
 import CompleteRegistration from "../containers/Register/CompleteRegistration"
@@ -110,15 +111,19 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.PLAYER_DETAILS}
 					component={PlayersDetails}
-					options={getScreenConfig(true, "", true)}/>
+					options={getScreenConfig(true, false, true)}/>
 				<AppStack.Screen
 					name={routes.TEAM_DETAILS}
 					component={TeamDetails}
-					options={getScreenConfig(true, "", true)}/>
+					options={getScreenConfig(true, false, true)}/>
 				<AppStack.Screen
 					name={routes.MARKET_OPEN_AUCTION}
 					component={MarketOpenAuction}
-					options={getScreenConfig(false, "", false)}/>
+					options={getScreenConfig(false, false, false)}/>
+				<AppStack.Screen
+					name={routes.MARKET_WAITING_ROOM}
+					component={MarketWaitingRoom}
+					options={getScreenConfig(false, false, true)}/>
 			</AppStack.Navigator>
 		</NavigationContainer>
 	)
