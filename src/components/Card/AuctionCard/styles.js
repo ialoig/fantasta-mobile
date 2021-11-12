@@ -3,7 +3,12 @@ import colors from "../../../styles/colors"
 import { dynamicHeight, dynamicWidth, getWidth } from "../../../utils/pixelResolver"
 
 
-export default StyleSheet.create({
+export const style = StyleSheet.create({
+	container: {
+		...StyleSheet.absoluteFillObject,
+		backgroundColor: colors.greyLight,
+		position: "relative"
+	},
 	info: {
 		flex: 1
 	},
@@ -11,32 +16,35 @@ export default StyleSheet.create({
 		alignItems: "center",
 		flexDirection: "row",
 		justifyContent: "space-between"
-	},
+	}
 })
 
 
 export const size = StyleSheet.create({
-	card: {
+	default: {
+		borderRadius: 18,
 		height: dynamicHeight(327, 40),
+		marginVertical: 4,
 		paddingHorizontal: getWidth(20),
-		width: dynamicWidth(327)
+		width: dynamicWidth(327),
 	},
+	large: {
+		borderRadius: 24,
+		height: dynamicHeight(327, 80),
+		marginVertical: 8,
+		paddingHorizontal: getWidth(20),
+		width: dynamicWidth(327),
+	}
 })
 
+
 export const card =  StyleSheet.create({
-	card: {
-		...StyleSheet.absoluteFillObject,
-		backgroundColor: colors.greyLight,
-		borderRadius: 18,
-		marginVertical: 4,
-		position: "relative"
-	},
 	// eslint-disable-next-line react-native/no-color-literals
 	highlight: {
 		borderColor: "rgba(31, 204, 121, 0.5)",
 		borderWidth: 3,
 	},
-	small: {
+	style: {
 		alignItems: "center",
 		alignSelf: "center",
 		flexDirection: "row",

@@ -180,7 +180,7 @@ function MarketOpenAuction() {
 				onGestureEvent={panGestureEvent}
 				shouldCancelWhenOutside
 			>
-				{/* <ScrollView> */}
+				
 				<Animated.View style={transformSyle}>
 
 					<View style={styles.countdown_container}>
@@ -191,6 +191,7 @@ function MarketOpenAuction() {
 							minutes={0}
 							seconds={10}
 							restart={Math.random()}
+							type={"default"}
 						/>
 					</View>
 
@@ -269,7 +270,7 @@ function MarketOpenAuction() {
 				</Animated.View>
 			</PanGestureHandler>
 
-			{/* </ScrollView> */}
+
 		</View>
 	)
 }

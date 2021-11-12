@@ -8,9 +8,9 @@ import Animated, {
 	withTiming } from "react-native-reanimated"
 import { textStyles } from "../../../styles"
 import Icon from "../../Icon/Icon"
-import styles, { card, size } from "./styles"
+import { card, size, style } from "./styles"
 
-function AuctionCard({ name, description, bid, isNewBid, highlight }) {
+function AuctionCard({ name, description, bid, isNewBid, highlight, type }) {
 
 	const isChanged = useSharedValue()
 	const [info, setInfo] = useState()
@@ -42,14 +42,14 @@ function AuctionCard({ name, description, bid, isNewBid, highlight }) {
 	return (
         
 		<Animated.View 
-			style={[card.card, size.card, card.small, highlight ? card.highlight : null, animStyle]} >
+			style={[style.container, size[type], card.style, highlight ? card.highlight : null, animStyle]} >
 			<Icon 
 				name="league"
 				height={30}
 				weight={30}
 			/>
-			<View style={styles.info}>
-				<View style={styles.infoTeam}>
+			<View style={style.info}>
+				<View style={style.infoTeam}>
 					<Text style={textStyles.h3}>{name}</Text>
 					<Text style={textStyles.description}>{info}</Text>
 				</View>
@@ -63,7 +63,12 @@ AuctionCard.propTypes = {
 	description: PropTypes.string,
 	bid: PropTypes.number,
 	isNewBid: PropTypes.bool,
-	highlight: PropTypes.bool
+	highlight: PropTypes.bool,
+	type: PropTypes.oneOf(["default", "large"])
+}
+
+AuctionCard.defaultProps = {
+	type: "default"
 }
 
 export default AuctionCard

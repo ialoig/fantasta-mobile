@@ -3,6 +3,9 @@ import { StyleSheet } from "react-native"
 import colors from "./colors"
 
 export default StyleSheet.create({
+	alignCenter: {
+		textAlign: "center"
+	},
 	body: {
 		color: colors.text,
 		fontFamily: "PoppinsRegular",
