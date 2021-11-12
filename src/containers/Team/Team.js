@@ -17,7 +17,7 @@ function Team(props) {
 
 	useEffect(() => {
 		
-		const league = Leagues.GetActiveLeague()
+		const league = Leagues.getActiveLeague()
 		setLeague(league)
 
 		const teams = league.teams

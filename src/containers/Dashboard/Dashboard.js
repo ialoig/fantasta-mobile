@@ -11,19 +11,19 @@ import TeamDetails from "../Team/TeamDetails"
 function Dashboard() {
 
 	const { navigate, goBack } = useNavigation()
-	const [league, setLeague] = useState(Leagues.GetActiveLeague())
-	const [team, setTeam] = useState(Leagues.GetMyTeam(User.Get().username))
+	const [league, setLeague] = useState(Leagues.getActiveLeague())
+	const [team, setTeam] = useState(Leagues.getMyTeam(User.get().username))
 	const [players, setPlayers] = useState([])
 
 
 	useEffect(() => {
-		const apiLeague = Leagues.GetActiveLeague()
-		const myTeam = Leagues.GetMyTeam(User.Get().username)
+		const apiLeague = Leagues.getActiveLeague()
+		const myTeam = Leagues.getMyTeam(User.get().username)
 
 		getRandomPlayers()
 
 		//get players from api
-		// const apiPlayers = Object.values(Players.GetPlayers())
+		// const apiPlayers = Object.values(Players.getPlayers())
 
 		// const players = team.footballPlayers
 		// setPlayers(players)
@@ -42,7 +42,7 @@ function Dashboard() {
 	//TODO: just for debug purpose. Replace it with the right players object calculated from team object (ie. team.footballPlayers)
 	const getRandomPlayers = () => {
 		//get players from api
-		const apiPlayers = Object.values(Players.GetPlayers())
+		const apiPlayers = Object.values(Players.getPlayers())
 		
 		const size = apiPlayers.length
 		console.log("[Dashboard - getRandomPlayers] - size", size)

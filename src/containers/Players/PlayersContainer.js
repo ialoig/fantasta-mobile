@@ -23,7 +23,7 @@ function PlayersContainer() {
 
 	const defaultList = () => {
 		//get players from api
-		const apiPlayers = Players.GetPlayers()
+		const apiPlayers = Players.getPlayers()
 		let players = Object.values(apiPlayers)
 		
 		//setting all players retrieved from api

@@ -46,14 +46,14 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 	const flatRef = useRef(null)
 
 	const [roles, setRoles] = useState(ROLE_CLASSIC)
-	const [league, setLeague] = useState(Leagues.GetActiveLeague())
+	const [league, setLeague] = useState(Leagues.getActiveLeague())
 	const [isClassic, setIsClassic] = useState(true)
 
 	
 	useEffect( () => {
 		console.log("[PlayersComp - useEffect] - activeRoles=", activeRoles)
 
-		const apiLeague =  Leagues.GetActiveLeague()
+		const apiLeague =  Leagues.getActiveLeague()
 		setLeague(apiLeague)
 		setRoles(league.type === "classic" ? ROLE_CLASSIC : ROLE_MANTRA)
 		setIsClassic(league.type === "classic" ? true : false)

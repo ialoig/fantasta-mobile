@@ -32,6 +32,8 @@
   "confirmation_reset_password_description": "Effettua nuovamente il Login",
   "confirmation_reset_password_title": "La tua password è stata cambiata con successo",
   "contact": "Contattaci",
+  "online": "Online",
+  "offline": "Offline",
   "contact_descr": "Entra in contatto con noi",
   "continue": "Continua",
   "countdown": "Countdown",

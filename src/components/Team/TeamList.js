@@ -24,7 +24,7 @@ const TeamList = React.forwardRef(({ teams, league, onScroll, onScrollEnd }, ref
 	//TODO: just for debug, replace with the correct players calculated from team object (ie. team.footballPlayers)
 	const getRandomPlayers = () => {
 		//get players from api
-		const apiPlayers = Object.values(Players.GetPlayers())
+		const apiPlayers = Object.values(Players.getPlayers())
 		let size = apiPlayers.length
 		const players = []
 		const indexes = []

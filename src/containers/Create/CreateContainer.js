@@ -203,10 +203,10 @@ export class CreateContainer extends React.Component {
 	async onDone() {
 		if (this.validatePage(pages.length - 1)) {
 			try {
-				await Leagues.Create(this.state.settings)
+				await Leagues.create(this.state.settings)
 				this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
 			}
-			catch (error) { /* error handling done in Leagues.Create */ }
+			catch (error) { /* error handling done in Leagues.create */ }
 		}
 	}
 

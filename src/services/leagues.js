@@ -9,9 +9,9 @@ let ACTIVE_LEAGUE = []
 
 /**
  * After adding the league to the database, also add it to local storage if not exist already
- * @param {*} response from either Create or Join function
+ * @param {*} response from either create or join function
  */
-const AddLeague = (response) => {
+const addLeague = (response) => {
 	const league = response.user.leagues.find(item => item._id === response.league._id)
 	var index = LEAGUES.findIndex(existing_league => existing_league._id === league._id) 
 	if (index === -1){
@@ -19,51 +19,51 @@ const AddLeague = (response) => {
 	}
 }
 
-const SetLeagues = ( leagues ) => {
+const setLeagues = ( leagues ) => {
 	LEAGUES = leagues || []
 }
 
-const GetLeagues = () => {
+const getLeagues = () => {
 	return LEAGUES
 }
 
-const SetActiveLeague = ( league ) => {
+const setActiveLeague = ( league ) => {
 	ACTIVE_LEAGUE = league || []
 }
 
-const GetActiveLeague = () => {
+const getActiveLeague = () => {
 	return ACTIVE_LEAGUE
 }
 
-const GetMyTeam = (username) => {
+const getMyTeam = (username) => {
 	const teams = ACTIVE_LEAGUE.teams
 	return teams.find(item => item.user.name === username)
 }
 
-const GetTeamByID = (id) => {
+const getTeamByID = (id) => {
 	const teams = ACTIVE_LEAGUE.teams
 	return teams.find(item => item._id === id)
 }
 
-const Create = async ( settings ) =>
+const create = async ( settings ) =>
 {
 	try
 	{
 		let response = await axios.post("/league/create", settings, {})
-		AddLeague(response)
-		SetActiveLeague(response.league)
-		Auction.Init( response.league, response.team )
+		addLeague(response)
+		setActiveLeague(response.league)
+		Auction.init( response.league, response.team )
 		return Promise.resolve()
 	}
 	catch (error)
 	{
-		console.log("[Create] - error: ", error)
+		console.log("[create] - error: ", error)
 		Error.handleError(error, true)
 		return Promise.reject(error)
 	}
 }
 
-const Join = async ( id="", name="", password="", teamname="" ) =>
+const join = async ( id="", name="", password="", teamname="" ) =>
 {
 	if ( id || name && password && teamname )
 	{
@@ -77,9 +77,9 @@ const Join = async ( id="", name="", password="", teamname="" ) =>
 			}
 
 			let response = await axios.put("/league/join", data, {})
-			AddLeague(response)
-			SetActiveLeague(response.league)
-			Auction.Init( response.league, response.team )
+			addLeague(response)
+			setActiveLeague(response.league)
+			Auction.init( response.league, response.team )
 			return Promise.resolve()
 		}
 		catch (error)
@@ -89,19 +89,45 @@ const Join = async ( id="", name="", password="", teamname="" ) =>
 		}
 	}
 	else{
-		let error = `Join function called with wrong parameters: id=${id}, name=${name}, password=${password}, teamname=${teamname}`
+		let error = `join function called with wrong parameters: id=${id}, name=${name}, password=${password}, teamname=${teamname}`
 		Error.handleError(error, true)
 		return Promise.reject(error)
 	}
 }
 
+/**
+ * 
+ * @returns {array} list of users name whom have joined the active league
+ */
+const getParticipants = () => {
+	const teams = ACTIVE_LEAGUE.teams
+	let participants = teams.map(team => {
+		return team.user.name
+	})
+	return participants
+}
+
+/**
+ * 
+ * @returns {array} list of teams name whom have joined the active league
+ */
+const getTeams = () => {
+	const teams = ACTIVE_LEAGUE.teams
+	
+	return teams.map( (team) => {
+		return team.name
+	})
+}
+
 export const Leagues = {
-	SetLeagues,
-	GetLeagues,
-	SetActiveLeague,
-	GetActiveLeague,
-	GetMyTeam,
-	GetTeamByID,
-	Create,
-	Join
+	setLeagues,
+	getLeagues,
+	setActiveLeague,
+	getActiveLeague,
+	getMyTeam,
+	getTeamByID,
+	create,
+	join,
+	getParticipants,
+	getTeams
 }

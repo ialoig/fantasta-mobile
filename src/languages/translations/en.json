@@ -36,6 +36,8 @@
   "continue": "Continue",
   "countdown": "Countdown",
   "countdown_error": "Minimum countdown time is 3 seconds",
+  "online": "Online",
+  "offline": "Offline",
   "create": "Create",
   "createLeague": "Create your league",
   "createTeam": "Create team",

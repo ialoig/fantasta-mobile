@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Text, View } from "react-native"
 import Animated, { 
 	useAnimatedStyle,
@@ -10,14 +10,23 @@ import { textStyles } from "../../../styles"
 import Icon from "../../Icon/Icon"
 import styles, { card, size } from "./styles"
 
-function AuctionCard({ name, bid, isNewBid, topBid }) {
+function AuctionCard({ name, description, bid, isNewBid, highlight }) {
 
 	const isChanged = useSharedValue()
+	const [info, setInfo] = useState()
 
 	useEffect(() => {
 		isChanged.value = isNewBid
 
-	}, [isNewBid])
+		setInfo( () => {
+			if (bid) {
+				return bid + " " + "fm"
+			} else {
+				return description ? description : ""
+			}
+		})
+
+	}, [isNewBid, bid, description])
 
 	const animStyle = useAnimatedStyle( () => {
 		return {
@@ -33,7 +42,7 @@ function AuctionCard({ name, bid, isNewBid, topBid }) {
 	return (
         
 		<Animated.View 
-			style={[card.card, size.card, card.small, topBid ? card.highlight : null, animStyle]} >
+			style={[card.card, size.card, card.small, highlight ? card.highlight : null, animStyle]} >
 			<Icon 
 				name="league"
 				height={30}
@@ -42,7 +51,7 @@ function AuctionCard({ name, bid, isNewBid, topBid }) {
 			<View style={styles.info}>
 				<View style={styles.infoTeam}>
 					<Text style={textStyles.h3}>{name}</Text>
-					<Text style={textStyles.description}>{bid} fm</Text>
+					<Text style={textStyles.description}>{info}</Text>
 				</View>
 			</View>
 		</Animated.View>
@@ -51,9 +60,10 @@ function AuctionCard({ name, bid, isNewBid, topBid }) {
 
 AuctionCard.propTypes = {
 	name: PropTypes.string.isRequired,
-	bid: PropTypes.number.isRequired,
+	description: PropTypes.string,
+	bid: PropTypes.number,
 	isNewBid: PropTypes.bool,
-	topBid: PropTypes.bool
+	highlight: PropTypes.bool
 }
 
 export default AuctionCard
