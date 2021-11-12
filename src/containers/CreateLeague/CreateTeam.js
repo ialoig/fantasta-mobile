@@ -48,7 +48,7 @@ function CreateTeam({ navigation }) {
 			setPopupMessage(errorMessage)
 		}
 		else {
-			await Leagues.Create(settings)
+			await Leagues.create(settings)
 			// clean the navigation stack. A further back will point to the Dashboard
 			navigation.reset({
 				index: 0,

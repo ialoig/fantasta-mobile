@@ -17,16 +17,16 @@ function PlayersDetails() {
 	//get league type
 	const isClassic = params?.isClassic
 	//player object found by ID passed by props
-	const [player, setPlayer] = useState(Players.GetPlayersByID(playerID))
+	const [player, setPlayer] = useState(Players.getPlayersByID(playerID))
 	//player statistics object found by player ID passed by props
-	const [playerStats, setPlayerStats] = useState(Players.GetStatisticsByPlayerID(playerID))
+	const [playerStats, setPlayerStats] = useState(Players.getStatisticsByPlayerID(playerID))
 
 	useEffect(() => {
 		console.log("[PlayersDetails - useEffect] - playerID=", playerID)
-		const playerFound = Players.GetPlayersByID(playerID)
+		const playerFound = Players.getPlayersByID(playerID)
 		console.log("[PlayersDetails - useEffect] - playerFound=", playerFound)
 		setPlayer(playerFound)
-		const statsFound = Players.GetStatisticsByPlayerID(playerID)
+		const statsFound = Players.getStatisticsByPlayerID(playerID)
 		console.log("[PlayersDetails - useEffect] - statsFound=", statsFound)
 		setPlayerStats(statsFound)
 	}, [playerID])

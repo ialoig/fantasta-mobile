@@ -34,7 +34,7 @@ function TeamDetails({ teamID, style }) {
 	teamID = params?.teamID ? params?.teamID : teamID
 
 	const [team, setTeam] = useState()
-	const [league, setLeague] = useState(Leagues.GetActiveLeague())
+	const [league, setLeague] = useState(Leagues.getActiveLeague())
 	const [totalSpent, setTotalSpent] = useState(0)
 	const [players, setPlayers] = useState()
 
@@ -45,11 +45,11 @@ function TeamDetails({ teamID, style }) {
 
 	useEffect(() => {
 		console.log("[TeamDetails - useEffect] - teamID=", teamID)
-		const team = Leagues.GetTeamByID(teamID)
+		const team = Leagues.getTeamByID(teamID)
 		setTeam(team)
 		console.log("[TeamDetails - useEffect] - team=", team.name)
 		
-		const league = Leagues.GetActiveLeague()
+		const league = Leagues.getActiveLeague()
 		setLeague(league)
 
 		getRandomPlayers()
@@ -57,7 +57,7 @@ function TeamDetails({ teamID, style }) {
 		defineTotalSpent()
 
 		//get players from api
-		// const apiPlayers = Object.values(Players.GetPlayers())
+		// const apiPlayers = Object.values(Players.getPlayers())
 
 		// const players = team.footballPlayers
 		// setPlayers(players)
@@ -76,7 +76,7 @@ function TeamDetails({ teamID, style }) {
 	//TODO: just for debug, replace with the correct players calculated from team object (ie. team.footballPlayers)
 	const getRandomPlayers = () => {
 		//get players from api
-		const apiPlayers = Object.values(Players.GetPlayers())
+		const apiPlayers = Object.values(Players.getPlayers())
 		
 		const size = apiPlayers.length
 		console.log("[TeamDetails - getRandomPlayers] - size", size)

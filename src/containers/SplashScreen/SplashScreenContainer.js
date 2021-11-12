@@ -65,10 +65,10 @@ export class SplashScreenContainer extends React.Component {
 
 		// App started normally
 		if (!this.state.deepLink) {
-			let token = Token.Get()
+			let token = Token.get()
 			if (token) {
 				try {
-					let res = await Auth.Authenticate(token)
+					let res = await Auth.authenticate(token)
 					this.props.navigation.navigate(routes.HOME)
 				}
 				catch (error) {

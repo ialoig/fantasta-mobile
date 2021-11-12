@@ -55,7 +55,7 @@ function AuctionBidList({ bid }) {
 							name={item.name}
 							bid={item.value}
 							isNewBid={index === 0}
-							topBid={index === 0}
+							highlight={index === 0}
 						/>
 					)
 				})

@@ -32,7 +32,7 @@ export class LoginContainer extends React.Component {
 		
 		if (email && pw && Validator.isEmail(email) && Validator.isStrongPassword(pw, PASSWORD_OPT)) {
 			try {
-				await Auth.Login(email, pw)
+				await Auth.login(email, pw)
 				this.props.navigation.navigate(routes.HOME)
 			}
 			catch (error) {

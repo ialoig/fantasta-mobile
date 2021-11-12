@@ -35,8 +35,8 @@ function MarketOpenAuction() {
 	//get league type
 	const isClassic = params?.isClassic
 	//player object found by ID passed by props
-	const [player, setPlayer] = useState(Players.GetPlayersByID(playerID))
-	const [team, setTeam] = useState(Leagues.GetMyTeam(User.Get().username))
+	const [player, setPlayer] = useState(Players.getPlayersByID(playerID))
+	const [team, setTeam] = useState(Leagues.getMyTeam(User.get().username))
 	const [bestBid, setBestBid] = useState()
 	const historyBid = usePrevious(bestBid)
 	const [sessionValue, setSessionValue] = useState(1)
@@ -45,7 +45,7 @@ function MarketOpenAuction() {
 	const translateY = useSharedValue(0)
 
 	useEffect(() => {
-		const myTeam = Leagues.GetMyTeam(User.Get().username)
+		const myTeam = Leagues.getMyTeam(User.get().username)
 		setTeam(myTeam)
 		
 		if (!bestBid) {

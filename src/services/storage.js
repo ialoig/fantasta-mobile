@@ -1,7 +1,7 @@
 
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
-const Set = async ( key, value) =>
+const set = async ( key, value) =>
 {
 	try
 	{
@@ -17,7 +17,7 @@ const Set = async ( key, value) =>
 	return Promise.reject()
 }
 
-const Get = async ( key ) =>
+const get = async ( key ) =>
 {
 	let value = ""
 
@@ -141,8 +141,8 @@ const Clear = async () =>
 }
 
 export const Storage = {
-	Set,
-	Get,
+	set,
+	get,
 	Merge,
 	Remove,
 	MultiSet,

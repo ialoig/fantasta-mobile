@@ -5,7 +5,7 @@ import { Leagues } from "./leagues"
 import { Token } from "./server"
 import { User } from "./user"
 
-const Register = async (email, password) => {
+const register = async (email, password) => {
 	console.log("POST /auth/update - email=" + email + ", password=" + password)
 	try {
 		let response = await axios.post("/auth/register", { email, password }, {})
@@ -19,7 +19,7 @@ const Register = async (email, password) => {
 	}
 }
 
-const Login = async (email, password) => {
+const login = async (email, password) => {
 	console.log("PUT /auth/login - email=" + email + ", password=" + password)
 	try {
 		let response = await axios.put("/auth/login", { email, password }, {})
@@ -57,7 +57,7 @@ const reset = async (email, password) => {
 	}
 }
 
-const Authenticate = async () => {
+const authenticate = async () => {
 	console.log("PUT /auth/token")
 	try {
 		let response = await axios.put("/auth/token", {}, {})
@@ -110,23 +110,23 @@ const saveUser = (response) => {
 	let data = response || {}
 
 	let token = data.token || ""
-	Token.Set(token)
+	Token.set(token)
 
 	let user = data.user || {}
 
-	User.Set(user)
+	User.set(user)
 
 	let leagues = user.leagues || []
-	Leagues.SetLeagues(leagues)
+	Leagues.setLeagues(leagues)
 }
 
 
 export const Auth = {
-	Authenticate,
-	Login,
+	authenticate,
+	login,
 	forgot,
 	reset,
-	Register,
+	register,
 	update,
 	deleteAccount
 }

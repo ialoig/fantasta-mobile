@@ -13,13 +13,13 @@ function UsernameSettings() {
 	const { navigate }  = useNavigation()
 	const isFocused = useIsFocused()
 
-	const [username, setUsername] = useState(User.Get().username)
+	const [username, setUsername] = useState(User.get().username)
 	const [newUsername, setNewUsername] = useState(null)
 	const [showError, setShowError] = useState(false)
 
 
 	useEffect( () => {
-		setUsername(User.Get().username)
+		setUsername(User.get().username)
 	}, [username, isFocused])
 
 	

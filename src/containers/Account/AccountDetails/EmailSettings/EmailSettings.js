@@ -14,13 +14,13 @@ function EmailSettings() {
 	const { navigate }  = useNavigation()
 	const isFocused = useIsFocused()
 
-	const [email, setEmail] = useState(User.Get().email)
+	const [email, setEmail] = useState(User.get().email)
 	const [newEmail, setNewEmail] = useState(null)
 	const [showError, setShowError] = useState(false)
 
 
 	useEffect( () => {
-		setEmail(User.Get().email)
+		setEmail(User.get().email)
 	}, [email, isFocused])
 
 	
