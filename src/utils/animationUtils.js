@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Easing, useDerivedValue, useSharedValue, withTiming } from "react-native-reanimated"
+import { Easing, useDerivedValue, useSharedValue, withDelay, withRepeat, withTiming } from "react-native-reanimated"
 
 /**
  * @summary define a value between the upper and lower bound
@@ -53,4 +53,28 @@ export const animateTextValue = (toValue, addText) => {
 	return useDerivedValue( () => {
 		return Math.round(progress.value) + addText
 	}, [toValue])
+}
+
+
+
+export const opacityAnimation = (delay, numOfReps, duration) => {
+
+	const animOpacity = useSharedValue(0.2)
+
+	useEffect(() => {
+		animOpacity.value = 
+		withDelay(delay, 
+			withRepeat(
+				withTiming(1, { 
+					duration: duration, 
+					easing: Easing.inOut(Easing.ease) 
+				}), 
+				numOfReps, true)
+		)
+	}, [delay, numOfReps, duration])
+
+
+	return useDerivedValue( () => {
+		return animOpacity.value
+	}, [])
 }

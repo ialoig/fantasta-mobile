@@ -1,8 +1,7 @@
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { Text, View } from "react-native"
-import { textStyles } from "../../styles"
-import styles from "./styles"
+import { size, style, text } from "./styles"
 
 /**
  * 
@@ -11,7 +10,7 @@ import styles from "./styles"
  * @param {restart} number - determine whether countdown should be restarted
  * @returns 
  */
-function Countdown({ minutes, seconds, restart }) {
+function Countdown({ minutes, seconds, restart, type }) {
 
 	const [timerInSeconds, setTimerInSeconds] = useState(0)
 
@@ -68,16 +67,16 @@ function Countdown({ minutes, seconds, restart }) {
 		const { minutes, seconds } = getTimeLeft()
 		return (
 			<>
-				<View style={styles.timer}>
-					<Text style={[textStyles.title, styles.countdown_text]}>
+				<View style={[style.timer, size[type]]}>
+					<Text style={text[type]}>
 						{minutes}
 					</Text>
 				</View>
-				<Text style={[textStyles.title, styles.countdown_text]}>
+				<Text style={text[type]}>
 					{":"}
 				</Text>
-				<View style={styles.timer}>
-					<Text style={[textStyles.title, styles.countdown_text]}>
+				<View style={[style.timer, size[type]]}>
+					<Text style={text[type]}>
 						{seconds}
 					</Text>
 				</View>
@@ -86,7 +85,7 @@ function Countdown({ minutes, seconds, restart }) {
 	}
 
 	return (
-		<View style={styles.countdown}>
+		<View style={style.container}>
 			{renderTimer()}
 		</View>
 	)
@@ -97,12 +96,14 @@ function Countdown({ minutes, seconds, restart }) {
 Countdown.propTypes = {
 	minutes: PropTypes.number.isRequired,
 	seconds: PropTypes.number.isRequired,
-	restart: PropTypes.number
+	restart: PropTypes.number,
+	type: PropTypes.oneOf(["default", "large"])
 }
 
 Countdown.defaultProps = {
 	minutes: 0,
-	seconds: 30
+	seconds: 30,
+	type: "default"
 }
 
 export default Countdown

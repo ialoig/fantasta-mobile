@@ -46,10 +46,23 @@ export default StyleSheet.create({
 		paddingBottom: 150,
 		position: "relative"
 	},
+	opponentTurnInfo: {
+		flex: 1,
+		justifyContent: "space-between"
+	},
+	roles: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginVertical: 20
+	},
 	statistics: {
 		alignItems: "center",
 		flexDirection: "row",
 		justifyContent: "space-between"
+	},
+	teamList: {
+		color: colors.textPlaceholder,
+		flex: 1,
 	},
 	textDescription: {
 		color: colors.textPlaceholder,
