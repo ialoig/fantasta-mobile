@@ -42,6 +42,7 @@ const RoutesName = {
 	MARKET_OPPONENT_TURN: "MarketOpponentTurn",
 	MARKET_PLAYER_SELECTED: "MarketPlayerSelected",
 	MARKET_MY_TURN: "MarketMyTurn",
+	MARKET_MY_TURN_PLAYER_SELECTED: "MarketMyTurnPlayerSelected",
 	PLAYERS: "Players"
 }
 

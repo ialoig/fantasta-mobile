@@ -33,7 +33,7 @@ const PlayerList = React.forwardRef(({ players, isClassic, onScroll, onScrollEnd
 						isClassic: isClassic
 					})}
 				onLongPress={playerSelectable ? () => {
-					navigate(routes.MARKET_OPEN_AUCTION, {
+					navigate(routes.MARKET_MY_TURN_PLAYER_SELECTED, {
 						id: item.id,
 						isClassic: isClassic
 					})

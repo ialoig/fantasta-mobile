@@ -9,6 +9,7 @@ import { HomeContainer } from "../containers/Home/HomeContainer"
 import JoinLeague from "../containers/JoinLeague/JoinLeague"
 import { LoginContainer } from "../containers/Login/LoginContainer"
 import MarketMyTurn from "../containers/Market/MarketMyTurn"
+import MarketMyTurnPlayerSelected from "../containers/Market/MarketMyTurnPlayerSelected"
 import MarketOpenAuction from "../containers/Market/MarketOpenAuction"
 import MarketOpponentTurn from "../containers/Market/MarketOpponentTurn"
 import MarketPlayerSelected from "../containers/Market/MarketPlayerSelected"
@@ -138,6 +139,10 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.MARKET_MY_TURN}
 					component={MarketMyTurn}
+					options={getScreenConfig(false, false, true)}/>
+				<AppStack.Screen
+					name={routes.MARKET_MY_TURN_PLAYER_SELECTED}
+					component={MarketMyTurnPlayerSelected}
 					options={getScreenConfig(false, false, true)}/>
 			</AppStack.Navigator>
 		</NavigationContainer>

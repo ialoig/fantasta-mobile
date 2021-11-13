@@ -50,6 +50,10 @@ export default StyleSheet.create({
 		flex: 1,
 		justifyContent: "space-between"
 	},
+	playersList: {
+		marginBottom: 50,
+		marginTop: 8
+	},
 	roles: {
 		flexDirection: "row",
 		justifyContent: "space-between",

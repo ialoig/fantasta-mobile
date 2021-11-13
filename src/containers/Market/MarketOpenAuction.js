@@ -11,6 +11,7 @@ import Animated, {
 	withSpring } from "react-native-reanimated"
 import { Badge, Button, NumberInc, PlayerCard } from "../../components"
 import Countdown from "../../components/Countdown/Countdown"
+import routes from "../../navigation/routesNames"
 import { Leagues, Players, User } from "../../services"
 import { colors, commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
@@ -28,18 +29,20 @@ const snapPoints = [-END_TOP, 0]
 
 function MarketOpenAuction() {
 
-	const { goBack } = useNavigation()
+	const { navigate } = useNavigation()
 	const { params } = useRoute()
 	//get player object from route params
 	const playerID = params?.id
 	//get league type
 	const isClassic = params?.isClassic
+	//get bid
+	const bid = params?.bid
 	//player object found by ID passed by props
 	const [player, setPlayer] = useState(Players.getPlayersByID(playerID))
 	const [team, setTeam] = useState(Leagues.getMyTeam(User.get().username))
-	const [bestBid, setBestBid] = useState()
+	const [bestBid, setBestBid] = useState(bid)
 	const historyBid = usePrevious(bestBid)
-	const [sessionValue, setSessionValue] = useState(1)
+	const [sessionValue, setSessionValue] = useState(++bid.value)
 
 
 	const translateY = useSharedValue(0)
@@ -48,7 +51,7 @@ function MarketOpenAuction() {
 		const myTeam = Leagues.getMyTeam(User.get().username)
 		setTeam(myTeam)
 		
-		if (!bestBid) {
+		if (!bestBid || bestBid.value === 1) {
 			runAuction()
 		}
 		
@@ -89,7 +92,7 @@ function MarketOpenAuction() {
 		setTimeout(() => {
 			const selectedBid = getRandomBids()
 			setBestBid(selectedBid)
-			setSessionValue(selectedBid.value + 1)//session bid should be incremented by 1 
+			setSessionValue(++selectedBid.value)//session bid should be incremented by 1 
 		}, 1000)
 	}
 
@@ -131,7 +134,7 @@ function MarketOpenAuction() {
 
 
 	const resetSessionValue = () => {
-		setSessionValue(bestBid.value + 1)
+		setSessionValue(++bestBid.value)
 		console.log("[MarketOpenAuction - resetSessionValue] - setSessionValue:", sessionValue)
 	}
 
@@ -257,7 +260,7 @@ function MarketOpenAuction() {
 							size={"small"}
 							type={"secondary"}
 							border={true}
-							onPress={() => goBack()}
+							onPress={() => navigate(routes.MARKET)}
 						/>
 						<Button 
 							title={I18n.translate("bet") + " " + sessionValue}

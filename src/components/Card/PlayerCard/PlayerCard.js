@@ -31,7 +31,7 @@ const PlayerCard = ({ type, isClassic, name, roles, team, quotation, bid, onPres
 			setPlayerInfo(roles.join() + " - " +team)
 		}
 		defineCardType()
-	}, [isClassic])
+	}, [isClassic], bid, quotation)
 
 
 	//setting player information based on card type passed by props
