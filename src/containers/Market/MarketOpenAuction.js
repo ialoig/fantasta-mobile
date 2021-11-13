@@ -42,7 +42,7 @@ function MarketOpenAuction() {
 	const [team, setTeam] = useState(Leagues.getMyTeam(User.get().username))
 	const [bestBid, setBestBid] = useState(bid)
 	const historyBid = usePrevious(bestBid)
-	const [sessionValue, setSessionValue] = useState(++bid.value)
+	const [sessionValue, setSessionValue] = useState(bid.value +1)
 
 
 	const translateY = useSharedValue(0)
@@ -92,7 +92,7 @@ function MarketOpenAuction() {
 		setTimeout(() => {
 			const selectedBid = getRandomBids()
 			setBestBid(selectedBid)
-			setSessionValue(++selectedBid.value)//session bid should be incremented by 1 
+			setSessionValue(selectedBid.value +1)//session bid should be incremented by 1 
 		}, 1000)
 	}
 
@@ -134,7 +134,7 @@ function MarketOpenAuction() {
 
 
 	const resetSessionValue = () => {
-		setSessionValue(++bestBid.value)
+		setSessionValue(bestBid.value +1)
 		console.log("[MarketOpenAuction - resetSessionValue] - setSessionValue:", sessionValue)
 	}
 
