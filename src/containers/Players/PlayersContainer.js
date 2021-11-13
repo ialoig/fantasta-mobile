@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import React, { useEffect, useState } from "react"
 import { View } from "react-native"
 import { Header } from "../../components"
-import PlayersComp from "../../components/Players/PlayersComp"
+import PlayersComponent from "../../components/Players/PlayersComponent"
 import { Players } from "../../services"
 import { commonStyle } from "../../styles"
 import styles from "./styles"
@@ -35,7 +35,7 @@ function PlayersContainer() {
 		<View style={[styles.container, commonStyle.paddingHeader]}>
 
 			{/* Rendering list of players */ }
-			<PlayersComp 
+			<PlayersComponent 
 				players={players}
 			/>
 			

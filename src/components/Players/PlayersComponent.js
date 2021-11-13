@@ -32,7 +32,7 @@ const snapPoints = [FILTER_HEIGHT, 0]
  * @param {searchBoxSticky} boolean define is search box must be fixed on top
  * @returns 
  */
-function PlayersComp({ players, searchBoxShown, searchBoxSticky, playerSelectable }) {
+function PlayersComponent({ players, searchBoxShown, searchBoxSticky, playerSelectable }) {
 
 	//define list of filterdPlayers to show
 	const [filterdPlayers, setFilterdPlayers] = useState(null)
@@ -51,7 +51,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky, playerSelectabl
 
 	
 	useEffect( () => {
-		console.log("[PlayersComp - useEffect] - activeRoles=", activeRoles)
+		console.log("[PlayersComponent - useEffect] - activeRoles=", activeRoles)
 
 		const apiLeague =  Leagues.getActiveLeague()
 		setLeague(apiLeague)
@@ -83,7 +83,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky, playerSelectabl
 
 	const sortList = (players) => {
 		const size = players.length
-		console.log("[PlayersComp - sortList] - n. players =", size)
+		console.log("[PlayersComponent - sortList] - n. players =", size)
 		let sortedList = players.sort(highPriceToLow)
 		
 		setFilterdPlayers(sortedList)
@@ -104,7 +104,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky, playerSelectabl
 			return false
 		})
 		const size = filteredList.length
-		console.log("[PlayersComp - filterByRole] - role= "+roles+", n. players=", size)
+		console.log("[PlayersComponent - filterByRole] - role= "+roles+", n. players=", size)
 		setQuery("")
 		setFilterdPlayers(filteredList)
 	}
@@ -125,7 +125,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky, playerSelectabl
 
 	const handleSearch = (text) => {
 		const query = text.toLowerCase()
-		console.log("[PlayersComp - handleSearch] - query=", query)
+		console.log("[PlayersComponent - handleSearch] - query=", query)
 		const results = players.filter((player) => {
 			const { name, team } = player
 			if (name.toLowerCase().includes(query) || team.toLowerCase().includes(query)) {
@@ -143,7 +143,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky, playerSelectabl
 		}
 		// case 0 - removing role: means that filter button has been pressed twice
 		else if (activeRoles.includes(role)) {
-			console.log("[PlayersComp - handlePressFilter] - removing role=", role)
+			console.log("[PlayersComponent - handlePressFilter] - removing role=", role)
 			const cleanActiveRole = activeRoles.filter( (item) => item != role)
 			if (cleanActiveRole.length === 0)
 				setActiveRoles([ROLE_CLASSIC.ALL])
@@ -152,7 +152,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky, playerSelectabl
 		} 
 		// case 1 - adding role to active roles array
 		else {
-			console.log("[PlayersComp - handlePressFilter] - added role=", role)
+			console.log("[PlayersComponent - handlePressFilter] - added role=", role)
 			// removing ALL and "none" value if a different role has been pressed
 			const cleanActiveRole = activeRoles.filter( (item) => item != ROLE_CLASSIC.ALL && item != "none")
 			if (cleanActiveRole.length > 0)
@@ -266,18 +266,18 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky, playerSelectabl
 	)
 }
 
-PlayersComp.propTypes = {
+PlayersComponent.propTypes = {
 	players: PropTypes.array.isRequired,
 	searchBoxShown: PropTypes.bool,
 	searchBoxSticky: PropTypes.bool,
 	playerSelectable: PropTypes.bool.isRequired
 }
 
-PlayersComp.defaultProps = {
+PlayersComponent.defaultProps = {
 	players: [],
 	searchBoxShown: true,
 	searchBoxSticky: false,
 	playerSelectable: false
 }
 
-export default PlayersComp
+export default PlayersComponent

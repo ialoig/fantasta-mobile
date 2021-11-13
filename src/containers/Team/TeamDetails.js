@@ -12,7 +12,7 @@ import Animated, {
 import { Card } from "../../components"
 import ChartSummary from "../../components/Chart/ChartSummary"
 import PieChart from "../../components/Chart/PieChart"
-import PlayersComp from "../../components/Players/PlayersComp"
+import PlayersComponent from "../../components/Players/PlayersComponent"
 import { Leagues, Players } from "../../services"
 import { commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
@@ -184,7 +184,7 @@ function TeamDetails({ teamID, style }) {
 						{/* PLAYER LIST SECTION */}
 						<Text style={textStyles.h1}>{I18n.translate("team")}</Text>			
 						
-						<PlayersComp 
+						<PlayersComponent 
 							players={players}
 							searchBoxShown={false}
 							searchBoxSticky={true}
