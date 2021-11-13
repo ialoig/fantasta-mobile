@@ -4,6 +4,7 @@ import React from "react"
 import { Text, View } from "react-native"
 import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 import Countdown from "../../components/Countdown/Countdown"
+import AnimatedIcon from "../../components/Icon/AnimatedIcon"
 import Icon from "../../components/Icon/Icon"
 import { textStyles } from "../../styles"
 import styles from "./styles"
@@ -12,7 +13,7 @@ function MarketOpponentTurn(props) {
 	return (
 		<View style={styles.container}>
 			<Text style={[textStyles.h2, textStyles.alignCenter]}>
-				{"Remaining time"}
+				{I18n.translate("remaining_time")}
 			</Text>
 
 			<View style={styles.opponentTurnInfo}>
@@ -28,15 +29,40 @@ function MarketOpponentTurn(props) {
 				/>
 
 				<Text style={[textStyles.h2, textStyles.alignCenter]}>
-					{"is looking for a player ..."}
+					{I18n.translate("looking_for")}
 				</Text>
 
 			</View>
 			<View style={styles.roles}>
-				<Icon name="role" role={"P"} animated />
-				<Icon name="role" role={"D"} animated />
-				<Icon name="role" role={"C"} animated />
-				<Icon name="role" role={"A"} animated />
+				<AnimatedIcon 
+					name="role" 
+					role={"P"} 
+					animation={"opacity"} 
+					duration={2000} 
+					delay={0} 
+					numOfReps={-1} />
+				<AnimatedIcon 
+					name="role" 
+					role={"D"} 
+					animation={"opacity"} 
+					duration={2000} 
+					delay={1500} 
+					numOfReps={-1} />
+				<AnimatedIcon 
+					name="role" 
+					role={"C"} 
+					animation={"opacity"} 
+					duration={2000} 
+					delay={3000} 
+					numOfReps={-1} />
+				<AnimatedIcon 
+					name="role" 
+					role={"A"} 
+					animation={"opacity"} 
+					duration={2000} 
+					delay={4500} 
+					numOfReps={-1} />
+						
 			</View>
 		</View>
 	)

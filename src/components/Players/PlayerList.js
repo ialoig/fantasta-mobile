@@ -13,7 +13,7 @@ import styles from "./styles"
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 
 
-const PlayerList = React.forwardRef(({ players, isClassic, onScroll, onScrollEnd }, ref ) => {
+const PlayerList = React.forwardRef(({ players, isClassic, onScroll, onScrollEnd, playerSelectable }, ref ) => {
 
 	//navigation route
 	const { navigate }  = useNavigation()
@@ -32,6 +32,12 @@ const PlayerList = React.forwardRef(({ players, isClassic, onScroll, onScrollEnd
 						id: item.id,
 						isClassic: isClassic
 					})}
+				onLongPress={playerSelectable ? () => {
+					navigate(routes.MARKET_OPEN_AUCTION, {
+						id: item.id,
+						isClassic: isClassic
+					})
+				} : null}
 			/>
 		)
 
@@ -72,7 +78,8 @@ PlayerList.propTypes = {
 	players: PropTypes.array,
 	isClassic: PropTypes.bool,
 	onScroll: PropTypes.object,
-	onScrollEnd: PropTypes.func
+	onScrollEnd: PropTypes.func,
+	playerSelectable: PropTypes.bool.isRequired
 }
 
 export default PlayerList

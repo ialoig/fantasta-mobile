@@ -31,7 +31,7 @@ export const size = StyleSheet.create({
 	large: {
 		borderRadius: 24,
 		height: dynamicHeight(327, 80),
-		marginVertical: 8,
+		marginVertical: 16,
 		paddingHorizontal: getWidth(20),
 		width: dynamicWidth(327),
 	}

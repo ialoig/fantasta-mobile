@@ -32,7 +32,7 @@ const snapPoints = [FILTER_HEIGHT, 0]
  * @param {searchBoxSticky} boolean define is search box must be fixed on top
  * @returns 
  */
-function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
+function PlayersComp({ players, searchBoxShown, searchBoxSticky, playerSelectable }) {
 
 	//define list of filterdPlayers to show
 	const [filterdPlayers, setFilterdPlayers] = useState(null)
@@ -258,6 +258,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 					isClassic={isClassic}
 					onScroll={scrollHandler}
 					onScrollEnd={handleEndDrag}
+					playerSelectable={playerSelectable}
 				/>
 			</Animated.View>
 
@@ -269,12 +270,14 @@ PlayersComp.propTypes = {
 	players: PropTypes.array.isRequired,
 	searchBoxShown: PropTypes.bool,
 	searchBoxSticky: PropTypes.bool,
+	playerSelectable: PropTypes.bool.isRequired
 }
 
 PlayersComp.defaultProps = {
 	players: [],
 	searchBoxShown: true,
-	searchBoxSticky: false
+	searchBoxSticky: false,
+	playerSelectable: false
 }
 
 export default PlayersComp
