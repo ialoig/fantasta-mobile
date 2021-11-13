@@ -12,7 +12,7 @@ import { color, size, style } from "./styles"
 const playerCardType = ["default", "small", "large", "auction"]
 
 
-const PlayerCard = ({ type, isClassic, name, roles, team, quotation, bid, onPress }) => {
+const PlayerCard = ({ type, isClassic, name, roles, team, quotation, bid, onPress, onLongPress }) => {
 
 	const [playerInfo, setPlayerInfo] = useState("")
 	const [playerInfoPrice, setPlayerInfoPrice] = useState("")
@@ -50,7 +50,10 @@ const PlayerCard = ({ type, isClassic, name, roles, team, quotation, bid, onPres
 	}
 
 	return (
-		<Pressable onPress={onPress} style={[style.card, size[type], style[type]]}>
+		<Pressable 
+			onPress={onPress} 
+			onLongPress={onLongPress} 
+			style={[style.card, size[type], style[type]]}>
 
 			<View style={style.player}>
 				<Icon name="role" role={roles[0]} />
@@ -86,7 +89,7 @@ const PlayerCard = ({ type, isClassic, name, roles, team, quotation, bid, onPres
 							</Text>
 						</View>
 						<View style={style.auction_price}>
-							<Text style={textStyles.h3}>{playerAuctionPrice}</Text>
+							<Text style={textStyles.h3}>{playerAuctionPrice}</Text>			
 							<Text style={[textStyles.title, color.text]}>{bid}
 								<Text style={[textStyles.buttonXSmall, color.text]}>{" fm"}</Text>
 							</Text>
@@ -114,7 +117,8 @@ PlayerCard.propTypes = {
 	quotation: PropTypes.number,
 	bid: PropTypes.number,
 	type: PropTypes.oneOf([...Object.values(playerCardType)]).isRequired,
-	onPress: PropTypes.func
+	onPress: PropTypes.func,
+	onLongPress: PropTypes.func
 }
 
 export default PlayerCard

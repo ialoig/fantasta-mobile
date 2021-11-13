@@ -85,7 +85,7 @@ function MarketActive() {
 					// 		id: "785",
 					// 		isClassic: true
 					// 	})}
-					onPress={() => navigate(routes.MARKET_OPPONENT_TURN)}
+					onPress={() => navigate(routes.MARKET_MY_TURN)}
 					type={"primary"}
 					size={"large"}
 				/>

@@ -40,6 +40,8 @@ const RoutesName = {
 	MARKET_OPEN_AUCTION: "MarketOpenAuction",
 	MARKET_WAITING_ROOM: "MarketWaitingRoom",
 	MARKET_OPPONENT_TURN: "MarketOpponentTurn",
+	MARKET_PLAYER_SELECTED: "MarketPlayerSelected",
+	MARKET_MY_TURN: "MarketMyTurn",
 	PLAYERS: "Players"
 }
 
