@@ -4,6 +4,7 @@ import Svg, { Circle, Path, Rect } from "react-native-svg"
 import colors from "../../../../styles/colors"
 
 const PorRoleIcon = ({ width, height, primary, secondary, roleColor, type, completed, ...props }) => {
+	
 	if (type === "small") {
 		return (
 			<Svg

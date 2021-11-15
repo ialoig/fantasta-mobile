@@ -6,7 +6,7 @@ let USER = {
 	username: ""
 }
 
-const Set = ( user ) =>
+const set = ( user ) =>
 {
 	USER = {
 		email: user.email,
@@ -20,13 +20,13 @@ const remove = () => {
 }
 
 
-const Get = () =>
+const get = () =>
 {
 	return USER
 }
 
 export const User = {
-	Set,
-	Get,
+	set,
+	get,
 	remove
 }

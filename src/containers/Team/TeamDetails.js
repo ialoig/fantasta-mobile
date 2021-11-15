@@ -12,7 +12,7 @@ import Animated, {
 import { Card } from "../../components"
 import ChartSummary from "../../components/Chart/ChartSummary"
 import PieChart from "../../components/Chart/PieChart"
-import PlayersComp from "../../components/Players/PlayersComp"
+import PlayersComponent from "../../components/Players/PlayersComponent"
 import { Leagues, Players } from "../../services"
 import { commonStyle, textStyles } from "../../styles"
 import { clamp, snap } from "../../utils/animationUtils"
@@ -30,11 +30,11 @@ function TeamDetails({ teamID, style }) {
 	const { params } = useRoute()
 	//get team ID from route params
 	//TODO: check to be done: sometimes seems that teamID is null. 
-	//It returns an error on props-type validation cause is marked as required
+	//It returns an error on props-type validation because it's marked as required
 	teamID = params?.teamID ? params?.teamID : teamID
 
 	const [team, setTeam] = useState()
-	const [league, setLeague] = useState(Leagues.GetActiveLeague())
+	const [league, setLeague] = useState(Leagues.getActiveLeague())
 	const [totalSpent, setTotalSpent] = useState(0)
 	const [players, setPlayers] = useState()
 
@@ -45,11 +45,11 @@ function TeamDetails({ teamID, style }) {
 
 	useEffect(() => {
 		console.log("[TeamDetails - useEffect] - teamID=", teamID)
-		const team = Leagues.GetTeamByID(teamID)
+		const team = Leagues.getTeamByID(teamID)
 		setTeam(team)
 		console.log("[TeamDetails - useEffect] - team=", team.name)
 		
-		const league = Leagues.GetActiveLeague()
+		const league = Leagues.getActiveLeague()
 		setLeague(league)
 
 		getRandomPlayers()
@@ -57,7 +57,7 @@ function TeamDetails({ teamID, style }) {
 		defineTotalSpent()
 
 		//get players from api
-		// const apiPlayers = Object.values(Players.GetPlayers())
+		// const apiPlayers = Object.values(Players.getPlayers())
 
 		// const players = team.footballPlayers
 		// setPlayers(players)
@@ -76,7 +76,7 @@ function TeamDetails({ teamID, style }) {
 	//TODO: just for debug, replace with the correct players calculated from team object (ie. team.footballPlayers)
 	const getRandomPlayers = () => {
 		//get players from api
-		const apiPlayers = Object.values(Players.GetPlayers())
+		const apiPlayers = Object.values(Players.getPlayers())
 		
 		const size = apiPlayers.length
 		console.log("[TeamDetails - getRandomPlayers] - size", size)
@@ -184,7 +184,7 @@ function TeamDetails({ teamID, style }) {
 						{/* PLAYER LIST SECTION */}
 						<Text style={textStyles.h1}>{I18n.translate("team")}</Text>			
 						
-						<PlayersComp 
+						<PlayersComponent 
 							players={players}
 							searchBoxShown={false}
 							searchBoxSticky={true}

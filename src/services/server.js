@@ -9,10 +9,10 @@ const SERVER_URL = CUSTOM_CONFIG.fantasta_server_url
 
 let AUTH_TOKEN = ""
 
-const Set = ( tok ) =>
+const set = ( tok ) =>
 {
 	AUTH_TOKEN = tok || ""
-	Storage.Set( "token", AUTH_TOKEN )
+	Storage.set( "token", AUTH_TOKEN )
 
 	if ( AUTH_TOKEN )
 	{
@@ -20,19 +20,19 @@ const Set = ( tok ) =>
 	}
 }
 
-const Get = () =>
+const get = () =>
 {
 	return AUTH_TOKEN
 }
 
 const remove = () => {
 	AUTH_TOKEN = ""
-	Storage.Set( "token", AUTH_TOKEN )
+	Storage.set( "token", AUTH_TOKEN )
 }
 
-const Init = async () =>
+const init = async () =>
 {
-	AUTH_TOKEN = await Storage.Get( "token" )
+	AUTH_TOKEN = await Storage.get( "token" )
 
 	AUTH_TOKEN = AUTH_TOKEN || ""
 
@@ -76,11 +76,11 @@ const Init = async () =>
 }
 
 export const Server = {
-	Init
+	init
 }
 
 export const Token = {
-	Get,
-	Set,
+	get,
+	set,
 	remove
 }

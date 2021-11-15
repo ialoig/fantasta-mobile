@@ -23,7 +23,16 @@ const FILTER_HEIGHT = INPUT_HEIGHT + BADGE_HEIGHT + HEADER_HEIGHT // total heigh
 
 const snapPoints = [FILTER_HEIGHT, 0]
 
-function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
+/**
+ * 
+ * Render a list of objects with a search box on top of the view, which disappear when list is scrolled.
+ * 
+ * @param {players} array list of object
+ * @param {searchBoxShown} boolean define if search box must be shown
+ * @param {searchBoxSticky} boolean define is search box must be fixed on top
+ * @returns 
+ */
+function PlayersComponent({ players, searchBoxShown, searchBoxSticky, playerSelectable }) {
 
 	//define list of filterdPlayers to show
 	const [filterdPlayers, setFilterdPlayers] = useState(null)
@@ -37,14 +46,14 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 	const flatRef = useRef(null)
 
 	const [roles, setRoles] = useState(ROLE_CLASSIC)
-	const [league, setLeague] = useState(Leagues.GetActiveLeague())
+	const [league, setLeague] = useState(Leagues.getActiveLeague())
 	const [isClassic, setIsClassic] = useState(true)
 
 	
 	useEffect( () => {
-		console.log("[PlayersComp - useEffect] - activeRoles=", activeRoles)
+		console.log("[PlayersComponent - useEffect] - activeRoles=", activeRoles)
 
-		const apiLeague =  Leagues.GetActiveLeague()
+		const apiLeague =  Leagues.getActiveLeague()
 		setLeague(apiLeague)
 		setRoles(league.type === "classic" ? ROLE_CLASSIC : ROLE_MANTRA)
 		setIsClassic(league.type === "classic" ? true : false)
@@ -74,7 +83,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 
 	const sortList = (players) => {
 		const size = players.length
-		console.log("[PlayersComp - sortList] - n. players =", size)
+		console.log("[PlayersComponent - sortList] - n. players =", size)
 		let sortedList = players.sort(highPriceToLow)
 		
 		setFilterdPlayers(sortedList)
@@ -95,7 +104,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 			return false
 		})
 		const size = filteredList.length
-		console.log("[PlayersComp - filterByRole] - role= "+roles+", n. players=", size)
+		console.log("[PlayersComponent - filterByRole] - role= "+roles+", n. players=", size)
 		setQuery("")
 		setFilterdPlayers(filteredList)
 	}
@@ -116,7 +125,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 
 	const handleSearch = (text) => {
 		const query = text.toLowerCase()
-		console.log("[PlayersComp - handleSearch] - query=", query)
+		console.log("[PlayersComponent - handleSearch] - query=", query)
 		const results = players.filter((player) => {
 			const { name, team } = player
 			if (name.toLowerCase().includes(query) || team.toLowerCase().includes(query)) {
@@ -134,7 +143,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 		}
 		// case 0 - removing role: means that filter button has been pressed twice
 		else if (activeRoles.includes(role)) {
-			console.log("[PlayersComp - handlePressFilter] - removing role=", role)
+			console.log("[PlayersComponent - handlePressFilter] - removing role=", role)
 			const cleanActiveRole = activeRoles.filter( (item) => item != role)
 			if (cleanActiveRole.length === 0)
 				setActiveRoles([ROLE_CLASSIC.ALL])
@@ -143,7 +152,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 		} 
 		// case 1 - adding role to active roles array
 		else {
-			console.log("[PlayersComp - handlePressFilter] - added role=", role)
+			console.log("[PlayersComponent - handlePressFilter] - added role=", role)
 			// removing ALL and "none" value if a different role has been pressed
 			const cleanActiveRole = activeRoles.filter( (item) => item != ROLE_CLASSIC.ALL && item != "none")
 			if (cleanActiveRole.length > 0)
@@ -249,6 +258,7 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 					isClassic={isClassic}
 					onScroll={scrollHandler}
 					onScrollEnd={handleEndDrag}
+					playerSelectable={playerSelectable}
 				/>
 			</Animated.View>
 
@@ -256,16 +266,18 @@ function PlayersComp({ players, searchBoxShown, searchBoxSticky }) {
 	)
 }
 
-PlayersComp.propTypes = {
+PlayersComponent.propTypes = {
 	players: PropTypes.array.isRequired,
 	searchBoxShown: PropTypes.bool,
 	searchBoxSticky: PropTypes.bool,
+	playerSelectable: PropTypes.bool.isRequired
 }
 
-PlayersComp.defaultProps = {
+PlayersComponent.defaultProps = {
 	players: [],
 	searchBoxShown: true,
-	searchBoxSticky: false
+	searchBoxSticky: false,
+	playerSelectable: false
 }
 
-export default PlayersComp
+export default PlayersComponent

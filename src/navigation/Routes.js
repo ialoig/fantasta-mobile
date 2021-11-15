@@ -8,6 +8,12 @@ import { GetStartedContainer } from "../containers/GetStarted/GetStartedContaine
 import { HomeContainer } from "../containers/Home/HomeContainer"
 import JoinLeague from "../containers/JoinLeague/JoinLeague"
 import { LoginContainer } from "../containers/Login/LoginContainer"
+import MarketMyTurn from "../containers/Market/MarketMyTurn"
+import MarketMyTurnPlayerSelected from "../containers/Market/MarketMyTurnPlayerSelected"
+import MarketOpenAuction from "../containers/Market/MarketOpenAuction"
+import MarketOpponentTurn from "../containers/Market/MarketOpponentTurn"
+import MarketPlayerSelected from "../containers/Market/MarketPlayerSelected"
+import MarketWaitingRoom from "../containers/Market/MarketWaitingRoom"
 import PlayersDetails from "../containers/Players/PlayersDetails"
 import CompleteRegistratioConfirmation from "../containers/Register/CompleteRegistratioConfirmation"
 import CompleteRegistration from "../containers/Register/CompleteRegistration"
@@ -45,7 +51,7 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.COMPLETE_REGISTER}
 					component={CompleteRegistration}
-					options={getScreenConfig(false, false, false)} />
+					options={getScreenConfig(false, "", false)} />
 				<AppStack.Screen
 					name={routes.COMPLETE_REGISTER_CONFIRMATION}
 					component={CompleteRegistratioConfirmation}
@@ -65,7 +71,7 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.FORGOT_PASSWORD}
 					component={ForgotPassword}
-					options={getScreenConfig(false, false, true)} />
+					options={getScreenConfig(false, "", true)} />
 				<AppStack.Screen
 					name={routes.FORGOT_PASSWORD_CONFIRMATION}
 					component={ForgotPasswordConfirmation}
@@ -109,11 +115,35 @@ export default function Routes() {
 				<AppStack.Screen
 					name={routes.PLAYER_DETAILS}
 					component={PlayersDetails}
-					options={getScreenConfig(true, false, true)} />
+					options={getScreenConfig(true, false, true)}/>
 				<AppStack.Screen
 					name={routes.TEAM_DETAILS}
 					component={TeamDetails}
-					options={getScreenConfig(true, false, true)} />
+					options={getScreenConfig(true, false, true)}/>
+				<AppStack.Screen
+					name={routes.MARKET_OPEN_AUCTION}
+					component={MarketOpenAuction}
+					options={getScreenConfig(false, false, false)}/>
+				<AppStack.Screen
+					name={routes.MARKET_WAITING_ROOM}
+					component={MarketWaitingRoom}
+					options={getScreenConfig(false, false, true)}/>
+				<AppStack.Screen
+					name={routes.MARKET_OPPONENT_TURN}
+					component={MarketOpponentTurn}
+					options={getScreenConfig(false, false, true)}/>
+				<AppStack.Screen
+					name={routes.MARKET_PLAYER_SELECTED}
+					component={MarketPlayerSelected}
+					options={getScreenConfig(false, false, true)}/>
+				<AppStack.Screen
+					name={routes.MARKET_MY_TURN}
+					component={MarketMyTurn}
+					options={getScreenConfig(false, false, true)}/>
+				<AppStack.Screen
+					name={routes.MARKET_MY_TURN_PLAYER_SELECTED}
+					component={MarketMyTurnPlayerSelected}
+					options={getScreenConfig(false, false, true)}/>
 			</AppStack.Navigator>
 		</NavigationContainer>
 	)

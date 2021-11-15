@@ -14,13 +14,13 @@ function Account () {
 
 	const { navigate } = useNavigation()
 	const isFocused = useIsFocused()
-	const [email, setEmail] = useState(User.Get().email)
-	const [username, setUsername] = useState(User.Get().email)
+	const [email, setEmail] = useState(User.get().email)
+	const [username, setUsername] = useState(User.get().email)
 
 
 	useEffect( () => {
-		setEmail(User.Get().email)
-		setUsername(User.Get().username)
+		setEmail(User.get().email)
+		setUsername(User.get().username)
 	}, [email, username, isFocused])
 
 	
