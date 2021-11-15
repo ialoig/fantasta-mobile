@@ -1,7 +1,7 @@
 
 import { loadAsync } from "expo-font"
 
-const Init = () =>
+const init = () =>
 {
 	return loadAsync({
 		PoppinsRegular: require("../../assets/fonts/Poppins-Regular.ttf"),
@@ -13,5 +13,5 @@ const Init = () =>
 }
 
 export const Fonts = {
-	Init
+	init
 }

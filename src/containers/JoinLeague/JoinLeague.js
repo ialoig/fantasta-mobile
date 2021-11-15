@@ -49,7 +49,7 @@ function JoinLeague({ navigation }) {
 			setPopupMessage(errorMessage)
 		}
 		else {
-			await Leagues.Join("", settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
+			await Leagues.join("", settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
 			// clean the navigation stack. A further back will point to the Dashboard
 			navigation.reset({
 				index: 0,

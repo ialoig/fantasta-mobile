@@ -48,7 +48,7 @@ export class RegisterContainer extends React.Component {
 
 		if (email && pw1 && pw1 == pw2) {
 			try {
-				await Auth.Register(email, pw1)
+				await Auth.register(email, pw1)
 
 				this.props.navigation.navigate(routes.COMPLETE_REGISTER)
 			}

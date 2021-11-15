@@ -7,43 +7,43 @@ let PLAYERS = {}
 let VERSION = ""
 let STATISTICS = {}
 
-const SetPlayers = ( players ) =>
+const setPlayers = ( players ) =>
 {
 	PLAYERS = players || []
 }
 
-const GetPlayers = () =>
+const getPlayers = () =>
 {
 	return PLAYERS
 }
 
-const GetPlayersByID = (searchID) =>
+const getPlayersByID = (searchID) =>
 {
 	return PLAYERS[searchID]
 }
 
-const SetStatistics = ( statistics ) =>
+const setStatistics = ( statistics ) =>
 {
 	STATISTICS = statistics || []
 }
 
-const GetStatistics = () =>
+const getStatistics = () =>
 {
 	return STATISTICS
 }
 
-const GetStatisticsByPlayerID = (playerID) =>
+const getStatisticsByPlayerID = (playerID) =>
 {
 	return STATISTICS[playerID]
 }
 
-const Init = async () =>
+const init = async () =>
 {
 	try
 	{
 		console.log("GET /footballPlayers")
 
-		let players = await Storage.Get( "players" )
+		let players = await Storage.get( "players" )
 		players = typeof(players) == "string" ? JSON.parse(players) : players
 
 		let version = players && players.version || 0
@@ -57,7 +57,7 @@ const Init = async () =>
 			VERSION = response.version
 
 			console.log("footballPlayers (typeof)", typeof(PLAYERS))
-			Storage.Set( "players", JSON.stringify({ 
+			Storage.set( "players", JSON.stringify({ 
 				list: response.list, 
 				statistics: response.statistics, 
 				version: response.version 
@@ -80,11 +80,11 @@ const Init = async () =>
 }
 
 export const Players = {
-	SetPlayers,
-	GetPlayers,
-	GetPlayersByID,
-	SetStatistics,
-	GetStatistics,
-	GetStatisticsByPlayerID,
-	Init
+	setPlayers,
+	getPlayers,
+	getPlayersByID,
+	setStatistics,
+	getStatistics,
+	getStatisticsByPlayerID,
+	init
 }

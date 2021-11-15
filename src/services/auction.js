@@ -1,5 +1,5 @@
 
-const Init = ( league, team ) =>
+const init = ( league, team ) =>
 {
 	console.log(league)
 	console.log(team)
@@ -8,5 +8,5 @@ const Init = ( league, team ) =>
 }
 
 export const Auction = {
-	Init
+	init
 }

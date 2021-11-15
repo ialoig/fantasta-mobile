@@ -19,6 +19,8 @@ import SendIcon from "./svg/SendIcon"
 import SeparatorIcon from "./svg/SeparatorIcon"
 import TeamIcon from "./svg/TeamIcon"
 import TeamsTabIcon from "./svg/TeamsTabIcon"
+import TransferIcon from "./svg/TransferIcon"
+import WaitingIcon from "./svg/WaitingIcon"
 
 
 export const IconType = {
@@ -39,7 +41,9 @@ export const IconType = {
 	players_tab: PlayersTabIcon,
 	role: PlayerRoleIcon,
 	separator: SeparatorIcon,
-	field_role: FieldRoleIcon
+	field_role: FieldRoleIcon,
+	transfer: TransferIcon,
+	waiting: WaitingIcon
 }
 
 

@@ -17,16 +17,16 @@ function PlayersDetails() {
 	//get league type
 	const isClassic = params?.isClassic
 	//player object found by ID passed by props
-	const [player, setPlayer] = useState(Players.GetPlayersByID(playerID))
+	const [player, setPlayer] = useState(Players.getPlayersByID(playerID))
 	//player statistics object found by player ID passed by props
-	const [playerStats, setPlayerStats] = useState(Players.GetStatisticsByPlayerID(playerID))
+	const [playerStats, setPlayerStats] = useState(Players.getStatisticsByPlayerID(playerID))
 
 	useEffect(() => {
 		console.log("[PlayersDetails - useEffect] - playerID=", playerID)
-		const playerFound = Players.GetPlayersByID(playerID)
+		const playerFound = Players.getPlayersByID(playerID)
 		console.log("[PlayersDetails - useEffect] - playerFound=", playerFound)
 		setPlayer(playerFound)
-		const statsFound = Players.GetStatisticsByPlayerID(playerID)
+		const statsFound = Players.getStatisticsByPlayerID(playerID)
 		console.log("[PlayersDetails - useEffect] - statsFound=", statsFound)
 		setPlayerStats(statsFound)
 	}, [playerID])
@@ -92,25 +92,14 @@ function PlayersDetails() {
 						values={[
 							playerStats.pg,
 							player.roleClassic === "P" ? playerStats.gs : playerStats.gf,
-							playerStats.ass
+							playerStats.ass,
+							player.roleClassic === "P" ? playerStats.rp : playerStats["r+"] + "/" + playerStats.rc,
 						]}
 						descriptions={[
 							I18n.translate("partite_giocate"),
 							player.roleClassic === "P" ? I18n.translate("goal_subiti") : I18n.translate("goal"),
-							I18n.translate("assist")
-						]}/>
-				</View>
-
-				<View style={styles.statistics}>
-					<StatsCard 
-						type="large"
-						values={[
-							player.roleClassic === "P" ? playerStats.rp : playerStats["r+"],
-							playerStats["r-"]
-						]}
-						descriptions={[
-							player.roleClassic === "P" ? I18n.translate("rigori_parati") : I18n.translate("rigori_segnati"),
-							I18n.translate("rigori_sbagliati")
+							I18n.translate("assist"),
+							player.roleClassic === "P" ? I18n.translate("rigori_parati") : I18n.translate("rigori"),
 						]}/>
 				</View>
 

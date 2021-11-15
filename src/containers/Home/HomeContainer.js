@@ -9,7 +9,7 @@ export class HomeContainer extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			leagues: Leagues.GetLeagues().sort((a, b) => a.name > b.name ? 1 : -1)
+			leagues: Leagues.getLeagues().sort((a, b) => a.name > b.name ? 1 : -1)
 		}
 	}
 
@@ -20,7 +20,7 @@ export class HomeContainer extends React.Component {
 			() => {
 				this.mounted && this.setState({
 					//ordered by creation date, last created on first position
-					leagues: Leagues.GetLeagues().sort((a, b) => a.createdAt > b.createdAt ? -1 : 1)
+					leagues: Leagues.getLeagues().sort((a, b) => a.createdAt > b.createdAt ? -1 : 1)
 				})
 			}
 		)
@@ -32,7 +32,7 @@ export class HomeContainer extends React.Component {
 
 	async joinLeague(item) {
 		if (item && item._id) {
-			await Leagues.Join(item._id)
+			await Leagues.join(item._id)
 			this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
 		}
 	}

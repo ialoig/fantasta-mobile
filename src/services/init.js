@@ -6,9 +6,9 @@ import { Server } from "./server"
 export const Init = () =>
 {
 	return Promise.all([
-		Fonts.Init(),
-		Server.Init(),
-		Players.Init()
+		Fonts.init(),
+		Server.init(),
+		Players.init()
 	])
 		.then(
 			() =>

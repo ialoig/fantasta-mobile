@@ -4,8 +4,7 @@ import { View } from "react-native"
 import Animated, { Easing, 
 	useAnimatedStyle, 
 	useSharedValue, 
-	withRepeat, 
-	withSequence, 
+	withRepeat,
 	withTiming } from "react-native-reanimated"
 import Svg, { Path, Rect } from "react-native-svg"
 import colors from "../../styles/colors"

@@ -21,7 +21,7 @@ export default StyleSheet.create({
 	container: {
 		flexDirection: "row",
 		justifyContent: "space-between",
-		paddingVertical: 12,
+		paddingVertical: 8,
 	},
 	label: {
 		alignSelf: "center",

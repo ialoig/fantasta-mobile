@@ -1,8 +1,9 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { Pressable, Text } from "react-native"
+import { Text } from "react-native"
 import { textStyles } from "../../styles"
 import colors from "../../styles/colors"
+import TouchableScale from "../TouchableScale/TouchableScale"
 import { badge, text } from "./styles"
 
 
@@ -13,11 +14,14 @@ function Badge({ onPress, title, active, activeColor }) {
 	}
 	
 	return (
-		<Pressable onPress={onPress} style={[badge.style, active ? { ...bgColor }: null]} >
+		<TouchableScale 
+			onPress={onPress} 
+			style={[badge.style, active ? { ...bgColor }: null]} 
+		>
 			<Text style={[textStyles.buttonXSmall, text.title]}>
 				{title}
 			</Text>
-		</Pressable>
+		</TouchableScale>
 	)
 }
 

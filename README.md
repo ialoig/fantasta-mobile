@@ -1,6 +1,7 @@
-![Fantasta](./assets/img/logo/logo-horizontal.svg "Fantasta")
-
-The most exciting Fantacalcio auction
+<p align="center">
+  <img width="400" height="100" src="./assets/img/logo/logo-horizontal.svg">
+</p>
+<h1 align="center"> The most exciting Fantacalcio auction</h1>
 
 Mobile app to run Fantacalcio auction per League. Outcome will be an .xls file sent to the League participants.
 Participants can participate to the auction League to bet on preferred players.
@@ -9,6 +10,7 @@ Participants can participate to the auction League to bet on preferred players.
 
 * npm version: 6.14.10
 * node version: 14.15.3
+* expo version: 42.0.0
 
 ## Environment setup
 
