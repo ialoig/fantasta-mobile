@@ -1,5 +1,6 @@
 import axios from "axios"
 
+import { SocketManager } from "../services/socket"
 import { Auction } from "./auction"
 import { Error } from "./error"
 
@@ -79,7 +80,12 @@ const join = async ( id="", name="", password="", teamname="" ) =>
 			let response = await axios.put("/league/join", data, {})
 			addLeague(response)
 			setActiveLeague(response.league)
-			Auction.init( response.league, response.team )
+			Auction.init(response.league, response.team)
+			
+			// Initialize Socket and join room
+			const socket = SocketManager.getSocketInstance()
+			socket.joinRoom(response.league.name)
+
 			return Promise.resolve()
 		}
 		catch (error)
