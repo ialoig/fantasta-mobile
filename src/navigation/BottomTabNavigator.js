@@ -19,7 +19,7 @@ const socket = SocketManager.getSocketInstance()
 function BottomTabNavigator() {
 	return (
 		<socket.SocketContext.Provider value={socket.ioClient}>
-			<Tab.Navigator 
+			<Tab.Navigator
 				initialRouteName={routes.DASHBOARD}
 				backBehavior="none"
 				tabBarOptions={{
@@ -31,54 +31,54 @@ function BottomTabNavigator() {
 					keyboardHidesTabBar: true
 				}}
 			>
-				<Tab.Screen 
+				<Tab.Screen
 					name={routes.DASHBOARD}
 					component={Dashboard}
-					options={{ 
-					// eslint-disable-next-line react/display-name
+					options={{
+						// eslint-disable-next-line react/display-name
 						tabBarIcon: ({ focused }) => {
 							return <Icon
-								name="dashboard_tab" 
-								primary={focused ? colors.primary : colors.grey} 
+								name="dashboard_tab"
+								primary={focused ? colors.primary : colors.grey}
 								secondary={focused ? colors.secondary : colors.white} />
 						}
 					}}
 				/>
-				<Tab.Screen 
+				<Tab.Screen
 					name={routes.TEAM}
 					component={Team}
-					options={{ 
-					// eslint-disable-next-line react/display-name
+					options={{
+						// eslint-disable-next-line react/display-name
 						tabBarIcon: ({ focused }) => {
 							return <Icon
-								name="teams_tab" 
-								primary={focused ? colors.primary : colors.grey} 
+								name="teams_tab"
+								primary={focused ? colors.primary : colors.grey}
 								secondary={focused ? colors.secondary : colors.white} />
 						}
 					}}
 				/>
-				<Tab.Screen 
+				<Tab.Screen
 					name={routes.MARKET}
 					component={Market}
-					options={{ 
-					// eslint-disable-next-line react/display-name
+					options={{
+						// eslint-disable-next-line react/display-name
 						tabBarIcon: ({ focused }) => {
 							return <Icon
-								name="market_tab" 
-								primary={focused ? colors.primary : colors.grey} 
+								name="market_tab"
+								primary={focused ? colors.primary : colors.grey}
 								secondary={focused ? colors.secondary : colors.white} />
 						}
 					}}
 				/>
-				<Tab.Screen 
+				<Tab.Screen
 					name={routes.PLAYERS}
 					component={PlayersContainer}
-					options={{ 
-					// eslint-disable-next-line react/display-name
+					options={{
+						// eslint-disable-next-line react/display-name
 						tabBarIcon: ({ focused }) => {
 							return <Icon
-								name="players_tab" 
-								primary={focused ? colors.primary : colors.grey} 
+								name="players_tab"
+								primary={focused ? colors.primary : colors.grey}
 								secondary={focused ? colors.secondary : colors.white} />
 						}
 					}}

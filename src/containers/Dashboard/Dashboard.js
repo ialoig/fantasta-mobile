@@ -35,26 +35,26 @@ function Dashboard() {
 
 		// subscribe to socket League events
 		socket.on(league.name, SocketManager.getSocketInstance().leagueEventHandler)
-	
+
 		console.log("[Dashboard - useEffect] - league=", league.name)
 	}, [socket]) // Re-run useEffect only when objects in this array have changed
 
 
 	//TODO: to be deleted after calculation of players from team object
 	const randomNumberFromRange = (min, max) => {
-		return Math.round(Math.random() * (max-min+1) + min )
+		return Math.round(Math.random() * (max - min + 1) + min)
 	}
 
 	//TODO: just for debug purpose. Replace it with the right players object calculated from team object (ie. team.footballPlayers)
 	const getRandomPlayers = () => {
 		//get players from api
 		const apiPlayers = Object.values(Players.getPlayers())
-		
+
 		const size = apiPlayers.length
 		console.log("[Dashboard - getRandomPlayers] - size", size)
 		const players = []
 		const indexes = []
-		for (let i = 0; i<randomNumberFromRange(10, 25); i++) {
+		for (let i = 0; i < randomNumberFromRange(10, 25); i++) {
 			const random = Math.random()
 			const randomIndex = Math.round(random * size)
 			if (indexes.find(item => item === randomIndex)) {
@@ -62,7 +62,7 @@ function Dashboard() {
 			} else {
 				indexes.push(randomIndex)
 			}
-			
+
 			players.push(apiPlayers[randomIndex])
 		}
 		setPlayers(players)
@@ -71,20 +71,20 @@ function Dashboard() {
 
 	return (
 		<>
-			<TeamDetails 
+			<TeamDetails
 				teamID={team._id}
 				style={commonStyle.paddingHeader}
 			/>
 
 			{/* it has been defined as last component because it have to be seen over the others */}
-			<Header 
-				title="dashboard" 
+			<Header
+				title="dashboard"
 				leftButton
 				iconTypeLeft="back"
-				onPressLeft={ () => goBack() }
+				onPressLeft={() => goBack()}
 				rightButton
 				iconTypeRight="account"
-				onPressRight={ () => { navigate(routes.ACCOUNTNAVIGATOR) } }
+				onPressRight={() => { navigate(routes.ACCOUNTNAVIGATOR) }}
 			/>
 		</>
 	)
