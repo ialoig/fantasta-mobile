@@ -6,48 +6,48 @@ import { User } from "../services/user"
 const EVENT_TYPE = {
 
 	// FootballPlayer
-	SERVER_FOOTBALL_PLAYER_LIST_UPDATE:0,
-  
-	// Events sent by the mobile app
+	SERVER_FOOTBALL_PLAYER_LIST_UPDATE: 100,
+
+	// Events sent by the mobile app (1XX)
 	CLIENT: {
 		LEAGUE: {
-			USER_NEW: 0,
-			USER_EXIT: 0,
-			USER_ONLINE:0,
-			USER_OFFLINE:0
-	  	},
-		MARKET: {
-			OPEN: 0,
-			USER_ONLINE: 0,
-			START: 0,
-			PLAYER_SELECTED: 0,
-			BET: 0,
-			WIN: 0,
-			PAUSE: 0,
-			CLOSE: 0,
-			USER_OFFLINE: 0,
-		}
-	},
-	
-	// Events sent by the server
-	SERVER: {
-		LEAGUE: {
-			USER_NEW: 0,
-			USER_EXIT: 0,
-			USER_ONLINE: 0,
-			USER_OFFLINE: 0
+			USER_NEW: 101,
+			USER_DELETED: 102,
+			USER_ONLINE: 103,
+			USER_OFFLINE: 104
 		},
 		MARKET: {
-			OPEN: 0,
-			USER_ONLINE: 0,
-			START: 0,
-			SEARCH: 0,
-			PLAYER_SELECTED: 0,
-			BET: 0,
-			WIN: 0,
-			PAUSE: 0,
-			CLOSE: 0,
-			USER_OFFLINE: 0,
+			OPEN: 105,
+			USER_ONLINE: 106,
+			START: 107,
+			PLAYER_SELECTED: 108,
+			BET: 109,
+			WIN: 110,
+			PAUSE: 111,
+			CLOSE: 112,
+			USER_OFFLINE: 113,
+		}
+	},
+
+	// Events sent by the server (2XX)
+	SERVER: {
+		LEAGUE: {
+			USER_NEW: 201,
+			USER_DELETED: 202,
+			USER_ONLINE: 203,
+			USER_OFFLINE: 204
+		},
+		MARKET: {
+			OPEN: 205,
+			USER_ONLINE: 206,
+			START: 207,
+			PLAYER_SELECTED: 208,
+			BET: 209,
+			WIN: 210,
+			PAUSE: 211,
+			CLOSE: 212,
+			USER_OFFLINE: 213,
+			SEARCH: 214
 		}
 	}
 }
@@ -62,7 +62,7 @@ class Socket {
 		console.log(`[Socket] initialization. league=${this.league} player=${this.player}`)
 	}
 
-	joinRoom(leagueName){
+	joinRoom(leagueName) {
 		this.league = leagueName
 		this.player = User.get().username
 		console.log(`[Socket] joinRoom league=${this.league} player=${this.player}`)
@@ -73,22 +73,23 @@ class Socket {
 	}
 
 	leagueEventHandler = (payload) => {
-	
+
 		const { event_type, data } = payload
-	
+
 		switch (event_type) {
-		case EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE:
-			console.log(`[Socket] user joined room ${this.league}. players online: ${data}`)
-			break
-	
-		case EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE:
-			console.log(`[Socket] user left room ${this.league}. players online: ${data}`)
-			break
-	
-		default:
-			console.error(`[Socket] event ${event_type} is not supported`)
+			case EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE:
+				console.log(`[Socket] user joined room ${this.league}. players online: ${data}`)
+				break
+
+			case EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE:
+				console.log(`[Socket] user left room ${this.league}. players online: ${data}`)
+				break
+
+			default:
+				console.error(`[Socket] event ${event_type} is not supported`)
 		}
 	}
+
 }
 
 // singleton Socket instance in the mobile app
@@ -99,8 +100,8 @@ const getSocketInstance = () => {
 		// only the first call to getSocketInstance will create a Socket instance
 		console.log("[Socket] getSocketInstance - CREATE New")
 		socketInstance = new Socket()
-	} 
-	else{
+	}
+	else {
 		console.log("[Socket] getSocketInstance - USE EXISTING")
 	}
 	return socketInstance
