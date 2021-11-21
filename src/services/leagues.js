@@ -82,9 +82,8 @@ const join = async ( id="", name="", password="", teamname="" ) =>
 			setActiveLeague(response.league)
 			Auction.init(response.league, response.team)
 			
-			// Initialize Socket and join room
-			const socket = SocketManager.getSocketInstance()
-			socket.joinRoom(response.league.name)
+			// join Socket room
+			SocketManager.getSocketInstance().joinRoom(response.league.name)
 
 			return Promise.resolve()
 		}

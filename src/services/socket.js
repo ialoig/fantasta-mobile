@@ -57,13 +57,30 @@ class Socket {
 			console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
 		})
 	}
+
+	leagueEventHandler = (payload) => {
+	
+		const { event_type, data } = payload
+	
+		switch (event_type) {
+		case EVENT_TYPE.SERVER_LEAGUE_JOIN:
+			console.log(`[Socket] user joined room ${this.league}. players online: ${data}`)
+			break
+	
+		case EVENT_TYPE.SERVER_LEAGUE_LEFT:
+			console.log(`[Socket] user left room ${this.league}. players online: ${data}`)
+			break
+	
+		default:
+			console.error(`[Socket] event ${event_type} is not supported`)
+		}
+	}
 }
 
 // singleton Socket instance in the mobile app
 let socketInstance = null
 
 const getSocketInstance = () => {
-	console.log("[Socket] getSocketInstance")
 	if (!socketInstance) {
 		// only the first call to getSocketInstance will create a Socket instance
 		console.log("[Socket] getSocketInstance - CREATE New")
@@ -76,6 +93,5 @@ const getSocketInstance = () => {
 }
 
 export const SocketManager = {
-	getSocketInstance,
-	EVENT_TYPE
+	getSocketInstance
 }
