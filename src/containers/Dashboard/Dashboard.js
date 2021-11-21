@@ -17,9 +17,6 @@ function Dashboard() {
 	const [team, setTeam] = useState(Leagues.getMyTeam(User.get().username))
 	const [players, setPlayers] = useState([])
 
-	// const handleLeagueEvents = useCallback(() => {
-	// 	console.log("8888888888888888888888888888888888")
-	// }, [])
 
 	useEffect(() => {
 		const apiLeague = Leagues.getActiveLeague()
@@ -36,27 +33,11 @@ function Dashboard() {
 		setTeam(myTeam)
 		setLeague(apiLeague)
 
-		// subscribe to socket events
-		socket.on(league.name, (payload) => {
-
-			const { event_type, data } = payload
-		
-			switch (event_type) {
-			case SocketManager.EVENT_TYPE.SERVER_LEAGUE_JOIN:
-				console.log(`[Socket] user joined room ${league.name}. players online: ${data}`)
-				break
-		
-			case SocketManager.EVENT_TYPE.SERVER_LEAGUE_LEFT:
-				console.log(`[Socket] user left room ${league.name}. players online: ${data}`)
-				break
-		
-			default:
-				console.error(`[Socket] event ${event_type} is not supported`)
-			}
-		})
-
+		// subscribe to socket League events
+		socket.on(league.name, SocketManager.getSocketInstance().leagueEventHandler)
+	
 		console.log("[Dashboard - useEffect] - league=", league.name)
-	}, [socket])
+	}, [socket]) // Re-run useEffect only when objects in this array have changed
 
 
 	//TODO: to be deleted after calculation of players from team object
