@@ -77,6 +77,10 @@ class Socket {
 		const { event_type, data } = payload
 
 		switch (event_type) {
+			case EVENT_TYPE.SERVER.LEAGUE.USER_NEW:
+				console.log(`[Socket] user joined room ${this.league} (it's a NEW user). players online: ${data}`)
+				break
+
 			case EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE:
 				console.log(`[Socket] user joined room ${this.league}. players online: ${data}`)
 				break
