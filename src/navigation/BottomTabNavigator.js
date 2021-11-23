@@ -13,10 +13,9 @@ import routes from "./routesNames"
 
 
 
-const Tab = createBottomTabNavigator()
-const socket = SocketManager.getSocketInstance()
-
 function BottomTabNavigator() {
+	const Tab = createBottomTabNavigator()
+	const socket = SocketManager.getSocketInstance()
 	return (
 		<socket.SocketContext.Provider value={socket.ioClient}>
 			<Tab.Navigator
