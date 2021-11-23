@@ -71,29 +71,6 @@ class Socket {
 			console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
 		})
 	}
-
-	leagueEventHandler = (payload) => {
-
-		const { event_type, data } = payload
-
-		switch (event_type) {
-			case EVENT_TYPE.SERVER.LEAGUE.USER_NEW:
-				console.log(`[Socket] user joined room ${this.league} (it's a NEW user). players online: ${data}`)
-				break
-
-			case EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE:
-				console.log(`[Socket] user joined room ${this.league}. players online: ${data}`)
-				break
-
-			case EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE:
-				console.log(`[Socket] user left room ${this.league}. players online: ${data}`)
-				break
-
-			default:
-				console.error(`[Socket] event ${event_type} is not supported`)
-		}
-	}
-
 }
 
 // singleton Socket instance in the mobile app
@@ -112,5 +89,6 @@ const getSocketInstance = () => {
 }
 
 export const SocketManager = {
+	EVENT_TYPE,
 	getSocketInstance
 }

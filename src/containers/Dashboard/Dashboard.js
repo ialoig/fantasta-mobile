@@ -10,13 +10,13 @@ import TeamDetails from "../Team/TeamDetails"
 
 function Dashboard() {
 
-	const socket = useContext(SocketManager.getSocketInstance().SocketContext)
+	const ioClient = useContext(SocketManager.getSocketInstance().SocketContext)
 	const { navigate, goBack } = useNavigation()
 
 	const [league, setLeague] = useState(Leagues.getActiveLeague())
 	const [team, setTeam] = useState(Leagues.getMyTeam(User.get().username))
 	const [players, setPlayers] = useState([])
-
+	const [onlinePlayers, setOnlinePlayers] = useState([])
 
 	useEffect(() => {
 		const apiLeague = Leagues.getActiveLeague()
@@ -34,10 +34,24 @@ function Dashboard() {
 		setLeague(apiLeague)
 
 		// subscribe to socket League events
-		socket.on(league.name, SocketManager.getSocketInstance().leagueEventHandler)
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
+			console.log(`[Dashboard - Socket] user joined room ${league.name} (it's a NEW user). users online: ${payload}`)
+			//TODO: fetch league data again
+			setOnlinePlayers(payload)
+		})
+
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE, (payload) => {
+			console.log(`[Dashboard - Socket] user joined room ${league.name}. users online: ${payload}`)
+			setOnlinePlayers(payload)
+		})
+
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE, (payload) => {
+			console.log(`[Dashboard - Socket] user left room ${league.name}. users online: ${payload}`)
+			setOnlinePlayers(payload)
+		})
 
 		console.log("[Dashboard - useEffect] - league=", league.name)
-	}, [socket]) // Re-run useEffect only when objects in this array have changed
+	}, [ioClient]) // Re-run useEffect when objects in this array have changed
 
 
 	//TODO: to be deleted after calculation of players from team object
