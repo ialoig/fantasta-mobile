@@ -20,7 +20,7 @@ const EVENT_TYPE = {
 			OPEN: 105,
 			USER_ONLINE: 106,
 			START: 107,
-			PLAYER_SELECTED: 108,
+			FOOTBALL_PLAYER_SELECTED: 108,
 			BET: 109,
 			WIN: 110,
 			PAUSE: 111,
@@ -41,7 +41,7 @@ const EVENT_TYPE = {
 			OPEN: 205,
 			USER_ONLINE: 206,
 			START: 207,
-			PLAYER_SELECTED: 208,
+			FOOTBALL_PLAYER_SELECTED: 208,
 			BET: 209,
 			WIN: 210,
 			PAUSE: 211,
@@ -55,18 +55,19 @@ const EVENT_TYPE = {
 class Socket {
 
 	constructor() {
-		this.league = null
+		this.league_room = null
+		this.market_room = null
 		this.player = null
 		this.ioClient = io(`${CUSTOM_CONFIG.socket_url}`)
 		this.SocketContext = React.createContext()
-		console.log(`[Socket] initialization. league=${this.league} player=${this.player}`)
+		console.log("[Socket] initialization")
 	}
 
 	joinRoom(leagueName) {
-		this.league = leagueName
+		this.league_room = `league=${leagueName}`
 		this.player = User.get().username
-		console.log(`[Socket] joinRoom league=${this.league} player=${this.player}`)
-		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { room: this.league, player: this.player }, (response) => {
+		console.log(`[Socket] joinRoom ${this.league_room} player=${this.player}`)
+		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { room: this.league_room, player: this.player }, (response) => {
 			console.log(`response.status: ${response.status}`)
 			console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
 		})
