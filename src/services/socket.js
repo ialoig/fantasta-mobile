@@ -52,6 +52,9 @@ const EVENT_TYPE = {
 	}
 }
 
+/**
+ * This class is instantiated only once and sharead among all pages in the mobile app via the React.Context.
+ */
 class Socket {
 
 	constructor() {
@@ -67,7 +70,8 @@ class Socket {
 		this.league_room = `league=${leagueName}`
 		this.player = User.get().username
 		console.log(`[Socket] joinRoom ${this.league_room} player=${this.player}`)
-		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { room: this.league_room, player: this.player }, (response) => {
+		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { room: this.league_room, user: this.player }, (response) => {
+			// TODO: check callback status
 			console.log(`response.status: ${response.status}`)
 			console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
 		})
