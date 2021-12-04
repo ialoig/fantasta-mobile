@@ -71,7 +71,10 @@ class Socket {
 		this.player = User.get().username
 		console.log(`[Socket] joinRoom ${this.league_room} player=${this.player}`)
 		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { room: this.league_room, user: this.player }, (response) => {
-			// TODO: check callback status
+			if(response.error){
+				console.error(`[Socket] joinRoom Error: ${response.error}`)
+				// TODO: handle error
+			}
 			console.log(`response.status: ${response.status}`)
 			console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
 		})
