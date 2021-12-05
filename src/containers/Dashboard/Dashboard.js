@@ -18,6 +18,7 @@ function Dashboard() {
 	const [players, setPlayers] = useState([])
 	const [onlinePlayers, setOnlinePlayers] = useState([])
 
+	/*
 	useEffect(() => {
 		const apiLeague = Leagues.getActiveLeague()
 		const myTeam = Leagues.getMyTeam(User.get().username)
@@ -51,6 +52,45 @@ function Dashboard() {
 		})
 
 		console.log("[Dashboard - useEffect] - league=", league.name)
+	}, [ioClient]) // Re-run useEffect when objects in this array have changed
+	*/
+	
+	useEffect(() => {
+		const apiLeague = Leagues.getActiveLeague()
+		const myTeam = Leagues.getMyTeam(User.get().username)
+
+		getRandomPlayers()
+
+		//get players from api
+		// const apiPlayers = Object.values(Players.getPlayers())
+
+		// const players = team.footballPlayers
+		// setPlayers(players)
+
+		setTeam(myTeam)
+		setLeague(apiLeague)
+		console.log("[Dashboard - useEffect] - league=", league.name)
+	}, [])
+
+	useEffect(() => {
+		// subscribe to socket League events
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
+			console.log(`[Dashboard - Socket] user joined room ${league.name} (it's a NEW user). users online: ${payload}`)
+			//TODO: fetch league data again
+			setOnlinePlayers(payload)
+		})
+
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE, (payload) => {
+			console.log(`[Dashboard - Socket] user joined room ${league.name}. users online: ${payload}`)
+			setOnlinePlayers(payload)
+		})
+
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE, (payload) => {
+			console.log(`[Dashboard - Socket] user left room ${league.name}. users online: ${payload}`)
+			setOnlinePlayers(payload)
+		})
+
+		console.log("[Dashboard - Socket] - league=", league.name)
 	}, [ioClient]) // Re-run useEffect when objects in this array have changed
 
 
