@@ -87,11 +87,7 @@ let socketInstance = null
 const getSocketInstance = () => {
 	if (!socketInstance) {
 		// only the first call to getSocketInstance will create a Socket instance
-		console.log("[Socket] getSocketInstance - CREATE New")
 		socketInstance = new Socket()
-	}
-	else {
-		console.log("[Socket] getSocketInstance - USE EXISTING")
 	}
 	return socketInstance
 }
