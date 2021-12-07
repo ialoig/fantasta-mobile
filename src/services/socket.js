@@ -52,6 +52,9 @@ const EVENT_TYPE = {
 	}
 }
 
+const league_prefix = "league="
+const market_prefix = "market="
+
 /**
  * This class is instantiated only once and sharead among all pages in the mobile app via the React.Context.
  */
@@ -67,7 +70,8 @@ class Socket {
 	}
 
 	joinRoom(leagueName) {
-		this.league_room = `league=${leagueName}`
+		this.league_room = `${league_prefix}${leagueName}`
+		this.market_room = `${market_prefix}${leagueName}`
 		this.player = User.get().username
 		console.log(`[Socket] joinRoom ${this.league_room} player=${this.player}`)
 		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { room: this.league_room, user: this.player }, (response) => {

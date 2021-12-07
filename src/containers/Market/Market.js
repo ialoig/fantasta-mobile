@@ -6,9 +6,11 @@ import { Text, View } from "react-native"
 import { Button, Header } from "../../components"
 import Icon from "../../components/Icon/Icon"
 import routes from "../../navigation/routesNames"
+import { SocketManager } from "../../services/socket"
 import { textStyles } from "../../styles"
 import styles from "./styles"
 
+const ioClient = SocketManager.getSocketInstance().ioClient
 function Market({ marketOpen }) {
 
 	const { goBack } = useNavigation()
@@ -63,6 +65,15 @@ function MarketActive() {
 
 	const { navigate } = useNavigation()
 
+	const joinMarketRoom = () => {
+		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.USER_ONLINE, (response) => {
+			console.log(`callbak.response.status: ${response.status}`)
+			console.log(`callback.response.error: ${JSON.stringify(response.error, null, 2)}`)
+			navigate(routes.MARKET_WAITING_ROOM)
+		})
+
+	}
+
 	return (
 		<>
 			<View style={styles.image} >
@@ -82,7 +93,8 @@ function MarketActive() {
 					// 		id: "785",
 					// 		isClassic: true
 					// 	})}
-					onPress={() => navigate(routes.MARKET_MY_TURN)}
+					// onPress={() => navigate(routes.MARKET_MY_TURN)}
+					onPress={() => joinMarketRoom()}
 					type={"primary"}
 					size={"large"}
 				/>
