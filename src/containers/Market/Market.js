@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import React, { useState } from "react"
+import React from "react"
 import { Text, View } from "react-native"
 import { Button, Header } from "../../components"
 import Icon from "../../components/Icon/Icon"
@@ -9,23 +9,21 @@ import routes from "../../navigation/routesNames"
 import { textStyles } from "../../styles"
 import styles from "./styles"
 
-function Market(props) {
-
+function Market({ marketOpen }) {
 
 	const { goBack } = useNavigation()
 
 	//should be used to define when a market window is open.
 	//to be defined correctly when implementing events
-	const [isMarketActive, setIsMarketActive] = useState(true)
 
 	return (
 		<View style={styles.container}>
 			{
-				!isMarketActive && <MarketNotActive />
+				!marketOpen && <MarketNotActive />
 			}
 
 			{
-				isMarketActive && <MarketActive />
+				marketOpen && <MarketActive />
 			}
 
 			{/* it has been defined as last component because it have to be seen over the others */}
@@ -36,7 +34,6 @@ function Market(props) {
 				onPressLeft={() => goBack() }
 			/>
 		</View>
-		
 	)
 }
 

@@ -1,59 +1,20 @@
 
 import { useNavigation } from "@react-navigation/native"
-import React, { useCallback, useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Header } from "../../components"
 import routes from "../../navigation/routesNames"
 import { Leagues, Players, User } from "../../services"
-import { SocketManager } from "../../services/socket"
 import { commonStyle } from "../../styles"
 import TeamDetails from "../Team/TeamDetails"
 
 function Dashboard() {
 
-	const ioClient = useContext(SocketManager.getSocketInstance().SocketContext)
 	const { navigate, goBack } = useNavigation()
 
 	const [league, setLeague] = useState(Leagues.getActiveLeague())
 	const [team, setTeam] = useState(Leagues.getMyTeam(User.get().username))
 	const [players, setPlayers] = useState([])
 	const [onlinePlayers, setOnlinePlayers] = useState([])
-
-	/*
-	useEffect(() => {
-		const apiLeague = Leagues.getActiveLeague()
-		const myTeam = Leagues.getMyTeam(User.get().username)
-
-		getRandomPlayers()
-
-		//get players from api
-		// const apiPlayers = Object.values(Players.getPlayers())
-
-		// const players = team.footballPlayers
-		// setPlayers(players)
-
-		setTeam(myTeam)
-		setLeague(apiLeague)
-
-		// subscribe to socket League events
-		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
-			console.log(`[Dashboard - Socket] user joined room ${league.name} (it's a NEW user). users online: ${payload}`)
-			//TODO: fetch league data again
-			setOnlinePlayers(payload)
-		})
-
-		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE, (payload) => {
-			console.log(`[Dashboard - Socket] user joined room ${league.name}. users online: ${payload}`)
-			setOnlinePlayers(payload)
-		})
-
-		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE, (payload) => {
-			console.log(`[Dashboard - Socket] user left room ${league.name}. users online: ${payload}`)
-			setOnlinePlayers(payload)
-		})
-
-		console.log("[Dashboard - useEffect] - league=", league.name)
-	}, [ioClient]) // Re-run useEffect when objects in this array have changed
-	*/
 	
 	useEffect(() => {
 		const apiLeague = Leagues.getActiveLeague()
@@ -71,28 +32,6 @@ function Dashboard() {
 		setLeague(apiLeague)
 		console.log("[Dashboard - useEffect] - league=", league.name)
 	}, [])
-
-	useEffect(() => {
-		// subscribe to socket League events
-		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
-			console.log(`[Dashboard - Socket] user joined room ${league.name} (it's a NEW user). users online: ${payload}`)
-			//TODO: fetch league data again
-			setOnlinePlayers(payload)
-		})
-
-		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE, (payload) => {
-			console.log(`[Dashboard - Socket] user joined room ${league.name}. users online: ${payload}`)
-			setOnlinePlayers(payload)
-		})
-
-		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE, (payload) => {
-			console.log(`[Dashboard - Socket] user left room ${league.name}. users online: ${payload}`)
-			setOnlinePlayers(payload)
-		})
-
-		console.log("[Dashboard - Socket] - league=", league.name)
-	}, [ioClient]) // Re-run useEffect when objects in this array have changed
-
 
 	//TODO: to be deleted after calculation of players from team object
 	const randomNumberFromRange = (min, max) => {
