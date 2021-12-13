@@ -8,10 +8,14 @@ import { Leagues } from "../../services"
 import { textStyles } from "../../styles"
 import styles from "./styles"
 
-function MarketWaitingRoom(props) {
 
-	const [teams, setTeams] = useState(Leagues.getTeams())
+function MarketWaitingRoom({ onlinePlayersMarket }) {
 
+	console.log("MarketWaitingRoom")
+	console.log(onlinePlayersMarket)
+
+	const teams = Leagues.getTeams()
+	console.log(teams)
 
 	return (
 		<View style={styles.container}>
@@ -32,12 +36,14 @@ function MarketWaitingRoom(props) {
 				<ScrollView showsVerticalScrollIndicator={false} >
 					{
 						teams?.map( team => {
+							const isUserOnline = onlinePlayersMarket.find(user => user === team.user.name) ? true : false
+
 							return (
 								<AuctionCard 
-									key={team}
-									name={team}
-									description={I18n.translate("online")}//TODO: to change when event implemented
-									highlight={true}//should be true when user is online
+									key={team._id}
+									name={team.name}
+									description={I18n.translate(isUserOnline ? "online" : "offline")}//TODO: to change when event implemented
+									highlight={isUserOnline}//should be true when user is online
 								/>
 							)
 						})
