@@ -118,10 +118,7 @@ const getParticipants = () => {
  */
 const getTeams = () => {
 	const teams = ACTIVE_LEAGUE.teams
-	
-	return teams.map( (team) => {
-		return team.name
-	})
+	return teams
 }
 
 export const Leagues = {

@@ -25,6 +25,8 @@ function BottomTabNavigator() {
 	const [marketPause, setMarketPause] = useState(false)
 	const [marketTurnUser, setMarketTurnUser] = useState(false)
 
+	const [marketJoined, setMarketJoined] = useState(false)
+
 	useEffect(() => {
 
 		// League events
@@ -107,6 +109,15 @@ function BottomTabNavigator() {
 	},
 	[])
 
+	const joinMarketRoom = () => {
+		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.USER_ONLINE, (response) => {
+			console.log(`callbak.response.status: ${response.status}`)
+			console.log(`callback.response.error: ${JSON.stringify(response.error, null, 2)}`)
+			// TODO: check response OK from server
+			setMarketJoined(true)
+		})
+	}
+
 	return (
 		// <socket.SocketContext.Provider value={socket.ioClient}>
 		<Tab.Navigator
@@ -160,7 +171,7 @@ function BottomTabNavigator() {
 					}
 				}}
 			>
-				{() => <Market marketOpen={marketOpen} />}
+				{() => <Market marketOpen={marketOpen} marketJoined={marketJoined} joinMarketRoom={joinMarketRoom} onlinePlayersMarket={onlinePlayersMarket}/>}
 			</Tab.Screen>
 
 			<Tab.Screen
