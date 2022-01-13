@@ -1,24 +1,37 @@
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { ScrollView, Text, View } from "react-native"
+import { Button } from "../../components"
 import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 import Icon from "../../components/Icon/Icon"
 import { Leagues } from "../../services"
+import { SocketManager } from "../../services/socket"
 import { textStyles } from "../../styles"
 import styles from "./styles"
 
+const socket = SocketManager.getSocketInstance()
+const ioClient = socket.ioClient
 
 function MarketWaitingRoom({ onlinePlayersMarket }) {
 
-	console.log("MarketWaitingRoom")
-	console.log(onlinePlayersMarket)
+	const [teams, setTeams] = useState(Leagues.getTeams())
 
-	const teams = Leagues.getTeams()
-	console.log(teams)
+	useEffect(() => {
+		setTeams(Leagues.getTeams())
+	}, [teams])
+
+	const marketStart = () => {
+		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.START, (response) => {
+			console.log(`callbak.response.status: ${response.status}`)
+			console.log(`callback.response.error: ${JSON.stringify(response.error, null, 2)}`)
+			// TODO: check response OK from server
+		})
+	}
 
 	return (
 		<View style={styles.container}>
+
 			<View style={styles.image} >
 				<Icon name={"waiting"} width={120} height={120} />
 				<Text style={textStyles.h2}>
@@ -28,18 +41,17 @@ function MarketWaitingRoom({ onlinePlayersMarket }) {
 
 			<View style={styles.teamList}>
 
-				{/** TODO: calculate teams online vs offline */}
 				<Text style={[textStyles.h3, styles.textDescription]}>
-					{"Online 12/30"}
+					{`Online ${onlinePlayersMarket.length}/${teams.length}`}
 				</Text>
 
 				<ScrollView showsVerticalScrollIndicator={false} >
 					{
-						teams?.map( team => {
+						teams?.map(team => {
 							const isUserOnline = onlinePlayersMarket.find(user => user === team.user.name) ? true : false
 
 							return (
-								<AuctionCard 
+								<AuctionCard
 									key={team._id}
 									name={team.name}
 									description={I18n.translate(isUserOnline ? "online" : "offline")}//TODO: to change when event implemented
@@ -50,6 +62,18 @@ function MarketWaitingRoom({ onlinePlayersMarket }) {
 					}
 				</ScrollView>
 			</View>
+
+			{
+				onlinePlayersMarket.length == teams.length &&
+				<View style={styles.joinButton}>
+					<Button
+						title={I18n.translate("Start")}
+						onPress={() => marketStart()}
+						type={"primary"}
+						size={"large"}
+					/>
+				</View>
+			}
 
 		</View>
 	)

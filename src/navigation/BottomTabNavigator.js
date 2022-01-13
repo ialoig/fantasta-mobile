@@ -76,7 +76,7 @@ function BottomTabNavigator() {
 			setMarketStart(false)
 		})
 
-		// Existing user left the Market (not implemented)
+		// Existing user left the Market (only on disconnection)
 		// use case: show online users in market waiting room
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.USER_OFFLINE, (payload) => {
 			console.log(`[Socket] user left room "${socket.market_room}". users online: ${payload}`)
@@ -90,7 +90,7 @@ function BottomTabNavigator() {
 			setOnlinePlayersMarket(payload)
 		})
 
-		// Admin start the Auction (not used)
+		// Admin start the Auction (used)
 		// use case: set the market as started
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.START, (payload) => {
 			console.log(`[Socket] market room "${socket.market_room}"is started. users online: ${payload}`)
@@ -193,7 +193,14 @@ function BottomTabNavigator() {
 					}
 				}}
 			>
-				{() => <Market marketOpen={marketOpen} marketJoined={marketJoined} joinMarketRoom={joinMarketRoom} onlinePlayersMarket={onlinePlayersMarket}/>}
+				{() => <Market 
+					marketOpen={marketOpen} 
+					marketJoined={marketJoined}
+					joinMarketRoom={joinMarketRoom} 
+					onlinePlayersMarket={onlinePlayersMarket}
+					marketStart={marketStart}
+					marketTurnUser={marketTurnUser.turn}
+				/>}
 			</Tab.Screen>
 
 			<Tab.Screen
