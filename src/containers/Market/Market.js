@@ -5,20 +5,15 @@ import React, { useState } from "react"
 import { Text, View } from "react-native"
 import { Button, Header } from "../../components"
 import Icon from "../../components/Icon/Icon"
+import { User } from "../../services"
 import { textStyles } from "../../styles"
+import MarketMyTurn from "./MarketMyTurn"
+import MarketOpponentTurn from "./MarketOpponentTurn"
 import MarketWaitingRoom from "./MarketWaitingRoom"
 import styles from "./styles"
-function Market({ marketOpen, marketJoined, joinMarketRoom, onlinePlayersMarket }) {
+function Market({ marketOpen, marketJoined, joinMarketRoom, onlinePlayersMarket, marketStart, marketTurnUser }) {
 
 	const { goBack } = useNavigation()
-
-
-	//should be used to define when a market window is open.
-	//to be defined correctly when implementing events
-
-	console.log(`BEFORE marketOpen=${marketOpen}`)
-	console.log(`BEFORE marketJoined=${marketJoined}`)
-	console.log(`BEFORE onlinePlayersMarket=${onlinePlayersMarket}`)
 
 	const MarketNotActive = () => {
 		return (
@@ -56,10 +51,18 @@ function Market({ marketOpen, marketJoined, joinMarketRoom, onlinePlayersMarket 
 				</View>
 			</>
 		)
-	} 
+	}
 
-	console.log(`marketOpen=${marketOpen}`)
-	console.log(`marketJoined=${marketJoined}`)
+	const myTurn = () => { 
+		// TODO: sometimes appear
+		// marketTurnUser=undefined
+		// User.get().username=user04
+		// myTurn=false
+		console.log(`marketTurnUser=${marketTurnUser}`)
+		console.log(`User.get().username=${User.get().username}`)
+		console.log(`myTurn=${marketTurnUser == User.get().username}`)
+		return marketTurnUser == User.get().username
+	}
 
 	return (
 		<View style={styles.container}>
@@ -72,7 +75,15 @@ function Market({ marketOpen, marketJoined, joinMarketRoom, onlinePlayersMarket 
 			}
 
 			{
-				marketOpen && marketJoined && <MarketWaitingRoom onlinePlayersMarket={onlinePlayersMarket}/>
+				marketOpen && marketJoined && !marketStart && <MarketWaitingRoom onlinePlayersMarket={onlinePlayersMarket}/>
+			}
+
+			{
+				marketOpen && marketJoined && marketStart && myTurn() && <MarketMyTurn />
+			}
+
+			{
+				marketOpen && marketJoined && marketStart && !myTurn() && <MarketOpponentTurn />
 			}
 
 			{/* it has been defined as last component because it have to be seen over the others */}
