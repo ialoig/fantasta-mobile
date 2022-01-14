@@ -52,3 +52,7 @@ export const dynamicHeight = (width, num) => {
 	const pixel = PixelRatio.roundToNearestPixel(height)
 	return pixel
 }
+
+export const getBottomNavigationHeight = () => {
+	return dynamicHeight(375, 84)
+}

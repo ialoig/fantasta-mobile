@@ -9,6 +9,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+tunnel/
 
 # macOS
 .DS_Store

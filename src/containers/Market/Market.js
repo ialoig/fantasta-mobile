@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import React, { useState } from "react"
+import React from "react"
 import { Text, View } from "react-native"
 import { Button, Header } from "../../components"
 import Icon from "../../components/Icon/Icon"
@@ -11,7 +11,14 @@ import MarketMyTurn from "./MarketMyTurn"
 import MarketOpponentTurn from "./MarketOpponentTurn"
 import MarketWaitingRoom from "./MarketWaitingRoom"
 import styles from "./styles"
-function Market({ marketOpen, marketJoined, joinMarketRoom, onlinePlayersMarket, marketStart, marketTurnUser }) {
+function Market({ 
+	marketOpen, 
+	marketJoined, 
+	joinMarketRoom, 
+	onlinePlayersMarket, 
+	marketStart, 
+	marketTurnUser 
+}) {
 
 	const { goBack } = useNavigation()
 
@@ -86,6 +93,7 @@ function Market({ marketOpen, marketJoined, joinMarketRoom, onlinePlayersMarket,
 				marketOpen && marketJoined && marketStart && !myTurn() && <MarketOpponentTurn />
 			}
 
+
 			{/* it has been defined as last component because it have to be seen over the others */}
 			<Header 
 				title="market" 
@@ -98,7 +106,12 @@ function Market({ marketOpen, marketJoined, joinMarketRoom, onlinePlayersMarket,
 }
 
 Market.propTypes = {
-
+	marketOpen: PropTypes.bool,
+	marketJoined: PropTypes.bool,
+	joinMarketRoom: PropTypes.func,
+	onlinePlayersMarket: PropTypes.array,
+	marketStart: PropTypes.bool,
+	marketTurnUser: PropTypes.array
 }
 
 export default Market

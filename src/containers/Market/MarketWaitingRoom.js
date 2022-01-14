@@ -7,17 +7,19 @@ import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 import Icon from "../../components/Icon/Icon"
 import { Leagues } from "../../services"
 import { SocketManager } from "../../services/socket"
-import { textStyles } from "../../styles"
+import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
 
 const socket = SocketManager.getSocketInstance()
 const ioClient = socket.ioClient
 
+ 
 function MarketWaitingRoom({ onlinePlayersMarket }) {
 
 	const [teams, setTeams] = useState(Leagues.getTeams())
 
 	useEffect(() => {
+		console.log("teams:", teams)
 		setTeams(Leagues.getTeams())
 	}, [teams])
 
@@ -30,7 +32,7 @@ function MarketWaitingRoom({ onlinePlayersMarket }) {
 	}
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, commonStyle.paddingHeader]}>
 
 			<View style={styles.image} >
 				<Icon name={"waiting"} width={120} height={120} />
@@ -63,6 +65,7 @@ function MarketWaitingRoom({ onlinePlayersMarket }) {
 				</ScrollView>
 			</View>
 
+			{/* button Start is shown when all participants are online */}
 			{
 				onlinePlayersMarket.length == teams.length &&
 				<View style={styles.joinButton}>
@@ -80,7 +83,7 @@ function MarketWaitingRoom({ onlinePlayersMarket }) {
 }
 
 MarketWaitingRoom.propTypes = {
-
+	onlinePlayersMarket: PropTypes.array,
 }
 
 export default MarketWaitingRoom
