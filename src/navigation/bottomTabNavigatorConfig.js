@@ -1,11 +1,11 @@
 import { Platform, StyleSheet } from "react-native"
 import colors from "../styles/colors"
-import { dynamicHeight } from "../utils/pixelResolver"
+import { getBottomNavigationHeight } from "../utils/pixelResolver"
 
 
 export const bottomTabStyle = {
 	position: "absolute",
-	height: dynamicHeight(375, 84),
+	height: getBottomNavigationHeight(),
 	borderTopWidth: 0,
 	borderTopLeftRadius: 32,
 	borderTopRightRadius: 32,
