@@ -5,13 +5,12 @@ import { Text, View } from "react-native"
 import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 import Countdown from "../../components/Countdown/Countdown"
 import AnimatedIcon from "../../components/Icon/AnimatedIcon"
-import Icon from "../../components/Icon/Icon"
-import { textStyles } from "../../styles"
+import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
 
 function MarketOpponentTurn(props) {
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, commonStyle.paddingHeader]}>
 			<Text style={[textStyles.h2, textStyles.alignCenter]}>
 				{I18n.translate("remaining_time")}
 			</Text>

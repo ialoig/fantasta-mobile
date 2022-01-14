@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native"
 import { colors } from "../../styles"
 import { deviceScreenHeight, deviceScreenWidth } from "../../utils/deviceUtils"
-import { dynamicHeight } from "../../utils/pixelResolver"
+import { dynamicHeight, getBottomNavigationHeight } from "../../utils/pixelResolver"
 
 
 export default StyleSheet.create({
@@ -38,17 +38,19 @@ export default StyleSheet.create({
 	image: {
 		alignItems: "center",
 		flex: 1,
-		justifyContent: "center"
+		justifyContent: "center",
+		position: "relative"
 	},
 	joinButton: {
+		...StyleSheet.absoluteFillObject,
 		alignItems: "center",
-		justifyContent: "center",
-		paddingBottom: 150,
-		position: "relative"
+		justifyContent: "flex-end",
+		marginBottom: getBottomNavigationHeight() + 30,
+		position: "absolute"
 	},
 	opponentTurnInfo: {
 		flex: 1,
-		justifyContent: "space-between"
+		justifyContent: "space-between",
 	},
 	playersList: {
 		marginBottom: 50,
@@ -57,7 +59,8 @@ export default StyleSheet.create({
 	roles: {
 		flexDirection: "row",
 		justifyContent: "space-between",
-		marginVertical: 20
+		marginBottom: getBottomNavigationHeight(),
+		paddingVertical: 10
 	},
 	statistics: {
 		alignItems: "center",
@@ -67,6 +70,7 @@ export default StyleSheet.create({
 	teamList: {
 		color: colors.textPlaceholder,
 		flex: 1,
+		marginBottom: getBottomNavigationHeight()
 	},
 	textDescription: {
 		color: colors.textPlaceholder,

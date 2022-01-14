@@ -1,13 +1,11 @@
-import { useRoute } from "@react-navigation/core"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { Text, View } from "react-native"
 import Countdown from "../../components/Countdown/Countdown"
-import { style } from "../../components/Icon/svg/CreateLeagueIcon"
 import PlayersComponent from "../../components/Players/PlayersComponent"
 import { Players } from "../../services"
-import { textStyles } from "../../styles"
+import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
 
 function MarketMyTurn(props) {
@@ -32,7 +30,7 @@ function MarketMyTurn(props) {
 
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, commonStyle.paddingHeader]}>
 
 			<View style={styles.countdown_container}>
 				<Text style={textStyles.h2}>
