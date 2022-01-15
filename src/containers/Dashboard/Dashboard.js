@@ -1,5 +1,6 @@
 
 import { useNavigation } from "@react-navigation/native"
+import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { Header } from "../../components"
 import routes from "../../navigation/routesNames"
@@ -15,7 +16,7 @@ function Dashboard() {
 	const [team, setTeam] = useState(Leagues.getMyTeam(User.get().username))
 	const [players, setPlayers] = useState([])
 	const [onlinePlayers, setOnlinePlayers] = useState([])
-	
+
 	useEffect(() => {
 		const apiLeague = Leagues.getActiveLeague()
 		const myTeam = Leagues.getMyTeam(User.get().username)
@@ -83,9 +84,8 @@ function Dashboard() {
 	)
 }
 
-Dashboard.propTypes = {
+Dashboard.propTypes = {}
 
-}
 
 export default Dashboard
 
