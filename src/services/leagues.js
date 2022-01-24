@@ -51,7 +51,7 @@ const create = async (settings) => {
 		let response = await axios.post("/league/create", settings, {})
 		addLeague(response)
 		setActiveLeague(response.league)
-		MarketStatus.init(response.league, response.team)
+		//TODO: response.market from server
 		return Promise.resolve()
 	}
 	catch (error) {
@@ -74,10 +74,7 @@ const join = async (id = "", name = "", password = "", teamname = "") => {
 			let response = await axios.put("/league/join", data, {})
 			addLeague(response)
 			setActiveLeague(response.league)
-			MarketStatus.init(response.league, response.team)
-
-			// register league event
-			SocketManager.getSocketInstance().registerLeagueEvents()
+			//TODO: response.market from server
 
 			// join Socket room
 			SocketManager.getSocketInstance().joinRoom(response.league.name)
