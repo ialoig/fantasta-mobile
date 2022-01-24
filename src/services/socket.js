@@ -2,7 +2,6 @@ import React from "react"
 import { io } from "socket.io-client"
 import { CUSTOM_CONFIG } from "../../custom_config" // TODO: temporary solution for development
 import { User } from "../services/user"
-import { MarketStatus } from "./market"
 
 const EVENT_TYPE = {
 
@@ -71,7 +70,6 @@ class Socket {
 	}
 
 	joinRoom(leagueName) {
-		//TODO: registerLeagueEvents()
 		this.league_room = `${league_prefix}${leagueName}`
 		this.market_room = `${market_prefix}${leagueName}`
 		this.player = User.get().username
@@ -84,35 +82,6 @@ class Socket {
 			}
 			console.log(`response.status: ${response.status}`)
 			console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
-		})
-		// TODO: registerMarketEvents()
-	}
-
-	registerLeagueEvents() {
-		this.ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
-			console.log(`[Socket] user joined league room "${this.league_room}" (it's a NEW user). users online: ${payload}`)
-			MarketStatus.setOnlinePlayers(payload)
-			//TODO: fetch league data again
-		})
-
-		// Existing user joined the League (not used)
-		// use case: tbd
-		this.ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE, (payload) => {
-			console.log(`[Socket] user joined league room "${this.league_room}". users online: ${payload}`)
-			MarketStatus.setOnlinePlayers(payload)
-		})
-
-		this.ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE, (payload) => {
-			console.log(`[Socket] user left league room "${this.league_room}". users online: ${payload}`)
-			MarketStatus.setOnlinePlayers(payload)
-		})
-
-		// Existing user deleted from the League (not used)
-		// use case: force reload league data to not see the user in Team page
-		this.ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_DELETED, (payload) => {
-			console.log(`[Socket] user deleted from league. users online: ${payload}`)
-			//TODO: fetch league data again
-			MarketStatus.setOnlinePlayers(payload)
 		})
 	}
 }

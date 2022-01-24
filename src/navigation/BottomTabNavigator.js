@@ -39,39 +39,39 @@ function BottomTabNavigator() {
 		// ------- League events -------
 		// New user joined the League (not used)
 		// use case: force reload league data to see new user in Team page
-		// ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
-		// 	console.log(`[Socket] user joined league room "${socket.league_room}" (it's a NEW user). users online: ${payload}`)
-		// 	//TODO: fetch league data again
-		// 	if (!didUnmount) {
-		// 		setOnlinePlayersLeague(payload)
-		// 	}
-		// })
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
+			console.log(`[Socket] user joined league room "${socket.league_room}" (it's a NEW user). users online: ${payload}`)
+			//TODO: fetch league data again
+			if (!didUnmount) {
+				setOnlinePlayersLeague(payload)
+			}
+		})
 
-		// // Existing user joined the League (not used)
-		// // use case: tbd
-		// ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE, (payload) => {
-		// 	console.log(`[Socket] user joined league room "${socket.league_room}". users online: ${payload}`)
-		// 	if (!didUnmount) {
-		// 		setOnlinePlayersLeague(payload)
-		// 	}
-		// })
+		// Existing user joined the League (not used)
+		// use case: tbd
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE, (payload) => {
+			console.log(`[Socket] user joined league room "${socket.league_room}". users online: ${payload}`)
+			if (!didUnmount) {
+				setOnlinePlayersLeague(payload)
+			}
+		})
 
 		// Existing user left the league (not used)
 		// use case: tdb
-		// ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE, (payload) => {
-		// 	console.log(`[Socket] user left league room "${socket.league_room}". users online: ${payload}`)
-		// 	setOnlinePlayersLeague(payload)
-		// })
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE, (payload) => {
+			console.log(`[Socket] user left league room "${socket.league_room}". users online: ${payload}`)
+			setOnlinePlayersLeague(payload)
+		})
 
-		// // Existing user deleted from the League (not used)
-		// // use case: force reload league data to not see the user in Team page
-		// ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_DELETED, (payload) => {
-		// 	console.log(`[Socket] user deleted from league. users online: ${payload}`)
-		// 	//TODO: fetch league data again
-		// 	if (!didUnmount) {
-		// 		setOnlinePlayersLeague(payload)
-		// 	}
-		// })
+		// Existing user deleted from the League (not used)
+		// use case: force reload league data to not see the user in Team page
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_DELETED, (payload) => {
+			console.log(`[Socket] user deleted from league. users online: ${payload}`)
+			//TODO: fetch league data again
+			if (!didUnmount) {
+				setOnlinePlayersLeague(payload)
+			}
+		})
 
 		// ------- Market events -------
 		// Admin open the market (used)
