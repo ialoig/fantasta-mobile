@@ -51,7 +51,7 @@ function HeaderTitle({ children }) {
 			return I18n.translate("dashboard")
 		case routes.TEAM:
 			return I18n.translate("team")
-		case routes.MARKET, routes.MARKET_OPEN_AUCTION, routes.MARKET_WAITING_ROOM,
+		case routes.MARKET, routes.MARKET_CREATE, routes.MARKET_OPEN_AUCTION, routes.MARKET_WAITING_ROOM,
 		routes.MARKET_OPPONENT_TURN, routes.MARKET_PLAYER_SELECTED,
 		routes.MARKET_MY_TURN, routes.MARKET_MY_TURN_PLAYER_SELECTED:
 			return I18n.translate("market")

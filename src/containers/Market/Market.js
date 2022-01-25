@@ -1,12 +1,13 @@
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Text, View } from "react-native"
 import { Button, Header } from "../../components"
 import Icon from "../../components/Icon/Icon"
-import { User } from "../../services"
+import { Leagues, User } from "../../services"
 import { textStyles } from "../../styles"
+import MarketCreate from "./MarketCreate"
 import MarketMyTurn from "./MarketMyTurn"
 import MarketOpponentTurn from "./MarketOpponentTurn"
 import MarketWaitingRoom from "./MarketWaitingRoom"
@@ -24,15 +25,17 @@ function Market({
 
 	const MarketNotActive = () => {
 		return (
-			<View style={styles.image} >
-				<Icon name={"transfer"} width={120} height={120} />
-				<Text style={textStyles.h2}>
-					{I18n.translate("market_not_open")}
-				</Text>
-				<Text style={[textStyles.h3, styles.textDescription]}>
-					{I18n.translate("market_not_open_descr")}
-				</Text>
-			</View>
+			<>
+				<View style={styles.image} >
+					<Icon name={"transfer"} width={120} height={120} />
+					<Text style={textStyles.h2}>
+						{I18n.translate("market_not_open")}
+					</Text>
+					<Text style={[textStyles.h3, styles.textDescription]}>
+						{I18n.translate("market_not_open_descr")}
+					</Text>
+				</View>
+			</>
 		)
 	}
 	
@@ -60,21 +63,31 @@ function Market({
 		)
 	}
 
+	const isAdmin = () => {
+		const user = User.get()
+		const admin = Leagues.getAdmin()
+		console.log("[Market] - actual user: %s, admin is: %s", user.username, admin.name)
+		return user.id === admin._id
+	}
+
 	const myTurn = () => { 
 		// TODO: sometimes appear
 		// marketTurnUser=undefined
 		// User.get().username=user04
 		// myTurn=false
-		console.log(`marketTurnUser=${marketTurnUser}`)
-		console.log(`User.get().username=${User.get().username}`)
-		console.log(`myTurn=${marketTurnUser == User.get().username}`)
+		console.log(`[Market] - marketTurnUser=${marketTurnUser}`)
+		console.log(`[Market] - User.get().username=${User.get().username}`)
+		console.log(`[Market] - myTurn=${marketTurnUser == User.get().username}`)
 		return marketTurnUser == User.get().username
 	}
 
 	return (
 		<View style={styles.container}>
 			{
-				!marketOpen && <MarketNotActive />
+				!marketOpen && isAdmin() && <MarketCreate />
+			}
+			{
+				!marketOpen && !isAdmin() && <MarketNotActive />
 			}
 
 			{
