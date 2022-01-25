@@ -59,6 +59,7 @@ const getAdmin = () => {
 const create = async (settings) => {
 	try {
 		let response = await axios.post("/league/create", settings, {})
+		console.log("[services - /league/create] response: ", response)
 		addLeague(response)
 		setActiveLeague(response.league)
 		//TODO: response.market from server
@@ -91,9 +92,12 @@ const join = async (id = "", name = "", password = "", teamname = "") => {
 			}
 
 			let response = await axios.put("/league/join", data, {})
+			// console.log("[services - /league/join] response: ", response)
 			addLeague(response)
 			setActiveLeague(response.league)
-			//TODO: response.market from server
+
+			// initialize market from response (should be empty or with defalut values)
+			MarketStatus.init(response.market)
 
 			// join Socket room
 			SocketManager.getSocketInstance().joinRoom(response.league.name)
