@@ -1,19 +1,43 @@
 import { useNavigation } from "@react-navigation/native"
 import I18n from "i18n-js"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useEffect } from "react"
 import { Text, View } from "react-native"
 import { Button, Header } from "../../components"
 import Icon from "../../components/Icon/Icon"
+import routes from "../../navigation/routesNames"
+import { MarketStatus } from "../../services/market"
+import { SocketManager } from "../../services/socket"
 import { textStyles } from "../../styles"
 import styles from "./styles"
 
-
+// TODO: should be centralized to get the Socket instance from everywhere
+const socket = SocketManager.getSocketInstance()
+const ioClient = socket.ioClient
 
 function MarketCreate() {
 
-	const { goBack } = useNavigation()
+	const { goBack, navigate } = useNavigation()
 
+	useEffect(() => {
+		const market = MarketStatus.get()
+		console.log("[MarketCreate - useEffect] market: ", market)
+	}, [])
+	
+
+	const createMarket = () => {
+		const market = MarketStatus.get()
+		MarketStatus.setOpen()
+		console.log("[MarketCreate - useEffect] isOpen: ", market.open)
+
+		// emit event Market is open
+		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.OPEN, (response) => {
+			console.log(`callbak.response.status: ${response.status}`)
+			console.log(`callback.response.error: ${JSON.stringify(response.error, null, 2)}`)
+		})
+		// return to Market page. Passing 'marketOpen' as prop ??
+		navigate(routes.MARKET)
+	}
 	
 
 	return (
@@ -30,7 +54,7 @@ function MarketCreate() {
 			<View style={styles.joinButton}>
 				<Button
 					title={I18n.translate("create")}
-					onPress={() => console.log("market create")}
+					onPress={() => createMarket()}
 					type={"primary"}
 					size={"large"}
 				/>

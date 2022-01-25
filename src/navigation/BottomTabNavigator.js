@@ -23,7 +23,7 @@ function BottomTabNavigator() {
 	const [onlinePlayersLeague, setOnlinePlayersLeague] = useState(MarketStatus.getOnlinePlayers)
 	const [onlinePlayersMarket, setOnlinePlayersMarket] = useState([])
 
-	const [marketOpen, setMarketOpen] = useState(false)
+	const [marketOpen, setMarketOpen] = useState(MarketStatus.get().open)
 	const [marketStart, setMarketStart] = useState(false)
 	const [marketPause, setMarketPause] = useState(false)
 	const [marketTurnUser, setMarketTurnUser] = useState(false)
