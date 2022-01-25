@@ -132,6 +132,8 @@
   "teams": "Squadre",
   "market_open": "Il Mercato è aperto !",
   "market_open_descr": "Clicca sul bottone per partecipare",
+  "market_create": "Crea il Mercato",
+  "market_create_descr": "Qui puoi dare inizio ad una nuova sessione di mercato. I partecipanti potranno unirsi al Mercato una volta creato.",
   "market_not_open": "Nessun mercato è aperto",
   "market_not_open_descr": "Attendi o riprova quando una sessione è pianificata",
   "market_waiting_room_descr": "In attesa di tutti i partecipanti ...",

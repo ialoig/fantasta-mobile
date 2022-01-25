@@ -105,6 +105,8 @@
   "ok": "OK",
   "market_open": "Transfers are open !",
   "market_open_descr": "Click the button to join your friends",
+  "market_create": "Create the Market",
+  "market_create_descr": "Here you can start a new market session. Participants can join when it's created.",
   "market_not_open": "No transfers window is open",
   "market_not_open_descr": "Please wait until a new window is planned",
   "market_waiting_room_descr": "Wait for all participants to join ...",

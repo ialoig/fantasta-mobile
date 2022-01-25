@@ -37,6 +37,7 @@ const RoutesName = {
 	SETTINGS: "Settings",
 	TEAM: "Team",
 	MARKET: "Market",
+	MARKET_CREATE: "MarketCreate",
 	MARKET_OPEN_AUCTION: "MarketOpenAuction",
 	MARKET_WAITING_ROOM: "MarketWaitingRoom",
 	MARKET_OPPONENT_TURN: "MarketOpponentTurn",

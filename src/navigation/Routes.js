@@ -8,6 +8,7 @@ import { GetStartedContainer } from "../containers/GetStarted/GetStartedContaine
 import { HomeContainer } from "../containers/Home/HomeContainer"
 import JoinLeague from "../containers/JoinLeague/JoinLeague"
 import { LoginContainer } from "../containers/Login/LoginContainer"
+import MarketCreate from "../containers/Market/MarketCreate"
 import MarketMyTurn from "../containers/Market/MarketMyTurn"
 import MarketMyTurnPlayerSelected from "../containers/Market/MarketMyTurnPlayerSelected"
 import MarketOpenAuction from "../containers/Market/MarketOpenAuction"
@@ -120,6 +121,10 @@ export default function Routes() {
 					name={routes.TEAM_DETAILS}
 					component={TeamDetails}
 					options={getScreenConfig(true, false, true)}/>
+				<AppStack.Screen
+					name={routes.MARKET_CREATE}
+					component={MarketCreate}
+					options={getScreenConfig(false, false, false)}/>
 				<AppStack.Screen
 					name={routes.MARKET_OPEN_AUCTION}
 					component={MarketOpenAuction}

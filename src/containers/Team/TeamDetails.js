@@ -31,6 +31,7 @@ function TeamDetails({ teamID, style }) {
 	//get team ID from route params
 	//TODO: check to be done: sometimes seems that teamID is null. 
 	//It returns an error on props-type validation because it's marked as required
+	//UPDATE: removed as required from prop-types
 	teamID = params?.teamID ? params?.teamID : teamID
 
 	const [team, setTeam] = useState()
@@ -198,7 +199,7 @@ function TeamDetails({ teamID, style }) {
 }
 
 TeamDetails.propTypes = {
-	teamID: PropTypes.string.isRequired,
+	teamID: PropTypes.string,
 	style: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 }
 

@@ -46,6 +46,16 @@ const getTeamByID = (id) => {
 	return teams.find(item => item._id === id)
 }
 
+const getAdmin = () => {
+	return ACTIVE_LEAGUE ? ACTIVE_LEAGUE.admin : null
+}
+
+
+/**
+ * API: /league/create
+ * @param {*} settings 
+ * @returns 
+ */
 const create = async (settings) => {
 	try {
 		let response = await axios.post("/league/create", settings, {})
@@ -61,6 +71,15 @@ const create = async (settings) => {
 	}
 }
 
+
+/**
+ * API: /league/create
+ * @param {String} id 
+ * @param {String} name 
+ * @param {String} password 
+ * @param {String} teamname 
+ * @returns 
+ */
 const join = async (id = "", name = "", password = "", teamname = "") => {
 	if (id || name && password && teamname) {
 		try {
@@ -124,5 +143,6 @@ export const Leagues = {
 	create,
 	join,
 	getParticipants,
-	getTeams
+	getTeams,
+	getAdmin
 }
