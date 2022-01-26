@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { View } from "react-native"
 import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
-import usePrevious from "../../utils/hooks"
+import usePrevious from "../../hooks/usePrevious"
 
 function AuctionBidList({ bid }) {
 

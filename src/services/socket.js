@@ -63,8 +63,8 @@ class Socket {
 	constructor() {
 		this.league_room = null
 		this.market_room = null
-		this.player = null
-		this.ioClient = io(`${CUSTOM_CONFIG.socket_url}`)
+		this.user = null
+		this.ioClient = io.connect(`${CUSTOM_CONFIG.socket_url}`) //TODO: changed to io.connect, was io.(`${CUSTOM_CONFIG.socket_url}
 		this.SocketContext = React.createContext()
 		console.log("[Socket] initialization")
 	}
@@ -72,9 +72,9 @@ class Socket {
 	joinRoom(leagueName) {
 		this.league_room = `${league_prefix}${leagueName}`
 		this.market_room = `${market_prefix}${leagueName}`
-		this.player = User.get().username
-		console.log(`[Socket] joinRoom ${this.league_room} player=${this.player}`)
-		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { room: this.league_room, user: this.player }, (response) => {
+		this.user = User.get().username
+		console.log(`[Socket] joinRoom ${this.league_room} player=${this.user}`)
+		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { room: this.league_room, user: this.user }, (response) => {
 			if (response.error) {
 				console.error(`[Socket] joinRoom Error: ${response.error}`)
 				// TODO: handle error

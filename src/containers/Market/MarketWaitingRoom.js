@@ -5,7 +5,9 @@ import { ScrollView, Text, View } from "react-native"
 import { Button } from "../../components"
 import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 import Icon from "../../components/Icon/Icon"
+import useAdmin from "../../hooks/useAdmin"
 import { Leagues } from "../../services"
+import { MarketStatus } from "../../services/market"
 import { SocketManager } from "../../services/socket"
 import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
@@ -14,14 +16,17 @@ const socket = SocketManager.getSocketInstance()
 const ioClient = socket.ioClient
 
  
-function MarketWaitingRoom({ onlinePlayersMarket }) {
+function MarketWaitingRoom() {
 
 	const [teams, setTeams] = useState(Leagues.getTeams())
+	const [onlinePlayersMarket, setOnlinePlayersMarket] = useState(MarketStatus.getOnlinePlayers())
+	const isAdmin = useAdmin()
 
 	useEffect(() => {
 		console.log("teams:", teams)
 		setTeams(Leagues.getTeams())
-	}, [teams])
+		setOnlinePlayersMarket(MarketStatus.getOnlinePlayers())
+	}, [teams, onlinePlayersMarket])
 
 	const marketStart = () => {
 		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.START, (response) => {
@@ -65,9 +70,9 @@ function MarketWaitingRoom({ onlinePlayersMarket }) {
 				</ScrollView>
 			</View>
 
-			{/* button Start is shown when all participants are online */}
+			{/* button Start is shown when all participants are online. Visible only for admin */}
 			{
-				onlinePlayersMarket.length == teams.length &&
+				isAdmin && onlinePlayersMarket.length == teams.length &&
 				<View style={styles.joinButton}>
 					<Button
 						title={I18n.translate("Start")}

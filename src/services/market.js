@@ -32,7 +32,8 @@ const setOpen = () => {
 }
 
 const setOnlinePlayers = (onlinePlayers) => {
-	ONLINE_PLAYERS = onlinePlayers
+	console.log("[setOnlinePlayers] - onlinePlayers: ", onlinePlayers)
+	ONLINE_PLAYERS = onlinePlayers //TODO: add user only if does not exists already
 }
 
 const getOnlinePlayers = () => {

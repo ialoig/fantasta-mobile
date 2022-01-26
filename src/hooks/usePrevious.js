@@ -8,4 +8,4 @@ export default function usePrevious (value) {
 	}, [value])
 
 	return ref.current
-} 
+}
