@@ -27,10 +27,11 @@ function MarketCreate() {
 
 	const createMarket = () => {
 		const market = MarketStatus.get()
+		// setting market as OPEN
 		MarketStatus.setOpen()
 		console.log("[MarketCreate - useEffect] isOpen: ", market.open)
 
-		// emit event Market is open
+		// emit event Market is OPEN
 		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.OPEN, (response) => {
 			console.log(`callbak.response.status: ${response.status}`)
 			console.log(`callback.response.error: ${JSON.stringify(response.error, null, 2)}`)

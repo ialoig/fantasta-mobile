@@ -5,7 +5,10 @@ import React, { useEffect, useState } from "react"
 import { Text, View } from "react-native"
 import { Button, Header } from "../../components"
 import Icon from "../../components/Icon/Icon"
+import useAdmin from "../../hooks/useAdmin"
+import useMarketOpen from "../../hooks/useMarketOpen"
 import { Leagues, User } from "../../services"
+import { MarketStatus } from "../../services/market"
 import { textStyles } from "../../styles"
 import MarketCreate from "./MarketCreate"
 import MarketMyTurn from "./MarketMyTurn"
@@ -13,7 +16,7 @@ import MarketOpponentTurn from "./MarketOpponentTurn"
 import MarketWaitingRoom from "./MarketWaitingRoom"
 import styles from "./styles"
 function Market({ 
-	marketOpen, 
+	// marketOpen, 
 	marketJoined, 
 	joinMarketRoom, 
 	onlinePlayersMarket, 
@@ -22,6 +25,12 @@ function Market({
 }) {
 
 	const { goBack } = useNavigation()
+
+	// const marketStatus = MarketStatus.get()
+	// const [marketOpen, setMarketOpen] = useState(marketStatus.open)
+
+	const isAdmin = useAdmin()
+	const isMarketOpen = useMarketOpen()
 
 	const MarketNotActive = () => {
 		return (
@@ -63,12 +72,12 @@ function Market({
 		)
 	}
 
-	const isAdmin = () => {
-		const user = User.get()
-		const admin = Leagues.getAdmin()
-		console.log("[Market] - actual user: %s, admin is: %s", user.username, admin.name)
-		return user.id === admin._id
-	}
+	// const isAdmin = () => {
+	// 	const user = User.get()
+	// 	const admin = Leagues.getAdmin()
+	// 	console.log("[Market] - actual user: %s, admin is: %s", user.username, admin.name)
+	// 	return user.id === admin._id
+	// }
 
 	const myTurn = () => { 
 		// TODO: sometimes appear
@@ -84,26 +93,26 @@ function Market({
 	return (
 		<View style={styles.container}>
 			{
-				!marketOpen && isAdmin() && <MarketCreate />
+				!isMarketOpen && isAdmin && <MarketCreate />
 			}
 			{
-				!marketOpen && !isAdmin() && <MarketNotActive />
-			}
-
-			{
-				marketOpen && !marketJoined && <MarketActive />
+				!isMarketOpen && !isAdmin && <MarketNotActive />
 			}
 
 			{
-				marketOpen && marketJoined && !marketStart && <MarketWaitingRoom onlinePlayersMarket={onlinePlayersMarket}/>
+				isMarketOpen && !marketJoined && <MarketActive />
 			}
 
 			{
-				marketOpen && marketJoined && marketStart && myTurn() && <MarketMyTurn />
+				isMarketOpen && marketJoined && !marketStart && <MarketWaitingRoom />
 			}
 
 			{
-				marketOpen && marketJoined && marketStart && !myTurn() && <MarketOpponentTurn />
+				isMarketOpen && marketJoined && marketStart && myTurn() && <MarketMyTurn />
+			}
+
+			{
+				isMarketOpen && marketJoined && marketStart && !myTurn() && <MarketOpponentTurn />
 			}
 
 

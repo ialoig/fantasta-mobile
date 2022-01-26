@@ -20,10 +20,10 @@ function BottomTabNavigator() {
 
 	console.log("HERE")
 
-	const [onlinePlayersLeague, setOnlinePlayersLeague] = useState(MarketStatus.getOnlinePlayers)
-	const [onlinePlayersMarket, setOnlinePlayersMarket] = useState([])
+	const [onlinePlayersLeague, setOnlinePlayersLeague] = useState()
+	// const [onlinePlayersMarket, setOnlinePlayersMarket] = useState([])
 
-	const [marketOpen, setMarketOpen] = useState(MarketStatus.get().open)
+	// const [marketOpen, setMarketOpen] = useState(MarketStatus.get().open)
 	const [marketStart, setMarketStart] = useState(false)
 	const [marketPause, setMarketPause] = useState(false)
 	const [marketTurnUser, setMarketTurnUser] = useState(false)
@@ -79,7 +79,7 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.OPEN, (payload) => {
 			console.log(`[Socket] open market room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				setMarketOpen(true)
+				// setMarketOpen(true)
 			}
 		})
 
@@ -88,7 +88,7 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.CLOSE, (payload) => {
 			console.log(`[Socket] close market room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				setMarketOpen(false)
+				// setMarketOpen(false)
 				setMarketStart(false)
 			}
 		})
@@ -98,7 +98,8 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.USER_OFFLINE, (payload) => {
 			console.log(`[Socket] user left room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				setOnlinePlayersMarket(payload)
+				// setOnlinePlayersMarket(payload)
+				MarketStatus.setOnlinePlayers(payload)
 			}
 		})
 
@@ -107,7 +108,8 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.USER_ONLINE, (payload) => {
 			console.log(`[Socket] user join room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				setOnlinePlayersMarket(payload)
+				// setOnlinePlayersMarket(payload)
+				MarketStatus.setOnlinePlayers(payload)
 			}
 		})
 
@@ -231,10 +233,10 @@ function BottomTabNavigator() {
 				}}
 			>
 				{() => <Market
-					marketOpen={marketOpen}
+					// marketOpen={marketOpen}
 					marketJoined={marketJoined}
 					joinMarketRoom={joinMarketRoom}
-					onlinePlayersMarket={onlinePlayersMarket}
+					// onlinePlayersMarket={onlinePlayersMarket}
 					marketStart={marketStart}
 					marketTurnUser={marketTurnUser.turn}
 				/>}
