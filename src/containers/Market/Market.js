@@ -16,11 +16,11 @@ import MarketOpponentTurn from "./MarketOpponentTurn"
 import MarketWaitingRoom from "./MarketWaitingRoom"
 import styles from "./styles"
 function Market({ 
-	// marketOpen, 
+	marketOpen,
 	marketJoined, 
 	joinMarketRoom, 
 	onlinePlayersMarket, 
-	marketStart, 
+	marketActive, 
 	marketTurnUser 
 }) {
 
@@ -30,7 +30,8 @@ function Market({
 	// const [marketOpen, setMarketOpen] = useState(marketStatus.open)
 
 	const isAdmin = useAdmin()
-	const isMarketOpen = useMarketOpen()
+	// const isMarketOpen = useMarketOpen()
+	let isMarketOpen = marketOpen
 
 	const MarketNotActive = () => {
 		return (
@@ -104,15 +105,15 @@ function Market({
 			}
 
 			{
-				isMarketOpen && marketJoined && !marketStart && <MarketWaitingRoom />
+				isMarketOpen && marketJoined && !marketActive && <MarketWaitingRoom onlinePlayersMarket={onlinePlayersMarket}/>
 			}
 
 			{
-				isMarketOpen && marketJoined && marketStart && myTurn() && <MarketMyTurn />
+				isMarketOpen && marketJoined && marketActive && myTurn() && <MarketMyTurn />
 			}
 
 			{
-				isMarketOpen && marketJoined && marketStart && !myTurn() && <MarketOpponentTurn />
+				isMarketOpen && marketJoined && marketActive && !myTurn() && <MarketOpponentTurn />
 			}
 
 
@@ -132,7 +133,7 @@ Market.propTypes = {
 	marketJoined: PropTypes.bool,
 	joinMarketRoom: PropTypes.func,
 	onlinePlayersMarket: PropTypes.array,
-	marketStart: PropTypes.bool,
+	marketActive: PropTypes.bool,
 	marketTurnUser: PropTypes.array
 }
 

@@ -16,17 +16,18 @@ const socket = SocketManager.getSocketInstance()
 const ioClient = socket.ioClient
 
  
-function MarketWaitingRoom() {
+function MarketWaitingRoom({ onlinePlayersMarket }) {
 
 	const [teams, setTeams] = useState(Leagues.getTeams())
-	const [onlinePlayersMarket, setOnlinePlayersMarket] = useState(MarketStatus.getOnlinePlayers())
+	// const [onlinePlayersMarket, setOnlinePlayersMarket] = useState(MarketStatus.getOnlinePlayers())
 	const isAdmin = useAdmin()
 
 	useEffect(() => {
 		console.log("teams:", teams)
 		setTeams(Leagues.getTeams())
-		setOnlinePlayersMarket(MarketStatus.getOnlinePlayers())
-	}, [teams, onlinePlayersMarket])
+		// setOnlinePlayersMarket(MarketStatus.getOnlinePlayers())
+	// }, [teams, onlinePlayersMarket])
+	}, [teams])
 
 	const marketStart = () => {
 		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.START, (response) => {
