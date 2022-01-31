@@ -21,11 +21,12 @@ function BottomTabNavigator() {
 	console.log("HERE")
 
 	const [onlinePlayersLeague, setOnlinePlayersLeague] = useState()
-	// const [onlinePlayersMarket, setOnlinePlayersMarket] = useState([])
+	const [onlinePlayersMarket, setOnlinePlayersMarket] = useState([])
 
 	// const [marketOpen, setMarketOpen] = useState(MarketStatus.get().open)
-	const [marketStart, setMarketStart] = useState(false)
-	const [marketPause, setMarketPause] = useState(false)
+	const [marketOpen, setMarketOpen] = useState(false)
+
+	const [marketActive, setMarketActive] = useState(false)
 	const [marketTurnUser, setMarketTurnUser] = useState(false)
 
 	const [marketJoined, setMarketJoined] = useState(false)
@@ -79,7 +80,8 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.OPEN, (payload) => {
 			console.log(`[Socket] open market room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				// setMarketOpen(true)
+				MarketStatus.setOpen() // TODO: which one?
+				setMarketOpen(true)
 			}
 		})
 
@@ -88,8 +90,8 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.CLOSE, (payload) => {
 			console.log(`[Socket] close market room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				// setMarketOpen(false)
-				setMarketStart(false)
+				// TODO: close market
+				setMarketActive(false)
 			}
 		})
 
@@ -98,8 +100,8 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.USER_OFFLINE, (payload) => {
 			console.log(`[Socket] user left room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				// setOnlinePlayersMarket(payload)
-				MarketStatus.setOnlinePlayers(payload)
+				MarketStatus.setOnlinePlayers(payload) // TODO: which one?
+				setOnlinePlayersMarket(payload)
 			}
 		})
 
@@ -108,17 +110,17 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.USER_ONLINE, (payload) => {
 			console.log(`[Socket] user join room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				// setOnlinePlayersMarket(payload)
-				MarketStatus.setOnlinePlayers(payload)
+				MarketStatus.setOnlinePlayers(payload) // TODO: which one?
+				setOnlinePlayersMarket(payload)
 			}
 		})
 
 		// Admin start the Auction (used)
 		// use case: set the market as started
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.START, (payload) => {
-			console.log(`[Socket] market room "${socket.market_room}"is started. users online: ${payload}`)
+			console.log(`[Socket] market room "${socket.market_room}"is active. users online: ${payload}`)
 			if (!didUnmount) {
-				setMarketStart(true)
+				setMarketActive(true)
 			}
 		})
 
@@ -148,7 +150,7 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.PAUSE, () => {
 			console.log(`[Socket] market room "${socket.market_room}" is paused`)
 			if (!didUnmount) { 
-				setMarketPause(true) 
+				setMarketActive(false) 
 			}
 			// TODO: handle resume/start
 		})
@@ -163,8 +165,8 @@ function BottomTabNavigator() {
 				// TODO: check response OK from server
 			})
 
-			// Destroy SocketManager when leaving the league. There is only one SocketManager to manage the joined league.
-			SocketManager.destroySocketInstance()
+			// Remove listeres to avoid multiple event received when join the second time
+			ioClient.removeAllListeners()
 		}
 	},
 	[])
@@ -233,11 +235,11 @@ function BottomTabNavigator() {
 				}}
 			>
 				{() => <Market
-					// marketOpen={marketOpen}
 					marketJoined={marketJoined}
 					joinMarketRoom={joinMarketRoom}
-					// onlinePlayersMarket={onlinePlayersMarket}
-					marketStart={marketStart}
+					onlinePlayersMarket={onlinePlayersMarket}
+					marketOpen={marketOpen}
+					marketActive={marketActive}
 					marketTurnUser={marketTurnUser.turn}
 				/>}
 			</Tab.Screen>
