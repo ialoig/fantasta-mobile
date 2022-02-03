@@ -20,16 +20,28 @@ function BottomTabNavigator() {
 
 	console.log("HERE")
 
-	const [onlinePlayersLeague, setOnlinePlayersLeague] = useState()
-	const [onlinePlayersMarket, setOnlinePlayersMarket] = useState([])
+	/* MARKET OBJECT IN DATABASE
+	_id
+	leagueId
+	open
+	active
+	onlineTeams
+	teamTurn
+	betHistory
+	closedAt
+	createdAt	
+	updatedAt
+	*/
 
-	// const [marketOpen, setMarketOpen] = useState(MarketStatus.get().open)
+	const [onlinePlayersLeague, setOnlinePlayersLeague] = useState() // maybe leagueOnlineTeams ?
 	const [marketOpen, setMarketOpen] = useState(false)
-
 	const [marketActive, setMarketActive] = useState(false)
-	const [marketTurnUser, setMarketTurnUser] = useState(false)
-
+	const [marketOnlineTeams, setMarketOnlineTeams] = useState([])
+	const [marketTeamTurn, setMarketTeamTurn] = useState({})
+	const [marketBetHistory, setMarketBetHistory] = useState([])
 	const [marketJoined, setMarketJoined] = useState(false)
+
+	let marketProps = { marketOpen, marketActive, marketOnlineTeams, marketTeamTurn, marketBetHistory, marketJoined }
 
 	useEffect(() => {
 
@@ -80,18 +92,22 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.OPEN, (payload) => {
 			console.log(`[Socket] open market room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				MarketStatus.setOpen() // TODO: which one?
 				setMarketOpen(true)
+				setMarketOnlineTeams(payload)
 			}
 		})
 
 		// Admin close the market (used) - fix bug on server
 		// Use case: show market as closed
-		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.CLOSE, (payload) => {
-			console.log(`[Socket] close market room "${socket.market_room}". users online: ${payload}`)
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.CLOSE, () => {
+			console.log(`[Socket] close market room "${socket.market_room}".`)
 			if (!didUnmount) {
-				// TODO: close market
+				setMarketOpen(false)
 				setMarketActive(false)
+				setMarketOnlineTeams([])
+				setMarketTeamTurn({})
+				setMarketBetHistory([])
+				setMarketJoined(false)
 			}
 		})
 
@@ -100,8 +116,8 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.USER_OFFLINE, (payload) => {
 			console.log(`[Socket] user left room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				MarketStatus.setOnlinePlayers(payload) // TODO: which one?
-				setOnlinePlayersMarket(payload)
+				setMarketOnlineTeams(payload)
+				// TODO: when an other user from online becomes offline this message id not received if the mobile user did not join the market yet
 			}
 		})
 
@@ -110,8 +126,7 @@ function BottomTabNavigator() {
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.USER_ONLINE, (payload) => {
 			console.log(`[Socket] user join room "${socket.market_room}". users online: ${payload}`)
 			if (!didUnmount) {
-				MarketStatus.setOnlinePlayers(payload) // TODO: which one?
-				setOnlinePlayersMarket(payload)
+				setMarketOnlineTeams(payload)
 			}
 		})
 
@@ -128,8 +143,8 @@ function BottomTabNavigator() {
 		// use case: render market open depending on the player's turn
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.SEARCH, (payload) => {
 			console.log(`[Socket] market room "${socket.market_room}". turn: ${payload.turn}`)
-			if (!didUnmount) { 
-				setMarketTurnUser(payload) 
+			if (!didUnmount) {
+				setMarketTeamTurn(payload)
 			}
 		})
 
@@ -149,8 +164,8 @@ function BottomTabNavigator() {
 		// Use case: tbd
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.PAUSE, () => {
 			console.log(`[Socket] market room "${socket.market_room}" is paused`)
-			if (!didUnmount) { 
-				setMarketActive(false) 
+			if (!didUnmount) {
+				setMarketActive(false)
 			}
 			// TODO: handle resume/start
 		})
@@ -235,13 +250,9 @@ function BottomTabNavigator() {
 				}}
 			>
 				{() => <Market
-					marketJoined={marketJoined}
-					joinMarketRoom={joinMarketRoom}
-					onlinePlayersMarket={onlinePlayersMarket}
-					marketOpen={marketOpen}
-					marketActive={marketActive}
-					marketTurnUser={marketTurnUser.turn}
-				/>}
+					{...marketProps}
+					joinMarketRoom={joinMarketRoom} />
+				}
 			</Tab.Screen>
 
 			<Tab.Screen
