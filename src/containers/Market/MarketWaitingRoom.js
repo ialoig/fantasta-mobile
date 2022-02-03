@@ -16,17 +16,14 @@ const socket = SocketManager.getSocketInstance()
 const ioClient = socket.ioClient
 
  
-function MarketWaitingRoom({ onlinePlayersMarket }) {
+function MarketWaitingRoom({ marketOnlineTeams }) {
 
 	const [teams, setTeams] = useState(Leagues.getTeams())
-	// const [onlinePlayersMarket, setOnlinePlayersMarket] = useState(MarketStatus.getOnlinePlayers())
 	const isAdmin = useAdmin()
 
 	useEffect(() => {
 		console.log("teams:", teams)
 		setTeams(Leagues.getTeams())
-		// setOnlinePlayersMarket(MarketStatus.getOnlinePlayers())
-	// }, [teams, onlinePlayersMarket])
 	}, [teams])
 
 	const marketStart = () => {
@@ -50,13 +47,13 @@ function MarketWaitingRoom({ onlinePlayersMarket }) {
 			<View style={styles.teamList}>
 
 				<Text style={[textStyles.h3, styles.textDescription]}>
-					{`Online ${onlinePlayersMarket.length}/${teams.length}`}
+					{`Online ${marketOnlineTeams.length}/${teams.length}`}
 				</Text>
 
 				<ScrollView showsVerticalScrollIndicator={false} >
 					{
 						teams?.map(team => {
-							const isUserOnline = onlinePlayersMarket.find(user => user === team.user.name) ? true : false
+							const isUserOnline = marketOnlineTeams.find(user => user === team.user.name) ? true : false
 
 							return (
 								<AuctionCard
@@ -73,7 +70,7 @@ function MarketWaitingRoom({ onlinePlayersMarket }) {
 
 			{/* button Start is shown when all participants are online. Visible only for admin */}
 			{
-				isAdmin && onlinePlayersMarket.length == teams.length &&
+				isAdmin && marketOnlineTeams.length == teams.length &&
 				<View style={styles.joinButton}>
 					<Button
 						title={I18n.translate("Start")}
@@ -89,7 +86,7 @@ function MarketWaitingRoom({ onlinePlayersMarket }) {
 }
 
 MarketWaitingRoom.propTypes = {
-	onlinePlayersMarket: PropTypes.array,
+	marketOnlineTeams: PropTypes.array,
 }
 
 export default MarketWaitingRoom

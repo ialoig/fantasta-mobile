@@ -15,23 +15,26 @@ import MarketMyTurn from "./MarketMyTurn"
 import MarketOpponentTurn from "./MarketOpponentTurn"
 import MarketWaitingRoom from "./MarketWaitingRoom"
 import styles from "./styles"
-function Market({ 
+function Market({
+	marketJoined,
+	marketOnlineTeams,
 	marketOpen,
-	marketJoined, 
-	joinMarketRoom, 
-	onlinePlayersMarket, 
-	marketActive, 
-	marketTurnUser 
+	marketActive,
+	marketTeamTurn,
+	joinMarketRoom
 }) {
 
 	const { goBack } = useNavigation()
 
-	// const marketStatus = MarketStatus.get()
-	// const [marketOpen, setMarketOpen] = useState(marketStatus.open)
+	console.log("============")
+	console.log(`[Market] - page - marketJoined=${marketJoined}`)
+	console.log(`[Market] - page - marketOnlineTeams=${marketOnlineTeams}`)
+	console.log(`[Market] - page - marketOpen=${marketOpen}`)
+	console.log(`[Market] - page - marketActive=${marketActive}`)
+	console.log(`[Market] - page - marketTeamTurn=${JSON.stringify(marketTeamTurn)}`)
+	console.log("============")
 
 	const isAdmin = useAdmin()
-	// const isMarketOpen = useMarketOpen()
-	let isMarketOpen = marketOpen
 
 	const MarketNotActive = () => {
 		return (
@@ -48,7 +51,7 @@ function Market({
 			</>
 		)
 	}
-	
+
 	const MarketActive = () => {
 		return (
 			<>
@@ -80,49 +83,45 @@ function Market({
 	// 	return user.id === admin._id
 	// }
 
-	const myTurn = () => { 
-		// TODO: sometimes appear
-		// marketTurnUser=undefined
-		// User.get().username=user04
-		// myTurn=false
-		console.log(`[Market] - marketTurnUser=${marketTurnUser}`)
-		console.log(`[Market] - User.get().username=${User.get().username}`)
-		console.log(`[Market] - myTurn=${marketTurnUser == User.get().username}`)
-		return marketTurnUser == User.get().username
+	const myTurn = () => {
+		console.log(`[Market] - myTurn() - marketTeamTurn=${JSON.stringify(marketTeamTurn)}`)
+		console.log(`[Market] - myTurn() - User.get().username=${User.get().username}`)
+		console.log(`[Market] - myTurn() - myTurn=${marketTeamTurn.turn == User.get().username}`)
+		return marketTeamTurn.turn == User.get().username
 	}
 
 	return (
 		<View style={styles.container}>
 			{
-				!isMarketOpen && isAdmin && <MarketCreate />
+				!marketOpen && isAdmin && <MarketCreate />
 			}
 			{
-				!isMarketOpen && !isAdmin && <MarketNotActive />
-			}
-
-			{
-				isMarketOpen && !marketJoined && <MarketActive />
+				!marketOpen && !isAdmin && <MarketNotActive />
 			}
 
 			{
-				isMarketOpen && marketJoined && !marketActive && <MarketWaitingRoom onlinePlayersMarket={onlinePlayersMarket}/>
+				marketOpen && !marketJoined && <MarketActive />
 			}
 
 			{
-				isMarketOpen && marketJoined && marketActive && myTurn() && <MarketMyTurn />
+				marketOpen && marketJoined && !marketActive && <MarketWaitingRoom marketOnlineTeams={marketOnlineTeams} />
 			}
 
 			{
-				isMarketOpen && marketJoined && marketActive && !myTurn() && <MarketOpponentTurn />
+				marketOpen && marketJoined && marketActive && myTurn() && <MarketMyTurn />
+			}
+
+			{
+				marketOpen && marketJoined && marketActive && !myTurn() && <MarketOpponentTurn />
 			}
 
 
 			{/* it has been defined as last component because it have to be seen over the others */}
-			<Header 
-				title="market" 
+			<Header
+				title="market"
 				leftButton
 				iconTypeLeft="back"
-				onPressLeft={() => goBack() }
+				onPressLeft={() => goBack()}
 			/>
 		</View>
 	)
@@ -132,9 +131,9 @@ Market.propTypes = {
 	marketOpen: PropTypes.bool,
 	marketJoined: PropTypes.bool,
 	joinMarketRoom: PropTypes.func,
-	onlinePlayersMarket: PropTypes.array,
+	marketOnlineTeams: PropTypes.array,
 	marketActive: PropTypes.bool,
-	marketTurnUser: PropTypes.array
+	marketTeamTurn: PropTypes.object
 }
 
 export default Market
