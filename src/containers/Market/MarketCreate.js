@@ -27,6 +27,7 @@ function MarketCreate() {
 
 	const createMarket = () => {
 		const market = MarketStatus.get()
+
 		// setting market as OPEN
 		MarketStatus.setOpen()
 		console.log("[MarketCreate - useEffect] isOpen: ", market.open)
