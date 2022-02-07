@@ -1,6 +1,7 @@
 import React from "react"
 import { io } from "socket.io-client"
 import { CUSTOM_CONFIG } from "../../custom_config" // TODO: temporary solution for development
+import { Leagues } from "../services/leagues"
 import { User } from "../services/user"
 
 const EVENT_TYPE = {
@@ -63,18 +64,19 @@ class Socket {
 	constructor() {
 		this.league_room = null
 		this.market_room = null
-		this.user = null
+		this.team_id = null
 		this.ioClient = io.connect(`${CUSTOM_CONFIG.socket_url}`) //TODO: changed to io.connect, was io.(`${CUSTOM_CONFIG.socket_url}
 		this.SocketContext = React.createContext()
 		console.log("[Socket] initialization")
 	}
 
-	joinRoom(leagueName) {
-		this.league_room = `${league_prefix}${leagueName}`
-		this.market_room = `${market_prefix}${leagueName}`
-		this.user = User.get().username
-		console.log(`[Socket] joinRoom ${this.league_room} player=${this.user}`)
-		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { room: this.league_room, user: this.user }, (response) => {
+	joinRoom(league_id) {
+		this.league_room = `${league_prefix}${league_id}`
+		this.market_room = `${market_prefix}${league_id}`
+		this.team_id = Leagues.getMyTeam(User.get().username)._id
+
+		console.log(`[Socket] joinRoom ${this.league_room} team=${this.team_id}`)
+		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { team_id: this.team_id, league_id: league_id }, (response) => {
 			if (response.error) {
 				console.error(`[Socket] joinRoom Error: ${response.error}`)
 				// TODO: handle error

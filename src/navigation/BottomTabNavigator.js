@@ -6,7 +6,6 @@ import Dashboard from "../containers/Dashboard/Dashboard"
 import Market from "../containers/Market/Market"
 import PlayersContainer from "../containers/Players/PlayersContainer"
 import Team from "../containers/Team/Team"
-import { MarketStatus } from "../services/market"
 import { SocketManager } from "../services/socket"
 import { colors } from "../styles"
 import { bottomTabShadow, bottomTabStyle } from "./bottomTabNavigatorConfig"
@@ -33,7 +32,7 @@ function BottomTabNavigator() {
 	updatedAt
 	*/
 
-	const [onlinePlayersLeague, setOnlinePlayersLeague] = useState() // maybe leagueOnlineTeams ?
+	const [leagueOnlineTeams, setLeagueOnlineTeams] = useState()
 	const [marketOpen, setMarketOpen] = useState(false)
 	const [marketActive, setMarketActive] = useState(false)
 	const [marketOnlineTeams, setMarketOnlineTeams] = useState([])
@@ -53,27 +52,27 @@ function BottomTabNavigator() {
 		// New user joined the League (not used)
 		// use case: force reload league data to see new user in Team page
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
-			console.log(`[Socket] user joined league room "${socket.league_room}" (it's a NEW user). users online: ${payload}`)
+			console.log(`[Socket] user joined league room "${socket.league_room}" (it's a NEW user). users online: ${payload.map(team => team.team_id).join(",")}`)
 			//TODO: fetch league data again
 			if (!didUnmount) {
-				setOnlinePlayersLeague(payload)
+				setLeagueOnlineTeams(payload)
 			}
 		})
 
 		// Existing user joined the League (not used)
 		// use case: tbd
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE, (payload) => {
-			console.log(`[Socket] user joined league room "${socket.league_room}". users online: ${payload}`)
+			console.log(`[Socket] user joined league room "${socket.league_room}". users online: ${payload.map(team => team.team_id).join(",")}`)
 			if (!didUnmount) {
-				setOnlinePlayersLeague(payload)
+				setLeagueOnlineTeams(payload)
 			}
 		})
 
 		// Existing user left the league (not used)
 		// use case: tdb
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE, (payload) => {
-			console.log(`[Socket] user left league room "${socket.league_room}". users online: ${payload}`)
-			setOnlinePlayersLeague(payload)
+			console.log(`[Socket] user left league room "${socket.league_room}". users online: ${payload.map(team => team.team_id).join(",")}`)
+			setLeagueOnlineTeams(payload)
 		})
 
 		// Existing user deleted from the League (not used)
@@ -82,7 +81,7 @@ function BottomTabNavigator() {
 			console.log(`[Socket] user deleted from league. users online: ${payload}`)
 			//TODO: fetch league data again
 			if (!didUnmount) {
-				setOnlinePlayersLeague(payload)
+				setLeagueOnlineTeams(payload)
 			}
 		})
 

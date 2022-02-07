@@ -100,7 +100,7 @@ const join = async (id = "", name = "", password = "", teamname = "") => {
 			MarketStatus.init(response.market)
 
 			// join Socket room
-			SocketManager.getSocketInstance().joinRoom(response.league.name)
+			SocketManager.getSocketInstance().joinRoom(response.league._id)
 
 			return Promise.resolve()
 		}
