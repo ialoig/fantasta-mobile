@@ -33,7 +33,7 @@ function MarketCreate() {
 		console.log("[MarketCreate - useEffect] isOpen: ", market.open)
 
 		// emit event Market is OPEN
-		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.OPEN, (response) => {
+		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.LEAGUE.MARKET_OPEN, (response) => {
 			console.log(`callbak.response.status: ${response.status}`)
 			console.log(`callback.response.error: ${JSON.stringify(response.error, null, 2)}`)
 		})

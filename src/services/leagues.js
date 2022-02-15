@@ -1,6 +1,5 @@
 import axios from "axios"
 
-import { SocketManager } from "../services/socket"
 import { Error } from "./error"
 import { MarketStatus } from "./market"
 
@@ -99,10 +98,7 @@ const join = async (id = "", name = "", password = "", teamname = "") => {
 			// initialize market from response (should be empty or with defalut values)
 			MarketStatus.init(response.market)
 
-			// join Socket room
-			SocketManager.getSocketInstance().joinRoom(response.league._id)
-
-			return Promise.resolve()
+			return Promise.resolve(response.league._id)
 		}
 		catch (error) {
 			Error.handleError(error, true)

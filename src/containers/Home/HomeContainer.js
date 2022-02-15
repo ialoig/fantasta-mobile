@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import routes from "../../navigation/routesNames"
 import { Leagues } from "../../services"
+import { SocketManager } from "../../services/socket"
 import Home from "./Home"
 
 export class HomeContainer extends React.Component {
@@ -32,7 +33,11 @@ export class HomeContainer extends React.Component {
 
 	async joinLeague(item) {
 		if (item && item._id) {
-			await Leagues.join(item._id)
+			const league_id = await Leagues.join(item._id)
+			
+			// join Socket room
+			SocketManager.getSocketInstance().joinRoom(league_id, false)
+			
 			this.props.navigation.navigate(routes.BOTTOMTABNAVIGATOR)
 		}
 	}
