@@ -15,10 +15,10 @@ const EVENT_TYPE = {
 			USER_NEW: 101,
 			USER_DELETED: 102,
 			USER_ONLINE: 103,
-			USER_OFFLINE: 104
+			USER_OFFLINE: 104,
+			MARKET_OPEN: 105
 		},
 		MARKET: {
-			OPEN: 105,
 			USER_ONLINE: 106,
 			START: 107,
 			FOOTBALL_PLAYER_SELECTED: 108,
@@ -36,10 +36,10 @@ const EVENT_TYPE = {
 			USER_NEW: 201,
 			USER_DELETED: 202,
 			USER_ONLINE: 203,
-			USER_OFFLINE: 204
+			USER_OFFLINE: 204,
+			MARKET_OPEN: 205
 		},
 		MARKET: {
-			OPEN: 205,
 			USER_ONLINE: 206,
 			START: 207,
 			FOOTBALL_PLAYER_SELECTED: 208,
@@ -53,38 +53,53 @@ const EVENT_TYPE = {
 	}
 }
 
-const league_prefix = "league="
-const market_prefix = "market="
-
 /**
  * This class is instantiated only once and sharead among all pages in the mobile app via the React.Context.
  */
 class Socket {
 
 	constructor() {
+		this.league_prefix = "league="
+		this.market_prefix = "market="
 		this.league_room = null
 		this.market_room = null
-		this.team_id = null
 		this.ioClient = io.connect(`${CUSTOM_CONFIG.socket_url}`) //TODO: changed to io.connect, was io.(`${CUSTOM_CONFIG.socket_url}
 		this.SocketContext = React.createContext()
 		console.log("[Socket] initialization")
 	}
 
-	joinRoom(league_id) {
-		this.league_room = `${league_prefix}${league_id}`
-		this.market_room = `${market_prefix}${league_id}`
-		this.team_id = Leagues.getMyTeam(User.get().username)._id
+	joinRoom(league_id, newUser) {
+		this.league_room = `${this.league_prefix}${league_id}`
+		this.market_room = `${this.market_prefix}${league_id}`
 
-		console.log(`[Socket] joinRoom ${this.league_room} team=${this.team_id}`)
-		this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, { team_id: this.team_id, league_id: league_id }, (response) => {
-			if (response.error) {
-				console.error(`[Socket] joinRoom Error: ${response.error}`)
-				// TODO: handle error
-				// de-register leagueEvents
-			}
-			console.log(`response.status: ${response.status}`)
-			console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
-		})
+		const user_id = User.get().id
+		const team_id = Leagues.getMyTeam(User.get().username)._id
+
+		console.log(`[Socket] joinRoom. league_room=${this.league_room} user_id=${user_id} team_id=${team_id} league_id=${league_id} newUser=${newUser}`)
+		const payload = { user_id: user_id, team_id: team_id, league_id: league_id }
+
+		if (newUser) {
+			this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_NEW, payload, (response) => {
+				if (response.error) {
+					console.error(`[Socket] joinRoom Error: ${response.error}`)
+					// TODO: handle error
+					// de-register leagueEvents
+				}
+				console.log(`response.status: ${response.status}`)
+				console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
+			})
+		}
+		else {
+			this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, payload, (response) => {
+				if (response.error) {
+					console.error(`[Socket] joinRoom Error: ${response.error}`)
+					// TODO: handle error
+					// de-register leagueEvents
+				}
+				console.log(`response.status: ${response.status}`)
+				console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
+			})
+		}
 	}
 }
 

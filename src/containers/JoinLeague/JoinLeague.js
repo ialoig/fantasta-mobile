@@ -7,6 +7,7 @@ import { Button, InputText, PopupError } from "../../components"
 import { FIELDS_ID } from "../../constants"
 import routes from "../../navigation/routesNames"
 import { Leagues } from "../../services"
+import { SocketManager } from "../../services/socket"
 import styles from "../CreateLeague/styles"
 import { validateJoinLeaguePage } from "../CreateLeague/validation"
 
@@ -49,7 +50,11 @@ function JoinLeague({ navigation }) {
 			setPopupMessage(errorMessage)
 		}
 		else {
-			await Leagues.join("", settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
+			const league_id = await Leagues.join("", settings[FIELDS_ID.leagueNameId], settings[FIELDS_ID.passwordId], settings[FIELDS_ID.teamnameId])
+			
+			// join Socket room
+			SocketManager.getSocketInstance().joinRoom(league_id, true)
+			
 			// clean the navigation stack. A further back will point to the Dashboard
 			navigation.reset({
 				index: 0,
