@@ -6,7 +6,7 @@ import { Text, View } from "react-native"
 import { Button, Header } from "../../components"
 import Icon from "../../components/Icon/Icon"
 import routes from "../../navigation/routesNames"
-import { MarketStatus } from "../../services/market"
+// import { MarketStatus } from "../../services/market"
 import { SocketManager } from "../../services/socket"
 import { textStyles } from "../../styles"
 import styles from "./styles"
@@ -19,18 +19,19 @@ function MarketCreate() {
 
 	const { goBack, navigate } = useNavigation()
 
-	useEffect(() => {
-		const market = MarketStatus.get()
-		console.log("[MarketCreate - useEffect] market: ", market)
-	}, [])
+	// useEffect(() => {
+	// 	const market = MarketStatus.get()
+	// 	console.log("[MarketCreate - useEffect] market: ", market)
+	// }, [])
 	
 
 	const createMarket = () => {
-		const market = MarketStatus.get()
+		console.log("[MarketCreate] opening market")
+		// const market = MarketStatus.get()
 
 		// setting market as OPEN
-		MarketStatus.setOpen()
-		console.log("[MarketCreate - useEffect] isOpen: ", market.open)
+		// MarketStatus.setOpen()
+		// console.log("[MarketCreate - useEffect] isOpen: ", market.open)
 
 		// emit event Market is OPEN
 		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.LEAGUE.MARKET_OPEN, (response) => {

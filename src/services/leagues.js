@@ -61,7 +61,6 @@ const create = async (settings) => {
 		console.log("[services - /league/create] response: ", response)
 		addLeague(response)
 		setActiveLeague(response.league)
-		//TODO: response.market from server
 		return Promise.resolve()
 	}
 	catch (error) {
@@ -73,7 +72,7 @@ const create = async (settings) => {
 
 
 /**
- * API: /league/create
+ * API: /league/join
  * @param {String} id 
  * @param {String} name 
  * @param {String} password 
@@ -95,7 +94,7 @@ const join = async (id = "", name = "", password = "", teamname = "") => {
 			addLeague(response)
 			setActiveLeague(response.league)
 
-			// initialize market from response (should be empty or with defalut values)
+			// initialize market
 			MarketStatus.init(response.market)
 
 			return Promise.resolve(response.league._id)
