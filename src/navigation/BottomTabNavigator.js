@@ -49,13 +49,14 @@ function BottomTabNavigator() {
 		let didUnmount = false
 
 		// ------- League events -------
+
 		// New user joined the League (not used)
 		// use case: force reload league data to see new user in Team page
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
 			console.log(`[Socket] user joined league room "${socket.league_room}" (newUser=true). payload: ${JSON.stringify(payload)}`)
-			//TODO: fetch league data again
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
+				//TODO: fetch league data again
 			}
 		})
 
@@ -79,13 +80,12 @@ function BottomTabNavigator() {
 		// use case: force reload league data to not see the user in Team page
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_DELETED, (payload) => {
 			console.log(`[Socket] user deleted from league. payload: ${JSON.stringify(payload)}`)
-			//TODO: fetch league data again
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
+				//TODO: fetch league data again
 			}
 		})
 
-		// ------- Market events -------
 		// Admin open the market (used)
 		// Use case: show market as open
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.OPEN, (payload) => {
@@ -95,6 +95,8 @@ function BottomTabNavigator() {
 				setMarketOnlineTeams(payload)
 			}
 		})
+
+		// ------- Market events -------
 
 		// Admin close the market (used) - fix bug on server
 		// Use case: show market as closed
@@ -195,7 +197,6 @@ function BottomTabNavigator() {
 	}
 
 	return (
-		// <socket.SocketContext.Provider value={socket.ioClient}>
 		<Tab.Navigator
 			initialRouteName={routes.DASHBOARD}
 			backBehavior="none"
@@ -268,7 +269,6 @@ function BottomTabNavigator() {
 				}}
 			/>
 		</Tab.Navigator>
-		// </socket.SocketContext.Provider>
 	)
 }
 
