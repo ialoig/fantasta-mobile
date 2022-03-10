@@ -111,6 +111,14 @@ const join = async (id = "", name = "", password = "", teamname = "") => {
 	}
 }
 
+
+
+// TODO: get League object
+const get = async (id) => {
+	let response = await axios.put("/league/get", id, {})
+}
+
+
 /**
  * 
  * @returns {array} list of users name whom have joined the active league
