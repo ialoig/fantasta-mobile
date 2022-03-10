@@ -53,7 +53,7 @@ function MarketWaitingRoom({ marketOnlineTeams }) {
 				<ScrollView showsVerticalScrollIndicator={false} >
 					{
 						teams?.map(team => {
-							const isUserOnline = marketOnlineTeams.find(user => user === team.user.name) ? true : false
+							const isUserOnline = marketOnlineTeams.find(t => t.team_id === team._id) ? true : false
 
 							return (
 								<AuctionCard

@@ -88,7 +88,7 @@ function BottomTabNavigator() {
 
 		// Admin open the market (used)
 		// Use case: show market as open
-		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.OPEN, (payload) => {
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.MARKET_OPEN, (payload) => {
 			console.log(`[Socket] open market room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setMarketOpen(true)
@@ -187,6 +187,17 @@ function BottomTabNavigator() {
 	},
 	[])
 
+	const createMarket = () => {
+		console.log("[MarketCreate] opening market")
+
+		// emit event Market is OPEN
+		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.LEAGUE.MARKET_OPEN, (response) => {
+			console.log(`callbak.response.status: ${response.status}`)
+			console.log(`callback.response.error: ${JSON.stringify(response.error, null, 2)}`)
+			setMarketJoined(true)
+		})
+	}
+
 	const joinMarketRoom = () => {
 		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.USER_ONLINE, (response) => {
 			console.log(`callbak.response.status: ${response.status}`)
@@ -251,6 +262,7 @@ function BottomTabNavigator() {
 			>
 				{() => <Market
 					{...marketProps}
+					createMarket={createMarket}
 					joinMarketRoom={joinMarketRoom} />
 				}
 			</Tab.Screen>

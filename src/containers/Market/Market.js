@@ -19,6 +19,7 @@ function Market({
 	marketOpen,
 	marketActive,
 	marketTeamTurn,
+	createMarket,
 	joinMarketRoom
 }) {
 
@@ -91,7 +92,7 @@ function Market({
 	return (
 		<View style={styles.container}>
 			{
-				!marketOpen && isAdmin && <MarketCreate />
+				!marketOpen && isAdmin && <MarketCreate createMarket={createMarket} />
 			}
 			{
 				!marketOpen && !isAdmin && <MarketNotActive />
