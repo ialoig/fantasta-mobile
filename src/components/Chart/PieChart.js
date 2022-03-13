@@ -43,7 +43,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 
 
 	useEffect(() => {
-		console.log("[PieChart - useEffect] - creating chart with budgetSpent=", budgetSpent)
+		// console.log("[PieChart - useEffect] - creating chart with budgetSpent=", budgetSpent)
 		// if (budgetSpent && maxValue) {
 		
 		chart()
@@ -54,7 +54,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 
 	const chart = () => {
 		const values = calculateValues()
-		console.log("[PieChart - chart] - Pie creating with values=", values)
+		// console.log("[PieChart - chart] - Pie creating with values=", values)
 		if (values && values.length > 0) {
 			//create pie chart with percentages values
 			const pie = d3.pie()
