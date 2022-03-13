@@ -13,8 +13,17 @@ let ACTIVE_LEAGUE = []
  */
 const addLeague = (response) => {
 	const league = response.user.leagues.find(item => item._id === response.league._id)
-	var index = LEAGUES.findIndex(existing_league => existing_league._id === league._id)
-	if (index === -1) {
+	if (LEAGUES.length > 0) {
+		var index = LEAGUES.findIndex(existing_league => existing_league._id === league._id)
+		// case 0 : league does not exist
+		if (index === -1) {
+			LEAGUES.push(league)
+		}
+		// case 1: league exists, and should be updated
+		else {
+			LEAGUES[index] = league
+		}
+	} else {
 		LEAGUES.push(league)
 	}
 }
@@ -112,10 +121,30 @@ const join = async (id = "", name = "", password = "", teamname = "") => {
 }
 
 
-
-// TODO: get League object
+/**
+ * Returns, if exists, the corresponding League object of the leagueId passed by parameter.
+ * Returned League will be added to the local storage. If already existing on local storage it will be overwrited.
+ * @param {String} id The League id
+ * @returns League object from db
+ */
 const get = async (id) => {
-	let response = await axios.put("/league/get", id, {})
+	try {
+		if (id) {
+			let response = await axios.get("/league/get", { params: { leagueID: id } }) 
+
+			if (response) {
+				// add league to LEAGUE array
+				addLeague(response)
+				return Promise.resolve(response.league._id)
+			}
+			return Promise.resolve(null)
+		}
+	}
+	catch (error) {
+		console.log("[get] - error: ", error)
+		Error.handleError(error, true)
+		return Promise.reject(error)
+	}
 }
 
 
@@ -149,6 +178,7 @@ export const Leagues = {
 	getTeamByID,
 	create,
 	join,
+	get,
 	getParticipants,
 	getTeams,
 	getAdmin

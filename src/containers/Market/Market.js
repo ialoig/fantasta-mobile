@@ -132,7 +132,8 @@ Market.propTypes = {
 	joinMarketRoom: PropTypes.func,
 	marketOnlineTeams: PropTypes.array,
 	marketActive: PropTypes.bool,
-	marketTeamTurn: PropTypes.object
+	marketTeamTurn: PropTypes.object,
+	createMarket: PropTypes.func
 }
 
 export default Market

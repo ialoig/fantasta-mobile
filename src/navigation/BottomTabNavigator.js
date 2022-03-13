@@ -6,6 +6,7 @@ import Dashboard from "../containers/Dashboard/Dashboard"
 import Market from "../containers/Market/Market"
 import PlayersContainer from "../containers/Players/PlayersContainer"
 import Team from "../containers/Team/Team"
+import { Leagues } from "../services"
 import { SocketManager } from "../services/socket"
 import { colors } from "../styles"
 import { bottomTabShadow, bottomTabStyle } from "./bottomTabNavigatorConfig"
@@ -66,6 +67,8 @@ function BottomTabNavigator() {
 			console.log(`[Socket] user joined league room "${socket.league_room}" (newUser=false). payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
+				// fetch league data again
+				Leagues.get(Leagues.getActiveLeague()._id)
 			}
 		})
 
@@ -82,7 +85,8 @@ function BottomTabNavigator() {
 			console.log(`[Socket] user deleted from league. payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
-				//TODO: fetch league data again
+				// fetch league data again
+				Leagues.get(Leagues.getActiveLeague()._id)
 			}
 		})
 
@@ -206,6 +210,7 @@ function BottomTabNavigator() {
 			setMarketJoined(true)
 		})
 	}
+
 
 	return (
 		<Tab.Navigator
