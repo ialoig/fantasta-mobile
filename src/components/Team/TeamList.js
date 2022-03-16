@@ -10,7 +10,7 @@ import TeamCard from "../Card/TeamCard/TeamCard"
 import styles from "./styles"
 
 
-const TeamList = React.forwardRef(({ teams, league, onScroll, onScrollEnd }, ref ) => {
+const TeamList = React.forwardRef(({ league, teams, onScroll, onScrollEnd }, ref ) => {
 
 	//navigation route
 	const { navigate }  = useNavigation()
@@ -94,6 +94,7 @@ const TeamList = React.forwardRef(({ teams, league, onScroll, onScrollEnd }, ref
 					<FlatList
 						ref={ref}
 						data={teams}
+						extraData={teams}
 						keyExtractor={team => team._id}
 						initialScrollIndex={0}
 						scrollEventThrottle={16} //fire onScroll event each 16ms
@@ -121,8 +122,8 @@ const TeamList = React.forwardRef(({ teams, league, onScroll, onScrollEnd }, ref
 TeamList.displayName = "TeamList"
 
 TeamList.propTypes = {
-	teams: PropTypes.array.isRequired,
 	league: PropTypes.object.isRequired,
+	teams: PropTypes.array.isRequired,
 	onScroll: PropTypes.object,
 	onScrollEnd: PropTypes.func
 }

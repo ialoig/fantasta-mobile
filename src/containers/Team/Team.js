@@ -8,34 +8,34 @@ import { Leagues } from "../../services"
 import { commonStyle } from "../../styles"
 import styles from "./styles"
 
-function Team(props) {
+function Team({ league }) {
 
 	const { goBack } = useNavigation()
 
-	const [teams, setTeams] = useState()
-	const [league, setLeague] = useState()
+	// const [teams, setTeams] = useState()
+	// const [league, setLeague] = useState()
 
-	useEffect(() => {
+	// useEffect(() => {
 		
-		const league = Leagues.getActiveLeague()
-		setLeague(league)
+	// 	const activeLeague = Leagues.getActiveLeague()
+	// 	setLeague(activeLeague)
 
-		const teams = league.teams
-		console.log("[Team - useEffect] - teams", teams)
-		setTeams(teams)
+	// 	const teams = league.teams
+	// 	console.log("[Team - useEffect] - teams", teams)
+	// 	setTeams(teams)
 		
-	}, [])
+	// }, [league])
 
+	console.log("[Team] - league", league)
 
-	
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
 
 			{			
-				teams && league &&
+				league &&
 				<TeamList
-					teams={teams}
 					league={league}
+					teams={league.teams}
 				/>
 			}
 
@@ -52,7 +52,7 @@ function Team(props) {
 }
 
 Team.propTypes = {
-
+	league: PropTypes.object.isRequired
 }
 
 export default Team
