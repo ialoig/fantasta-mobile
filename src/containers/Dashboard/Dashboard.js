@@ -31,7 +31,7 @@ function Dashboard() {
 
 		setTeam(myTeam)
 		setLeague(apiLeague)
-		console.log("[Dashboard - useEffect] - league=", league.name)
+		console.log("[Dashboard - useEffect] - League:", league.name)
 	}, [])
 
 	//TODO: to be deleted after calculation of players from team object
@@ -45,7 +45,6 @@ function Dashboard() {
 		const apiPlayers = Object.values(Players.getPlayers())
 
 		const size = apiPlayers.length
-		console.log("[Dashboard - getRandomPlayers] - size", size)
 		const players = []
 		const indexes = []
 		for (let i = 0; i < randomNumberFromRange(10, 25); i++) {

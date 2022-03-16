@@ -54,7 +54,7 @@ const init = async () =>
 	axios.interceptors.response.use(
 		(response) => {
 
-			console.info("[server.init] - Interceptor OK: ", response)
+			console.info("[server.init] - Interceptor OK - status: ", response.request.status)
 
 			let data = response && response.data || {}
 			return Promise.resolve(data)

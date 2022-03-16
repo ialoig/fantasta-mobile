@@ -45,10 +45,9 @@ function TeamDetails({ teamID, style }) {
 	const flatRef = useRef(null)
 
 	useEffect(() => {
-		console.log("[TeamDetails - useEffect] - teamID=", teamID)
 		const team = Leagues.getTeamByID(teamID)
 		setTeam(team)
-		console.log("[TeamDetails - useEffect] - team=", team.name)
+		console.log("[TeamDetails - useEffect] - TeamID: %s, Team: %s", teamID, team.name)
 		
 		const league = Leagues.getActiveLeague()
 		setLeague(league)
@@ -64,8 +63,7 @@ function TeamDetails({ teamID, style }) {
 		// setPlayers(players)
 
 		// setLeague(apiLeague)
-		console.log("[TeamDetails - useEffect] - league=", league.name)
-		// console.log("[TeamDetails - useEffect] - players size=", players.length)
+		console.log("[TeamDetails - useEffect] - League: %s", league.name)
 	}, [teamID])
 
 
@@ -80,7 +78,6 @@ function TeamDetails({ teamID, style }) {
 		const apiPlayers = Object.values(Players.getPlayers())
 		
 		const size = apiPlayers.length
-		console.log("[TeamDetails - getRandomPlayers] - size", size)
 		const players = []
 		const indexes = []
 		for (let i = 0; i<randomNumberFromRange(10, 25); i++) {

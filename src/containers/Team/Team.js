@@ -8,7 +8,7 @@ import { Leagues } from "../../services"
 import { commonStyle } from "../../styles"
 import styles from "./styles"
 
-function Team({ league }) {
+function Team({ league, update }) {
 
 	const { goBack } = useNavigation()
 
@@ -26,8 +26,6 @@ function Team({ league }) {
 		
 	// }, [league])
 
-	console.log("[Team] - league", league)
-
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
 
@@ -36,6 +34,7 @@ function Team({ league }) {
 				<TeamList
 					league={league}
 					teams={league.teams}
+					update={update}
 				/>
 			}
 
@@ -52,7 +51,8 @@ function Team({ league }) {
 }
 
 Team.propTypes = {
-	league: PropTypes.object.isRequired
+	league: PropTypes.object.isRequired,
+	update: PropTypes.number
 }
 
 export default Team

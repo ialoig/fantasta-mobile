@@ -75,29 +75,31 @@ class Socket {
 		const user_id = User.get().id
 		const team_id = Leagues.getMyTeam(User.get().username)._id
 
-		console.log(`[Socket] joinRoom. league_room=${this.league_room} user_id=${user_id} team_id=${team_id} league_id=${league_id} newUser=${newUser}`)
+		console.log(`[Socket - joinRoom] league_room=${this.league_room} user_id=${user_id} team_id=${team_id} league_id=${league_id} newUser=${newUser}`)
 		const payload = { user_id: user_id, team_id: team_id, league_id: league_id }
 
 		if (newUser) {
+			console.log("[Socket - joinRoom] emitting event EVENT_TYPE.CLIENT.LEAGUE.USER_NEW")
 			this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_NEW, payload, (response) => {
 				if (response.error) {
-					console.error(`[Socket] joinRoom Error: ${response.error}`)
+					console.error(`[Socket - joinRoom] Error: ${response.error}`)
 					// TODO: handle error
 					// de-register leagueEvents
 				}
-				console.log(`response.status: ${response.status}`)
-				console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
+				console.log(`[Socket - joinRoom] response status: ${response.status}`)
+				console.log(`[Socket - joinRoom] error? ${JSON.stringify(response.error, null, 2)}`)
 			})
 		}
 		else {
+			console.log("[Socket - joinRoom] emitting event EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE")
 			this.ioClient.emit(EVENT_TYPE.CLIENT.LEAGUE.USER_ONLINE, payload, (response) => {
 				if (response.error) {
 					console.error(`[Socket] joinRoom Error: ${response.error}`)
 					// TODO: handle error
 					// de-register leagueEvents
 				}
-				console.log(`response.status: ${response.status}`)
-				console.log(`response.error: ${JSON.stringify(response.error, null, 2)}`)
+				console.log(`[Socket - joinRoom] response status: ${response.status}`)
+				console.log(`[Socket - joinRoom] error? ${JSON.stringify(response.error, null, 2)}`)
 			})
 		}
 	}

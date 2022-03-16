@@ -40,7 +40,10 @@ function BottomTabNavigator() {
 	const [marketTeamTurn, setMarketTeamTurn] = useState({})
 	const [marketBetHistory, setMarketBetHistory] = useState([])
 	const [marketJoined, setMarketJoined] = useState(false)
+
+	// league props: get League from local Storage and update it when new event occurs
 	const [league, setLeague] = useState(Leagues.getActiveLeague())
+	const [update, setUpdate] = useState(0) // initialized to zero and incremented when league change
 
 	let marketProps = { marketOpen, marketActive, marketOnlineTeams, marketTeamTurn, marketBetHistory, marketJoined }
 
@@ -59,8 +62,12 @@ function BottomTabNavigator() {
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
 				// fetch league data again
+				console.log("[Socket] check if it's my team: ", payload)
+				const random = Math.random()
+				console.log("[Socket] updating league and forcing refresh with random:", random)
 				Leagues.get(Leagues.getActiveLeague()._id)
 				setLeague(Leagues.getActiveLeague())
+				setUpdate(random)
 			}
 		})
 
@@ -88,8 +95,12 @@ function BottomTabNavigator() {
 				setLeagueOnlineTeams(payload)
 				// fetch league data again
 				// TODO: read team from payload and if payload.team == my_team skip fetching league data otherwise call get league api
+				console.log("[Socket] check if it's my team: ", payload)
 				Leagues.get(Leagues.getActiveLeague()._id)
 				setLeague(Leagues.getActiveLeague())
+				const random = Math.random()
+				setUpdate(random)
+				console.log("[Socket] updating league and forcing refresh with random:", random)
 			}
 		})
 
@@ -179,12 +190,11 @@ function BottomTabNavigator() {
 		})
 
 		return () => {
-			console.log("onUnmount")
 			didUnmount = true
 			// disconnect from league room
 			ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.LEAGUE.USER_OFFLINE, (response) => {
-				console.log(`callbak.response.status: ${response.status}`)
-				console.log(`callback.response.error: ${JSON.stringify(response.error, null, 2)}`)
+				console.log(`disconnecting from league room ... response status: ${response.status}`)
+				console.log(`\terror? ${JSON.stringify(response.error, null, 2)}`)
 				// TODO: check response OK from server
 			})
 
@@ -255,7 +265,8 @@ function BottomTabNavigator() {
 				}}
 			>
 				{() => <Team
-					league={Leagues.getActiveLeague()}
+					league={league}
+					update={update}
 				/>
 				}
 			</Tab.Screen>

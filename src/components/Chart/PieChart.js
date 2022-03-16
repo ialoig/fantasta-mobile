@@ -60,7 +60,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 			const pie = d3.pie()
 				.value( (d) => d.value)(values)
 			setPie(pie)
-			console.log("[PieChart - chart] - Pie created with values")
+			console.log("[PieChart - chart] - Created Pie Chart with values !")
 		}
 	}
 
@@ -71,7 +71,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 	// role: role which the value is related to 
 	const calculateValues = () => {
 		
-		console.log("[PieChart - calculateValues] - totalSpent=", totalSpent)
+		console.log("[PieChart - calculateValues] - Total spent:", totalSpent)
 		if (totalSpent > maxValue) {
 			console.error("Error while calculating total spent! Total spent cannot be bigger than Max Value")
 			const values = [
@@ -88,7 +88,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 		//calculate values as percentage
 		let values = budgetSpent.map((item, index) => {
 			const percSpent = Math.round(100 * item.value / maxValue)
-			console.log("[PieChart - calculateValues] - [", index, "]", item.role, ",", percSpent, "%")
+			// console.log("[PieChart - calculateValues] - [", index, "]", item.role, ",", percSpent, "%")
 			return {
 				role: item.role,
 				color: colors[item.role] === undefined ? colors.grey : colors[item.role],

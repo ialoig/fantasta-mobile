@@ -10,10 +10,12 @@ import TeamCard from "../Card/TeamCard/TeamCard"
 import styles from "./styles"
 
 
-const TeamList = React.forwardRef(({ league, teams, onScroll, onScrollEnd }, ref ) => {
+const TeamList = ({ league, teams, update, onScroll, onScrollEnd }) => {
 
 	//navigation route
 	const { navigate }  = useNavigation()
+
+	console.log("[TeamList - props] - League name: %s, n. Teams: %s, Update flag: %s", league.name, teams.length, update)
 
 
 	//TODO: to be deleted after calculation of players from team object
@@ -40,7 +42,7 @@ const TeamList = React.forwardRef(({ league, teams, onScroll, onScrollEnd }, ref
 			players.push(apiPlayers[randomIndex])
 		}
 		size = players.length
-		console.log("[TeamList - getRandomPlayers] - size", size)
+		// console.log("[TeamList - getRandomPlayers] - size", size)
 		return players
 	}
 
@@ -65,7 +67,7 @@ const TeamList = React.forwardRef(({ league, teams, onScroll, onScrollEnd }, ref
 
 
 	const renderItem = ({ item }) => {
-		console.log("[TeamList - renderItem] - item =", item.name)
+		console.log("[TeamList - renderItem] - Item ID: %s, Item name: %s", item._id, item.name)
 
 		// const players = item.footballPlayers
 		
@@ -92,9 +94,8 @@ const TeamList = React.forwardRef(({ league, teams, onScroll, onScrollEnd }, ref
 			{
 				teams &&
 					<FlatList
-						ref={ref}
 						data={teams}
-						extraData={teams}
+						extraData={update}
 						keyExtractor={team => team._id}
 						initialScrollIndex={0}
 						scrollEventThrottle={16} //fire onScroll event each 16ms
@@ -118,12 +119,12 @@ const TeamList = React.forwardRef(({ league, teams, onScroll, onScrollEnd }, ref
 			}
 		</View>
 	)
-})
-TeamList.displayName = "TeamList"
+}
 
 TeamList.propTypes = {
 	league: PropTypes.object.isRequired,
 	teams: PropTypes.array.isRequired,
+	update: PropTypes.number.isRequired,
 	onScroll: PropTypes.object,
 	onScrollEnd: PropTypes.func
 }
