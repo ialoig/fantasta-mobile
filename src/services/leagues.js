@@ -132,10 +132,10 @@ const get = async (id) => {
 	try {
 		if (id) {
 			let response = await axios.get("/league/get", { params: { leagueID: id } })
-			console.log("[services - /league/get] response: ", response)
 			if (!response) {
 				return Promise.reject("Error - Empty response from /league/get api")
 			}
+			console.log("[services - /league/get] response, league: ", response.league.name )
 			initLocalStorage(response)
 
 			return Promise.resolve(response.league._id)

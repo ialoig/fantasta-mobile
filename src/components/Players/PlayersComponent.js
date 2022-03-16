@@ -51,7 +51,7 @@ function PlayersComponent({ players, searchBoxShown, searchBoxSticky, playerSele
 
 	
 	useEffect( () => {
-		console.log("[PlayersComponent - useEffect] - activeRoles=", activeRoles)
+		console.log("[PlayersComponent - useEffect] - Active filter role active:", activeRoles)
 
 		const apiLeague =  Leagues.getActiveLeague()
 		setLeague(apiLeague)
@@ -83,8 +83,10 @@ function PlayersComponent({ players, searchBoxShown, searchBoxSticky, playerSele
 
 	const sortList = (players) => {
 		const size = players.length
-		console.log("[PlayersComponent - sortList] - n. players =", size)
-		let sortedList = players.sort(highPriceToLow)
+		let sortedList
+		if (size > 0) {
+			sortedList = players.sort(highPriceToLow)
+		}
 		
 		setFilterdPlayers(sortedList)
 	}
@@ -104,7 +106,7 @@ function PlayersComponent({ players, searchBoxShown, searchBoxSticky, playerSele
 			return false
 		})
 		const size = filteredList.length
-		console.log("[PlayersComponent - filterByRole] - role= "+roles+", n. players=", size)
+		console.log("[PlayersComponent - filterByRole] - Roles: %s, n. players: %s", roles, size)
 		setQuery("")
 		setFilterdPlayers(filteredList)
 	}
@@ -125,7 +127,7 @@ function PlayersComponent({ players, searchBoxShown, searchBoxSticky, playerSele
 
 	const handleSearch = (text) => {
 		const query = text.toLowerCase()
-		console.log("[PlayersComponent - handleSearch] - query=", query)
+		console.log("[PlayersComponent - handleSearch] - query:", query)
 		const results = players.filter((player) => {
 			const { name, team } = player
 			if (name.toLowerCase().includes(query) || team.toLowerCase().includes(query)) {
@@ -143,7 +145,7 @@ function PlayersComponent({ players, searchBoxShown, searchBoxSticky, playerSele
 		}
 		// case 0 - removing role: means that filter button has been pressed twice
 		else if (activeRoles.includes(role)) {
-			console.log("[PlayersComponent - handlePressFilter] - removing role=", role)
+			console.log("[PlayersComponent - handlePressFilter] - removing role: ", role)
 			const cleanActiveRole = activeRoles.filter( (item) => item != role)
 			if (cleanActiveRole.length === 0)
 				setActiveRoles([ROLE_CLASSIC.ALL])
@@ -152,7 +154,7 @@ function PlayersComponent({ players, searchBoxShown, searchBoxSticky, playerSele
 		} 
 		// case 1 - adding role to active roles array
 		else {
-			console.log("[PlayersComponent - handlePressFilter] - added role=", role)
+			console.log("[PlayersComponent - handlePressFilter] - added role: ", role)
 			// removing ALL and "none" value if a different role has been pressed
 			const cleanActiveRole = activeRoles.filter( (item) => item != ROLE_CLASSIC.ALL && item != "none")
 			if (cleanActiveRole.length > 0)
