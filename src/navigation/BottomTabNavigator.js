@@ -40,6 +40,7 @@ function BottomTabNavigator() {
 	const [marketTeamTurn, setMarketTeamTurn] = useState({})
 	const [marketBetHistory, setMarketBetHistory] = useState([])
 	const [marketJoined, setMarketJoined] = useState(false)
+	const [league, setLeague] = useState(Leagues.getActiveLeague())
 
 	let marketProps = { marketOpen, marketActive, marketOnlineTeams, marketTeamTurn, marketBetHistory, marketJoined }
 
@@ -57,7 +58,9 @@ function BottomTabNavigator() {
 			console.log(`[Socket] user joined league room "${socket.league_room}" (newUser=true). payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
-				//TODO: fetch league data again
+				// fetch league data again
+				Leagues.get(Leagues.getActiveLeague()._id)
+				setLeague(Leagues.getActiveLeague())
 			}
 		})
 
@@ -67,8 +70,6 @@ function BottomTabNavigator() {
 			console.log(`[Socket] user joined league room "${socket.league_room}" (newUser=false). payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
-				// fetch league data again
-				Leagues.get(Leagues.getActiveLeague()._id)
 			}
 		})
 
@@ -86,7 +87,9 @@ function BottomTabNavigator() {
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
 				// fetch league data again
+				// TODO: read team from payload and if payload.team == my_team skip fetching league data otherwise call get league api
 				Leagues.get(Leagues.getActiveLeague()._id)
+				setLeague(Leagues.getActiveLeague())
 			}
 		})
 
@@ -241,7 +244,6 @@ function BottomTabNavigator() {
 
 			<Tab.Screen
 				name={routes.TEAM}
-				component={Team}
 				options={{
 					// eslint-disable-next-line react/display-name
 					tabBarIcon: ({ focused }) => {
@@ -251,7 +253,12 @@ function BottomTabNavigator() {
 							secondary={focused ? colors.secondary : colors.white} />
 					}
 				}}
-			/>
+			>
+				{() => <Team
+					league={Leagues.getActiveLeague()}
+				/>
+				}
+			</Tab.Screen>
 
 			<Tab.Screen
 				name={routes.MARKET}

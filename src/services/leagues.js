@@ -68,8 +68,11 @@ const create = async (settings) => {
 	try {
 		let response = await axios.post("/league/create", settings, {})
 		console.log("[services - /league/create] response: ", response)
-		addLeague(response)
-		setActiveLeague(response.league)
+		if (!response) {
+			return Promise.reject("Error - Empty response from /league/create api")
+		}
+		initLocalStorage(response)
+
 		return Promise.resolve()
 	}
 	catch (error) {
@@ -99,12 +102,10 @@ const join = async (id = "", name = "", password = "", teamname = "") => {
 			}
 
 			let response = await axios.put("/league/join", data, {})
-			// console.log("[services - /league/join] response: ", response)
-			addLeague(response)
-			setActiveLeague(response.league)
-
-			// initialize market
-			MarketStatus.init(response.market)
+			if (!response) {
+				return Promise.reject("Error - Empty response from /league/join api")
+			}
+			initLocalStorage(response)
 
 			return Promise.resolve(response.league._id)
 		}
@@ -130,14 +131,14 @@ const join = async (id = "", name = "", password = "", teamname = "") => {
 const get = async (id) => {
 	try {
 		if (id) {
-			let response = await axios.get("/league/get", { params: { leagueID: id } }) 
-
-			if (response) {
-				// add league to LEAGUE array
-				addLeague(response)
-				return Promise.resolve(response.league._id)
+			let response = await axios.get("/league/get", { params: { leagueID: id } })
+			console.log("[services - /league/get] response: ", response)
+			if (!response) {
+				return Promise.reject("Error - Empty response from /league/get api")
 			}
-			return Promise.resolve(null)
+			initLocalStorage(response)
+
+			return Promise.resolve(response.league._id)
 		}
 	}
 	catch (error) {
@@ -167,6 +168,17 @@ const getParticipants = () => {
 const getTeams = () => {
 	const teams = ACTIVE_LEAGUE.teams
 	return teams
+}
+
+
+const initLocalStorage = (response) => {
+	// add league to LEAGUE array
+	addLeague(response)
+	setActiveLeague(response.league)
+
+	// initialize market
+	MarketStatus.init(response.market)
+
 }
 
 export const Leagues = {
