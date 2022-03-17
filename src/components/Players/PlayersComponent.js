@@ -51,7 +51,7 @@ function PlayersComponent({ players, searchBoxShown, searchBoxSticky, playerSele
 
 	
 	useEffect( () => {
-		console.log("[PlayersComponent - useEffect] - Active filter role active:", activeRoles)
+		console.log("[PlayersComponent - useEffect] - Active filter role:", activeRoles)
 
 		const apiLeague =  Leagues.getActiveLeague()
 		setLeague(apiLeague)

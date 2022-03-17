@@ -15,7 +15,7 @@ import { getHeaderHeight, getMaxHeader } from "../../utils/deviceUtils"
 import styles from "./styles"
 
 const League = ( item, onPress ) => {
-
+	
 	return (
 		<Card
 			key={item._id}

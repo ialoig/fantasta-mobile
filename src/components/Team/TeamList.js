@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { FlatList, Text, View } from "react-native"
 import routes from "../../navigation/routesNames"
-import { Players } from "../../services"
+import { Players, User } from "../../services"
 import { textStyles } from "../../styles"
 import TeamCard from "../Card/TeamCard/TeamCard"
 import styles from "./styles"
@@ -16,6 +16,7 @@ const TeamList = ({ league, teams, update, onScroll, onScrollEnd }) => {
 	const { navigate }  = useNavigation()
 
 	console.log("[TeamList - props] - League name: %s, n. Teams: %s, Update flag: %s", league.name, teams.length, update)
+	console.log("[TeamList - props] - User: %s", User.get().username)
 
 
 	//TODO: to be deleted after calculation of players from team object
