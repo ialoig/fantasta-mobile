@@ -9,24 +9,28 @@ let ACTIVE_LEAGUE = []
 
 /**
  * After adding the league to the database, also add it to local storage if not exist already
- * @param {*} response from either create or join function
+ * @param {*} league Object from either create or join function
  */
-const addLeague = (response) => {
+const addOrUpdateLeague = (response) => {
 	const league = response.user.leagues.find(item => item._id === response.league._id)
-	if (LEAGUES.length > 0) {
+	if (league && LEAGUES.length > 0) {
 		var index = LEAGUES.findIndex(existing_league => existing_league._id === league._id)
 		// case 0 : league does not exist
 		if (index === -1) {
 			LEAGUES.push(league)
+			console.log("[services - addAndUpdateLocalLeague] Adding League: %s in local storage", league.name)
 		}
 		// case 1: league exists, and should be updated
 		else {
 			LEAGUES[index] = league
+			console.log("[services - addAndUpdateLocalLeague] Updating League: %s in local storage", league.name)
 		}
-	} else {
+	} else if (league) {
 		LEAGUES.push(league)
+		console.log("[services - addAndUpdateLocalLeague] Local storage is empty. Adding League: %s", league.name)
 	}
 }
+
 
 const setLeagues = (leagues) => {
 	LEAGUES = leagues || []
@@ -135,8 +139,12 @@ const get = async (id) => {
 			if (!response) {
 				return Promise.reject("Error - Empty response from /league/get api")
 			}
-			console.log("[services - /league/get] response, league: ", response.league.name )
-			initLocalStorage(response)
+			console.log("[services - /league/get] response, League id: %s, League name: %s", response.league._id, response.league.name )
+
+			// add league on local Storage
+			addOrUpdateLeague(response.league)
+			// setting league as active
+			setActiveLeague(response.league)
 
 			return Promise.resolve(response.league._id)
 		}
@@ -173,7 +181,7 @@ const getTeams = () => {
 
 const initLocalStorage = (response) => {
 	// add league to LEAGUE array
-	addLeague(response)
+	addOrUpdateLeague(response)
 	setActiveLeague(response.league)
 
 	// initialize market
