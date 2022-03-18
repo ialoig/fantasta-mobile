@@ -1,5 +1,4 @@
 import axios from "axios"
-
 import { Error } from "./error"
 import { MarketStatus } from "./market"
 
@@ -142,7 +141,7 @@ const get = async (id) => {
 			console.log("[services - /league/get] response, League id: %s, League name: %s", response.league._id, response.league.name )
 
 			// add league on local Storage
-			addOrUpdateLeague(response.league)
+			addOrUpdateLeague(response)
 			// setting league as active
 			setActiveLeague(response.league)
 
