@@ -27,7 +27,7 @@ function MarketWaitingRoom({ marketOnlineTeams }) {
 	}, [teams])
 
 	const marketStart = () => {
-		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.START, (response) => {
+		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.ACTIVE, (response) => {
 			console.log(`callbak.response.status: ${response.status}`)
 			console.log(`callback.response.error: ${JSON.stringify(response.error, null, 2)}`)
 			// TODO: check response OK from server

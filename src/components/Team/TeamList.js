@@ -68,7 +68,7 @@ const TeamList = ({ league, teams, update, onScroll, onScrollEnd }) => {
 
 
 	const renderItem = ({ item }) => {
-		console.log("[TeamList - renderItem] - Item ID: %s, Item name: %s", item._id, item.name)
+		console.log("[TeamList - renderItem] - Item ID: %s, Item name: %s, user: %s", item._id, item.name, item.user.name)
 
 		// const players = item.footballPlayers
 		
