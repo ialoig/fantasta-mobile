@@ -7,6 +7,7 @@ import Market from "../containers/Market/Market"
 import PlayersContainer from "../containers/Players/PlayersContainer"
 import Team from "../containers/Team/Team"
 import { Leagues } from "../services"
+import { MarketStatus } from "../services/market"
 import { SocketManager } from "../services/socket"
 import { colors } from "../styles"
 import { bottomTabShadow, bottomTabStyle } from "./bottomTabNavigatorConfig"
@@ -21,20 +22,20 @@ function BottomTabNavigator() {
 	console.log("HERE")
 
 	/* MARKET OBJECT IN DATABASE
-	_id
-	leagueId
-	open
-	active
-	onlineTeams
-	teamTurn
-	betHistory
-	closedAt
-	createdAt	
-	updatedAt
+		_id
+		leagueId
+		open
+		active
+		onlineTeams
+		teamTurn
+		betHistory
+		closedAt
+		createdAt	
+		updatedAt
 	*/
 
 	const [leagueOnlineTeams, setLeagueOnlineTeams] = useState()
-	const [marketOpen, setMarketOpen] = useState(false)
+	const [marketOpen, setMarketOpen] = useState(MarketStatus.get().closedAt == null ? true : false)
 	const [marketActive, setMarketActive] = useState(false)
 	const [marketOnlineTeams, setMarketOnlineTeams] = useState([])
 	const [marketTeamTurn, setMarketTeamTurn] = useState({})
@@ -150,8 +151,8 @@ function BottomTabNavigator() {
 		})
 
 		// Admin start the Auction (used)
-		// use case: set the market as started
-		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.START, (payload) => {
+		// use case: set the market as active
+		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.ACTIVE, (payload) => {
 			console.log(`[Socket] market room "${socket.market_room}"is active. payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setMarketActive(true)

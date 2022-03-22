@@ -20,7 +20,7 @@ const EVENT_TYPE = {
 		},
 		MARKET: {
 			USER_ONLINE: 106,
-			START: 107,
+			ACTIVE: 107,
 			FOOTBALL_PLAYER_SELECTED: 108,
 			BET: 109,
 			WIN: 110,
@@ -41,7 +41,7 @@ const EVENT_TYPE = {
 		},
 		MARKET: {
 			USER_ONLINE: 206,
-			START: 207,
+			ACTIVE: 207,
 			FOOTBALL_PLAYER_SELECTED: 208,
 			BET: 209,
 			WIN: 210,
