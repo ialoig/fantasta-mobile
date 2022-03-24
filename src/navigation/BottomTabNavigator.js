@@ -34,8 +34,10 @@ function BottomTabNavigator() {
 		updatedAt
 	*/
 
+	const market = MarketStatus.get()
+
 	const [leagueOnlineTeams, setLeagueOnlineTeams] = useState()
-	const [marketOpen, setMarketOpen] = useState(MarketStatus.get().closedAt == null ? true : false)
+	const [marketOpen, setMarketOpen] = useState(market && market.closedAt == null ? true : false)
 	const [marketActive, setMarketActive] = useState(false)
 	const [marketOnlineTeams, setMarketOnlineTeams] = useState([])
 	const [marketTeamTurn, setMarketTeamTurn] = useState({})
@@ -153,7 +155,7 @@ function BottomTabNavigator() {
 		// Admin start the Auction (used)
 		// use case: set the market as active
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.ACTIVE, (payload) => {
-			console.log(`[Socket] market room "${socket.market_room}"is active. payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] market room "${socket.market_room}" is active. payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setMarketActive(true)
 			}
