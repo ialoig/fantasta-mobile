@@ -103,7 +103,7 @@ function Market({
 			}
 
 			{
-				marketOpen && marketJoined && marketActive && <MarketTurnManager marketTeamTurn={marketTeamTurn} />
+				marketOpen && marketJoined && marketActive && <MarketTurnManager marketTeamTurn={marketTeamTurn} marketOpen={marketOpen}/>
 			}
 
 

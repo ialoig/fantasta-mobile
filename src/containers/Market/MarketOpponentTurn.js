@@ -8,7 +8,7 @@ import AnimatedIcon from "../../components/Icon/AnimatedIcon"
 import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
 
-function MarketOpponentTurn(props) {
+function MarketOpponentTurn({ team }) {
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
 			<Text style={[textStyles.h2, textStyles.alignCenter]}>
@@ -22,8 +22,8 @@ function MarketOpponentTurn(props) {
 					type={"large"}
 				/>
 				<AuctionCard 
-					name={"team"}
-					bid={100}
+					name={team.name}
+					bid={team.budget}
 					type={"large"}
 				/>
 
@@ -68,7 +68,7 @@ function MarketOpponentTurn(props) {
 }
 
 MarketOpponentTurn.propTypes = {
-
+	team: PropTypes.object.isRequired
 }
 
 export default MarketOpponentTurn
