@@ -7,7 +7,6 @@ import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 import Icon from "../../components/Icon/Icon"
 import useAdmin from "../../hooks/useAdmin"
 import { Leagues } from "../../services"
-import { MarketStatus } from "../../services/market"
 import { SocketManager } from "../../services/socket"
 import { commonStyle, textStyles } from "../../styles"
 import styles from "./styles"
@@ -22,7 +21,6 @@ function MarketWaitingRoom({ marketOnlineTeams }) {
 	const isAdmin = useAdmin()
 
 	useEffect(() => {
-		console.log("teams:", teams)
 		setTeams(Leagues.getTeams())
 	}, [teams])
 

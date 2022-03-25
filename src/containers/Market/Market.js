@@ -11,6 +11,7 @@ import { textStyles } from "../../styles"
 import MarketCreate from "./MarketCreate"
 import MarketMyTurn from "./MarketMyTurn"
 import MarketOpponentTurn from "./MarketOpponentTurn"
+import MarketTurnManager from "./MarketTurnManager"
 import MarketWaitingRoom from "./MarketWaitingRoom"
 import styles from "./styles"
 function Market({
@@ -27,7 +28,7 @@ function Market({
 
 	console.log("============")
 	console.log(`[Market] - page - marketJoined=${marketJoined}`)
-	console.log(`[Market] - page - marketOnlineTeams=${marketOnlineTeams}`)
+	console.log(`[Market] - page - marketOnlineTeams=${JSON.stringify(marketOnlineTeams)}`)
 	console.log(`[Market] - page - marketOpen=${marketOpen}`)
 	console.log(`[Market] - page - marketActive=${marketActive}`)
 	console.log(`[Market] - page - marketTeamTurn=${JSON.stringify(marketTeamTurn)}`)
@@ -82,12 +83,7 @@ function Market({
 	// 	return user.id === admin._id
 	// }
 
-	const myTurn = () => {
-		console.log(`[Market] - myTurn() - marketTeamTurn=${JSON.stringify(marketTeamTurn)}`)
-		console.log(`[Market] - myTurn() - User.get().username=${User.get().username}`)
-		console.log(`[Market] - myTurn() - myTurn=${marketTeamTurn.turn == User.get().username}`)
-		return marketTeamTurn.turn == User.get().username
-	}
+
 
 	return (
 		<View style={styles.container}>
@@ -107,11 +103,7 @@ function Market({
 			}
 
 			{
-				marketOpen && marketJoined && marketActive && myTurn() && <MarketMyTurn />
-			}
-
-			{
-				marketOpen && marketJoined && marketActive && !myTurn() && <MarketOpponentTurn />
+				marketOpen && marketJoined && marketActive && <MarketTurnManager marketTeamTurn={marketTeamTurn} />
 			}
 
 
@@ -132,7 +124,7 @@ Market.propTypes = {
 	joinMarketRoom: PropTypes.func,
 	marketOnlineTeams: PropTypes.array,
 	marketActive: PropTypes.bool,
-	marketTeamTurn: PropTypes.object,
+	marketTeamTurn: PropTypes.array,
 	createMarket: PropTypes.func
 }
 

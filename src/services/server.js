@@ -61,7 +61,7 @@ const init = async () =>
 		},
 		(error) => {
 
-			console.error("Interceptor Error: ", error && error.response || error)
+			console.error("Interceptor Error: ", error)
 
 			let err = error && error.response && error.response.data || null
 			err = err || {
