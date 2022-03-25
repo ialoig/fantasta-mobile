@@ -40,7 +40,7 @@ function BottomTabNavigator() {
 	const [marketOpen, setMarketOpen] = useState(market && market.closedAt == null ? true : false)
 	const [marketActive, setMarketActive] = useState(false)
 	const [marketOnlineTeams, setMarketOnlineTeams] = useState([])
-	const [marketTeamTurn, setMarketTeamTurn] = useState({})
+	const [marketTeamTurn, setMarketTeamTurn] = useState([])
 	const [marketBetHistory, setMarketBetHistory] = useState([])
 	const [marketJoined, setMarketJoined] = useState(false)
 
@@ -61,7 +61,7 @@ function BottomTabNavigator() {
 		// New user joined the League (not used)
 		// use case: force reload league data to see new user in Team page
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_NEW, (payload) => {
-			console.log(`[Socket] user joined league room "${socket.league_room}" (newUser=true). payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [LEAGUE.USER_NEW] user joined league room "${socket.league_room}" (newUser=true). payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
 				// fetch league data again
@@ -77,7 +77,7 @@ function BottomTabNavigator() {
 		// Existing user joined the League (not used)
 		// use case: tbd
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_ONLINE, (payload) => {
-			console.log(`[Socket] user joined league room "${socket.league_room}" (newUser=false). payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [LEAGUE.USER_ONLINE] user joined league room "${socket.league_room}" (newUser=false). payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
 			}
@@ -86,31 +86,31 @@ function BottomTabNavigator() {
 		// Existing user left the league (not used)
 		// use case: tdb
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_OFFLINE, (payload) => {
-			console.log(`[Socket] user left league room "${socket.league_room}". payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [LEAGUE.USER_OFFLINE] user left league room "${socket.league_room}". payload: ${JSON.stringify(payload)}`)
 			setLeagueOnlineTeams(payload)
 		})
 
 		// Existing user deleted from the League (not used)
 		// use case: force reload league data to not see the user in Team page
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.USER_DELETED, (payload) => {
-			console.log(`[Socket] user deleted from league. payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [LEAGUE.USER_DELETED] user deleted from league. payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setLeagueOnlineTeams(payload)
 				// fetch league data again
 				// TODO: read team from payload and if payload.team == my_team skip fetching league data otherwise call get league api
-				console.log("[Socket] check if it's my team: ", payload)
+				console.log("[Socket] [LEAGUE.USER_DELETED] check if it's my team: ", payload)
 				Leagues.get(Leagues.getActiveLeague()._id)
 				setLeague(Leagues.getActiveLeague())
 				const random = Math.random()
 				setUpdate(random)
-				console.log("[Socket] updating league and forcing refresh with random:", random)
+				console.log("[Socket] [LEAGUE.USER_DELETED] updating league and forcing refresh with random:", random)
 			}
 		})
 
 		// Admin open the market (used)
 		// Use case: show market as open
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.LEAGUE.MARKET_OPEN, (payload) => {
-			console.log(`[Socket] open market room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [LEAGUE.MARKET_OPEN] open market room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setMarketOpen(true)
 				setMarketOnlineTeams(payload)
@@ -122,12 +122,12 @@ function BottomTabNavigator() {
 		// Admin close the market (used) - fix bug on server
 		// Use case: show market as closed
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.CLOSE, () => {
-			console.log(`[Socket] close market room "${socket.market_room}".`)
+			console.log(`[Socket] [MARKET.CLOSE] close market room "${socket.market_room}".`)
 			if (!didUnmount) {
 				setMarketOpen(false)
 				setMarketActive(false)
 				setMarketOnlineTeams([])
-				setMarketTeamTurn({})
+				setMarketTeamTurn([])
 				setMarketBetHistory([])
 				setMarketJoined(false)
 			}
@@ -136,7 +136,7 @@ function BottomTabNavigator() {
 		// Existing user left the Market (only on disconnection)
 		// use case: show online users in market waiting room
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.USER_OFFLINE, (payload) => {
-			console.log(`[Socket] user left room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [MARKET.USER_OFFLINE] user left room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setMarketOnlineTeams(payload)
 				// TODO: when an other user from online becomes offline this message id not received if the mobile user did not join the market yet
@@ -146,7 +146,7 @@ function BottomTabNavigator() {
 		// Existing user joined the Market (used)
 		// use case: show online users in market waiting room
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.USER_ONLINE, (payload) => {
-			console.log(`[Socket] user join room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [MARKET.USER_ONLINE] user join room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setMarketOnlineTeams(payload)
 			}
@@ -155,16 +155,16 @@ function BottomTabNavigator() {
 		// Admin start the Auction (used)
 		// use case: set the market as active
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.ACTIVE, (payload) => {
-			console.log(`[Socket] market room "${socket.market_room}" is active. payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [SERVER.MARKET.ACTIVE] market room "${socket.market_room}" is active. payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setMarketActive(true)
 			}
 		})
 
-		// Event receiver immediately after SERVER.MARKET.START with player name's turn (not used)
-		// use case: render market open depending on the player's turn
+		// Event receiver immediately after SERVER.MARKET.START with Team id's turn (not used)
+		// use case: render market open depending on the Team's turn
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.SEARCH, (payload) => {
-			console.log(`[Socket] market room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [SERVER.MARKET.SEARCH] market room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
 			if (!didUnmount) {
 				setMarketTeamTurn(payload)
 			}
@@ -173,19 +173,19 @@ function BottomTabNavigator() {
 		// User placed a bet on the selected player (not used)
 		// Use case: all other users will see Market Open Player Selected page
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.FOOTBALL_PLAYER_SELECTED, (payload) => {
-			console.log(`[Socket] market room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [MARKET.FOOTBALL_PLAYER_SELECTED] market room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
 		})
 
 		// Event recevied 3 seconds after SERVER.MARKET.FOOTBALL_PLAYER_SELECTED (not used)
 		// Use case: show Market Open Auction page
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.BET, (payload) => {
-			console.log(`[Socket] market room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
+			console.log(`[Socket] [SERVER.MARKET.BET] market room "${socket.market_room}". payload: ${JSON.stringify(payload)}`)
 		})
 
 		// Admin paused the Market (not used)
 		// Use case: tbd
 		ioClient.on(SocketManager.EVENT_TYPE.SERVER.MARKET.PAUSE, () => {
-			console.log(`[Socket] market room "${socket.market_room}" is paused`)
+			console.log(`[Socket] [SERVER.MARKET.PAUSE] market room "${socket.market_room}" is paused`)
 			if (!didUnmount) {
 				setMarketActive(false)
 			}
