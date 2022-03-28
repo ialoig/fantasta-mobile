@@ -137,6 +137,7 @@
   "market_not_open": "Nessun mercato è aperto",
   "market_not_open_descr": "Attendi o riprova quando una sessione è pianificata",
   "market_waiting_room_descr": "In attesa di tutti i partecipanti ...",
+  "market_waiting_team_turn": "Scegliendo il prossimo turno ...",
   "tipology": "Tipologia",
   "tooShortField": "Campo troppo breve",
   "username": "Username",

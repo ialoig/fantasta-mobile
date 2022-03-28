@@ -6,11 +6,8 @@ import { Text, View } from "react-native"
 import { Button, Header } from "../../components"
 import Icon from "../../components/Icon/Icon"
 import useAdmin from "../../hooks/useAdmin"
-import { Leagues, User } from "../../services"
 import { textStyles } from "../../styles"
 import MarketCreate from "./MarketCreate"
-import MarketMyTurn from "./MarketMyTurn"
-import MarketOpponentTurn from "./MarketOpponentTurn"
 import MarketTurnManager from "./MarketTurnManager"
 import MarketWaitingRoom from "./MarketWaitingRoom"
 import styles from "./styles"
@@ -76,19 +73,14 @@ function Market({
 		)
 	}
 
-	// const isAdmin = () => {
-	// 	const user = User.get()
-	// 	const admin = Leagues.getAdmin()
-	// 	console.log("[Market] - actual user: %s, admin is: %s", user.username, admin.name)
-	// 	return user.id === admin._id
-	// }
-
-
 
 	return (
 		<View style={styles.container}>
 			{
-				!marketOpen && isAdmin && <MarketCreate createMarket={createMarket} />
+				!marketOpen && isAdmin && 
+				<MarketCreate 
+					createMarket={createMarket} 
+				/>
 			}
 			{
 				!marketOpen && !isAdmin && <MarketNotActive />
@@ -99,11 +91,18 @@ function Market({
 			}
 
 			{
-				marketOpen && marketJoined && !marketActive && <MarketWaitingRoom marketOnlineTeams={marketOnlineTeams} />
+				marketOpen && marketJoined && !marketActive && 
+				<MarketWaitingRoom 
+					marketOnlineTeams={marketOnlineTeams} 
+				/>
 			}
 
 			{
-				marketOpen && marketJoined && marketActive && <MarketTurnManager marketTeamTurn={marketTeamTurn} marketOpen={marketOpen}/>
+				marketOpen && marketJoined && marketActive && 
+				<MarketTurnManager 
+					marketTeamTurn={marketTeamTurn} 
+					marketOpen={marketOpen}
+				/>
 			}
 
 
@@ -124,7 +123,7 @@ Market.propTypes = {
 	joinMarketRoom: PropTypes.func,
 	marketOnlineTeams: PropTypes.array,
 	marketActive: PropTypes.bool,
-	marketTeamTurn: PropTypes.array,
+	marketTeamTurn: PropTypes.object,
 	createMarket: PropTypes.func
 }
 

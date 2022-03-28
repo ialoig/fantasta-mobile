@@ -37,8 +37,8 @@ function MarketMyTurn(props) {
 					{I18n.translate("remaining_time")}
 				</Text>
 				<Countdown 
-					minutes={2}
-					seconds={0}
+					minutes={0}
+					seconds={25}
 					type={"default"}
 				/>
 			</View>
