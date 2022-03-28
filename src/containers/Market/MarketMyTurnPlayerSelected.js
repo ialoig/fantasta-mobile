@@ -9,6 +9,7 @@ import Countdown from "../../components/Countdown/Countdown"
 import NumberInc from "../../components/Inputs/NumberInc/NumberInc"
 import routes from "../../navigation/routesNames"
 import { Leagues, Players, User } from "../../services"
+import { SocketManager } from "../../services/socket"
 import { colors, textStyles } from "../../styles"
 import styles from "./styles"
 
@@ -39,28 +40,43 @@ function MarketMyTurnPlayerSelected(props) {
 		setSessionValue(prevValue => {
 			return prevValue + value
 		})
-		console.log("[MarketMyTurnPlayerSelected - incrementSessionValue] - setSessionValue:", sessionValue)
+		console.log("[MarketMyTurnPlayerSelected] [incrementSessionValue] - setSessionValue:", sessionValue)
 	}
 
 
 	const resetSessionValue = () => {
 		setSessionValue(1)
-		console.log("[MarketMyTurnPlayerSelected - resetSessionValue] - setSessionValue:", sessionValue)
+		console.log("[MarketMyTurnPlayerSelected] [resetSessionValue] - setSessionValue:", sessionValue)
 	}
 
 	const bet = () => {
-		console.log("[MarketMyTurnPlayerSelected - bet] - value:", sessionValue)
+
+		const socket = SocketManager.getSocketInstance()
+		const ioClient = socket.ioClient
+		const payload = {
+			team_id: team._id,
+			footballPlayer_id: playerID,
+			bid: sessionValue
+		}
+		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.FOOTBALL_PLAYER_SELECTED, payload, (response) => {
+			console.log("[MarketMyTurnPlayerSelected] [bet] status: %s", response.status)
+			console.log("[MarketMyTurnPlayerSelected] [bet] error?: %s", JSON.stringify(response.error))
+			// TODO: check response OK from server
+		})
+
+
+		console.log("[MarketMyTurnPlayerSelected] [bet] - value:", sessionValue)
 		const localBid = {
 			_id: team._id,
 			name: team.name,
 			value: sessionValue
 		}
 		
-		return navigate(routes.MARKET_OPEN_AUCTION, {
-			id: playerID,
-			isClassic: isClassic,
-			bid: localBid
-		})
+		// return navigate(routes.MARKET_OPEN_AUCTION, {
+		// 	id: playerID,
+		// 	isClassic: isClassic,
+		// 	bid: localBid
+		// })
 	}
 
 
