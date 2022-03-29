@@ -69,7 +69,7 @@ function MarketWaitingRoom({ marketOnlineTeams }) {
 			{/* button Start is shown when all participants are online. Visible only for admin */}
 			{
 				isAdmin && marketOnlineTeams.length == teams.length &&
-				<View style={styles.joinButton}>
+				<View style={styles.buttonOverlay}>
 					<Button
 						title={I18n.translate("Start")}
 						onPress={() => marketStart()}

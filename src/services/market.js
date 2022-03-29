@@ -19,7 +19,7 @@ let MARKET
 let ONLINE_PLAYERS = []
 
 const init = ( market ) => {
-	console.log("[market - init] market: ", market)
+	console.log("[services-market] [init] market: ", market)
 	MARKET = market
 }
 
@@ -32,7 +32,7 @@ const setOpen = () => {
 }
 
 const setOnlinePlayers = (onlinePlayers) => {
-	console.log("[setOnlinePlayers] - onlinePlayers: ", onlinePlayers)
+	console.log("[services-market] [setOnlinePlayers] - onlinePlayers: ", onlinePlayers)
 	ONLINE_PLAYERS = onlinePlayers //TODO: add user only if does not exists already
 }
 

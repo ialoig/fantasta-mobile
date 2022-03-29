@@ -32,7 +32,7 @@ function MarketCreate({ createMarket }) {
 					{I18n.translate("market_create_descr")}
 				</Text>
 			</View>
-			<View style={styles.joinButton}>
+			<View style={styles.buttonOverlay}>
 				<Button
 					title={I18n.translate("create")}
 					onPress={() => createAndRoute()}

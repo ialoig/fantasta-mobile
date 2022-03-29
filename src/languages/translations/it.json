@@ -143,5 +143,8 @@
   "username": "Username",
   "yourLeagues": "Le tue leghe",
   "your_bid": "La tua offerta",
-  "zero": "Zero"
+  "zero": "Zero",
+  "shaffle": "Shaffle",
+  "shaffle_descr": "Clicca sul bottone shaffle per selezionare un nuovo giocatore per l'asta",
+  "waiting_shaffle_descr": "In attesa che venga selezionato un nuovo giocatore all'asta ..."
 }
