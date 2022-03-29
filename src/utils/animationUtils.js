@@ -59,7 +59,7 @@ export const animateTextValue = (toValue, addText) => {
 
 export const opacityAnimation = (delay, numOfReps, duration) => {
 
-	const animOpacity = useSharedValue(0.2)
+	const animOpacity = useSharedValue(0)
 
 	useEffect(() => {
 		animOpacity.value = 

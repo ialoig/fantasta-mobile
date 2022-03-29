@@ -40,7 +40,7 @@ function BottomTabNavigator() {
 	const [marketOpen, setMarketOpen] = useState(market && market.closedAt == null ? true : false)
 	const [marketActive, setMarketActive] = useState(false)
 	const [marketOnlineTeams, setMarketOnlineTeams] = useState([])
-	const [marketTeamTurn, setMarketTeamTurn] = useState([])
+	const [marketTeamTurn, setMarketTeamTurn] = useState()
 	const [marketBetHistory, setMarketBetHistory] = useState([])
 	const [marketJoined, setMarketJoined] = useState(false)
 
@@ -127,7 +127,7 @@ function BottomTabNavigator() {
 				setMarketOpen(false)
 				setMarketActive(false)
 				setMarketOnlineTeams([])
-				setMarketTeamTurn([])
+				setMarketTeamTurn()
 				setMarketBetHistory([])
 				setMarketJoined(false)
 			}

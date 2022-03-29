@@ -24,6 +24,13 @@ export default StyleSheet.create({
 		justifyContent: "space-between",
 		position: "relative"
 	},
+	buttonOverlay: {
+		...StyleSheet.absoluteFillObject,
+		alignItems: "center",
+		justifyContent: "flex-end",
+		marginBottom: getBottomNavigationHeight() + 30,
+		position: "absolute"
+	},
 	container: {
 		...StyleSheet.absoluteFillObject,
 		alignContent: "center",
@@ -36,17 +43,12 @@ export default StyleSheet.create({
 		justifyContent: "space-between"
 	},
 	image: {
+		alignContent: "center",
 		alignItems: "center",
 		flex: 1,
 		justifyContent: "center",
-		position: "relative"
-	},
-	joinButton: {
-		...StyleSheet.absoluteFillObject,
-		alignItems: "center",
-		justifyContent: "flex-end",
-		marginBottom: getBottomNavigationHeight() + 30,
-		position: "absolute"
+		marginBottom: getBottomNavigationHeight(),
+		position: "relative",
 	},
 	opponentTurnInfo: {
 		flex: 1,

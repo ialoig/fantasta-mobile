@@ -17,16 +17,16 @@ const addOrUpdateLeague = (response) => {
 		// case 0 : league does not exist
 		if (index === -1) {
 			LEAGUES.push(league)
-			console.log("[services - addAndUpdateLocalLeague] Adding League: %s in local storage", league.name)
+			console.log("[services-league] [addAndUpdateLocalLeague] Adding League: %s in local storage", league.name)
 		}
 		// case 1: league exists, and should be updated
 		else {
 			LEAGUES[index] = league
-			console.log("[services - addAndUpdateLocalLeague] Updating League: %s in local storage", league.name)
+			console.log("[services-league] [addAndUpdateLocalLeague] Updating League: %s in local storage", league.name)
 		}
 	} else if (league) {
 		LEAGUES.push(league)
-		console.log("[services - addAndUpdateLocalLeague] Local storage is empty. Adding League: %s", league.name)
+		console.log("[services-league] [addAndUpdateLocalLeague] Local storage is empty. Adding League: %s", league.name)
 	}
 }
 
@@ -41,6 +41,7 @@ const getLeagues = () => {
 
 const setActiveLeague = (league) => {
 	ACTIVE_LEAGUE = league || []
+	console.log("[services-league] [setActiveLeague] Active League: %s", ACTIVE_LEAGUE)
 }
 
 const getActiveLeague = () => {

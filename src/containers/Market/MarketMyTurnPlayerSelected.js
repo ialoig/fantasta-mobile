@@ -56,7 +56,7 @@ function MarketMyTurnPlayerSelected(props) {
 		const payload = {
 			team_id: team._id,
 			footballPlayer_id: playerID,
-			bid: sessionValue
+			bet: sessionValue
 		}
 		ioClient.emit(SocketManager.EVENT_TYPE.CLIENT.MARKET.FOOTBALL_PLAYER_SELECTED, payload, (response) => {
 			console.log("[MarketMyTurnPlayerSelected] [bet] status: %s", response.status)
