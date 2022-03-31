@@ -1,4 +1,3 @@
-
 import axios from "axios"
 import { Error } from "./error"
 import { Leagues } from "./leagues"

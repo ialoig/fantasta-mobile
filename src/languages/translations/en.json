@@ -144,7 +144,7 @@
   "yourLeagues": "Your leagues",
   "your_bid": "Your bid",
   "zero": "Zero",
-  "shaffle": "Shaffle",
-  "shaffle_descr": "Click the Shaffle button to select a new Player for the auction",
-  "waiting_shaffle_descr": "Wait for a new auction Player to be selected ..."
+  "shuffle": "Shuffle",
+  "shuffle_descr": "Click the Shuffle button to select a new Player for the auction",
+  "waiting_shuffle_descr": "Wait for a new auction Player to be selected ..."
 }
