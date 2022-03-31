@@ -37,8 +37,8 @@ export const snap = (value, velocity, checkOne, checkTwo) => {
 /**
  * 
  * @param {toValue} number the value where animation should stops 
- * @param {addText} string concatenate text to the value 
- * @returns 
+ * @param {addText} string additional text to concatenate with the value 
+ * @returns animated text
  */
 export const animateTextValue = (toValue, addText) => {
 	const progress = useSharedValue(0)
@@ -56,7 +56,14 @@ export const animateTextValue = (toValue, addText) => {
 }
 
 
-
+/**
+ * Create a opacity animation based on parameters passed by
+ * 
+ * @param {Number} delay in ms
+ * @param {Number} numOfReps number of repetitions (-1 for infinite loop)
+ * @param {Number} duration in ms
+ * @returns Opacity value
+ */
 export const opacityAnimation = (delay, numOfReps, duration) => {
 
 	const animOpacity = useSharedValue(0)

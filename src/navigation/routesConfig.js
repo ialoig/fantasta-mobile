@@ -5,7 +5,6 @@ import { IconButton } from "../components"
 import EmptyButtonPlaceHolder from "../components/Header/EmptyButtonPlaceHolder"
 import HeaderRightButton from "../components/Header/HeaderRightButton"
 import HeaderTitle from "../components/Header/HeaderTitle"
-import Icon from "../components/Icon/Icon"
 import { android, deviceHeight, deviceScreenWidth, ios } from "../utils/deviceUtils"
 
 

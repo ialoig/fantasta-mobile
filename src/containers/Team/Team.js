@@ -1,30 +1,15 @@
 import { useNavigation } from "@react-navigation/native"
 import PropTypes from "prop-types"
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { View } from "react-native"
 import { Header } from "../../components"
 import TeamList from "../../components/Team/TeamList"
-import { Leagues } from "../../services"
 import { commonStyle } from "../../styles"
 import styles from "./styles"
 
 function Team({ league, update }) {
 
 	const { goBack } = useNavigation()
-
-	// const [teams, setTeams] = useState()
-	// const [league, setLeague] = useState()
-
-	// useEffect(() => {
-		
-	// 	const activeLeague = Leagues.getActiveLeague()
-	// 	setLeague(activeLeague)
-
-	// 	const teams = league.teams
-	// 	console.log("[Team - useEffect] - teams", teams)
-	// 	setTeams(teams)
-		
-	// }, [league])
 
 	return (
 		<View style={[styles.container, commonStyle.paddingHeader]}>
