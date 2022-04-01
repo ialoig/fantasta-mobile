@@ -1,7 +1,6 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import { TextInput, View } from "react-native"
-
 import { inputStyle, textStyles } from "../../../styles"
 import ErrorHandler from "../../ErrorHandler/ErrorHandler"
 
@@ -22,3 +21,9 @@ const Email = (props) => {
 }
 
 export default Email
+
+
+Email.propTypes = {
+	hasError: PropTypes.bool,
+	onRef: PropTypes.func
+}

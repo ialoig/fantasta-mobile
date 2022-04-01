@@ -22,7 +22,7 @@ function Button ({ title, type, size, border, onPress }) {
 Button.propTypes = {
 	title: PropTypes.string.isRequired,
 	onPress: PropTypes.func.isRequired,
-	type: PropTypes.oneOf(["primary", "secondary"]),
+	type: PropTypes.oneOf(["primary", "secondary", "alert"]),
 	size: PropTypes.oneOf(["large", "small"]),
 	border: PropTypes.bool,
 }

@@ -1,7 +1,6 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import { Text, TextInput, View } from "react-native"
-
 import inputStyles from "../../../styles/inputs"
 
 const Decimal = (props) => {
@@ -20,3 +19,10 @@ const Decimal = (props) => {
 }
 
 export default Decimal
+
+
+Decimal.propTypes = {
+	hasError: PropTypes.bool,
+	error: PropTypes.string,
+	onRef: PropTypes.func
+}

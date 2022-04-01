@@ -23,6 +23,9 @@ export default StyleSheet.create({
 		justifyContent: "space-between",
 		paddingVertical: 8,
 	},
+	input: {
+		width: 5
+	},
 	label: {
 		alignSelf: "center",
 	}

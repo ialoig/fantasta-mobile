@@ -86,7 +86,7 @@ function PieChart({ radius, strokeWidth, maxValue, budgetSpent, totalSpent, calc
 		}
 		
 		//calculate values as percentage
-		let values = budgetSpent.map((item, index) => {
+		let values = budgetSpent.map((item) => {
 			const percSpent = Math.round(100 * item.value / maxValue)
 			// console.log("[PieChart - calculateValues] - [", index, "]", item.role, ",", percSpent, "%")
 			return {

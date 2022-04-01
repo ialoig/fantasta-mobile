@@ -1,6 +1,5 @@
-
+import PropTypes from "prop-types"
 import React from "react"
-
 import Radio from "./Radio"
 
 export default class RadioContainer extends React.Component {
@@ -8,7 +7,6 @@ export default class RadioContainer extends React.Component {
 	render() {
 
 		const {
-			id,
 			label="",
 			value="",
 			items=[],
@@ -17,8 +15,6 @@ export default class RadioContainer extends React.Component {
 
 		return (
 			<Radio
-				id={id}
-				name={id}
 				label={label}
 				value={value}
 				items={items}
@@ -26,4 +22,11 @@ export default class RadioContainer extends React.Component {
 			/>
 		)
 	}
+}
+
+RadioContainer.propTypes = {
+	label: PropTypes.string.isRequired,
+	value: PropTypes.string,
+	items: PropTypes.array,
+	onChange: PropTypes.func,
 }

@@ -1,4 +1,3 @@
-
 import Constants from "expo-constants"
 import * as Linking from "expo-linking"
 import PropTypes from "prop-types"
@@ -68,10 +67,9 @@ export class SplashScreenContainer extends React.Component {
 			let token = Token.get()
 			if (token) {
 				try {
-					let res = await Auth.authenticate(token)
+					await Auth.authenticate(token)
 					this.props.navigation.navigate(routes.HOME)
-				}
-				catch (error) {
+				} catch (error) {
 					this.props.navigation.navigate(routes.LOGIN)
 				}
 			}
