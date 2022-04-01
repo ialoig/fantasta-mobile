@@ -4,10 +4,8 @@ import PropTypes from "prop-types"
 import React, { useEffect, useState } from "react"
 import { Text, View } from "react-native"
 import { Badge, Button, PlayerCard } from "../../components"
-import AuctionCard from "../../components/Card/AuctionCard/AuctionCard"
 import Countdown from "../../components/Countdown/Countdown"
 import NumberInc from "../../components/Inputs/NumberInc/NumberInc"
-import routes from "../../navigation/routesNames"
 import { Leagues, Players, User } from "../../services"
 import { SocketManager } from "../../services/socket"
 import { colors, textStyles } from "../../styles"
@@ -15,7 +13,7 @@ import styles from "./styles"
 
 function MarketMyTurnPlayerSelected(props) {
 
-	const { goBack, navigate } = useNavigation()
+	const { goBack } = useNavigation()
 	const { params } = useRoute()
 	//get player object from route params
 	const playerID = params?.id

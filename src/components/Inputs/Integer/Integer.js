@@ -1,7 +1,6 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import { Text, TextInput, View } from "react-native"
-
 import inputStyles from "../../../styles/inputs"
 
 const Integer = (props) => {
@@ -20,3 +19,9 @@ const Integer = (props) => {
 }
 
 export default Integer
+
+Integer.propTypes = {
+	hasError: PropTypes.bool,
+	error: PropTypes.string,
+	onRef: PropTypes.func
+}

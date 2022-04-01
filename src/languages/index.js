@@ -1,12 +1,12 @@
-
 import I18n from "i18n-js"
 import { NativeModules, Platform } from "react-native"
-
 import { langs } from "./translations"
+
 
 const OS = Platform.OS || ""
 const defaultLang = "it"
 let deviceLang = ""
+
 
 if ( OS=="web" ) {
 	let NV = navigator || {}

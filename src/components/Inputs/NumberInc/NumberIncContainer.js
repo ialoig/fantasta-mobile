@@ -1,6 +1,5 @@
-
+import PropTypes from "prop-types"
 import React from "react"
-
 import NumberInc from "./NumberInc"
 
 export default class NumberIncContainer extends React.Component {
@@ -8,7 +7,6 @@ export default class NumberIncContainer extends React.Component {
 	render() {
 
 		const {
-			id,
 			label="",
 			value=1,
 			step=1,
@@ -19,8 +17,6 @@ export default class NumberIncContainer extends React.Component {
 
 		return (
 			<NumberInc
-				id={id}
-				name={id}
 				label={label}
 				value={value}
 				step={step}
@@ -30,4 +26,14 @@ export default class NumberIncContainer extends React.Component {
 			/>
 		)
 	}
+}
+
+
+NumberIncContainer.propTypes = {
+	label: PropTypes.string.isRequired,
+	value: PropTypes.number,
+	step: PropTypes.number,
+	min: PropTypes.number,
+	max: PropTypes.number,
+	onChange: PropTypes.func,
 }

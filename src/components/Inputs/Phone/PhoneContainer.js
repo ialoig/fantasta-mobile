@@ -1,7 +1,6 @@
-
 import _ from "lodash"
+import PropTypes from "prop-types"
 import React from "react"
-
 import { checkValidity } from "../utils"
 import Phone from "./Phone"
 
@@ -24,7 +23,7 @@ export default class PhoneContainer extends React.Component {
 		this.checkValidity()
 	}
 
-	componentDidUpdate ( oldProps, oldState ) {
+	componentDidUpdate ( oldProps ) {
 		if ( oldProps.value!=this.props.value && this.props.value!=this.state.value ) {
 
 			this.setState({
@@ -42,7 +41,7 @@ export default class PhoneContainer extends React.Component {
 		this.props.onChange && this.props.onChange( this.props.id, text, this.state.valid )
 	}
 
-	onBlur ( e ) {
+	onBlur () {
 		this.setState({
 			focused: false
 		})
@@ -50,7 +49,7 @@ export default class PhoneContainer extends React.Component {
 		this.props.onBlur && this.props.onBlur( this.props.id, this.state.value, this.state.valid )
 	}
 
-	onFocus (e) {
+	onFocus () {
 		this.setState({
 			touched: true,
 			focused: true
@@ -118,4 +117,25 @@ export default class PhoneContainer extends React.Component {
 			/>
 		)
 	}
+}
+
+PhoneContainer.propTypes = {
+	id: PropTypes.string.isRequired,
+	label: PropTypes.string.isRequired,
+	value: PropTypes.string,
+	valid: PropTypes.bool,
+	placeholder: PropTypes.string,
+	autoCapitalize: PropTypes.string,
+	clearButtonMode: PropTypes.string,
+	showError: PropTypes.bool,
+	hideError: PropTypes.bool,
+	required: PropTypes.bool,
+	editable: PropTypes.bool,
+	selectTextOnFocus: PropTypes.bool,
+	minLength: PropTypes.number,
+	maxLength: PropTypes.number,
+	errors: PropTypes.string,
+	onChange: PropTypes.func,
+	onBlur: PropTypes.func,
+	onFocus: PropTypes.func
 }

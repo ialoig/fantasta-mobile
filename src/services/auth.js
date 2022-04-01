@@ -4,6 +4,7 @@ import { Leagues } from "./leagues"
 import { Token } from "./server"
 import { User } from "./user"
 
+
 const register = async (email, password) => {
 	console.log("POST /auth/update - email=" + email + ", password=" + password)
 	try {
@@ -35,7 +36,7 @@ const login = async (email, password) => {
 const forgot = async (email) => {
 	console.log("PUT /auth/forgot - email=" + email)
 	try {
-		let response = await axios.put("/auth/forgot", { email }, {})
+		await axios.put("/auth/forgot", { email }, {})
 		return Promise.resolve()
 	}
 	catch (error) {
@@ -47,7 +48,7 @@ const forgot = async (email) => {
 const reset = async (email, password) => {
 	console.log(`PUT /auth/resetPassword - email=${email}`)
 	try {
-		let response = await axios.put("/auth/resetPassword", { email, password }, {})
+		await axios.put("/auth/resetPassword", { email, password }, {})
 		return Promise.resolve()
 	}
 	catch (error) {

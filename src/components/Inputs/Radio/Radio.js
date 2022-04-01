@@ -1,11 +1,11 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import { Text, View } from "react-native"
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from "react-native-simple-radio-button"
 import { commonStyle, textStyles } from "../../../styles"
 import colors from "../../../styles/colors"
-
 import styles from "./styles"
+
 
 const Radio = (props) => {
 
@@ -50,3 +50,10 @@ const Radio = (props) => {
 }
 
 export default Radio
+
+Radio.propTypes = {
+	label: PropTypes.string.isRequired,
+	value: PropTypes.string,
+	items: PropTypes.array,
+	onChange: PropTypes.func,
+}

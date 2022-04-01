@@ -1,9 +1,7 @@
-
 import axios from "axios"
 import { Error } from "./error"
 
-const feedBack = ( text ) =>
-{
+const feedBack = ( text ) => {
 	console.log("POST /support - Feedback, ", text )
 	return send( text, "Feedback" )
 }
@@ -13,19 +11,15 @@ const contact = ( text ) => {
 	return send( text, "Contact Us" )
 }
 
-const send = async ( text, subject ) =>
-{
-	if ( !text )
-	{
+const send = async ( text, subject ) => {
+	if ( !text ) {
 		return Promise.reject()
 	}
-
 	try {
-		let response = await axios.post("/support", { text, subject }, {})
+		await axios.post("/support", { text, subject }, {})
 
 		return Promise.resolve()
-	}
-	catch (error) {
+	} catch (error) {
 		Error.handleError(error, true)
 		return Promise.reject()
 	}

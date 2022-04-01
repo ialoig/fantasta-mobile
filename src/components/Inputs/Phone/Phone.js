@@ -1,7 +1,6 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import { Text, TextInput, View } from "react-native"
-
 import inputStyles from "../../../styles/inputs"
 
 const Phone = (props) => {
@@ -10,7 +9,7 @@ const Phone = (props) => {
 		<View style={inputStyles.inptView}>
 			<TextInput
 				{...props}
-				style={inputStyles.inputForm, props.hasError ? inputStyles.hasError : null}
+				style={[inputStyles.inputForm, props.hasError ? inputStyles.hasError : null]}
 				ref={(ref)=> { props.onRef(ref) }}
 				keyboardType='phone-pad'
 			/>
@@ -20,3 +19,10 @@ const Phone = (props) => {
 }
 
 export default Phone
+
+
+Phone.propTypes = {
+	hasError: PropTypes.bool,
+	error: PropTypes.string,
+	onRef: PropTypes.func
+}

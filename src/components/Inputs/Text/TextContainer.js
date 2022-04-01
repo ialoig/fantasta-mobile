@@ -24,7 +24,7 @@ export default class TextContainer extends React.Component {
 		this.checkValidity()
 	}
 
-	componentDidUpdate(oldProps, oldState) {
+	componentDidUpdate(oldProps) {
 		if (oldProps.value != this.props.value && this.props.value != this.state.value) {
 
 			this.setState({
@@ -42,7 +42,7 @@ export default class TextContainer extends React.Component {
 		this.props.onChange && this.props.onChange(this.props.id, text, this.state.valid)
 	}
 
-	onBlur(e) {
+	onBlur() {
 		this.setState({
 			focused: false,
 		})
@@ -50,7 +50,7 @@ export default class TextContainer extends React.Component {
 		this.props.onBlur && this.props.onBlur(this.props.id, this.state.value, this.state.valid)
 	}
 
-	onFocus(e) {
+	onFocus() {
 		this.setState({
 			touched: true,
 			focused: true
@@ -124,6 +124,7 @@ TextContainer.propTypes = {
 	id: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired,
 	value: PropTypes.string,
+	valid: PropTypes.bool,
 	placeholder: PropTypes.string,
 	autoCapitalize: PropTypes.string,
 	clearButtonMode: PropTypes.string,

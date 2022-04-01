@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import { Text, TextInput, View } from "react-native"
 import { inputStyle, textStyles } from "../../../styles"
@@ -23,3 +23,10 @@ const Textarea = (props) => {
 }
 
 export default Textarea
+
+
+Textarea.propTypes = {
+	hasError: PropTypes.bool,
+	lines: PropTypes.number,
+	onRef: PropTypes.func
+}

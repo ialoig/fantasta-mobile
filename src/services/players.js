@@ -1,11 +1,13 @@
-
 import axios from "axios"
-
 import { Storage } from "./storage"
+
+
 
 let PLAYERS = {}
 let VERSION = ""
 let STATISTICS = {}
+
+
 
 const setPlayers = ( players ) =>
 {

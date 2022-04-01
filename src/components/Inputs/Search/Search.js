@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types"
 import React from "react"
 import { Text, TextInput, View } from "react-native"
 import { inputStyle, textStyles } from "../../../styles"
@@ -21,3 +21,10 @@ const Search = (props) => {
 }
 
 export default Search
+
+
+Search.propTypes = {
+	hasError: PropTypes.bool,
+	error: PropTypes.string,
+	onRef: PropTypes.func
+}
